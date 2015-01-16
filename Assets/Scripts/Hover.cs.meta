@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: a88bcb1ea733ace4f920885a13fc77e8
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - OnMouseOverFont: {fileID: 12800000, guid: 33850a82d5cdfc941bd6802348995a5c, type: 3}
+  - OnMouseExitFont: {fileID: 12800000, guid: 530120f11ee3a7b408244eb5fb8b3b12, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
