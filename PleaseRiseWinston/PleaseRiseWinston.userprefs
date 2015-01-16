@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Hover2.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Hover.cs" Line="19" Column="35" />
+      <File FileName="Assets\Scripts\Hover2.cs" Line="24" Column="61" />
+      <File FileName="Assets\Scripts\Hover1.cs" Line="7" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
