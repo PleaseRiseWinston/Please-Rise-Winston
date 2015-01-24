@@ -22,27 +22,28 @@ public class Hover : MonoBehaviour {
 	}
 
 	void OnMouseOver(){
-		if(!backdrop){
-			// Drops alpha if current font is defaultFont.
-			if(GetComponent<TextMesh>().font == defaultFont){
-				fontInvert();
-				//fadeOut();
-			}
-			// Increases alpha if current font is translatedFont.
-			else if(GetComponent<TextMesh>().font == translatedFont){
-				fontInvert();
-				//fadeIn();
-			}
+
+		GetComponent<TextMesh> ().font = translatedFont;
+		/* Drops alpha if current font is defaultFont.
+		if(GetComponent<TextMesh>().font == defaultFont){
+			fontInvert();
+			//fadeOut();
 		}
+		// Increases alpha if current font is translatedFont.
+		else if(GetComponent<TextMesh>().font == translatedFont){
+			fontInvert();
+			//fadeIn();
+
 		else if (backdrop) {
 
 			//lines.GetComponent<TextMesh>().font = defaultFont;
-		}
+		}*/
 	}
 
 	void OnMouseExit(){
 		Debug.Log ("Fuck this.");
-
+		GetComponent<TextMesh> ().font = defaultFont;
+		/*
 		// Drops alpha if current font is translatedFont.
 		if(GetComponent<TextMesh>().font == translatedFont){
 			fontInvert();
@@ -52,7 +53,7 @@ public class Hover : MonoBehaviour {
 		else if(GetComponent<TextMesh>().font == defaultFont){
 			fontInvert();
 			//fadeIn();
-		}
+		}*/
 	}
 
 	/***Arbitrary Functions***/
