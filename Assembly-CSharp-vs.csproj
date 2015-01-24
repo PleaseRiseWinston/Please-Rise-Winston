@@ -47,8 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Hover.cs" />
-     <Compile Include="Assets\Scripts\Hover1.cs" />
      <Compile Include="Assets\Scripts\Hover2.cs" />
+     <Compile Include="Assets\Scripts\TextRead.cs" />
+     <Compile Include="Assets\Scripts\TextSwap.cs" />
+     <None Include="Assets\Scripts\textfile.txt" />
+     <None Include="Assets\Scripts\TextShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

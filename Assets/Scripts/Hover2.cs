@@ -4,7 +4,7 @@ using System.Collections;
 public class Hover2 : MonoBehaviour {
 
 	public GameObject transLine;
-	public Material textMesh;
+	//public Material textMesh;
 
 	private float textSpeed = 2.0f;
 	private float timer = 0.0f;
