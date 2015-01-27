@@ -2,12 +2,15 @@
 using System.Collections;
 
 
-// Will clean up at some point. Essentially a "pause menu" right now.
+// Essentially a "pause menu" right now but it does the job.
 // Bind to gameObject(word). Make sure it has a box collider 2D component (needed for OnMouseDown() function apparently) 
 
 public class screenOverlay : MonoBehaviour {
-	//bool isDestroyed = false;
 	bool paused = false;
+	bool objectClicked = false;
+	string wordClicked = "";
+	string wordOption1 = "Word 1";
+	string wordOption2 = "Word 2";
 
 	// Use this for initialization
 	void Start () {
@@ -16,10 +19,15 @@ public class screenOverlay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//print the word that's being tracked.
+		//print (wordClicked);
 	}
 
 	void OnMouseDown(){
-		paused = togglePause ();
+		if (objectClicked == false) {
+			paused = togglePause ();
+			objectClicked = true;
+		}
 	}
 
 	void OnGUI(){
@@ -27,38 +35,19 @@ public class screenOverlay : MonoBehaviour {
 		const int buttonHeight = 60;
 
 		if(paused){
-		if(GUI.Button(
-			new Rect(
-				Screen.width / 2 - (buttonWidth / 2), 
-				(1 * Screen.height / 3) - (buttonHeight / 2), 
-				buttonWidth, buttonHeight),
-			"Word 1")){
-			print ("Hey");
-		}
+			if(GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2), (1 * Screen.height / 3) - (buttonHeight / 2), buttonWidth, buttonHeight),wordOption1)){
+				paused = togglePause();
+				objectClicked = false;
+				wordClicked = wordOption1;
+			}
 
-		if (
-			GUI.Button(
 			// Center in X, 2/3 of the height in Y
-			new Rect(
-			Screen.width / 2 - (buttonWidth / 2),
-			(2 * Screen.height / 3) - (buttonHeight / 2),
-			buttonWidth,
-			buttonHeight
-			),
-			"Word 2"
-			)
-			)
-		{
-			print ("Listen");
+			if (GUI.Button(new Rect(Screen.width / 2 - (buttonWidth / 2),(2 * Screen.height / 3) - (buttonHeight / 2),buttonWidth,buttonHeight),wordOption2)){
+				paused = togglePause();
+				objectClicked = false;
+				wordClicked = wordOption2;
 			}
 		}
-		
-		
-		/*if(paused){
-			GUILayout.Label("Game is paused!");
-			if(GUILayout.Button("Click me to unpause"))
-				paused = togglePause();
-		}*/
 	}
 
 	bool togglePause(){
