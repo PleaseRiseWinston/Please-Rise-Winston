@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Hover : MonoBehaviour {
+public class SwapFont: MonoBehaviour {
 	
 	public bool translateable;
 	public bool backdrop = false;

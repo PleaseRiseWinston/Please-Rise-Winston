@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{09863654-725B-CE84-837C-11AFF5362832}</ProjectGuid>
+	<ProjectGuid>{5F28555F-BAEF-79A7-7BCB-8FAF4C9A1C82}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,10 +46,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Hover.cs" />
-     <Compile Include="Assets\Scripts\Hover2.cs" />
+     <Compile Include="Assets\Scripts\Hover1.cs" />
+     <Compile Include="Assets\Scripts\SwapFont.cs" />
+     <Compile Include="Assets\Scripts\SwapText.cs" />
      <Compile Include="Assets\Scripts\TextRead.cs" />
-     <Compile Include="Assets\Scripts\TextSwap.cs" />
+     <Compile Include="Assets\Scripts\screenOverlay.cs" />
      <None Include="Assets\Scripts\textfile.txt" />
      <None Include="Assets\Scripts\TextShader.shader" />
   </ItemGroup>

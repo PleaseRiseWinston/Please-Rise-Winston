@@ -3,15 +3,28 @@ using System.Collections;
 
 public class Hover1 : MonoBehaviour {
 
-	public string OnMouseOverText = "All that glisters is not gold -";
-	public string OnMouseExitText = "Nōn omne quod nitet aurum est -";
+	public GameObject transLine;
+	//public Material textMesh;
+
+	private float textSpeed = 2.0f;
+	private float timer = 0.0f;
+	public float OnMouseOverAlpha = 1.0f;
+	public float OnMouseExitAlpha = 0.0f;
 
 	void OnMouseOver(){
-		GetComponent<TextMesh>().text = OnMouseOverText;
+		Destroy (gameObject);
+		Instantiate (transLine,transform.position,transform.rotation);
 	}
 	
 	void OnMouseExit(){
-		GetComponent<TextMesh>().text = OnMouseExitText;
+		Destroy (transLine);
+		Instantiate (gameObject);
 	}
 
+	/*
+	void Update(){
+		timer += Time.deltaTime;
+		renderer.material.color.a += textSpeed * Time.deltaTime;
+	}
+	*/
 }

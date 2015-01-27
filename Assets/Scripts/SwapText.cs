@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Hover1 : MonoBehaviour {
+public class SwapText : MonoBehaviour {
 
 	public string OnMouseOverText = "All that glisters is not gold -";
 	public string OnMouseExitText = "Nōn omne quod nitet aurum est -";
