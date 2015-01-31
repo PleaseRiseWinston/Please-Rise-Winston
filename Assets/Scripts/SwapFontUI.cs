@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class SwapFontUI: MonoBehaviour {
+public class SwapFont: MonoBehaviour {
 
 	private bool isOver;
 	public bool translateable;
