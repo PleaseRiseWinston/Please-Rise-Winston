@@ -9,7 +9,8 @@ using System.Collections;
 public class noteZoom : MonoBehaviour {
 	private Animator animator;
 	bool animationPlaying = false;
-	float timeLeft = 10.0f;
+	public static float timeLeft = 3.0f;
+	bool startTimer = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,13 +20,16 @@ public class noteZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (animationPlaying == true) {
+			transform.Translate(Vector3.down * Time.deltaTime, Space.World);
+		}
+		
+		if(startTimer == true){
 			//print(timeLeft);
 			timeLeft -= Time.deltaTime;
 
-			if(timeLeft <= 0){
+			/*if(timeLeft <= 0){
 				Application.LoadLevel ("workInProgress");
-			}
-
+			}*/
 		}
 	}
 
@@ -40,6 +44,14 @@ public class noteZoom : MonoBehaviour {
 			animator.SetInteger("spriteState", 0);
 			animationPlaying = false;
 		}*/
+	}
+	
+	void OnBecameInvisible(){
+		//enabled = true;
+		//print("You're OOB!");
+		animationPlaying = false;
+		startTimer = true;
+		animator.SetInteger("spriteState", 0);
 	}
 
 }

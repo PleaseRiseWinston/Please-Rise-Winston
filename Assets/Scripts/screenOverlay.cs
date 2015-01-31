@@ -11,6 +11,7 @@ public class screenOverlay : MonoBehaviour {
 	string wordClicked = "";
 	string wordOption1 = "Word 1";
 	string wordOption2 = "Word 2";
+	bool stopAnimation = false;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,15 @@ public class screenOverlay : MonoBehaviour {
 	void Update () {
 		//print the word that's being tracked.
 		//print (wordClicked);
+		
+		if(noteZoom.timeLeft <= 0 && stopAnimation == false){
+			transform.Translate(Vector3.up * Time.deltaTime, Space.World);
+		}
+		
+		if(transform.position.y > 0){
+			print("hey");
+			stopAnimation = true;
+		}
 	}
 
 	void OnMouseDown(){
