@@ -1,27 +1,37 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using Holoville.HOTween;
+using UnityEngine.EventSystems;
 using System.Collections;
 
-public class SwapFontUI: MonoBehaviour {
+public class SwapFont: MonoBehaviour {
 
 	private bool isOver;
 	public bool translateable;
 
-	public float alphaStep = 0.05f;
-	
+    public int beforeSize=28;
+    public int afterSize=20;
+
 	public Color OnMouseOverColor;
 	public Font defaultFont;
 	public Font translatedFont;
 
+    private Text text;
+    private bool isTranslated = false;
+    private bool isVisible = true;
+
 	void Start(){
+        text = GetComponent<Text>();
+
 		// Sets default alpha to 1.0f.
-		Color color = renderer.material.color;
+		Color color = text.color;
 		color.a = 1.0f;
-		renderer.material.color = color;
+		text.color = color;
 
 		// Sets isOver to false to prevent auto-changing.
-		isOver = false;
+		//isOver = false;
 	}
-
+    /*
 	void Update(){
 		if (!isOver) {
 			untranslate();
@@ -30,24 +40,75 @@ public class SwapFontUI: MonoBehaviour {
 			translate();
 		}
 	}
-
-	void OnMouseOver(){
-		//Debug.Log ("Over");
+    */
+	public void OnEnter(BaseEventData e){
+        //Debug.Log ("Over");
 		// Sets isOver to true in order to start Update()'s translation process.
-		isOver = true;
+		//isOver = true;
+        StopAllCoroutines();
+        StartCoroutine(translate());
 	}
 
-	void OnMouseExit(){
+	public void OnExit(BaseEventData e){
 		//Debug.Log ("Exit");
 		// Sets isOver to false in order to let Update() revert the font back.
-		isOver = false;
-		Color color = renderer.material.color;
+		//isOver = false;
+		/*(Color color = renderer.material.color;
 		color.a = 1.0f;
-		renderer.material.color = color;
+		renderer.material.color = color;*/
+        StopAllCoroutines();
+        StartCoroutine(untranslate());
 	}
 
 	/***Arbitrary Functions***/
 
+    IEnumerator translate()
+    {
+        if (isVisible)
+        {
+            isVisible = false;
+            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.clear).WaitForCompletion());
+        }
+
+        if (!isTranslated)
+        {
+            text.font = translatedFont;
+            // Add corrections after this.
+            text.fontSize = afterSize;
+            isTranslated = true;
+        }
+
+        if (!isVisible)
+        {
+            isVisible = true;
+            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+        }
+    }
+
+     IEnumerator untranslate()
+     {
+         if (isVisible)
+         {
+             isVisible = false;
+             yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.clear).WaitForCompletion());
+         }
+
+         if (isTranslated)
+         {
+             text.font = defaultFont;
+             // Add corrections after this.
+             text.fontSize = beforeSize;
+             isTranslated = false;
+         }
+
+         if (!isVisible)
+         {
+             isVisible = true;
+             yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+         }
+    }
+
+    /*
 	void translate(){
 		if(!isTranslated()){
 			fadeOut();
@@ -56,7 +117,7 @@ public class SwapFontUI: MonoBehaviour {
 			fadeIn();
 		}
 	}
-
+    
 	void untranslate(){
 		if(isTranslated()){
 			fadeOut();
@@ -106,6 +167,6 @@ public class SwapFontUI: MonoBehaviour {
 			return false;
 		}
 	}
-	
+	*/
 	
 }

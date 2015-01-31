@@ -1,0 +1,13 @@
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\obj\Debug\UnityVS.Please-Rise-Winston.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\obj\Debug\Assembly-CSharp.dll
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\HOTween.dll
+C:\Users\Vern\Documents\GitHub\Please-Rise-Winston\Temp\UnityVS_bin\Debug\HOTween.xml
