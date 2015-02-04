@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\SwapFont.cs" />
      <Compile Include="Assets\Scripts\SwapText.cs" />
      <Compile Include="Assets\Scripts\TextRead.cs" />
+     <Compile Include="Assets\Scripts\mainMenu.cs" />
      <Compile Include="Assets\Scripts\noteZoom.cs" />
      <Compile Include="Assets\Scripts\screenOverlay.cs" />
      <None Include="Assets\HOTween\readme.txt" />

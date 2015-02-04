@@ -7,12 +7,12 @@ using System.Collections;
 public class SwapFont: MonoBehaviour {
 
 	private bool isOver;
-	public bool translateable;
+	public bool translateable = false;
 
     public int beforeSize=28;
     public int afterSize=20;
 
-	public Color OnMouseOverColor;
+	public Color highlightColor;
 	public Font defaultFont;
 	public Font translatedFont;
 
@@ -81,7 +81,14 @@ public class SwapFont: MonoBehaviour {
         if (!isVisible)
         {
             isVisible = true;
-            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+            if (translateable)
+            {
+                yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.yellow).WaitForCompletion());
+            }
+            else
+            {
+                yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+            }
         }
     }
 
