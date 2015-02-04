@@ -92,15 +92,14 @@ public class SwapFont: MonoBehaviour {
         }
     }
 
-     IEnumerator untranslate()
-     {
-         if (isVisible)
-         {
-             isVisible = false;
-             yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.clear).WaitForCompletion());
-         }
+    IEnumerator untranslate(){
+        if (isVisible)
+        {
+            isVisible = false;
+            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.clear).WaitForCompletion());
+        }
 
-         if (isTranslated)
+        if (isTranslated)
          {
              text.font = defaultFont;
              // Add corrections after this.
@@ -108,11 +107,11 @@ public class SwapFont: MonoBehaviour {
              isTranslated = false;
          }
 
-         if (!isVisible)
-         {
-             isVisible = true;
-             yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
-         }
+        if (!isVisible)
+        {
+            isVisible = true;
+            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+        }
     }
 
     /*
