@@ -24,11 +24,11 @@ public class screenOverlay : MonoBehaviour {
 		//print (wordClicked);
 		
 		if(noteZoom.timeLeft <= 0 && stopAnimation == false){
-			transform.Translate(Vector3.up * Time.deltaTime, Space.World);
+			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);
 		}
 		
 		if(transform.position.y > 0){
-			print("hey");
+			//print("hey");
 			stopAnimation = true;
 		}
 	}

@@ -20,7 +20,7 @@ public class noteZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (animationPlaying == true) {
-			transform.Translate(Vector3.down * Time.deltaTime, Space.World);
+			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
 		}
 		
 		if(startTimer == true){
