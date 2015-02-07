@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\HOTween\_Demo\HOTweenDemoBrain.cs" />
-    <Compile Include="Assets\Scripts\Hover1.cs" />
+    <Compile Include="Assets\Scripts\PlayCutscene.cs" />
     <Compile Include="Assets\Scripts\SwapFont.cs" />
     <Compile Include="Assets\Scripts\SwapText.cs" />
     <Compile Include="Assets\Scripts\TextRead.cs" />

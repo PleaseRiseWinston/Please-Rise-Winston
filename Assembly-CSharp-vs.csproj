@@ -39,15 +39,15 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\HOTween\_Demo\HOTweenDemoBrain.cs" />
-     <Compile Include="Assets\Scripts\Hover1.cs" />
+     <Compile Include="Assets\Scripts\PlayCutscene.cs" />
      <Compile Include="Assets\Scripts\SwapFont.cs" />
      <Compile Include="Assets\Scripts\SwapText.cs" />
      <Compile Include="Assets\Scripts\TextRead.cs" />
@@ -58,10 +58,10 @@
      <None Include="Assets\Library\ScriptAssemblies\CompilationCompleted.txt" />
      <None Include="Assets\Scripts\textfile.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="HOTween">
- <HintPath>C:/Users/Francisco/Desktop/Please-Rise-Winston/Assets/HOTween/Plugins/HOTween.dll</HintPath>
+ <HintPath>C:/Users/Vern/Documents/GitHub/Please-Rise-Winston/Assets/HOTween/Plugins/HOTween.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
