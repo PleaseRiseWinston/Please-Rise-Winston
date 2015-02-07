@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-// Essentially a "pause menu" right now but it does the job.
-// Bind to gameObject(word). Make sure it has a box collider 2D component (needed for OnMouseDown() function apparently) 
+/*
+* Essentially a "pause menu" right now but it does the job.
+* Bind to gameObject(word). Make sure it has a box collider 2D component (needed for OnMouseDown() function apparently) 
+* 
+* Cont from noteZoom.cs
+* Once timer from screenOverlay.cs reaches zero, it moves a piece of papel up the screen. Once it reaches the middle of the
+* screen then it stops moving and becomes clickable.
+*/
 
 public class screenOverlay : MonoBehaviour {
-	bool paused = false;
-	bool objectClicked = false;
 	string wordClicked = "";
 	string wordOption1 = "Word 1";
 	string wordOption2 = "Word 2";
-	bool stopAnimation = false;
+	public static bool stopAnimation = false;
+	bool paused = false;
+	bool objectClicked = false;
+	public static bool onScreen = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,24 +28,36 @@ public class screenOverlay : MonoBehaviour {
 	void Update () {
 		//print the word that's being tracked.
 		//print (wordClicked);
+		print("Stop animation: " + stopAnimation);
+		print("MMX offScreen: " + noteZoom.offScreen);
 		
-		if(noteZoom.timeLeft <= 0 && stopAnimation == false){
+		//Moves papel up.
+		if(stopAnimation == false && noteZoom.offScreen == true){
 			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);
+			objectClicked = true;
 		}
 		
+		//Stops papel in middle of screen
 		if(transform.position.y > 0){
 			//print("hey");
 			stopAnimation = true;
+			objectClicked = false;
+		}
+		
+		//Checking if the background was clicked. If true, then move the papel down.
+		if(pleaseLeavePaper.clickedBG == true && onScreen == true){
+			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
 		}
 	}
 
 	void OnMouseDown(){
-		if (objectClicked == false) {
+		if (objectClicked == false && stopAnimation == true) {
 			paused = togglePause ();
 			objectClicked = true;
 		}
 	}
-
+	
+	// Used to display word options
 	void OnGUI(){
 		const int buttonWidth = 120;
 		const int buttonHeight = 60;
@@ -60,6 +78,7 @@ public class screenOverlay : MonoBehaviour {
 		}
 	}
 
+	// Pauses the game
 	bool togglePause(){
 		if (Time.timeScale == 0f) {
 			Time.timeScale = 1f;
@@ -69,5 +88,12 @@ public class screenOverlay : MonoBehaviour {
 			Time.timeScale = 0f;
 			return(true);
 		}
+	}
+	
+	// Once off screen set the bool to false.
+	void OnBecameInvisible(){
+		//print("Off screen");
+		onScreen = false;
+		noteZoom.moveSprite = true;
 	}
 }

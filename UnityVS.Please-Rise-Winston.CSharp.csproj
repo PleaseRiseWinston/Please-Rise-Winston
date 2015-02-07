@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\TextRead.cs" />
     <Compile Include="Assets\Scripts\mainMenu.cs" />
     <Compile Include="Assets\Scripts\noteZoom.cs" />
+    <Compile Include="Assets\Scripts\pleaseLeavePaper.cs" />
     <Compile Include="Assets\Scripts\screenOverlay.cs" />
   </ItemGroup>
   <ItemGroup>

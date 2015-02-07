@@ -1,16 +1,58 @@
 ﻿/*
  * Requires a sprite that's set up with at least two animations. Let's the animation run for about 10 seconds (or whatever 10.0f is) and then loads 
- * another scene.
+ * another scene. 
+ * 
+ * This is tied to Jump N Shoot Man. If you click on him, it sets a bool that checks for animation to true. In Update(), if the bool
+ * checking for animation is true, it moves Jump N Shoot Man down the screen. Once he is off screen OnBecameInvisible() executes. It starts a timer
+ * (which is also being detected on screenOverlay.cs). Once the timer reaches 0, code in screenOverlay.cs executes.
  */
 
 using UnityEngine;
 using System.Collections;
 
 public class noteZoom : MonoBehaviour {
-	private Animator animator;
+	public static bool moveSprite = false;
+	bool goingDown = false;
+	public static bool offScreen = false;
+	
+	void Update(){
+		//print("Move Sprite: " + moveSprite);
+		//print("Going Down: " + goingDown);
+		
+		//move down
+		if(moveSprite == true && goingDown == true){
+			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
+		}
+		//move up
+		else if(moveSprite == true && goingDown == false && screenOverlay.onScreen == false){
+			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);	
+		}
+		
+		if(transform.position.y > 0){
+			//print("hey");
+			moveSprite = false;
+			offScreen = false;
+		}
+	}
+	
+	void OnMouseDown(){
+		if(moveSprite == false && goingDown == false){
+			moveSprite = true;
+			goingDown = true;
+		}
+	}
+	
+	void OnBecameInvisible(){
+		moveSprite = false;
+		goingDown = false;
+		offScreen = true;
+		screenOverlay.stopAnimation = false;
+	}
+	
+	/*private Animator animator;
+	public static bool offScreen = false;
 	bool animationPlaying = false;
-	public static float timeLeft = 3.0f;
-	bool startTimer = false;
+	bool stopAnimation = false;
 
 	// Use this for initialization
 	void Start () {
@@ -23,35 +65,29 @@ public class noteZoom : MonoBehaviour {
 			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
 		}
 		
-		if(startTimer == true){
-			//print(timeLeft);
-			timeLeft -= Time.deltaTime;
-
-			/*if(timeLeft <= 0){
-				Application.LoadLevel ("workInProgress");
-			}*/
+		if(screenOverlay.onScreen == false && stopAnimation == false){
+			//print("test");
+			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);
+		}
+		
+		if(transform.position.y > 0){
+			//print("hey");
+			stopAnimation = true;
 		}
 	}
 
 	void OnMouseDown(){
-		//print ("hey");
-
 		if (animationPlaying == false) {
 			animator.SetInteger("spriteState", 1);
 			animationPlaying = true;
+			stopAnimation = false;
 		}
-		/*else{
-			animator.SetInteger("spriteState", 0);
-			animationPlaying = false;
-		}*/
 	}
 	
 	void OnBecameInvisible(){
-		//enabled = true;
-		//print("You're OOB!");
 		animationPlaying = false;
-		startTimer = true;
+		offScreen = true;
 		animator.SetInteger("spriteState", 0);
-	}
+	}*/
 
 }
