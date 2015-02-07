@@ -8,10 +8,14 @@ public class mainMenu : MonoBehaviour {
 		const int buttonWidth = 84;
 		const int buttonHeight = 60;
 		
-		Rect buttonRect = new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		Rect buttonStart = new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		Rect buttonQuit = new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 3) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		
-		if(GUI.Button(buttonRect, "Start Demo")){
+		if(GUI.Button(buttonStart, "Start Demo")){
 			Application.LoadLevel("noteClickZoom");
+		}
+		else if(GUI.Button(buttonQuit, "Quit Game")){
+			Application.Quit();
 		}
 	}
 	
