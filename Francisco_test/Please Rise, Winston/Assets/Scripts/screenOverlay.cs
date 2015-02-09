@@ -5,6 +5,7 @@ using System.Collections;
 // Essentially a "pause menu" right now but it does the job.
 // Bind to gameObject(word). Make sure it has a box collider 2D component (needed for OnMouseDown() function apparently) 
 
+
 public class screenOverlay : MonoBehaviour {
 	bool paused = false;
 	bool objectClicked = false;
@@ -12,6 +13,8 @@ public class screenOverlay : MonoBehaviour {
 	string wordOption1 = "Word 1";
 	string wordOption2 = "Word 2";
 	bool stopAnimation = false;
+	int wordOneClicked = 0;
+	int wordTwoClicked = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -24,13 +27,14 @@ public class screenOverlay : MonoBehaviour {
 		//print (wordClicked);
 		
 		if(noteZoom.timeLeft <= 0 && stopAnimation == false){
-			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);
+			transform.Translate((100) * Vector3.up * Time.deltaTime, Space.World);
 		}
 		
 		if(transform.position.y > 0){
 			//print("hey");
 			stopAnimation = true;
 		}
+
 	}
 
 	void OnMouseDown(){
@@ -49,6 +53,8 @@ public class screenOverlay : MonoBehaviour {
 				paused = togglePause();
 				objectClicked = false;
 				wordClicked = wordOption1;
+				wordOneClicked++;
+				print ("button 1 clicked " + wordOneClicked + " times");
 			}
 
 			// Center in X, 2/3 of the height in Y
@@ -56,9 +62,12 @@ public class screenOverlay : MonoBehaviour {
 				paused = togglePause();
 				objectClicked = false;
 				wordClicked = wordOption2;
+				wordTwoClicked++;
+				print ("button 2 clicked " + wordTwoClicked + " times");
 			}
 		}
 	}
+	
 
 	bool togglePause(){
 		if (Time.timeScale == 0f) {

@@ -9,7 +9,7 @@ public class mainMenu : MonoBehaviour {
 		const int buttonHeight = 60;
 		
 		Rect buttonStart = new Rect(Screen.width / 2 - (buttonWidth / 2), (2 * Screen.height / 4) - (buttonHeight / 2), buttonWidth, buttonHeight);
-		Rect buttonQuit = new Rect(Screen.width / 2 - (buttonWidth / 2), (2 *  Screen.height / 4) + buttonHeight, buttonWidth, buttonHeight);
+		Rect buttonQuit = new Rect(Screen.width / 2 - (buttonWidth / 2), (2 *  Screen.height / 3) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		
 		if(GUI.Button(buttonStart, "Start Demo")){
 			Application.LoadLevel("noteClickZoom");

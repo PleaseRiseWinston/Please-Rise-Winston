@@ -9,7 +9,7 @@ using System.Collections;
 public class noteZoom : MonoBehaviour {
 	private Animator animator;
 	bool animationPlaying = false;
-	public static float timeLeft = 3.0f;
+	public static float timeLeft = 1f;
 	bool startTimer = false;
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class noteZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (animationPlaying == true) {
-			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
+			transform.Translate((100) * Vector3.down * Time.deltaTime, Space.World);
 		}
 		
 		if(startTimer == true){
@@ -34,7 +34,7 @@ public class noteZoom : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		//print ("hey");
+		print ("hey");
 
 		if (animationPlaying == false) {
 			animator.SetInteger("spriteState", 1);
