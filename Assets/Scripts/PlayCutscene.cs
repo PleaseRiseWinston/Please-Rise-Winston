@@ -20,23 +20,25 @@ public class PlayCutscene : MonoBehaviour {
     }
 
 
-    void onMouseDown()
+    void OnMouseDown()
     {
-
+        // Toggle cutscene state with a click
+        Debug.Log("Clicked Button");
+        playingCutscene = true;
     }
 
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
+        // Default camera while out of cutscene
+        if (!playingCutscene)
         {
-            Debug.Log("Clicked");
-            playingCutscene = true;
+            mainCamera.enabled = true;
+            cutsceneCamera.enabled = false;
+        }
+        // Switch to cutscene camera during cutscenes
+        else if (playingCutscene)
+        {
             mainCamera.enabled = false;
             cutsceneCamera.enabled = true;
-
-        }
-
-        if (playingCutscene)
-        {
             cutsceneCamera.transform.position += direction*Time.deltaTime;
         }
 	}

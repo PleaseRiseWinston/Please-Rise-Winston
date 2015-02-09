@@ -26,10 +26,6 @@ public class screenOverlay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//print the word that's being tracked.
-		//print (wordClicked);
-		print("Stop animation: " + stopAnimation);
-		print("MMX offScreen: " + noteZoom.offScreen);
 		
 		//Moves papel up.
 		if(stopAnimation == false && noteZoom.offScreen == true){
@@ -51,6 +47,7 @@ public class screenOverlay : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+        Debug.Log("Clicked");
 		if (objectClicked == false && stopAnimation == true) {
 			paused = togglePause ();
 			objectClicked = true;

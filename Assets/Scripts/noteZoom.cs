@@ -16,8 +16,6 @@ public class noteZoom : MonoBehaviour {
 	public static bool offScreen = false;
 	
 	void Update(){
-		//print("Move Sprite: " + moveSprite);
-		//print("Going Down: " + goingDown);
 		
 		//move down
 		if(moveSprite == true && goingDown == true){
