@@ -24,7 +24,7 @@ public class NoteFocus : MonoBehaviour {
         defaultCameraPos = mainCamera.transform.position;
         defaultCameraPos += new Vector3(0, 0, 10);
         cameraFront = defaultCameraPos;
-        Debug.Log("defaultCameraPos = " + defaultCameraPos);
+        //Debug.Log("defaultCameraPos = " + defaultCameraPos);
 
         focused = false;
         mouseOver = true;
@@ -32,7 +32,7 @@ public class NoteFocus : MonoBehaviour {
     
     public void OnMouseDown()
     {
-        Debug.Log("OnClick");
+        //Debug.Log("OnClick");
         StartCoroutine(Focus());
     }
 
@@ -55,11 +55,12 @@ public class NoteFocus : MonoBehaviour {
     }
 
     public void Update()
-    {        
+    {
+        //Debug.Log("focused = " + focused + ", mouseOver = " + mouseOver);
         // Detects clicks off the object
-        if (Input.GetMouseButtonDown(0) && !mouseOver)
+        if (Input.GetMouseButtonDown(0) && !mouseOver && focused)
         {
-            Debug.Log("OffClick");
+            //Debug.Log("Unfocusing");
             StartCoroutine(Unfocus());
         }
     }
@@ -67,16 +68,18 @@ public class NoteFocus : MonoBehaviour {
     // Coroutine called when focusing onto a note
     IEnumerator Focus()
     {
-        yield return StartCoroutine(HOTween.To(transform, 0.8f, "rotation", new Vector3(0, 0, 0), false).WaitForCompletion());
-        yield return StartCoroutine(HOTween.To(transform, 0.6f, "position", cameraFront, false).WaitForCompletion());
+        //Debug.Log("Focusing");
+        HOTween.To(transform, 0.7f, "rotation", new Vector3(0, 0, 0), false);
+        yield return StartCoroutine(HOTween.To(transform, 0.7f, "position", cameraFront, false).WaitForCompletion());
         focused = true;
     }
 
     // Coroutine called when unfocusing away from a note
     IEnumerator Unfocus()
     {
+        //Debug.Log("Unfocusing");
         focused = false;
-        yield return StartCoroutine(HOTween.To(transform, 0.6f, "position", defaultNotePos, false).WaitForCompletion());
-        yield return StartCoroutine(HOTween.To(transform, 0.8f, "rotation", new Vector3(80, 0, 0), false).WaitForCompletion());
+        HOTween.To(transform, 0.7f, "position", defaultNotePos, false);
+        yield return StartCoroutine(HOTween.To(transform, 0.7f, "rotation", new Vector3(80, 0, 0), false).WaitForCompletion());
     }
 }
