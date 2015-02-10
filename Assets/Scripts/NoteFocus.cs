@@ -27,6 +27,7 @@ public class NoteFocus : MonoBehaviour {
         Debug.Log("defaultCameraPos = " + defaultCameraPos);
 
         focused = false;
+        mouseOver = true;
     }
     
     public void OnMouseDown()
@@ -35,10 +36,10 @@ public class NoteFocus : MonoBehaviour {
         StartCoroutine(Focus());
     }
 
-    public void OnMouseEnter()
+    public void OnMouseOver()
     {
         // Toggles mouseover state while not in focused mode
-        if (!focused)
+        if (focused)
         {
             mouseOver = true;
         }
@@ -47,14 +48,14 @@ public class NoteFocus : MonoBehaviour {
     public void OnMouseExit()
     {
         // Toggles mouseover state while not in focused mode
-        if (!focused)
+        if (focused)
         {
             mouseOver = false;
         }
-    } 
+    }
 
     public void Update()
-    {
+    {        
         // Detects clicks off the object
         if (Input.GetMouseButtonDown(0) && !mouseOver)
         {
@@ -62,7 +63,7 @@ public class NoteFocus : MonoBehaviour {
             StartCoroutine(Unfocus());
         }
     }
-
+	
     // Coroutine called when focusing onto a note
     IEnumerator Focus()
     {
@@ -74,8 +75,8 @@ public class NoteFocus : MonoBehaviour {
     // Coroutine called when unfocusing away from a note
     IEnumerator Unfocus()
     {
+        focused = false;
         yield return StartCoroutine(HOTween.To(transform, 0.6f, "position", defaultNotePos, false).WaitForCompletion());
         yield return StartCoroutine(HOTween.To(transform, 0.8f, "rotation", new Vector3(80, 0, 0), false).WaitForCompletion());
-        focused = false;
     }
 }
