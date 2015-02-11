@@ -1,18 +1,24 @@
-﻿using UnityEngine;
+﻿//Takes in a file, and reads that text.
+//Remember to set the .txt file to the script as an asset.
+
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class TextRead : MonoBehaviour {
-
-	public TextAsset inputFile;
-
-	void Start(){
-		print (inputFile.text);
-		//string testText = inputFile.text;
-		//GetComponent<TextMesh> ().text = "Hello World.";
-		GetComponent<TextMesh> ().text = inputFile.text;
-	}
-
+	Text text;
+	
+	public TextAsset asset;
+	string assetText;
+	
+    void Start() {
+		text = GetComponent<Text>();
+		assetText = asset.text;
+		
+        print(assetText);
+    }
+	
 	void Update(){
-		//GetComponent<TextMesh> ().text = inputFile;
+		text.text = assetText;
 	}
 }
