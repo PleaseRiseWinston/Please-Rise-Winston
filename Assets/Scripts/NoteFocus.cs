@@ -9,25 +9,34 @@ public class NoteFocus : MonoBehaviour {
     public GameObject focusedNote;
     public Camera mainCamera;
 
+    public bool focused;
     private bool scrollDown;
     private bool isOffScreen;
     private bool mouseOver;
-    private bool focused;
 
     private Vector3 defaultNotePos;
     private Vector3 defaultCameraPos;
     private Vector3 cameraFront;
 
+    private GameObject text;
+
     void Start()
     {
         defaultNotePos = transform.position;
         defaultCameraPos = mainCamera.transform.position;
+
+        // Places the camera default position at 10z units in front of camera
         defaultCameraPos += new Vector3(0, 0, 10);
         cameraFront = defaultCameraPos;
         //Debug.Log("defaultCameraPos = " + defaultCameraPos);
 
         focused = false;
         mouseOver = true;
+
+        text = transform.GetChild(0).gameObject;
+        text.transform.position = transform.position + (transform.forward * -0.1f);
+        text.transform.rotation = transform.rotation;
+        text.transform.localScale = transform.localScale * 0.065f;
     }
     
     public void OnMouseDown()

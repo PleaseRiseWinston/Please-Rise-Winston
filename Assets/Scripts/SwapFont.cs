@@ -12,6 +12,7 @@ public class SwapFont: MonoBehaviour {
     public int beforeSize=28;
     public int afterSize=20;
 
+    public Color defaultColor;
 	public Color highlightColor;
 	public Font defaultFont;
 	public Font translatedFont;
@@ -20,17 +21,30 @@ public class SwapFont: MonoBehaviour {
     private bool isTranslated = false;
     private bool isVisible = true;
 
+    private GameObject paper;
+    private NoteFocus noteFocus;
+    
+
 	void Start(){
         text = GetComponent<Text>();
+        defaultColor = Color.black;
+        highlightColor = Color.red;
 
+        // paper references the Paper object found as the parent to Canvas: Paper < Canvas < Text
+        paper = transform.parent.parent.gameObject;
+        noteFocus = paper.GetComponent<NoteFocus>();
+
+        /*
 		// Sets default alpha to 1.0f.
 		Color color = text.color;
 		color.a = 1.0f;
 		text.color = color;
+        */
 
 		// Sets isOver to false to prevent auto-changing.
 		//isOver = false;
 	}
+
     /*
 	void Update(){
 		if (!isOver) {
@@ -41,12 +55,16 @@ public class SwapFont: MonoBehaviour {
 		}
 	}
     */
+
 	public void OnEnter(BaseEventData e){
         //Debug.Log ("Over");
 		// Sets isOver to true in order to start Update()'s translation process.
 		//isOver = true;
-        StopAllCoroutines();
-        StartCoroutine(translate());
+        if (noteFocus.focused)
+        {
+            StopAllCoroutines();
+            StartCoroutine(translate());
+        }
 	}
 
 	public void OnExit(BaseEventData e){
@@ -56,8 +74,11 @@ public class SwapFont: MonoBehaviour {
 		/*(Color color = renderer.material.color;
 		color.a = 1.0f;
 		renderer.material.color = color;*/
-        StopAllCoroutines();
-        StartCoroutine(untranslate());
+        if (noteFocus.focused)
+        {
+            StopAllCoroutines();
+            StartCoroutine(untranslate());
+        }
 	}
 
 	/***Arbitrary Functions***/
@@ -83,11 +104,11 @@ public class SwapFont: MonoBehaviour {
             isVisible = true;
             if (translateable)
             {
-                yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.yellow).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(text, 0.2f, "color", highlightColor).WaitForCompletion());
             }
             else
             {
-                yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(text, 0.2f, "color", defaultColor).WaitForCompletion());
             }
         }
     }
@@ -110,7 +131,7 @@ public class SwapFont: MonoBehaviour {
         if (!isVisible)
         {
             isVisible = true;
-            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", Color.white).WaitForCompletion());
+            yield return StartCoroutine(HOTween.To(text, 0.2f, "color", defaultColor).WaitForCompletion());
         }
     }
 
