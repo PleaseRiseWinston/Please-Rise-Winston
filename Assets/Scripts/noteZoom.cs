@@ -31,6 +31,7 @@ public class noteZoom : MonoBehaviour {
 			moveSprite = false;
 			offScreen = false;
 		}
+		
 	}
 	
 	void OnMouseDown(){

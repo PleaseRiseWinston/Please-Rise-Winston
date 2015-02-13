@@ -12,23 +12,30 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 public class TextRead : MonoBehaviour {
 	char[] delimiterChars = {' ', '\n'};
-	Text text;
-	public TextAsset asset;
+	//Text text;			//For UI Text in Unity
+	public Text textPrefab;
+	 //public TextAsset asset;
 	string assetText;
 	string[] words;
 	Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
 	
 	List<string> list = new List<string>();
+	string[] testArray= {"Hello","world"};	
+	
+	public Transform putWordsHere;
 	
     void Start() {
-		text = GetComponent<Text>();
-		assetText = asset.text;
+		//text = GetComponent<Text>();	//text.text = string;
+		//assetText = asset.text;
 		words = assetText.Split(delimiterChars);
+		
+		//text.text = assetText;
 		
 		foreach(string s in words){
 			Match result = re.Match(s);
@@ -51,12 +58,18 @@ public class TextRead : MonoBehaviour {
 			}
 		}
 		
-		for(int i = 0; i < list.Count; i++){
+		/*for(int i = 0; i < list.Count; i++){
 			print(list[i]);
+		}*/
+		
+		for(int i = 0; i < testArray.Length; i++){
+			Text textInstance;
+			textInstance = Instantiate(textPrefab, putWordsHere.position, putWordsHere.rotation) as Text;
+			textInstance.transform.parent = GameObject.Find("Canvas").transform;
+			textInstance.text = testArray[i];
 		}
     }
 	
 	void Update(){
-		text.text = assetText;
 	}
 }

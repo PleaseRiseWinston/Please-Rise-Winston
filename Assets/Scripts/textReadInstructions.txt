@@ -1,0 +1,5 @@
+Scene should be set up with all the objects needed. If you run the game without changing anything, you should have "Hey you" appear on
+screen on top of each other. Now after that, click on GameObject that under Canvas. Uncheck the Instantiate Text script in the Inspector.
+Then click on the Text object under Canvas and check the Text Read script in the Inspector. Run the game. It crashes Unity on my setup.
+What's crashing the game (at least for me) is the code from instantiateText.cs. Pretty much everything inside void Start(){} of instantiateText
+is inside void Start(){} of TextRead.cs. No idea why it's happening but yeah.
