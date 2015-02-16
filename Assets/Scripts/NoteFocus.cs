@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/* 
+ * This script is attached to each Paper object.
+ * The Paper object will hold positions and focus states of each individual note.
+ * All tweening from desktop to focused state is done in here.
+*/
+
+using UnityEngine;
 using UnityEngine.UI;
 using Holoville.HOTween;
 using UnityEngine.EventSystems;

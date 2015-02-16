@@ -37,6 +37,7 @@ public class PlayCutscene : MonoBehaviour {
         // Switch to cutscene camera during cutscenes
         else if (playingCutscene)
         {
+            // Set camera start location here if needed
             mainCamera.enabled = false;
             cutsceneCamera.enabled = true;
             cutsceneCamera.transform.position += direction*Time.deltaTime;

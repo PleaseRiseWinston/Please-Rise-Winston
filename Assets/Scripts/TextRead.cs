@@ -26,14 +26,14 @@ public class TextRead : MonoBehaviour {
 	Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
 	
 	List<string> list = new List<string>();
-	string[] testArray= {"Hello","world"};	
+    string[] testArray = { "Hello", "world" };
 	
 	public Transform putWordsHere;
 	
     void Start() {
 		//text = GetComponent<Text>();	//text.text = string;
 		//assetText = asset.text;
-		words = assetText.Split(delimiterChars);
+		//words = assetText.Split(delimiterChars);
 		
 		//text.text = assetText;
 		
@@ -64,6 +64,7 @@ public class TextRead : MonoBehaviour {
 		
 		for(int i = 0; i < testArray.Length; i++){
 			Text textInstance;
+            // TODO: Increment position in here
 			textInstance = Instantiate(textPrefab, putWordsHere.position, putWordsHere.rotation) as Text;
 			textInstance.transform.parent = GameObject.Find("Canvas").transform;
 			textInstance.text = testArray[i];
