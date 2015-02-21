@@ -31,6 +31,8 @@ public class PaperScript : MonoBehaviour {
 
     void Start()
     {
+        noteContent = note.text;
+
         defaultNotePos = transform.position;
         defaultCameraPos = mainCamera.transform.position;
 
@@ -52,7 +54,7 @@ public class PaperScript : MonoBehaviour {
         // Instantiates a canvas at the paper's position
         Canvas newCanvas = Instantiate(canvas, transform.position + (transform.forward * -0.1f), transform.rotation) as Canvas;
         newCanvas.transform.localScale = transform.localScale * 0.03f;
-        newCanvas.transform.parent = transform;
+        newCanvas.transform.SetParent(transform);
     }
 
     public void OnMouseDown()

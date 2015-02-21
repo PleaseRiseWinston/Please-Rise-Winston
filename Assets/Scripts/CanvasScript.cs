@@ -14,18 +14,17 @@ public class CanvasScript : MonoBehaviour {
     public float curSpacing;
     public float lineSpacing = 25;
 
-    private GameObject paper;
-    private PaperScript paperScript;
+    public GameObject paper;
+    public PaperScript paperScript;
 
     public GameObject line;
-    private LineScript lineScript;
+    public LineScript lineScript;
 
-    public TextAsset note;
-    string noteContent;
+    public string noteContent;
 
-    char delimiterNewline = '\n';
-    char delimiterSpace = ' ';
-    Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
+    private char delimiterNewline = '\n';
+    private char delimiterSpace = ' ';
+    private Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
 
     public List<string> wordList = new List<string>();
     public string[] words;
@@ -37,8 +36,7 @@ public class CanvasScript : MonoBehaviour {
         paperScript = paper.GetComponent<PaperScript>();
 
         // Note's contents are carried over from parent paper object and parsed
-        note = paperScript.note;
-        noteContent = note.text;
+        noteContent = paperScript.noteContent;
 
         // 'lines' array gets every single line with spaces
         lines = noteContent.Split(delimiterNewline);
@@ -48,9 +46,9 @@ public class CanvasScript : MonoBehaviour {
             curSpacing = 0;
 
             // Instantiates a new line and modifies its values accordingly
-            GameObject newLine = Instantiate(line, transform.position + new Vector3(0,curSpacing,0), transform.rotation) as GameObject;
+            GameObject newLine = Instantiate(line, transform.position + new Vector3(0, curSpacing, 0), transform.rotation) as GameObject;
             // Line becomes a child of this canvas
-            newLine.transform.parent = this.transform;
+            newLine.transform.SetParent(transform);
             lineScript = newLine.GetComponent<LineScript>();
 
             words = s.Split(delimiterSpace);
@@ -93,12 +91,12 @@ public class CanvasScript : MonoBehaviour {
             curSpacing += lineSpacing;
         }
 
-        /*
+        
         // Debugging
-        for (int i = 0; i < list.Count; i++)
+        for (int i = 0; i < wordList.Count; i++)
         {
-            print(list[i]);
+            print(wordList[i]);
         }
-        */
+        
 	}
 }

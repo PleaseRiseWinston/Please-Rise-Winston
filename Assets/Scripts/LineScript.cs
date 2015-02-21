@@ -71,16 +71,16 @@ public class LineScript : MonoBehaviour {
 
         // Iterate through the wordList and instantiate words with space buffers in between
         for (int i = 0; i < wordList.Count; i++){
-            Instantiate(word, transform.position + new Vector3(0, lastWordEnd + wordSpacing, 0), transform.rotation);
+            Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd + wordSpacing, 0, 0), transform.rotation) as Text;
             if (i == 0)
             {
                 lastWordEnd = 0;
             }
             
             // Give each newly intantiated word the text from the wordList;
-            word.text = wordList[i];
+            newWord.text = wordList[i];
 
-            lastWordEnd = word.transform.right.x;
+            lastWordEnd = newWord.transform.right.x;
         }
     }
 
