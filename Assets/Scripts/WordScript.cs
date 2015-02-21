@@ -1,18 +1,17 @@
-﻿/* 
+﻿using UnityEngine;
+using UnityEngine.UI;
+using Holoville.HOTween;
+using UnityEngine.EventSystems;
+using System.Collections;
+
+/* 
  * This script is attached to each Word object.
  * Each Word object is instantiated by its Line parent.
  * Should the word be changeable, it will be highlighted with a pulsing glow, and detect clicks.
  * Post-click, the screen will dim and all change options for the clicked word will appear as children of the clicked word.
 */
 
-using UnityEngine;
-using UnityEngine.UI;
-using Holoville.HOTween;
-using UnityEngine.EventSystems;
-using System.Collections;
-
-public class Word : MonoBehaviour {
-
+public class WordScript : MonoBehaviour {
     public Color defaultColor;
     public Color highlightColor;
 
@@ -23,10 +22,10 @@ public class Word : MonoBehaviour {
     private bool changeable;
 
     private GameObject paper;
-    private NoteFocus noteFocus;
+    private PaperScript paperScript;
 
     private GameObject line;
-    private SwapFont swapFont;
+    private LineScript lineScript;
 
     void Start()
     {
@@ -52,18 +51,18 @@ public class Word : MonoBehaviour {
 
         // Each word object gets the paper that it is on
         paper = transform.parent.parent.parent.gameObject;
-        noteFocus = paper.GetComponent<NoteFocus>();
+        paperScript = paper.GetComponent<PaperScript>();
 
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;
-        swapFont = line.GetComponent<SwapFont>();
+        lineScript = line.GetComponent<LineScript>();
 
-        wordOptions[0] = "rawr";
+        //wordOptions[0] = "rawr";
     }
 
     public void OnDown(BaseEventData e)
     {
-        if (changeable && noteFocus.focused && swapFont.isTranslated)
+        if (changeable && paperScript.focused && lineScript.isTranslated)
         {
             StopAllCoroutines();
             StartCoroutine(overlay());
@@ -76,7 +75,7 @@ public class Word : MonoBehaviour {
         foreach (string word in wordOptions)
         {
             // TODO: Instantiate word on screen as clickable entity
-            Vector3 wordLocation = new Vector3 ((Screen.width/2), (Screen.height/2), 0);
+            Vector3 wordLocation = new Vector3((Screen.width / 2), (Screen.height / 2), 0);
             Instantiate(wordPrefab, wordLocation, Quaternion.identity);
             Debug.Log(wordPrefab);
         }
@@ -86,7 +85,7 @@ public class Word : MonoBehaviour {
     void Update()
     {
         // While a word is changeable and the current line is translated, highlight it
-        if (changeable && swapFont.isTranslated)
+        if (changeable && lineScript.isTranslated)
         {
             // TODO: Add animations to highlight this changeable word; probably going to have a pulsing glow
         }

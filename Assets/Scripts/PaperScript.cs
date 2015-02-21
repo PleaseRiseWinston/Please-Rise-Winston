@@ -1,19 +1,21 @@
-﻿/* 
+﻿using UnityEngine;
+using UnityEngine.UI;
+using Holoville.HOTween;
+using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
+
+/* 
  * This script is attached to each Paper object.
  * The Paper object will hold positions and focus states of each individual note.
  * All tweening from desktop to focused state is done in here.
 */
 
-using UnityEngine;
-using UnityEngine.UI;
-using Holoville.HOTween;
-using UnityEngine.EventSystems;
-using System.Collections;
+public class PaperScript : MonoBehaviour {
 
-public class NoteFocus : MonoBehaviour {
-
-    public GameObject focusedNote;
     public Camera mainCamera;
+    public TextAsset note;
+    public string noteContent;
 
     public bool focused;
     private bool scrollDown;
@@ -24,7 +26,8 @@ public class NoteFocus : MonoBehaviour {
     private Vector3 defaultCameraPos;
     private Vector3 cameraFront;
 
-    private GameObject text;
+    //private GameObject text;
+    public Canvas canvas;
 
     void Start()
     {
@@ -39,12 +42,19 @@ public class NoteFocus : MonoBehaviour {
         focused = false;
         mouseOver = true;
 
+        /*
         text = transform.GetChild(0).gameObject;
         text.transform.position = transform.position + (transform.forward * -0.1f);
         text.transform.rotation = transform.rotation;
         text.transform.localScale = transform.localScale * 0.065f;
+        */
+
+        // Instantiates a canvas at the paper's position
+        Canvas newCanvas = Instantiate(canvas, transform.position + (transform.forward * -0.1f), transform.rotation) as Canvas;
+        newCanvas.transform.localScale = transform.localScale * 0.03f;
+        newCanvas.transform.parent = transform;
     }
-    
+
     public void OnMouseDown()
     {
         //Debug.Log("OnClick");
@@ -79,7 +89,7 @@ public class NoteFocus : MonoBehaviour {
             StartCoroutine(Unfocus());
         }
     }
-	
+
     // Coroutine called when focusing onto a note
     IEnumerator Focus()
     {
