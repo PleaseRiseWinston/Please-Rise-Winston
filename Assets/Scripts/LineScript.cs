@@ -37,11 +37,11 @@ public class LineScript : MonoBehaviour {
     private CanvasScript canvasScript;
 
     public Text word;
+    public string[] words;
     public List<string> wordList = new List<string>();
 
     void Start()
     {
-        word = GetComponent<Text>();
         defaultColor = Color.black;
         highlightColor = Color.red;
 
@@ -66,22 +66,35 @@ public class LineScript : MonoBehaviour {
         canvas = transform.parent.GetComponent<Canvas>();
         canvasScript = canvas.GetComponent<CanvasScript>();
 
-        // wordList gets the parent canvas's wordList
-        wordList = canvasScript.wordList;
-
         // Iterate through the wordList and instantiate words with space buffers in between
-        for (int i = 0; i < wordList.Count; i++){
+        lastWordEnd = 0;
+        foreach (string s in words)
+        {
             Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd + wordSpacing, 0, 0), transform.rotation) as Text;
+            newWord.transform.SetParent(transform);
+
+            // newWord gets string s as text
+            newWord.text = s;
+            lastWordEnd = newWord.transform.right.x;
+        }
+
+        /*
+        for (int i = 0; i < wordList.Count; i++){
             if (i == 0)
             {
                 lastWordEnd = 0;
             }
             
+            Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd + wordSpacing, 0, 0), transform.rotation) as Text;
+            newWord.transform.SetParent(transform);
+            
             // Give each newly intantiated word the text from the wordList;
             newWord.text = wordList[i];
 
             lastWordEnd = newWord.transform.right.x;
+            //print(lastWordEnd);
         }
+        */
     }
 
     public void OnEnter(BaseEventData e)

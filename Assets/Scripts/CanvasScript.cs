@@ -47,19 +47,20 @@ public class CanvasScript : MonoBehaviour {
 
             // Instantiates a new line and modifies its values accordingly
             GameObject newLine = Instantiate(line, transform.position + new Vector3(0, curSpacing, 0), transform.rotation) as GameObject;
+
             // Line becomes a child of this canvas
             newLine.transform.SetParent(transform);
             lineScript = newLine.GetComponent<LineScript>();
 
             words = s.Split(delimiterSpace);
-            //lineScript.list = words;
+
+            // Clears the list if there is any content to make room for new line
+            wordList.Clear();
 
             // Each word entry is parsed via regex
-            foreach (string i in words)
+            foreach (string word in words)
             {
-                //Debug.Log(i);
-
-                Match result = re.Match(i);
+                Match result = re.Match(word);
 
                 if (result.Success)
                 {
@@ -83,9 +84,12 @@ public class CanvasScript : MonoBehaviour {
                 }
                 else
                 {
-                    wordList.Add(i);
+                    wordList.Add(word);
                 }
             }
+            
+            // lineScript of child gets this line's wordList in array form
+            lineScript.words = wordList.ToArray();
 
             // Increment curSpacing to add deviation to the line positions
             curSpacing += lineSpacing;
