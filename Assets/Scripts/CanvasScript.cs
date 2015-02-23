@@ -45,12 +45,10 @@ public class CanvasScript : MonoBehaviour {
         {
             curSpacing = 0;
 
-            // Instantiates a new line and modifies its values accordingly
-            GameObject newLine = Instantiate(line, transform.position + new Vector3(0, curSpacing, 0), transform.rotation) as GameObject;
-
-            // Line becomes a child of this canvas
-            newLine.transform.SetParent(transform);
+            // Instantiates a new line, gives it a collider, and modifies its values accordingly
+            GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.forward * -0.5f), paper.transform.rotation) as GameObject;
             lineScript = newLine.GetComponent<LineScript>();
+            newLine.transform.SetParent(transform);
 
             words = s.Split(delimiterSpace);
 

@@ -29,12 +29,6 @@ public class WordScript : MonoBehaviour {
 
     void Start()
     {
-        // TODO: Read text into textOptions array here
-
-        curText = GetComponent<Text>().text;
-        defaultColor = Color.black;
-        highlightColor = Color.red;
-
         /*
          * 'paper' references the Paper object found as the parent to Canvas
          * 'line' references the Line object found as the parent to Word
@@ -57,7 +51,29 @@ public class WordScript : MonoBehaviour {
         line = transform.parent.gameObject;
         lineScript = line.GetComponent<LineScript>();
 
-        //wordOptions[0] = "rawr";
+        // TODO: Read text into textOptions array here
+        gameObject.AddComponent<BoxCollider2D>();
+        curText = GetComponent<Text>().text;
+        defaultColor = Color.black;
+        highlightColor = Color.red;
+    }
+
+    void Update()
+    {
+        if (paperScript.focused)
+        {
+            gameObject.collider2D.enabled = true;
+        }
+        else
+        {
+            gameObject.collider2D.enabled = false;
+        }
+
+        // While a word is changeable and the current line is translated, highlight it
+        if (changeable && lineScript.isTranslated)
+        {
+            // TODO: Add animations to highlight this changeable word; probably going to have a pulsing glow
+        }
     }
 
     public void OnDown(BaseEventData e)
@@ -80,14 +96,5 @@ public class WordScript : MonoBehaviour {
             Debug.Log(wordPrefab);
         }
         yield return StartCoroutine(HOTween.To(wordPrefab, 0.1f, "color", Color.clear).WaitForCompletion());
-    }
-
-    void Update()
-    {
-        // While a word is changeable and the current line is translated, highlight it
-        if (changeable && lineScript.isTranslated)
-        {
-            // TODO: Add animations to highlight this changeable word; probably going to have a pulsing glow
-        }
     }
 }

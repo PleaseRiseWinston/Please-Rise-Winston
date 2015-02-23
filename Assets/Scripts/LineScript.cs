@@ -27,7 +27,7 @@ public class LineScript : MonoBehaviour {
     public bool isTranslated = false;
     public bool isVisible = true;
 
-    public float wordSpacing = 10;
+    public float wordSpacing = 1;
     public float lastWordEnd;
 
     private GameObject paper;
@@ -42,6 +42,7 @@ public class LineScript : MonoBehaviour {
 
     void Start()
     {
+        gameObject.AddComponent<BoxCollider2D>();
         defaultColor = Color.black;
         highlightColor = Color.red;
 
@@ -70,31 +71,27 @@ public class LineScript : MonoBehaviour {
         lastWordEnd = 0;
         foreach (string s in words)
         {
-            Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd + wordSpacing, 0, 0), transform.rotation) as Text;
+            Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as Text;
             newWord.transform.SetParent(transform);
+            newWord.transform.localScale = newWord.transform.localScale * 3;
 
+            // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
-            lastWordEnd = newWord.transform.right.x;
+            lastWordEnd += newWord.transform.right.x;
         }
+    }
 
-        /*
-        for (int i = 0; i < wordList.Count; i++){
-            if (i == 0)
-            {
-                lastWordEnd = 0;
-            }
-            
-            Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd + wordSpacing, 0, 0), transform.rotation) as Text;
-            newWord.transform.SetParent(transform);
-            
-            // Give each newly intantiated word the text from the wordList;
-            newWord.text = wordList[i];
-
-            lastWordEnd = newWord.transform.right.x;
-            //print(lastWordEnd);
+    void Update()
+    {
+        if (paperScript.focused)
+        {
+            gameObject.collider2D.enabled = true;
         }
-        */
+        else
+        {
+            gameObject.collider2D.enabled = false;
+        }
     }
 
     public void OnEnter(BaseEventData e)
