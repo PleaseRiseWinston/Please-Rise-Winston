@@ -147,6 +147,7 @@ public class LineScript : MonoBehaviour {
 
     IEnumerator untranslate()
     {
+        Transform[] children = gameObject.GetComponentsInChildren<Transform>();
         if (isVisible)
         {
             isVisible = false;
