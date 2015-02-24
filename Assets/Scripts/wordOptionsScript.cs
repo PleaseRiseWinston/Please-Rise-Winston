@@ -9,13 +9,14 @@ public class wordOptionsScript : MonoBehaviour {
 		textMeshWord = GetComponent<TextMesh>().text;
 		
 		//Destroy the words from game world
-		Destroy(GameObject.Find("word_option"));
-		Destroy(gameObject);
+		foreach(string w in screenOverlay.wordOptions){
+			Destroy(GameObject.Find(w));
+		}
 		
 		//Reset position coordinates
-		screenOverlay.currX = -3.55f;
-		screenOverlay.currY = -4.75f;
-		screenOverlay.currZ = -3.5f;
+		screenOverlay.currX = .5f;
+		screenOverlay.currY = .75f;
+		screenOverlay.currZ = .5f;
 		
 		screenOverlay.wordOptionsUp = false;
 		//print("You clicked " + textMeshWord);

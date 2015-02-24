@@ -1,4 +1,9 @@
 ﻿/* 
+* NEW Screen Overlay V2.2 - Now with centered text!
+* Displays the word options with a center alignment. Also fixed the problem with
+* position. Using Camera.main.ViewportToWorldPoint. Should work with all types of
+* screens.
+*
 * Screen Overlay V2.1 - Now without GUI Buttons!
 * Displays the possible word options when object is clicked. Destroys newly 
 * instantiated word options when it is clicked.
@@ -8,7 +13,7 @@ using UnityEngine;
 using System.Collections;
 
 public class screenOverlay : MonoBehaviour {
-	string[] wordOptions = {"Word 1", "Mississipi River"};
+	public static string[] wordOptions = {"Word 1", "Mississipi River"};
 	public static bool stopAnimation = false;
 	bool paperClicked = false;
 	public static bool onScreen = false;
@@ -17,10 +22,11 @@ public class screenOverlay : MonoBehaviour {
 	//Changed from TextMesh
 	public GameObject textPrefab;
 	
-	//Some placement numbers. Screen.width/2 wasn't working.
-	public static float currX = -3.55f;
-	public static float currY = -4.75f;
-	public static float currZ = -3.5f;
+	//Instantiated word prefabs use Camera.main
+	// NOT ARBITRARY POINTS
+	public static float currX = .5f;
+	public static float currY = .75f;
+	public static float currZ = .5f;
 
 	void Update () {
 		//Print word that's clicked
@@ -50,7 +56,7 @@ public class screenOverlay : MonoBehaviour {
 
 	void OnMouseDown(){
         //Debug.Log("Clicked");
-		if (paperClicked == false && stopAnimation == true) {
+		if (paperClicked == false && stopAnimation == true && wordOptionsUp == false) {
 			paperClicked = true;
 			createText();
 		}
@@ -62,15 +68,22 @@ public class screenOverlay : MonoBehaviour {
 		
 		foreach(string w in wordOptions){
 			GameObject textInstance;
-			textInstance = Instantiate(textPrefab, new Vector3(currX, currY, currZ), Quaternion.identity) as GameObject;
-			textInstance.name = "word_option";
+			textInstance = Instantiate(textPrefab, Camera.main.ViewportToWorldPoint(new Vector3(currX,currY,currZ)), Quaternion.identity) as GameObject;
+			textInstance.name = w;
 			textInstance.transform.parent = GameObject.Find("Canvas").transform;
 			textInstance.GetComponent<TextMesh>().text = w;
 			textInstance.AddComponent<BoxCollider2D>();
 			
-			currX = -3.55f;
-			currY = 6;
-			currZ = -3.5f;
+			currX = textInstance.transform.position.x;
+			currY = textInstance.transform.position.y;
+			currZ = textInstance.transform.position.z;
+			float textSize = textInstance.GetComponent<BoxCollider2D>().size.x;
+			float newPosX = textInstance.transform.position.x - (textSize / 2);
+			textInstance.transform.position = new Vector3(newPosX, currY, currZ);
+			
+			currX = .5f;
+			currY = .25f;
+			currZ = .5f;
 		}
 	}
 	

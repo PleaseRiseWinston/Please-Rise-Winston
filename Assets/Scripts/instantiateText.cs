@@ -17,12 +17,6 @@ public class instantiateText : MonoBehaviour {
 			textInstance = Instantiate(textPrefab, putWordsHere.position, putWordsHere.rotation) as Text;
 			textInstance.transform.parent = GameObject.Find("Canvas").transform;
 			textInstance.text = testArray[i];
-		}
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		}	
 	}
 }
