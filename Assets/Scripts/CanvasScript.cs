@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 public class CanvasScript : MonoBehaviour {
 
     public float curSpacing;
-    public float lineSpacing = 0.025f;
+    public float lineSpacing = 0.035f;
 
     public GameObject paper;
     public PaperScript paperScript;
@@ -41,12 +41,12 @@ public class CanvasScript : MonoBehaviour {
         // 'lines' array gets every single line with spaces
         lines = noteContent.Split(delimiterNewline);
 
-        curSpacing = 0;
+        curSpacing = -.9f;
 
         foreach (string s in lines)
         {
             // Instantiates a new line, gives it a collider, and modifies its values accordingly
-            GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.forward * -0.5f) + (paper.transform.up * -curSpacing), paper.transform.rotation) as GameObject;
+            GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f) + (paper.transform.up * -2 * curSpacing) - new Vector3(paper.transform.right.x * 2.8f, 0, 0), paper.transform.rotation) as GameObject;
             lineScript = newLine.GetComponent<LineScript>();
             newLine.transform.SetParent(transform);
 

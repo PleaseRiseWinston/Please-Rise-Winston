@@ -15,8 +15,6 @@ public class WordScript : MonoBehaviour {
     public Color defaultColor;
     public Color highlightColor;
 
-    public GameObject wordPrefab;
-
     private string[] wordOptions;
     private string curText;
     private bool changeable;
@@ -52,7 +50,7 @@ public class WordScript : MonoBehaviour {
         lineScript = line.GetComponent<LineScript>();
 
         // TODO: Read text into textOptions array here
-        gameObject.AddComponent<BoxCollider2D>();
+        
         curText = GetComponent<Text>().text;
         defaultColor = Color.black;
         highlightColor = Color.red;
@@ -81,20 +79,9 @@ public class WordScript : MonoBehaviour {
         if (changeable && paperScript.focused && lineScript.isTranslated)
         {
             StopAllCoroutines();
-            StartCoroutine(overlay());
+            //StartCoroutine(overlay());
         }
     }
 
-    IEnumerator overlay()
-    {
-        // TODO: Make screen darken and have textOptions[] entries show up
-        foreach (string word in wordOptions)
-        {
-            // TODO: Instantiate word on screen as clickable entity
-            Vector3 wordLocation = new Vector3((Screen.width / 2), (Screen.height / 2), 0);
-            Instantiate(wordPrefab, wordLocation, Quaternion.identity);
-            Debug.Log(wordPrefab);
-        }
-        yield return StartCoroutine(HOTween.To(wordPrefab, 0.1f, "color", Color.clear).WaitForCompletion());
-    }
+
 }
