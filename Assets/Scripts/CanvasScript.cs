@@ -66,23 +66,23 @@ public class CanvasScript : MonoBehaviour {
                     if (result.Groups[1].Value != "" && result.Groups[2].Value != "")
                     {
                         wordList.Add(result.Groups[1].Value);
-                        wordList.Add(result.Groups[2].Value);
+                        wordList.Add(result.Groups[2].Value + " ");
                     }
                     // Parse normal word + punctuation
                     else if (result.Groups[3].Value != "" && result.Groups[4].Value != "")
                     {
                         wordList.Add(result.Groups[3].Value);
-                        wordList.Add(result.Groups[4].Value);
+                        wordList.Add(result.Groups[4].Value + " ");
                     }
                     // Parse conjunction
                     else if (result.Groups[5].Value != "")
                     {
-                        wordList.Add(result.Groups[5].Value);
+                        wordList.Add(result.Groups[5].Value + " ");
                     }
                 }
                 else
                 {
-                    wordList.Add(word);
+                    wordList.Add(word + " ");
                 }
             }
             

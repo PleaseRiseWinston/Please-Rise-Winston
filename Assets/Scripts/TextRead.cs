@@ -18,9 +18,9 @@ using System.Text.RegularExpressions;
 
 public class TextRead : MonoBehaviour {
 	char[] delimiterChars = {' ', '\n'};
-	//Text text;			//For UI Text in Unity
+	Text text;			//For UI Text in Unity
 	public Text textPrefab;
-	//public TextAsset asset;
+	public TextAsset asset;
 	string assetText;
 	string[] words;
 	Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
@@ -31,8 +31,8 @@ public class TextRead : MonoBehaviour {
 	public Transform putWordsHere;
 	
     void Start() {
-		//text = GetComponent<Text>();	//text.text = string;
-		//assetText = asset.text;
+		text = GetComponent<Text>();	//text.text = string;
+		assetText = asset.text;
 		words = assetText.Split(delimiterChars);
 		
 		//text.text = assetText;
@@ -44,36 +44,33 @@ public class TextRead : MonoBehaviour {
                 // Parse conjunction + punctuation
 				if(result.Groups[1].Value != "" && result.Groups[2].Value != ""){
 					list.Add(result.Groups[1].Value);
-					list.Add(result.Groups[2].Value);
+					list.Add(result.Groups[2].Value + " a");
 				}
                 // Parse normal word + punctuation
 				else if(result.Groups[3].Value != "" && result.Groups[4].Value != ""){
 					list.Add(result.Groups[3].Value);
-					list.Add(result.Groups[4].Value);
+					list.Add(result.Groups[4].Value + " a");
 				}
                 // Parse conjunction
 				else if(result.Groups[5].Value != ""){
-					list.Add(result.Groups[5].Value);
+					list.Add(result.Groups[5].Value + " a");
 				}
 			}
 			else{
-				list.Add(s);
+				list.Add(s + " a");
 			}
 		}
 		
-		/*for(int i = 0; i < list.Count; i++){
+		for(int i = 0; i < list.Count; i++){
 			print(list[i]);
-		}*/
+		}
 		
-		for(int i = 0; i < testArray.Length; i++){
+		/*for(int i = 0; i < testArray.Length; i++){
 			Text textInstance;
             // TODO: Increment position in here
 			textInstance = Instantiate(textPrefab, putWordsHere.position, putWordsHere.rotation) as Text;
 			textInstance.transform.parent = GameObject.Find("Canvas").transform;
 			textInstance.text = testArray[i];
-		}
+		}*/
     }
-	
-	void Update(){
-	}
 }
