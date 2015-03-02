@@ -58,15 +58,6 @@ public class WordScript : MonoBehaviour {
 
     void Update()
     {
-        if (paperScript.focused)
-        {
-            gameObject.collider2D.enabled = true;
-        }
-        else
-        {
-            gameObject.collider2D.enabled = false;
-        }
-
         // While a word is changeable and the current line is translated, highlight it
         if (changeable && lineScript.isTranslated)
         {

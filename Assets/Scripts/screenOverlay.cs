@@ -34,7 +34,7 @@ public class screenOverlay : MonoBehaviour {
 		
 		//Moves papel up.
 		if(stopAnimation == false && noteZoom.offScreen == true){
-			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);
+			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime * 10, Space.World);
 			paperClicked = true;
 		}
 		
@@ -47,7 +47,7 @@ public class screenOverlay : MonoBehaviour {
 		
 		//Checking if the background was clicked. If true, then move the papel down.
 		if(pleaseLeavePaper.clickedBG == true && onScreen == true && wordOptionsUp == false){
-			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
+			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime * 10, Space.World);
 			paperClicked = false;
 		}
 		

@@ -19,11 +19,11 @@ public class noteZoom : MonoBehaviour {
 		
 		//move down
 		if(moveSprite == true && goingDown == true){
-			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime, Space.World);
+			transform.Translate((4 + 1/2) * Vector3.down * Time.deltaTime * 10, Space.World);
 		}
 		//move up
 		else if(moveSprite == true && goingDown == false && screenOverlay.onScreen == false){
-			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime, Space.World);	
+			transform.Translate((4 + 1/2) * Vector3.up * Time.deltaTime * 10, Space.World);	
 		}
 		
 		if(transform.position.y > 0){
