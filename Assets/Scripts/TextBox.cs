@@ -33,9 +33,13 @@ public class TextBox : MonoBehaviour {
 	string fileExt = ".prw";
 
 	public string editString = "edit me";
+	string currDir;
+	string[] fileEntries;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
+		currDir = info.ToString();					//makes directory into string
+		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
 	}
 	
 	
@@ -55,11 +59,9 @@ public class TextBox : MonoBehaviour {
 		}
 		else if(GUI.Button(buttonSave, "Save")){
 			checkFileNum(fileName + fileNum + fileExt);
-			//checkFileNum();
 			StreamWriter writer = new StreamWriter(info + fileName + fileNum + fileExt);
 			writer.WriteLine(editString);
 			writer.Close();
-			fileNum++;
 		}
 		else if(GUI.Button(buttonDump, "Dump")){
 			editString = "";
@@ -71,13 +73,11 @@ public class TextBox : MonoBehaviour {
 	}
 	
 	void checkFileNum(string currFile){
-		string currDir = info.ToString();
-		string[] fileEntries = Directory.GetFiles(currDir);
-		string testDir = currDir + currFile;
-		foreach(string fileName in fileEntries){
-			if(testDir == fileName){
-				fileNum = int.Parse(currFile);
-				print(fileNum);
+		string testDir = currDir + currFile; 				//makes a full path string with current file at the end
+		foreach(string nameFile in fileEntries){			//for loop to check current file with all files in dir
+			if(testDir == nameFile){
+				fileNum++;
+				checkFileNum(fileName + fileNum + fileExt);
 			}
 		}
 	}
