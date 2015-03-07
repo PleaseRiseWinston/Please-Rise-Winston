@@ -31,6 +31,9 @@ public class TextBox : MonoBehaviour {
 	string fileName = "\\winstonNote";
 	int fileNum = 0;
 	string fileExt = ".prw";
+	int count = 0;
+	public List<string> arrText;
+	string[] fileLoadWords;
 
 	public string editString = "edit me";
 	string currDir;
@@ -51,6 +54,7 @@ public class TextBox : MonoBehaviour {
 		Rect buttonSave = new Rect(buttonWidth + 10, 0, buttonWidth, buttonHeight);
 		Rect buttonDump = new Rect(buttonWidth * 2 + 20, 0, buttonWidth, buttonHeight);
 		Rect buttonLoad = new Rect(buttonWidth * 3 + 30, 0, buttonWidth, buttonHeight);
+		Rect buttonReset = new Rect(buttonWidth * 4 + 40, 0, buttonWidth, buttonHeight);
 		
 		editString = GUI.TextArea (new Rect (50, 50, 700, 400), editString, 500);
 
@@ -62,14 +66,36 @@ public class TextBox : MonoBehaviour {
 			StreamWriter writer = new StreamWriter(info + fileName + fileNum + fileExt);
 			writer.WriteLine(editString);
 			writer.Close();
+			fileNum++;
 		}
 		else if(GUI.Button(buttonDump, "Dump")){
 			editString = "";
 		}
 		else if(GUI.Button(buttonLoad, "Load")){
-			print("load");
+			loadFile();
+		}
+		else if(GUI.Button(buttonReset, "Reset")){
+			count = 0;
 		}
 
+	}
+	
+	void loadFile(){
+		arrText = new List<string>();
+		StreamReader objReader = new StreamReader(info + fileName + count + fileExt);
+		print("File Num" + count);
+		string sLine = "";
+		
+		while (sLine != null){
+			sLine = objReader.ReadLine();
+			if(sLine != null){
+				arrText.Add(sLine);
+			}
+		}
+		objReader.Close();
+		fileLoadWords = arrText.ToArray();
+		editString = string.Join("\n", fileLoadWords);
+		count++;
 	}
 	
 	void checkFileNum(string currFile){
