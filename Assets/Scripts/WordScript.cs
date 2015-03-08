@@ -42,8 +42,8 @@ public class WordScript : MonoBehaviour {
         */
 
         // Each word object gets the paper that it is on
-        paper = transform.parent.parent.parent.gameObject;
-        paperScript = paper.GetComponent<PaperScript>();
+        //paper = transform.parent.parent.parent.gameObject;
+        //paperScript = paper.GetComponent<PaperScript>();
 
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;

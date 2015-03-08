@@ -16,6 +16,10 @@ public class TextBox : MonoBehaviour {
 	
 	public GameObject line;
 	public LineScript lineScript;
+
+    public GameObject empty;
+    public GameObject structHolder;
+    public WordStructure wordStructure; 
 	
 	public string noteContent;
 	
@@ -158,6 +162,12 @@ public class TextBox : MonoBehaviour {
 			
 			// Increment curSpacing to add deviation to the line positions
 			curSpacing += lineSpacing;
-		}
+
+            foreach(string t in lineScript.words){
+                WordStructure wordStructure = new WordStructure();
+
+                Debug.Log(wordStructure.current + " " + wordStructure.alt);
+            }
+        }
 	}
 }
