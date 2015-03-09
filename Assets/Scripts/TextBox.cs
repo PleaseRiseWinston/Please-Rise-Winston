@@ -25,7 +25,7 @@ public class TextBox : MonoBehaviour {
 	
 	private char delimiterNewline = '\n';
 	private char delimiterSpace = ' ';
-	private Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
+	private Regex re = new Regex(@"(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
 	private Regex braceRe = new Regex(@"\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
 	
 	public List<string> wordList = new List<string>();
@@ -40,7 +40,7 @@ public class TextBox : MonoBehaviour {
 	public List<string> arrText;
 	string[] fileLoadWords;
 
-	public string editString = "edit me";
+	public string editString = "edit me {word|alt}";
 	string currDir;
 	string[] fileEntries;
 
@@ -133,23 +133,33 @@ public class TextBox : MonoBehaviour {
 				Match result = re.Match(word);
 				
 				if (result.Success)
-				{
-					// Parse conjunction + punctuation
-					if (result.Groups[1].Value != "" && result.Groups[2].Value != "")
-					{
+				{	
+					// Reads {Word|Alt} as 1 word i.e.
+					// String = "Hi {Winston|Prosecutor}!" or "blah {word|alt} blah"
+					// (after parsing) array = [hi , {Winston|Prosecutor}, ! ]
+					if (result.Groups[1].Value != "" && result.Groups[2].Value != ""){
 						wordList.Add(result.Groups[1].Value);
 						wordList.Add(result.Groups[2].Value + " ");
 					}
-					// Parse normal word + punctuation
-					else if (result.Groups[3].Value != "" && result.Groups[4].Value != "")
+					else if (result.Groups[3].Value != ""){
+						wordList.Add(result.Groups[3].Value + " ");
+					}
+					// Parse conjunction + punctuation
+					else if (result.Groups[4].Value != "" && result.Groups[5].Value != "")
 					{
-						wordList.Add(result.Groups[3].Value);
-						wordList.Add(result.Groups[4].Value + " ");
+						wordList.Add(result.Groups[4].Value);
+						wordList.Add(result.Groups[5].Value + " ");
+					}
+					// Parse normal word + punctuation
+					else if (result.Groups[6].Value != "" && result.Groups[7].Value != "")
+					{
+						wordList.Add(result.Groups[6].Value);
+						wordList.Add(result.Groups[7].Value + " ");
 					}
 					// Parse conjunction
-					else if (result.Groups[5].Value != "")
+					else if (result.Groups[8].Value != "")
 					{
-						wordList.Add(result.Groups[5].Value + " ");
+						wordList.Add(result.Groups[8].Value + " ");
 					}
 				}
 				else
@@ -166,13 +176,13 @@ public class TextBox : MonoBehaviour {
 
             foreach(string t in lineScript.words){
                 WordStructure wordStructure = new WordStructure();
-				Match secRes = braceRe.Match(t)
+				Match secRes = braceRe.Match(t);
 				if(secRes.Success){
 					wordStructure.current = secRes.Groups[1].Value;
 					wordStructure.alt = secRes.Groups[2].Value;
 				}
 
-                Debug.Log(wordStructure.current + " " + wordStructure.alt);
+                Debug.Log("word ID:" + wordStructure.wordID + " " + wordStructure.current + " " + wordStructure.alt);
             }
         }
 	}
