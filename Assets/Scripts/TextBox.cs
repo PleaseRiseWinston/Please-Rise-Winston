@@ -26,6 +26,7 @@ public class TextBox : MonoBehaviour {
 	private char delimiterNewline = '\n';
 	private char delimiterSpace = ' ';
 	private Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
+	private Regex braceRe = new Regex(@"\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
 	
 	public List<string> wordList = new List<string>();
 	public string[] words;
@@ -165,6 +166,11 @@ public class TextBox : MonoBehaviour {
 
             foreach(string t in lineScript.words){
                 WordStructure wordStructure = new WordStructure();
+				Match secRes = braceRe.Match(t)
+				if(secRes.Success){
+					wordStructure.current = secRes.Groups[1].Value;
+					wordStructure.alt = secRes.Groups[2].Value;
+				}
 
                 Debug.Log(wordStructure.current + " " + wordStructure.alt);
             }
