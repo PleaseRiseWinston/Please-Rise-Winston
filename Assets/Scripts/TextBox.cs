@@ -43,6 +43,7 @@ public class TextBox : MonoBehaviour {
 	public string editString = "edit me {word|alt}";
 	string currDir;
 	string[] fileEntries;
+	int wordStructCount = 0;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
@@ -181,6 +182,8 @@ public class TextBox : MonoBehaviour {
 					wordStructure.current = secRes.Groups[1].Value;
 					wordStructure.alt = secRes.Groups[2].Value;
 				}
+				wordStructure.wordID = wordStructCount;
+				wordStructCount++;
 
                 Debug.Log("word ID:" + wordStructure.wordID + " " + wordStructure.current + " " + wordStructure.alt);
             }
