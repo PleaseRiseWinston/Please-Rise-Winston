@@ -25,10 +25,12 @@ public class TextBox : MonoBehaviour {
 	
 	private char delimiterNewline = '\n';
 	private char delimiterSpace = ' ';
-	private Regex re = new Regex(@"(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
+	private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*|\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
+	//private Regex wordIDBraceRe = new Regex(@"\*[0-9]+\*\{([A-Za-z]+)\|([A-Za-z]+)\}");
 	
 	public List<string> wordList = new List<string>();
+	public List<int> dependenciesList = new List<int>();
 	public string[] words;
 	public string[] lines;
 	
@@ -134,10 +136,8 @@ public class TextBox : MonoBehaviour {
 				Match result = re.Match(word);
 				
 				if (result.Success)
-				{	
-					// Reads {Word|Alt} as 1 word i.e.
-					// String = "Hi {Winston|Prosecutor}!" or "blah {word|alt} blah"
-					// (after parsing) array = [hi , {Winston|Prosecutor}, ! ]
+				{						
+					// Parse *wordID*{word|alt} with and without punctuation
 					if (result.Groups[1].Value != "" && result.Groups[2].Value != ""){
 						wordList.Add(result.Groups[1].Value);
 						wordList.Add(result.Groups[2].Value + " ");
@@ -145,22 +145,30 @@ public class TextBox : MonoBehaviour {
 					else if (result.Groups[3].Value != ""){
 						wordList.Add(result.Groups[3].Value + " ");
 					}
-					// Parse conjunction + punctuation
+					//Parse {word|alt} with and without punctuation
 					else if (result.Groups[4].Value != "" && result.Groups[5].Value != "")
 					{
 						wordList.Add(result.Groups[4].Value);
 						wordList.Add(result.Groups[5].Value + " ");
 					}
+					else if (result.Groups[6].Value != ""){
+						wordList.Add(result.Groups[6].Value + " ");
+					}
+					// Parse conjunction + punctuation
+					else if (result.Groups[7].Value != "" && result.Groups[8].Value != ""){
+						wordList.Add(result.Groups[7].Value);
+						wordList.Add(result.Groups[8].Value + " ");
+					}
 					// Parse normal word + punctuation
-					else if (result.Groups[6].Value != "" && result.Groups[7].Value != "")
+					else if (result.Groups[9].Value != "" && result.Groups[10].Value != "")
 					{
-						wordList.Add(result.Groups[6].Value);
-						wordList.Add(result.Groups[7].Value + " ");
+						wordList.Add(result.Groups[9].Value);
+						wordList.Add(result.Groups[10].Value + " ");
 					}
 					// Parse conjunction
-					else if (result.Groups[8].Value != "")
+					else if (result.Groups[11].Value != "")
 					{
-						wordList.Add(result.Groups[8].Value + " ");
+						wordList.Add(result.Groups[11].Value + " ");
 					}
 				}
 				else
@@ -179,13 +187,26 @@ public class TextBox : MonoBehaviour {
                 WordStructure wordStructure = new WordStructure();
 				Match secRes = braceRe.Match(t);
 				if(secRes.Success){
-					wordStructure.current = secRes.Groups[1].Value;
-					wordStructure.alt = secRes.Groups[2].Value;
+					//Assigns dependency?
+					if (secRes.Groups[1].Value != ""){
+						dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
+						wordStructure.dependencies = dependenciesList.ToArray();
+					}
+					//Assigns current word and alternate word
+					else if (secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
+						wordStructure.current = secRes.Groups[2].Value;
+						wordStructure.alt = secRes.Groups[3].Value;
+					}
 				}
 				wordStructure.wordID = wordStructCount;
 				wordStructCount++;
 
-                Debug.Log("word ID:" + wordStructure.wordID + " " + wordStructure.current + " " + wordStructure.alt);
+                Debug.Log("word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
+				if(wordStructure.dependencies != null){
+					foreach(int num in wordStructure.dependencies){
+						Debug.Log("Dependency " + num);
+					}
+				}
             }
         }
 	}
