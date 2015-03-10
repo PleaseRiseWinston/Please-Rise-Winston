@@ -166,7 +166,7 @@ public class TextBox : MonoBehaviour {
             foreach(string t in lineScript.words){
                 WordStructure wordStructure = new WordStructure();
 
-                Debug.Log(wordStructure.current + " " + wordStructure.alt);
+                Debug.Log(wordStructure.wordID + " " + wordStructure.current + " " + wordStructure.alt);
             }
         }
 	}

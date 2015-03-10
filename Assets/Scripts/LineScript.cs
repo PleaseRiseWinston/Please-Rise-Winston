@@ -75,19 +75,30 @@ public class LineScript : MonoBehaviour
         // Each line object gets the canvas that it is on
         canvas = transform.parent.GetComponent<Canvas>();
         canvasScript = canvas.GetComponent<CanvasScript>();
+
+        words = canvasScript.wordList.ToArray();
         
         // Iterate through the wordList and instantiate words with space buffers in between
         lastWordEnd = 0;
         oldPosition = 0;
         foreach (string s in words)
         {
-            Text newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as Text;
+            Text newWord;
+            Debug.Log(paperScript.start);
+            if (paperScript.start || paperScript.exit)
+            {
+                newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.5f), transform.rotation) as Text;
+            }
+            else
+            {
+                newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as Text;
+            }
             newWord.transform.SetParent(transform);
             newWord.transform.localScale = newWord.transform.localScale * 3;
 
-            newWord.gameObject.AddComponent<ContentSizeFitter>();
-            newWord.gameObject.GetComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-            newWord.gameObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            //newWord.gameObject.AddComponent<ContentSizeFitter>();
+            //newWord.gameObject.GetComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            //newWord.gameObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text

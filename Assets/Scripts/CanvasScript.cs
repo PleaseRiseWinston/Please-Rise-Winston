@@ -37,6 +37,7 @@ public class CanvasScript : MonoBehaviour {
 
         // Note's contents are carried over from parent paper object and parsed
         noteContent = paperScript.noteContent;
+        Debug.Log(noteContent);
 
         // 'lines' array gets every single line with spaces
         lines = noteContent.Split(delimiterNewline);
@@ -45,52 +46,64 @@ public class CanvasScript : MonoBehaviour {
 
         foreach (string s in lines)
         {
-            // Instantiates a new line, gives it a collider, and modifies its values accordingly
-            GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f) + (paper.transform.up * -2 * curSpacing) - new Vector3(paper.transform.right.x * 2.8f, 0, 0), paper.transform.rotation) as GameObject;
-            lineScript = newLine.GetComponent<LineScript>();
-            newLine.transform.SetParent(transform);
-
-            words = s.Split(delimiterSpace);
-
-            // Clears the list if there is any content to make room for new line
-            wordList.Clear();
-
-            // Each word entry is parsed via regex
-            foreach (string word in words)
+            // Instantiates a new line and modifies its values accordingly
+            if (noteContent != "Start" || noteContent != "Exit")
             {
-                Match result = re.Match(word);
+                GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f) + (paper.transform.up * -2 * curSpacing) - new Vector3(paper.transform.right.x * 2.8f, 0, 0), paper.transform.rotation) as GameObject;
 
-                if (result.Success)
+                lineScript = newLine.GetComponent<LineScript>();
+                newLine.transform.SetParent(transform);
+
+                words = s.Split(delimiterSpace);
+
+                // Clears the list if there is any content to make room for new line
+                wordList.Clear();
+
+                // Each word entry is parsed via regex
+                foreach (string word in words)
                 {
-                    // Parse conjunction + punctuation
-                    if (result.Groups[1].Value != "" && result.Groups[2].Value != "")
+                    Match result = re.Match(word);
+
+                    if (result.Success)
                     {
-                        wordList.Add(result.Groups[1].Value);
-                        wordList.Add(result.Groups[2].Value + " ");
+                        // Parse conjunction + punctuation
+                        if (result.Groups[1].Value != "" && result.Groups[2].Value != "")
+                        {
+                            wordList.Add(result.Groups[1].Value);
+                            wordList.Add(result.Groups[2].Value + " ");
+                        }
+                        // Parse normal word + punctuation
+                        else if (result.Groups[3].Value != "" && result.Groups[4].Value != "")
+                        {
+                            wordList.Add(result.Groups[3].Value);
+                            wordList.Add(result.Groups[4].Value + " ");
+                        }
+                        // Parse conjunction
+                        else if (result.Groups[5].Value != "")
+                        {
+                            wordList.Add(result.Groups[5].Value + " ");
+                        }
                     }
-                    // Parse normal word + punctuation
-                    else if (result.Groups[3].Value != "" && result.Groups[4].Value != "")
+                    else
                     {
-                        wordList.Add(result.Groups[3].Value);
-                        wordList.Add(result.Groups[4].Value + " ");
-                    }
-                    // Parse conjunction
-                    else if (result.Groups[5].Value != "")
-                    {
-                        wordList.Add(result.Groups[5].Value + " ");
+                        wordList.Add(word + " ");
                     }
                 }
-                else
-                {
-                    wordList.Add(word + " ");
-                }
-            }
-            
-            // lineScript of child gets this line's wordList in array form
-            lineScript.words = wordList.ToArray();
-
             // Increment curSpacing to add deviation to the line positions
             curSpacing += lineSpacing;
+            }
+            else
+            {
+                GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f), paper.transform.rotation) as GameObject;
+
+                lineScript = newLine.GetComponent<LineScript>();
+                newLine.transform.SetParent(transform);
+                
+                foreach(string word in words){
+                    wordList.Add(word);
+                }
+
+            }
         }
 
         /*

@@ -13,7 +13,12 @@ using System.Collections.Generic;
 
 public class PaperScript : MonoBehaviour {
 
+    public bool start, exit;
+
+    public Camera menuCamera;
     public Camera mainCamera;
+    public Camera cutsceneCamera;
+
     public TextAsset note;
     public string noteContent;
 
@@ -31,10 +36,20 @@ public class PaperScript : MonoBehaviour {
 
     void Start()
     {
-        gameObject.AddComponent<BoxCollider2D>();
-
-        noteContent = note.text;
-
+        // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
+        if (start)
+        {
+            noteContent = "Start";
+        }
+        else if (exit)
+        {
+            noteContent = "Exit";
+        }
+        else if (note.text != null || note != null)
+        {
+            noteContent = note.text;
+        }
+        
         defaultNotePos = transform.position;
         defaultCameraPos = mainCamera.transform.position;
 
@@ -61,7 +76,7 @@ public class PaperScript : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        //Debug.Log("OnClick");
+        //Debug.Log("Focusing");
         StartCoroutine(Focus());
     }
 
@@ -85,7 +100,6 @@ public class PaperScript : MonoBehaviour {
 
     public void Update()
     {
-        //Debug.Log("focused = " + focused + ", mouseOver = " + mouseOver);
         // Detects clicks off the object
         if (Input.GetMouseButtonDown(0) && !mouseOver && focused)
         {

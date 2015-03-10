@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
+//using UnityEditor;
 
 public class SceneFadeInOut : MonoBehaviour {
 	public float fadeSpeed = 1.5f;

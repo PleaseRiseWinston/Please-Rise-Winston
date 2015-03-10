@@ -25,6 +25,9 @@ public class WordScript : MonoBehaviour {
     private GameObject line;
     private LineScript lineScript;
 
+    private GameObject cameraController;
+    private PlayCutscene playCutscene;
+
     void Start()
     {
         /*
@@ -42,12 +45,15 @@ public class WordScript : MonoBehaviour {
         */
 
         // Each word object gets the paper that it is on
-        //paper = transform.parent.parent.parent.gameObject;
-        //paperScript = paper.GetComponent<PaperScript>();
+        paper = transform.parent.parent.parent.gameObject;
+        paperScript = paper.GetComponent<PaperScript>();
 
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;
         lineScript = line.GetComponent<LineScript>();
+
+        cameraController = GameObject.FindGameObjectWithTag("CameraController");
+        playCutscene = cameraController.GetComponent<PlayCutscene>();
 
         // TODO: Read text into textOptions array here
         
@@ -67,12 +73,25 @@ public class WordScript : MonoBehaviour {
 
     public void OnDown(BaseEventData e)
     {
-        if (changeable && paperScript.focused && lineScript.isTranslated)
+        Debug.Log(curText);
+        if (paperScript.start)
+        {
+            // TODO: Detect current Act
+            // TODO: Play cutscene
+            Debug.Log("Starting");
+            StopAllCoroutines();
+            StartCoroutine(playCutscene.Play());
+        }
+        else if (paperScript.exit)
+        {
+            Debug.Log("Exiting");
+            Application.Quit();
+        }
+        else if (changeable && paperScript.focused && lineScript.isTranslated)
         {
             StopAllCoroutines();
             //StartCoroutine(overlay());
         }
     }
-
 
 }
