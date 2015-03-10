@@ -6,12 +6,12 @@ public class instantiateText : MonoBehaviour {
 	public Text textPrefab;
 	public Transform putWordsHere;
 	public TextAsset asset;
-	string assetText;
+	//string assetText;
 	string[] testArray = {"Hey", "you"};
 
 	// Use this for initialization
 	void Start () {
-		assetText = asset.text;
+		//assetText = asset.text;
 		for(int i = 0; i < testArray.Length; i++){
 			Text textInstance;
 			textInstance = Instantiate(textPrefab, putWordsHere.position, putWordsHere.rotation) as Text;

@@ -18,7 +18,7 @@ using System.Text.RegularExpressions;
 
 public class TextRead : MonoBehaviour {
 	char[] delimiterChars = {' ', '\n'};
-	Text text;			//For UI Text in Unity
+	//Text text;			//For UI Text in Unity
 	public Text textPrefab;
 	public TextAsset asset;
 	string assetText;
@@ -26,12 +26,12 @@ public class TextRead : MonoBehaviour {
 	Regex re = new Regex(@"([A-Za-z]+'[a-z])([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z])");
 	
 	List<string> list = new List<string>();
-    string[] testArray = { "Hello", "world" };
+    //string[] testArray = { "Hello", "world" };
 	
 	public Transform putWordsHere;
 	
     void Start() {
-		text = GetComponent<Text>();	//text.text = string;
+		//text = GetComponent<Text>();	//text.text = string;
 		assetText = asset.text;
 		words = assetText.Split(delimiterChars);
 		

@@ -7,27 +7,14 @@ using System.IO;
 
 
 public class TextBox : MonoBehaviour {
-
-	public float curSpacing;
-	public float lineSpacing = 0.035f;
-	
-	public GameObject paper;
-	public PaperScript paperScript;
-	
-	public GameObject line;
-	public LineScript lineScript;
-
     public GameObject empty;
     public GameObject structHolder;
     public WordStructure wordStructure; 
-	
-	public string noteContent;
 	
 	private char delimiterNewline = '\n';
 	private char delimiterSpace = ' ';
 	private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*|\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
-	//private Regex wordIDBraceRe = new Regex(@"\*[0-9]+\*\{([A-Za-z]+)\|([A-Za-z]+)\}");
 	
 	public List<string> wordList = new List<string>();
 	public List<int> dependenciesList = new List<int>();
@@ -42,10 +29,12 @@ public class TextBox : MonoBehaviour {
 	public List<string> arrText;
 	string[] fileLoadWords;
 
-	public string editString = "edit me {word|alt}";
+	public static string editString = "edit me {word|alt}";
 	string currDir;
 	string[] fileEntries;
 	int wordStructCount = 0;
+	public GameObject canvas;
+	public CanvasScript canvasScript;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
@@ -53,6 +42,10 @@ public class TextBox : MonoBehaviour {
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
 	}
 	
+	void Update(){
+		canvas = GameObject.Find("Canvas(Clone)");
+		canvasScript = canvas.GetComponent<CanvasScript>();
+	}
 	
 	void OnGUI() {
 		const int buttonWidth = 84;
@@ -64,9 +57,10 @@ public class TextBox : MonoBehaviour {
 		Rect buttonLoad = new Rect(buttonWidth * 3 + 30, 0, buttonWidth, buttonHeight);
 		Rect buttonReset = new Rect(buttonWidth * 4 + 40, 0, buttonWidth, buttonHeight);
 		
-		editString = GUI.TextArea (new Rect (50, 50, 700, 400), editString, 500);
+		editString = GUI.TextArea (new Rect (0, 50, 200, 200), editString, 500);
 
 		if (GUI.Button(buttonParse, "Parse")){
+			//canvasScript.Parser();
 			Parser();
 		}
 		else if(GUI.Button(buttonSave, "Save")){
@@ -119,12 +113,7 @@ public class TextBox : MonoBehaviour {
 	void Parser () {
 		lines = editString.Split(delimiterNewline);	
 		foreach (string s in lines)
-		{
-			// Instantiates a new line, gives it a collider, and modifies its values accordingly
-			GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f) + (paper.transform.up * -2 * curSpacing) - new Vector3(paper.transform.right.x * 2.8f, 0, 0), paper.transform.rotation) as GameObject;
-			lineScript = newLine.GetComponent<LineScript>();
-			newLine.transform.SetParent(transform);
-			
+		{			
 			words = s.Split(delimiterSpace);
 			
 			// Clears the list if there is any content to make room for new line
@@ -178,16 +167,13 @@ public class TextBox : MonoBehaviour {
 			}
 			
 			// lineScript of child gets this line's wordList in array form
-			lineScript.words = wordList.ToArray();
-			
-			// Increment curSpacing to add deviation to the line positions
-			curSpacing += lineSpacing;
+			words = wordList.ToArray();
 
-            foreach(string t in lineScript.words){
+            foreach(string t in words){
                 WordStructure wordStructure = new WordStructure();
 				Match secRes = braceRe.Match(t);
 				if(secRes.Success){
-					//Assigns dependency?
+					//Assigns dependency to array
 					if (secRes.Groups[1].Value != ""){
 						dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
 						wordStructure.dependencies = dependenciesList.ToArray();

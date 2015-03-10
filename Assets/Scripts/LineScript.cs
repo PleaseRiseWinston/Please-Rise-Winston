@@ -84,7 +84,7 @@ public class LineScript : MonoBehaviour
         foreach (string s in words)
         {
             Text newWord;
-            Debug.Log(paperScript.start);
+            //Debug.Log(paperScript.start);
             if (paperScript.start || paperScript.exit)
             {
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.5f), transform.rotation) as Text;
@@ -105,7 +105,7 @@ public class LineScript : MonoBehaviour
             newWord.text = s;
             
             lastWordEnd += newWord.GetComponent<Transform>().right.x;
-            Debug.Log(newWord.GetComponent<Transform>().right.x);
+            //Debug.Log(newWord.GetComponent<Transform>().right.x);
         }
         Transform[] childArray = gameObject.GetComponentsInChildren<Transform>();
         childCount = transform.childCount;
@@ -116,7 +116,7 @@ public class LineScript : MonoBehaviour
             childText.GetComponent<Text>().font = defaultFont;
             Vector3[] corners = new Vector3[4];
             childText.GetComponent<RectTransform>().GetWorldCorners(corners);
-            Debug.Log(corners[0], childText);
+            //Debug.Log(corners[0], childText);
             float width = Mathf.Abs(corners[0].x - corners[3].x);
         }
 

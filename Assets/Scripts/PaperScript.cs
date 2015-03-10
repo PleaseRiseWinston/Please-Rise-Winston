@@ -48,6 +48,7 @@ public class PaperScript : MonoBehaviour {
         else if (note.text != null || note != null)
         {
             noteContent = note.text;
+			//noteContent = TextBox.editString;
         }
         
         defaultNotePos = transform.position;
