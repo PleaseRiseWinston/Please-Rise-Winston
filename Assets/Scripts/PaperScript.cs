@@ -15,7 +15,7 @@ public class PaperScript : MonoBehaviour {
 
     public bool start, exit;
 
-    public Camera menuCamera;
+    public Camera gameCamera;
     public Camera mainCamera;
     public Camera cutsceneCamera;
 
@@ -52,7 +52,12 @@ public class PaperScript : MonoBehaviour {
         }
         
         defaultNotePos = transform.position;
-        defaultCameraPos = mainCamera.transform.position;
+		if(!start && !exit){
+			defaultCameraPos = gameCamera.transform.position;
+		}
+		else{
+			defaultCameraPos = mainCamera.transform.position;
+		}
 
         // Places the camera default position at 10z units in front of camera
         defaultCameraPos += new Vector3(0, 0, 10);

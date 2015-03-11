@@ -27,6 +27,9 @@ public class CanvasScript : MonoBehaviour {
     private char delimiterNewline = '\n';
     private char delimiterSpace = ' ';
     private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*|\{([A-Za-z]+)\|([A-Za-z]+)\}");
+	public List<int> dependenciesList = new List<int>();
+	int wordStructCount = 0;
 
     public List<string> wordList = new List<string>();
     public string[] words;
@@ -69,7 +72,7 @@ public class CanvasScript : MonoBehaviour {
 		foreach (string s in lines)
         {
             // Instantiates a new line and modifies its values accordingly
-            if (noteContent != "Start" || noteContent != "Exit")
+            if (!paperScript.start && !paperScript.exit)
             {
                 GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f) + (paper.transform.up * -2 * curSpacing) - new Vector3(paper.transform.right.x * 2.8f, 0, 0), paper.transform.rotation) as GameObject;
 
@@ -127,8 +130,8 @@ public class CanvasScript : MonoBehaviour {
                         wordList.Add(word + " ");
                     }
                 }
-            // Increment curSpacing to add deviation to the line positions
-            curSpacing += lineSpacing;
+				// Increment curSpacing to add deviation to the line positions
+				curSpacing += lineSpacing;
             }
             else
             {
@@ -140,7 +143,32 @@ public class CanvasScript : MonoBehaviour {
                 foreach(string word in words){
                     wordList.Add(word);
                 }
+            }
+			
+			foreach(string t in words){
+                WordStructure wordStructure = new WordStructure();
+				Match secRes = braceRe.Match(t);
+				if(secRes.Success){
+					//Assigns dependency to array
+					if (secRes.Groups[1].Value != ""){
+						dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
+						wordStructure.dependencies = dependenciesList.ToArray();
+					}
+					//Assigns current word and alternate word
+					else if (secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
+						wordStructure.current = secRes.Groups[2].Value;
+						wordStructure.alt = secRes.Groups[3].Value;
+					}
+				}
+				wordStructure.wordID = wordStructCount;
+				wordStructCount++;
 
+                Debug.Log("word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
+				if(wordStructure.dependencies != null){
+					foreach(int num in wordStructure.dependencies){
+						Debug.Log("Dependency " + num);
+					}
+				}
             }
         }
 	}
