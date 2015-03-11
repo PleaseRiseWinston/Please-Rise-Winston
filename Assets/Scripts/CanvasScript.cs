@@ -149,6 +149,8 @@ public class CanvasScript : MonoBehaviour {
             lineScript = newLine.GetComponent<LineScript>();
             newLine.transform.SetParent(transform);
             wordList.Add(noteContent);
+
+            lineScript.words = wordList.ToArray();
         }
         
         /*

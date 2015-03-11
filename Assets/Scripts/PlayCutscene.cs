@@ -24,8 +24,8 @@ public class PlayCutscene : MonoBehaviour {
 	
     void Start() {
 
-        gameCamera.enabled = true;
-        mainCamera.enabled = false;
+        gameCamera.enabled = false;
+        mainCamera.enabled = true;
         cutsceneCamera.enabled = false;
 
         cutsceneTime = 6.0f;
@@ -72,7 +72,11 @@ public class PlayCutscene : MonoBehaviour {
         Transform camTransform = cutsceneCamera.transform;
         yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(5f, 5f, 0), true).WaitForCompletion());
 
-        SwitchToGame();
+        //SwitchToGame();
+        Vector3 gameCameraPos = gameCamera.transform.position;
+        mainCamera.transform.position = gameCameraPos;
+        SwitchToMain();
+
 
         /*
         // Visits each camera point to hit and pauses at each
