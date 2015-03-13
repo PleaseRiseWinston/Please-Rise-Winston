@@ -77,8 +77,6 @@ public class LineScript : MonoBehaviour
         canvas = transform.parent.GetComponent<Canvas>();
         canvasScript = canvas.GetComponent<CanvasScript>();
 
-        words = canvasScript.wordList.ToArray();
-        
         // Iterate through the wordList and instantiate words with space buffers in between
         lastWordEnd = 0;
         oldPosition = 0;
@@ -141,7 +139,7 @@ public class LineScript : MonoBehaviour
 
     public void OnEnter(BaseEventData e)
     {
-        //Debug.Log ("Over");
+        Debug.Log ("Over");
         if (paperScript.focused)
         {
             StopAllCoroutines();

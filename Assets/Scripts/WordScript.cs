@@ -51,7 +51,6 @@ public class WordScript : MonoBehaviour {
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;
         lineScript = line.GetComponent<LineScript>();
-
         cameraController = GameObject.FindGameObjectWithTag("CameraController");
         playCutscene = cameraController.GetComponent<PlayCutscene>();
 
@@ -77,9 +76,7 @@ public class WordScript : MonoBehaviour {
         if (paperScript.start)
         {
             // TODO: Detect current Act
-            // TODO: Play cutscene
             Debug.Log("Starting");
-            StopAllCoroutines();
             StartCoroutine(playCutscene.Play());
         }
         else if (paperScript.exit)

@@ -38,6 +38,8 @@ public class PaperScript : MonoBehaviour {
 
     void Start()
     {
+        focused = false;
+
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
         if (start)
         {
@@ -47,13 +49,15 @@ public class PaperScript : MonoBehaviour {
         {
             noteContent = "Exit";
         }
-        else if (note.text != null || note != null)
+        else
         {
             noteContent = note.text;
 			//noteContent = TextBox.editString;
         }
         
         defaultNotePos = transform.position;
+
+        // Sets camera default position depending on the intended camera
 		if(!start && !exit){
 			defaultCameraPos = gameCamera.transform.position;
 		}
@@ -65,9 +69,6 @@ public class PaperScript : MonoBehaviour {
         defaultCameraPos += new Vector3(0, 0, 10);
         cameraFront = defaultCameraPos;
         //Debug.Log("defaultCameraPos = " + defaultCameraPos);
-
-        focused = false;
-        mouseOver = true;
 
         /*
         text = transform.GetChild(0).gameObject;
