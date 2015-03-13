@@ -40,6 +40,7 @@ public class LineScript : MonoBehaviour
     public Text word;
     public string[] words;
     public List<string> wordList = new List<string>();
+	public int quickFixNum = 0;
 
     /*** 3DText Attempt ***/
 
@@ -87,11 +88,17 @@ public class LineScript : MonoBehaviour
             //Debug.Log(paperScript.start);
             if (paperScript.start || paperScript.exit)
             {
+				quickFixNum = PaperScript.wordIDNum - 2;
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.5f), transform.rotation) as Text;
+				newWord.name = "wordID" + quickFixNum;
+				PaperScript.wordIDNum++;
             }
             else
             {
+				quickFixNum = PaperScript.wordIDNum - 2;
                 newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as Text;
+				newWord.name = "wordID" + quickFixNum;
+				PaperScript.wordIDNum++;
             }
             newWord.transform.SetParent(transform);
             newWord.transform.localScale = newWord.transform.localScale * 3;

@@ -14,7 +14,7 @@ public class TextBox : MonoBehaviour {
 	private char delimiterNewline = '\n';
 	private char delimiterSpace = ' ';
 	private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*|\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
 	
 	public List<string> wordList = new List<string>();
 	public List<int> dependenciesList = new List<int>();
@@ -35,6 +35,9 @@ public class TextBox : MonoBehaviour {
 	int wordStructCount = 0;
 	public GameObject canvas;
 	public CanvasScript canvasScript;
+	bool isAlt = false;
+	public List<WordStructure> structList = new List<WordStructure>();
+	int structListIndex = 0;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
@@ -56,6 +59,7 @@ public class TextBox : MonoBehaviour {
 		Rect buttonDump = new Rect(buttonWidth * 2 + 20, 0, buttonWidth, buttonHeight);
 		Rect buttonLoad = new Rect(buttonWidth * 3 + 30, 0, buttonWidth, buttonHeight);
 		Rect buttonReset = new Rect(buttonWidth * 4 + 40, 0, buttonWidth, buttonHeight);
+		Rect buttonSwap = new Rect(buttonWidth * 5 + 50, 0, buttonWidth, buttonHeight);
 		
 		editString = GUI.TextArea (new Rect (0, 50, 200, 200), editString, 500);
 
@@ -78,6 +82,17 @@ public class TextBox : MonoBehaviour {
 		}
 		else if(GUI.Button(buttonReset, "Reset")){
 			count = 0;
+		}
+		else if(GUI.Button(buttonSwap, "Swap")){
+			if(isAlt == false){
+				isAlt = true;
+				Swap();
+				print(structList[structListIndex].current + " " + structList[structListIndex].alt);
+			}
+			else{
+				isAlt = false;
+				Swap();
+			}
 		}
 
 	}
@@ -173,27 +188,71 @@ public class TextBox : MonoBehaviour {
                 WordStructure wordStructure = new WordStructure();
 				Match secRes = braceRe.Match(t);
 				if(secRes.Success){
-					//Assigns dependency to array
-					if (secRes.Groups[1].Value != ""){
+					//*wordID*{word|alt}
+					//current = word
+					//alt = alt
+					//dependencies[] = [wordID]
+					if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
+						wordStructure.fullWord = t;
 						dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
+						wordStructure.current = secRes.Groups[2].Value;
+						wordStructure.alt = secRes.Groups[3].Value;
 						wordStructure.dependencies = dependenciesList.ToArray();
 					}
 					//Assigns current word and alternate word
-					else if (secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-						wordStructure.current = secRes.Groups[2].Value;
-						wordStructure.alt = secRes.Groups[3].Value;
+					//{word|alt}
+					//current = word
+					//alt = alt
+					else if (secRes.Groups[4].Value != "" && secRes.Groups[5].Value != ""){
+						wordStructure.fullWord = t;
+						wordStructure.current = secRes.Groups[4].Value;
+						wordStructure.alt = secRes.Groups[5].Value;
+						//print("Dep = N/A");
 					}
 				}
 				wordStructure.wordID = wordStructCount;
 				wordStructCount++;
 
-                Debug.Log("word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
-				if(wordStructure.dependencies != null){
-					foreach(int num in wordStructure.dependencies){
-						Debug.Log("Dependency " + num);
-					}
-				}
+                // Debug.Log(t + " word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
+				// if(wordStructure.dependencies != null){
+					// foreach(int num in wordStructure.dependencies){
+						// Debug.Log("Dependency " + num);
+					// }
+				// }
+				
+				structList.Add(wordStructure);
             }
         }
+	}
+	
+	void Swap(){
+		int dependerIndex = 0;
+		if(isAlt == true){
+			for(int i = 0; i <= words.Length-1; i++){
+				Match swapResult = braceRe.Match(words[i]);
+				
+				if(swapResult.Success){
+					if(swapResult.Groups[1].Value != ""){
+						if(dependerIndex == int.Parse(swapResult.Groups[1].Value)){
+							foreach(WordStructure wStruct in structList){
+								if(wStruct.wordID == i){
+									structListIndex = i;
+									string tempString = wStruct.current;
+									wStruct.current = wStruct.alt;
+									wStruct.alt = tempString;
+									//#TYBM
+								}
+							}
+						}
+					}
+					else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
+						dependerIndex = i;
+					}
+				}
+			}
+		}
+		else{
+			//DO STUFF TO SWITCH BACK
+		}
 	}
 }

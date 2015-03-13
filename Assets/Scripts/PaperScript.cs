@@ -30,6 +30,8 @@ public class PaperScript : MonoBehaviour {
     private Vector3 defaultNotePos;
     private Vector3 defaultCameraPos;
     private Vector3 cameraFront;
+	
+	public static int wordIDNum = 0;
 
     //private GameObject text;
     public Canvas canvas;
