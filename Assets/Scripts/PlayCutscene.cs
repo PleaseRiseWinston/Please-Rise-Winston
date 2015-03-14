@@ -93,6 +93,7 @@ public class PlayCutscene : MonoBehaviour {
     public void SwitchToMain()
     {
         Debug.Log("Switching to Main");
+        mainCamera.tag = "MainCamera";
         mainCamera.enabled = true;
         gameCamera.enabled = false;
         cutsceneCamera.enabled = false;
@@ -102,6 +103,7 @@ public class PlayCutscene : MonoBehaviour {
     {
         Debug.Log("Switching to Game");
         mainCamera.enabled = false;
+        gameCamera.tag = "MainCamera";
         gameCamera.enabled = true;
         cutsceneCamera.enabled = false;
     }
@@ -110,6 +112,7 @@ public class PlayCutscene : MonoBehaviour {
         Debug.Log("Switching to Cutscene");
         mainCamera.enabled = false;
         gameCamera.enabled = false;
+        cutsceneCamera.tag = "MainCamera";
         cutsceneCamera.enabled = true;
     }
 }

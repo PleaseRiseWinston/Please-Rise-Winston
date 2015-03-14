@@ -89,8 +89,8 @@ public class CanvasScript : MonoBehaviour {
                         wordList.Add(word + " ");
                     }
                 }
-            // Increment curSpacing to add deviation to the line positions
-            curSpacing += lineSpacing;
+                // Increment curSpacing to add deviation to the line positions
+                curSpacing += lineSpacing;
             }
             else
             {
@@ -102,8 +102,8 @@ public class CanvasScript : MonoBehaviour {
                 foreach(string word in words){
                     wordList.Add(word);
                 }
-
             }
+            lineScript.words = wordList.ToArray();
         }
 
         /*
