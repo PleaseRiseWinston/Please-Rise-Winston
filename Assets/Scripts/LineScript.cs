@@ -48,10 +48,12 @@ public class LineScript : MonoBehaviour
 
     void Start()
     {
-        //gameObject.AddComponent<BoxCollider2D>();
+        /*
+        gameObject.AddComponent<BoxCollider2D>();
         gameObject.AddComponent<ContentSizeFitter>();
         gameObject.GetComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
         gameObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        */
 
         defaultColor = Color.black;
         highlightColor = Color.red;
@@ -80,6 +82,7 @@ public class LineScript : MonoBehaviour
         // Iterate through the wordList and instantiate words with space buffers in between
         lastWordEnd = 0;
         oldPosition = 0;
+        
         foreach (string s in words)
         {
             Text newWord;
@@ -124,16 +127,23 @@ public class LineScript : MonoBehaviour
             //Debug.Log(corners[0], childText);
             float width = Mathf.Abs(corners[0].x - corners[3].x);
         }
-
         /*
         foreach (string s in words)
         {
-            GameObject newWord = Instantiate(textPrefab, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as GameObject;
-            TextMesh textMesh = newWord.GetComponent<TextMesh>();
-            textMesh.text = s;
-            textMesh.font = defaultFont;
-            lastWordEnd += newWord.gameObject.GetComponent<BoxCollider2D>().bounds.max.x;
-            Debug.Log(newWord.collider2D.bounds.size.x);
+            if (paperScript.start || paperScript.exit)
+            {
+                GameObject newWord = Instantiate(textPrefab, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as GameObject;
+                newWord.AddComponent<BoxCollider>();
+                TextMesh textMesh = newWord.GetComponent<TextMesh>();
+
+                Vector3[] corners = new Vector3[4];
+                textMesh.text = s;
+                textMesh.font = defaultFont;
+                
+                lastWordEnd = newWord.gameObject.GetComponent<MeshRenderer>().bounds.size.x;
+                Debug.Log(newWord.gameObject.GetComponent<MeshRenderer>().bounds.size.x);
+                Debug.Log(s);
+            }
         }*/
     }
 
