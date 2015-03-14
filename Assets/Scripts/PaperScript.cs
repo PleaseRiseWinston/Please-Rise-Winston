@@ -31,6 +31,9 @@ public class PaperScript : MonoBehaviour {
     private Vector3 defaultCameraPos;
     private Vector3 cameraFront;
 	
+	public GameObject textBox;
+	public TextBox textBoxScript;
+	
 	public static int wordIDNum = 0;
 
     //private GameObject text;
@@ -38,6 +41,9 @@ public class PaperScript : MonoBehaviour {
 
     void Start()
     {
+		textBox = GameObject.Find("TextBox");
+		textBoxScript = textBox.GetComponent<TextBox>();
+		
         focused = false;
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
@@ -51,14 +57,17 @@ public class PaperScript : MonoBehaviour {
         }
         else
         {
-            noteContent = note.text;
-			//noteContent = TextBox.editString;
+            //noteContent = note.text;
+			noteContent = textBoxScript.editString;
         }
         
         defaultNotePos = transform.position;
 
         // Sets camera default position depending on the intended camera
 		if(!start && !exit){
+			Destroy(GameObject.Find("MenuPaper_Start"));
+			Destroy(GameObject.Find("MenuPaper_Exit"));
+			//print("start and exit is false: " + noteContent);
 			defaultCameraPos = gameCamera.transform.position;
 		}
 		else{
@@ -115,6 +124,10 @@ public class PaperScript : MonoBehaviour {
             //Debug.Log("Unfocusing");
             StartCoroutine(Unfocus());
         }
+		
+		if(noteContent != "Start" && noteContent != "Exit"){
+			noteContent = textBoxScript.editString;
+		}
     }
 
     // Coroutine called when focusing onto a note

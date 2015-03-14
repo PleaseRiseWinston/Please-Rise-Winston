@@ -22,21 +22,21 @@ public class TextBox : MonoBehaviour {
 	public string[] lines;
 	
 	DirectoryInfo info;
-	string fileName = "\\winstonNote";
-	int fileNum = 0;
-	string fileExt = ".prw";
-	int count = 0;
+	public string fileName = "\\winstonNote";
+	public int fileNum = 0;
+	public string fileExt = ".prw";
+	public int count = 0;
 	public List<string> arrText;
-	string[] fileLoadWords;
+	public string[] fileLoadWords;
 
-	public static string editString = "edit me {word|alt}";
-	string currDir;
-	string[] fileEntries;
-	int wordStructCount = 0;
+	public string editString = "";
+	public string currDir;
+	public string[] fileEntries;
+	public int wordStructCount = 0;
 	public GameObject canvas;
 	public CanvasScript canvasScript;
 	public List<WordStructure> structList = new List<WordStructure>();
-	int structListIndex = 0;
+	public int structListIndex = 0;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
@@ -63,8 +63,8 @@ public class TextBox : MonoBehaviour {
 		editString = GUI.TextArea (new Rect (0, 50, 200, 200), editString, 500);
 
 		if (GUI.Button(buttonParse, "Parse")){
-			//canvasScript.Parser();
-			Parser();
+			canvasScript.Parser();
+			//Parser();
 		}
 		else if(GUI.Button(buttonSave, "Save")){
 			checkFileNum(fileName + fileNum + fileExt);
@@ -83,8 +83,13 @@ public class TextBox : MonoBehaviour {
 			count = 0;
 		}
 		else if(GUI.Button(buttonSwap, "Swap")){
+			//Destroy(GameObject.Find("MenuPaper_Start"));
 			Swap();
-			print(structList[structListIndex].current + " " + structList[structListIndex].alt);
+			//print(structList[structListIndex].current + " " + structList[structListIndex].alt);
+			foreach(WordStructure wordS in structList){
+				//print(wordS.wordID);
+				print(wordS.current + " " + wordS.alt);
+			}
 		}
 
 	}
@@ -219,8 +224,8 @@ public class TextBox : MonoBehaviour {
 	
 	void Swap(){
 		int dependerIndex = 0;
-		for(int i = 0; i <= words.Length-1; i++){
-			Match swapResult = braceRe.Match(words[i]);
+		for(int i = 0; i <= canvasScript.words.Length-1; i++){
+			Match swapResult = braceRe.Match(canvasScript.words[i]);
 			
 			if(swapResult.Success){
 				if(swapResult.Groups[1].Value != ""){
