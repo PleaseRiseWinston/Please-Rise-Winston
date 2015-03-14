@@ -35,7 +35,6 @@ public class TextBox : MonoBehaviour {
 	int wordStructCount = 0;
 	public GameObject canvas;
 	public CanvasScript canvasScript;
-	bool isAlt = false;
 	public List<WordStructure> structList = new List<WordStructure>();
 	int structListIndex = 0;
 
@@ -84,15 +83,8 @@ public class TextBox : MonoBehaviour {
 			count = 0;
 		}
 		else if(GUI.Button(buttonSwap, "Swap")){
-			if(isAlt == false){
-				isAlt = true;
-				Swap();
-				print(structList[structListIndex].current + " " + structList[structListIndex].alt);
-			}
-			else{
-				isAlt = false;
-				Swap();
-			}
+			Swap();
+			print(structList[structListIndex].current + " " + structList[structListIndex].alt);
 		}
 
 	}
@@ -227,32 +219,27 @@ public class TextBox : MonoBehaviour {
 	
 	void Swap(){
 		int dependerIndex = 0;
-		if(isAlt == true){
-			for(int i = 0; i <= words.Length-1; i++){
-				Match swapResult = braceRe.Match(words[i]);
-				
-				if(swapResult.Success){
-					if(swapResult.Groups[1].Value != ""){
-						if(dependerIndex == int.Parse(swapResult.Groups[1].Value)){
-							foreach(WordStructure wStruct in structList){
-								if(wStruct.wordID == i){
-									structListIndex = i;
-									string tempString = wStruct.current;
-									wStruct.current = wStruct.alt;
-									wStruct.alt = tempString;
-									//#TYBM
-								}
+		for(int i = 0; i <= words.Length-1; i++){
+			Match swapResult = braceRe.Match(words[i]);
+			
+			if(swapResult.Success){
+				if(swapResult.Groups[1].Value != ""){
+					if(dependerIndex == int.Parse(swapResult.Groups[1].Value)){
+						foreach(WordStructure wStruct in structList){
+							if(wStruct.wordID == i){
+								structListIndex = i;
+								string tempString = wStruct.current;
+								wStruct.current = wStruct.alt;
+								wStruct.alt = tempString;
+								//#TYBM
 							}
 						}
 					}
-					else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
-						dependerIndex = i;
-					}
+				}
+				else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
+					dependerIndex = i;
 				}
 			}
-		}
-		else{
-			//DO STUFF TO SWITCH BACK
 		}
 	}
 }
