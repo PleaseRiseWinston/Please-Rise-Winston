@@ -86,10 +86,10 @@ public class LineScript : MonoBehaviour
             //Debug.Log(paperScript.start);
             if (paperScript.start || paperScript.exit)
             {
-				quickFixNum = PaperScript.wordIDNum;
+				//quickFixNum = PaperScript.wordIDNum;
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.5f), transform.rotation) as Text;
-				newWord.name = "wordID" + quickFixNum;
-				PaperScript.wordIDNum++;
+				//newWord.name = "wordID" + quickFixNum;
+				//PaperScript.wordIDNum++;
             }
             else
             {
