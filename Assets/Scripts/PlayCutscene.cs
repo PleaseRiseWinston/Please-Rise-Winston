@@ -70,7 +70,7 @@ public class PlayCutscene : MonoBehaviour {
 
         StopAllCoroutines();
         Transform camTransform = cutsceneCamera.transform;
-        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(5f, 5f, 0), true).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
 
         //SwitchToGame();
         Vector3 gameCameraPos = gameCamera.transform.position;

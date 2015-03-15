@@ -59,6 +59,13 @@ public class WordScript : MonoBehaviour {
         curText = GetComponent<Text>().text;
         defaultColor = Color.black;
         highlightColor = Color.red;
+
+        gameObject.AddComponent<LayoutElement>();
+        LayoutElement layoutElement = gameObject.GetComponent<LayoutElement>();
+        layoutElement.flexibleWidth = 0;
+        layoutElement.flexibleHeight = 0;
+
+        gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
     }
 
     void Update()

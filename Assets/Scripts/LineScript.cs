@@ -82,7 +82,14 @@ public class LineScript : MonoBehaviour
         // Iterate through the wordList and instantiate words with space buffers in between
         lastWordEnd = 0;
         oldPosition = 0;
-        
+
+        gameObject.AddComponent<HorizontalLayoutGroup>();
+        HorizontalLayoutGroup layoutGroup = gameObject.GetComponent<HorizontalLayoutGroup>();
+        layoutGroup.spacing = 0;
+        layoutGroup.childForceExpandWidth = false;
+
+        transform.localScale = new Vector3(0.05f, 0.05f, 1f);
+
         foreach (string s in words)
         {
             Text newWord;
@@ -90,19 +97,21 @@ public class LineScript : MonoBehaviour
             if (paperScript.start || paperScript.exit)
             {
 				quickFixNum = PaperScript.wordIDNum;
-                newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.5f), transform.rotation) as Text;
+                newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.1f), transform.rotation) as Text;
 				newWord.name = "wordID" + quickFixNum;
 				PaperScript.wordIDNum++;
+                newWord.transform.SetParent(transform);
+                newWord.transform.localScale = newWord.transform.localScale * 1;
             }
             else
             {
 				quickFixNum = PaperScript.wordIDNum;
-                newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as Text;
+                newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -1.3f), transform.rotation) as Text;
 				newWord.name = "wordID" + quickFixNum;
 				PaperScript.wordIDNum++;
+                newWord.transform.SetParent(transform);
+                newWord.transform.localScale = newWord.transform.localScale * 1;
             }
-            newWord.transform.SetParent(transform);
-            newWord.transform.localScale = newWord.transform.localScale * 3;
 
             //newWord.gameObject.AddComponent<ContentSizeFitter>();
             //newWord.gameObject.GetComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;

@@ -65,8 +65,8 @@ public class PaperScript : MonoBehaviour {
 
         // Sets camera default position depending on the intended camera
 		if(!start && !exit){
-			Destroy(GameObject.Find("MenuPaper_Start"));
-			Destroy(GameObject.Find("MenuPaper_Exit"));
+			//Destroy(GameObject.Find("MenuPaper_Start"));
+			//Destroy(GameObject.Find("MenuPaper_Exit"));
 			//print("start and exit is false: " + noteContent);
 			defaultCameraPos = gameCamera.transform.position;
 		}
@@ -75,7 +75,7 @@ public class PaperScript : MonoBehaviour {
 		}
 
         // Places the camera default position at 10z units in front of camera
-        defaultCameraPos += new Vector3(0, 0, 10);
+        defaultCameraPos += new Vector3(0, 0, 60);
         cameraFront = defaultCameraPos;
         //Debug.Log("defaultCameraPos = " + defaultCameraPos);
 
@@ -88,7 +88,7 @@ public class PaperScript : MonoBehaviour {
 
         // Instantiates a canvas at the paper's position
         Canvas newCanvas = Instantiate(canvas, transform.position, transform.rotation) as Canvas;
-        newCanvas.transform.localScale = transform.localScale * 0.03f;
+        newCanvas.transform.localScale = transform.localScale;
         newCanvas.transform.SetParent(transform);
     }
 
