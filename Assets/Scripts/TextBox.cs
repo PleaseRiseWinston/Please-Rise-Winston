@@ -225,6 +225,7 @@ public class TextBox : MonoBehaviour {
 	void Swap(){
 		int dependerIndex = 0;
 		for(int i = 0; i <= canvasScript.words.Length-1; i++){
+			//print(canvasScript.words[i]);
 			Match swapResult = braceRe.Match(canvasScript.words[i]);
 			
 			if(swapResult.Success){

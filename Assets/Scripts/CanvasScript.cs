@@ -56,7 +56,7 @@ public class CanvasScript : MonoBehaviour {
 	
 	public void Parser(){
 		// Note's contents are carried over from parent paper object and parsed
-        noteContent = paperScript.noteContent;
+		noteContent = paperScript.noteContent;
 		//noteContent = textBoxScript.editString;
         //Debug.Log(noteContent);
 
@@ -185,7 +185,7 @@ public class CanvasScript : MonoBehaviour {
 	
 	void Update(){
 		//print(noteContent);
-		// print("Start bool is " + paperScript.start);
-		// print("Exit bool is " + paperScript.exit);
+		//print("Start bool is " + paperScript.start);
+		//print("Exit bool is " + paperScript.exit);
 	}
 }
