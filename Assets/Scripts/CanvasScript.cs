@@ -43,7 +43,7 @@ public class CanvasScript : MonoBehaviour {
 
         curSpacing = -.9f;
 		
-		Parser();
+		//Parser();
 
         /*
         // Debugging

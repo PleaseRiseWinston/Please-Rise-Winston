@@ -65,6 +65,8 @@ public class PaperScript : MonoBehaviour {
 
         // Sets camera default position depending on the intended camera
 		if(!start && !exit){
+			Destroy(GameObject.Find("MenuPaper_Start"));
+			Destroy(GameObject.Find("MenuPaper_Exit"));
 			//print("start and exit is false: " + noteContent);
 			defaultCameraPos = gameCamera.transform.position;
 		}

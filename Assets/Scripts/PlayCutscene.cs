@@ -101,8 +101,6 @@ public class PlayCutscene : MonoBehaviour {
 
     public void SwitchToGame()
     {
-		Destroy(GameObject.Find("MenuPaper_Start"));
-		Destroy(GameObject.Find("MenuPaper_Exit"));
         Debug.Log("Switching to Game");
         mainCamera.enabled = false;
         gameCamera.tag = "MainCamera";
