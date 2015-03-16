@@ -27,6 +27,7 @@ public class WordScript : MonoBehaviour {
 
     private GameObject cameraController;
     private PlayCutscene playCutscene;
+    public AudioClip cutsceneMusic;
 
     void Start()
     {

@@ -85,7 +85,7 @@ public class LineScript : MonoBehaviour
 
         gameObject.AddComponent<HorizontalLayoutGroup>();
         HorizontalLayoutGroup layoutGroup = gameObject.GetComponent<HorizontalLayoutGroup>();
-        layoutGroup.spacing = 0;
+        layoutGroup.spacing = 10;
         layoutGroup.childForceExpandWidth = false;
 
         transform.localScale = new Vector3(0.05f, 0.05f, 1f);
