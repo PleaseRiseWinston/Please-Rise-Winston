@@ -36,11 +36,15 @@ public class PaperScript : MonoBehaviour {
 	
 	public static int wordIDNum = 0;
 
-    //private GameObject text;
+    public AudioClip paper1, paper2, paper3;
+
     public Canvas canvas;
 
     void Start()
     {
+        gameObject.AddComponent<AudioSource>();
+        AudioSource audio = gameObject.GetComponent<AudioSource>();
+
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
 		
@@ -129,11 +133,32 @@ public class PaperScript : MonoBehaviour {
 			noteContent = textBoxScript.editString;
 		}
     }
+    
+    void PlayAudio()
+    {
+        int i = Mathf.Abs(Random.Range(1, 3));
+        //print(gameObject.name + " " + i);
+        switch (i)
+        {
+            case 1:
+                audio.clip = paper1;
+                break;
+            case 2:
+                audio.clip = paper2;
+                break;
+            case 3:
+                audio.clip = paper3;
+                break;
+        }
+        //print("Playing Audio...");
+        audio.Play();
+    }
 
     // Coroutine called when focusing onto a note
     IEnumerator Focus()
     {
         //Debug.Log("Focusing");
+        PlayAudio();
         HOTween.To(transform, 0.7f, "rotation", new Vector3(0, 0, 0), false);
         yield return StartCoroutine(HOTween.To(transform, 0.7f, "position", cameraFront, false).WaitForCompletion());
         focused = true;
@@ -143,6 +168,7 @@ public class PaperScript : MonoBehaviour {
     IEnumerator Unfocus()
     {
         //Debug.Log("Unfocusing");
+        PlayAudio();
         focused = false;
         HOTween.To(transform, 0.7f, "position", defaultNotePos, false);
         yield return StartCoroutine(HOTween.To(transform, 0.7f, "rotation", new Vector3(80, 0, 0), false).WaitForCompletion());
