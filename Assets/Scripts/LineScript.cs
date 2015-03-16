@@ -41,6 +41,9 @@ public class LineScript : MonoBehaviour
     public string[] words;
     public List<string> wordList = new List<string>();
 	public int quickFixNum = 0;
+	
+	public GameObject textBox;
+	public TextBox textBoxScript;
 
     /*** 3DText Attempt ***/
 
@@ -48,6 +51,9 @@ public class LineScript : MonoBehaviour
 
     void Start()
     {
+		textBox = GameObject.Find("TextBox");
+		textBoxScript = textBox.GetComponent<TextBox>();
+		
         /*
         gameObject.AddComponent<BoxCollider2D>();
         gameObject.AddComponent<ContentSizeFitter>();
@@ -89,17 +95,17 @@ public class LineScript : MonoBehaviour
             //Debug.Log(paperScript.start);
             if (paperScript.start || paperScript.exit)
             {
-				quickFixNum = PaperScript.wordIDNum - 2;
+				//quickFixNum = PaperScript.wordIDNum;
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -0.5f), transform.rotation) as Text;
-				newWord.name = "wordID" + quickFixNum;
-				PaperScript.wordIDNum++;
+				//newWord.name = "wordID" + quickFixNum;
+				//PaperScript.wordIDNum++;
             }
             else
             {
-				quickFixNum = PaperScript.wordIDNum - 2;
+				//quickFixNum = PaperScript.wordIDNum;
                 newWord = Instantiate(word, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as Text;
 				newWord.name = "wordID" + quickFixNum;
-				PaperScript.wordIDNum++;
+				quickFixNum++;
             }
             newWord.transform.SetParent(transform);
             newWord.transform.localScale = newWord.transform.localScale * 3;
@@ -111,6 +117,12 @@ public class LineScript : MonoBehaviour
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
+			
+			foreach(WordStructure wordStruct in textBoxScript.structList){
+				if(s == wordStruct.current && wordStruct.lineID == "N/A"){
+					wordStruct.lineID = gameObject.name;
+				}
+			}
             
             lastWordEnd += newWord.GetComponent<Transform>().right.x;
             //Debug.Log(newWord.GetComponent<Transform>().right.x);

@@ -35,9 +35,15 @@ public class PaperScript : MonoBehaviour {
 
     //private GameObject text;
     public Canvas canvas;
+	
+	public GameObject textBox;
+	public TextBox textBoxScript;
 
     void Start()
     {
+		textBox = GameObject.Find("TextBox");
+		textBoxScript = textBox.GetComponent<TextBox>();
+		
         focused = false;
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
@@ -51,14 +57,15 @@ public class PaperScript : MonoBehaviour {
         }
         else
         {
-            noteContent = note.text;
-			//noteContent = TextBox.editString;
+            //noteContent = note.text;
+			noteContent = textBoxScript.editString;
         }
         
         defaultNotePos = transform.position;
 
         // Sets camera default position depending on the intended camera
 		if(!start && !exit){
+			//print("start and exit is false: " + noteContent);
 			defaultCameraPos = gameCamera.transform.position;
 		}
 		else{
@@ -79,6 +86,9 @@ public class PaperScript : MonoBehaviour {
 
         // Instantiates a canvas at the paper's position
         Canvas newCanvas = Instantiate(canvas, transform.position, transform.rotation) as Canvas;
+		if(!start && !exit){
+			newCanvas.name = "GameCanvas";
+		}
         newCanvas.transform.localScale = transform.localScale * 0.03f;
         newCanvas.transform.SetParent(transform);
     }
@@ -115,6 +125,10 @@ public class PaperScript : MonoBehaviour {
             //Debug.Log("Unfocusing");
             StartCoroutine(Unfocus());
         }
+		
+		if(noteContent != "Start" && noteContent != "Exit"){
+			noteContent = textBoxScript.editString;
+		}
     }
 
     // Coroutine called when focusing onto a note

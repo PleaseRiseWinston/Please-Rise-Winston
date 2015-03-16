@@ -15,7 +15,7 @@ public class WordScript : MonoBehaviour {
     public Color defaultColor;
     public Color highlightColor;
 
-    private string[] wordOptions;
+    //private string[] wordOptions;
     private string curText;
     private bool changeable;
 
@@ -27,9 +27,24 @@ public class WordScript : MonoBehaviour {
 
     private GameObject cameraController;
     private PlayCutscene playCutscene;
+	
+	//public bool wordOptionsUp = false;
+	public string[] wordOptions;
+	public GameObject textPrefab;
+	
+	public GameObject textBox;
+	public TextBox textBoxScript;
+	
+	//Instantiated word prefabs use Camera.main
+	// NOT ARBITRARY POINTS
+	public float currX;
+	public float currY;
+	public float currZ = -1;
 
     void Start()
     {
+		textBox = GameObject.Find("TextBox");
+		textBoxScript = textBox.GetComponent<TextBox>();
         /*
          * 'paper' references the Paper object found as the parent to Canvas
          * 'line' references the Line object found as the parent to Word
@@ -72,7 +87,8 @@ public class WordScript : MonoBehaviour {
 
     public void OnDown(BaseEventData e)
     {
-        Debug.Log(curText);
+		
+        //Debug.Log(curText);
         if (paperScript.start)
         {
             // TODO: Detect current Act
@@ -84,11 +100,53 @@ public class WordScript : MonoBehaviour {
             Debug.Log("Exiting");
             Application.Quit();
         }
-        else if (changeable && paperScript.focused && lineScript.isTranslated)
+		//changeable && 
+        else if (!paperScript.start && !paperScript.exit && paperScript.focused && lineScript.isTranslated)
         {
+			foreach(WordStructure wordStruct in textBoxScript.structList){
+				if(curText == wordStruct.current){
+					if(wordStruct.alt != "N/A" && wordStruct.dependencies == null){
+						wordOptions[0] = wordStruct.current;
+						wordOptions[1] = wordStruct.alt;
+						createText();
+					}
+				}
+			}
+			
             StopAllCoroutines();
             //StartCoroutine(overlay());
         }
     }
+	
+	void createText(){		
+		int i = 1;
+		//wordOptionsUp = true;
+		textPrefab = GameObject.Find("wordOptionMesh");
+		currX = .5f;
+		currY = 7;
+		
+		foreach(string w in wordOptions){
+			//Creates new object 
+			GameObject textInstance;
+			textInstance = Instantiate(textPrefab, new Vector3(currX,currY,currZ), Quaternion.identity) as GameObject;
+			textInstance.name = "WordOption" + i;
+			textInstance.transform.parent = GameObject.Find("GamePaper").transform;
+			textInstance.GetComponent<TextMesh>().text = w;
+			textInstance.AddComponent<BoxCollider2D>();
+			
+			currX = textInstance.transform.position.x;
+			//currY = textInstance.transform.position.y;
+			currZ = textInstance.transform.position.z;
+			float textSize = textInstance.GetComponent<BoxCollider2D>().size.x;
+			float newPosX = textInstance.transform.position.x - (textSize / 2);
+			textInstance.transform.localPosition = new Vector3(newPosX, currY, -1);
+			
+			currX = .5f;
+			currY = -4;
+			currZ = -1;
+			
+			i++;
+		}
+	}
 
 }

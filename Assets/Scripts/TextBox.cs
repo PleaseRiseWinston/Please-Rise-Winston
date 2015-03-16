@@ -22,21 +22,21 @@ public class TextBox : MonoBehaviour {
 	public string[] lines;
 	
 	DirectoryInfo info;
-	string fileName = "\\winstonNote";
-	int fileNum = 0;
-	string fileExt = ".prw";
-	int count = 0;
+	public string fileName = "\\winstonNote";
+	public int fileNum = 0;
+	public string fileExt = ".prw";
+	public int count = 0;
 	public List<string> arrText;
-	string[] fileLoadWords;
+	public string[] fileLoadWords;
 
-	public static string editString = "edit me {word|alt}";
-	string currDir;
-	string[] fileEntries;
-	int wordStructCount = 0;
+	public string editString = "";
+	public string currDir;
+	public string[] fileEntries;
+	public int wordStructCount = 0;
 	public GameObject canvas;
 	public CanvasScript canvasScript;
 	public List<WordStructure> structList = new List<WordStructure>();
-	int structListIndex = 0;
+	public int structListIndex = 0;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
@@ -45,7 +45,7 @@ public class TextBox : MonoBehaviour {
 	}
 	
 	void Update(){
-		canvas = GameObject.Find("Canvas(Clone)");
+		canvas = GameObject.Find("GameCanvas");
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
@@ -59,12 +59,13 @@ public class TextBox : MonoBehaviour {
 		Rect buttonLoad = new Rect(buttonWidth * 3 + 30, 0, buttonWidth, buttonHeight);
 		Rect buttonReset = new Rect(buttonWidth * 4 + 40, 0, buttonWidth, buttonHeight);
 		Rect buttonSwap = new Rect(buttonWidth * 5 + 50, 0, buttonWidth, buttonHeight);
+		Rect buttonDisplay2Con = new Rect(buttonWidth * 6 + 60,0,buttonWidth,buttonHeight);
 		
 		editString = GUI.TextArea (new Rect (0, 50, 200, 200), editString, 500);
 
 		if (GUI.Button(buttonParse, "Parse")){
-			//canvasScript.Parser();
-			Parser();
+			canvasScript.Parser();
+			//Parser();
 		}
 		else if(GUI.Button(buttonSave, "Save")){
 			checkFileNum(fileName + fileNum + fileExt);
@@ -84,9 +85,19 @@ public class TextBox : MonoBehaviour {
 		}
 		else if(GUI.Button(buttonSwap, "Swap")){
 			Swap();
-			print(structList[structListIndex].current + " " + structList[structListIndex].alt);
+			//print(structList[structListIndex].current + " " + structList[structListIndex].alt);
+			// foreach(WordStructure wordS in structList){
+				// print(wordS.current);
+			// }
 		}
-
+		else if(GUI.Button(buttonDisplay2Con, "Print")){
+			/* foreach(string w in canvasScript.displayWords){
+				print (w);
+			} */
+			foreach(WordStructure wordStruct in structList){
+				print(wordStruct.current + " " + wordStruct.wordID);
+			}
+		}
 	}
 	
 	void loadFile(){
@@ -185,7 +196,6 @@ public class TextBox : MonoBehaviour {
 					//alt = alt
 					//dependencies[] = [wordID]
 					if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-						wordStructure.fullWord = t;
 						dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
 						wordStructure.current = secRes.Groups[2].Value;
 						wordStructure.alt = secRes.Groups[3].Value;
@@ -196,7 +206,6 @@ public class TextBox : MonoBehaviour {
 					//current = word
 					//alt = alt
 					else if (secRes.Groups[4].Value != "" && secRes.Groups[5].Value != ""){
-						wordStructure.fullWord = t;
 						wordStructure.current = secRes.Groups[4].Value;
 						wordStructure.alt = secRes.Groups[5].Value;
 						//print("Dep = N/A");
@@ -217,10 +226,11 @@ public class TextBox : MonoBehaviour {
         }
 	}
 	
-	void Swap(){
+	public void Swap(){
+		//print("in swap");
 		int dependerIndex = 0;
-		for(int i = 0; i <= words.Length-1; i++){
-			Match swapResult = braceRe.Match(words[i]);
+		for(int i = 0; i <= canvasScript.words.Length-1; i++){
+			Match swapResult = braceRe.Match(canvasScript.words[i]);
 			
 			if(swapResult.Success){
 				if(swapResult.Groups[1].Value != ""){
@@ -234,12 +244,22 @@ public class TextBox : MonoBehaviour {
 								//#TYBM
 							}
 						}
+						
 					}
 				}
 				else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
 					dependerIndex = i;
+					foreach(WordStructure wStruct in structList){
+						if(wStruct.wordID == dependerIndex){
+							string tempString = wStruct.current;
+							wStruct.current = wStruct.alt;
+							wStruct.alt = tempString;
+						}
+					}
 				}
 			}
 		}
+		
+		//canvasScript.wordOptionClicked = false;
 	}
 }
