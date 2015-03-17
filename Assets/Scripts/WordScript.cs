@@ -131,7 +131,7 @@ public class WordScript : MonoBehaviour {
 		int i = 1;
 		//wordOptionsUp = true;
 		textPrefab = GameObject.Find("wordOptionMesh");
-		currX = 6;
+		currX = -6;
 		currY = 8.8f;
 		currZ = -4;
 		
@@ -146,10 +146,10 @@ public class WordScript : MonoBehaviour {
 			
 			//currX = textInstance.transform.position.x;
 			//currY = textInstance.transform.position.y;
-			currZ = textInstance.transform.position.z;
+			//currZ = textInstance.transform.position.z;
 			float textSize = textInstance.GetComponent<BoxCollider2D>().size.x;
-			float newPosX = textInstance.transform.position.x - (textSize / 2);
-			textInstance.transform.localPosition = new Vector3(newPosX, currY, -1);
+			//float newPosX = textInstance.transform.localPosition.x - (textSize / 2);
+			textInstance.transform.localPosition = new Vector3(currX, currY, currZ);
 			
 			currX = -3.14f;
 			currY = -1;
