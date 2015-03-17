@@ -39,7 +39,7 @@ public class WordScript : MonoBehaviour {
 	// NOT ARBITRARY POINTS
 	public float currX;
 	public float currY;
-	public float currZ = -1;
+	public float currZ;
 
     public AudioClip cutsceneMusic;
 
@@ -131,8 +131,9 @@ public class WordScript : MonoBehaviour {
 		int i = 1;
 		//wordOptionsUp = true;
 		textPrefab = GameObject.Find("wordOptionMesh");
-		currX = .5f;
-		currY = 7;
+		currX = 6;
+		currY = 8.8f;
+		currZ = -4;
 		
 		foreach(string w in wordOptions){
 			//Creates new object 
@@ -143,16 +144,16 @@ public class WordScript : MonoBehaviour {
 			textInstance.GetComponent<TextMesh>().text = w;
 			textInstance.AddComponent<BoxCollider2D>();
 			
-			currX = textInstance.transform.position.x;
+			//currX = textInstance.transform.position.x;
 			//currY = textInstance.transform.position.y;
 			currZ = textInstance.transform.position.z;
 			float textSize = textInstance.GetComponent<BoxCollider2D>().size.x;
 			float newPosX = textInstance.transform.position.x - (textSize / 2);
 			textInstance.transform.localPosition = new Vector3(newPosX, currY, -1);
 			
-			currX = .5f;
-			currY = -4;
-			currZ = -1;
+			currX = -3.14f;
+			currY = -1;
+			currZ = -4;
 			
 			i++;
 		}
