@@ -55,7 +55,14 @@ public class CanvasScript : MonoBehaviour {
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
 
-        curSpacing = -.9f;
+        if (!paperScript.start && !paperScript.exit)
+        {
+            curSpacing = 10;
+        }
+        else
+        {
+            curSpacing = 0;
+        }
 		
 		// Note's contents are carried over from parent paper object and parsed
 		//linePosCount = 1;
@@ -80,15 +87,16 @@ public class CanvasScript : MonoBehaviour {
 		foreach (string s in lines)
         {
             // Instantiates a new line and modifies its values accordingly
-            if (noteContent != "Start" || noteContent != "Exit")
+            if (!paperScript.start && !paperScript.exit)
             {
+
 				//Creating newLine for paper on screen
-                GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f) + (paper.transform.up * -2 * curSpacing) - new Vector3(paper.transform.right.x * 2.8f, 0, 0), paper.transform.rotation) as GameObject;
+                GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.up * curSpacing), paper.transform.rotation) as GameObject;
 				newLine.name = "Line" + linePosCount;
 				linePosCount++;
 				
 				lineIDList.Add(newLine.name);
-				
+
                 lineScript = newLine.GetComponent<LineScript>();
                 newLine.transform.SetParent(transform);
 				//End newLine
@@ -159,11 +167,14 @@ public class CanvasScript : MonoBehaviour {
 
                 lineScript = newLine.GetComponent<LineScript>();
                 newLine.transform.SetParent(transform);
-                
+
+                words = s.Split(delimiterSpace);
+
                 foreach(string word in words){
                     wordList.Add(word);
                 }
             }
+
             lineScript.words = wordList.ToArray();
         }
 		

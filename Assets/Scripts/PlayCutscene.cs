@@ -21,12 +21,14 @@ public class PlayCutscene : MonoBehaviour {
 
     private Vector3[] camPoints;
     private Vector3 direction;
+
+    public AudioClip cutsceneMusic;
 	
     void Start() {
-
         gameCamera.enabled = false;
         mainCamera.enabled = true;
         cutsceneCamera.enabled = false;
+
 
         cutsceneTime = 6.0f;
 
@@ -66,12 +68,28 @@ public class PlayCutscene : MonoBehaviour {
     public IEnumerator Play()
     {
         Debug.Log("Entering Play");
+        print(gameObject.name);
+
+        gameObject.AddComponent<AudioSource>();
+        AudioSource cutsceneAudio = gameObject.GetComponent<AudioSource>();
+        cutsceneAudio.clip = cutsceneMusic;
+
         SwitchToCutscene();
 
         StopAllCoroutines();
+        cutsceneAudio.Play();
         Transform camTransform = cutsceneCamera.transform;
-        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(5f, 5f, 0), true).WaitForCompletion());
 
+        HOTween.To(camTransform, cutsceneTime, "position", new Vector3(150f, 100f, 0), true);
+        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+        HOTween.To(GameObject.Find("Cutscene1").GetComponent<MeshRenderer>().material, 3f, "color", Color.clear, false);
+        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+        HOTween.To(GameObject.Find("Cutscene2").GetComponent<MeshRenderer>().material, 3f, "color", Color.clear, false);
+        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
+        HOTween.To(GameObject.Find("Cutscene3").GetComponent<MeshRenderer>().material, 3f, "color", Color.clear, false);
+        yield return StartCoroutine(HOTween.To(camTransform, cutsceneTime, "position", new Vector3(50f, -180f, 0), true).WaitForCompletion());
+
+        cutsceneAudio.Stop();
         //SwitchToGame();
         Vector3 gameCameraPos = gameCamera.transform.position;
         mainCamera.transform.position = gameCameraPos;
