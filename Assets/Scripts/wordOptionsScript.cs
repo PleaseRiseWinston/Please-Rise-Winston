@@ -63,7 +63,7 @@ public class wordOptionsScript : MonoBehaviour {
 				print("destroying");
 				Destroy(GameObject.Find(s));
 			}
-			canvasScript.curSpacing = -.9f;
+			canvasScript.curSpacing = 10;
 			canvasScript.linePosCount = 0;
 			
 			//print(canvasScript.noteContent);

@@ -131,9 +131,11 @@ public class WordScript : MonoBehaviour {
 		int i = 1;
 		//wordOptionsUp = true;
 		textPrefab = GameObject.Find("wordOptionMesh");
-		currX = 6;
-		currY = 8.8f;
-		currZ = -4;
+		//currX = -6;
+		currX = 0;
+		currY = 6;
+		currZ = -5;
+		int charCount = 1;
 		
 		foreach(string w in wordOptions){
 			//Creates new object 
@@ -146,16 +148,22 @@ public class WordScript : MonoBehaviour {
 			
 			//currX = textInstance.transform.position.x;
 			//currY = textInstance.transform.position.y;
-			currZ = textInstance.transform.position.z;
+			//currZ = textInstance.transform.position.z;
+			foreach(char c in w){
+				//print (charCount);
+				charCount++;
+			}
 			float textSize = textInstance.GetComponent<BoxCollider2D>().size.x;
-			float newPosX = textInstance.transform.position.x - (textSize / 2);
-			textInstance.transform.localPosition = new Vector3(newPosX, currY, -1);
+			float newPosX = currX - (textSize / 7);
+			textInstance.transform.localPosition = new Vector3(newPosX, currY, currZ);
 			
-			currX = -3.14f;
-			currY = -1;
-			currZ = -4;
+			//currX = -3.14f;
+			currX = 0;
+			currY = -2;
+			currZ = -5;
 			
 			i++;
+			charCount = 1;
 		}
 	}
 
