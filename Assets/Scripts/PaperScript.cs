@@ -142,17 +142,17 @@ public class PaperScript : MonoBehaviour {
         switch (i)
         {
             case 1:
-                audio.clip = paper1;
+                GetComponent<AudioSource>().clip = paper1;
                 break;
             case 2:
-                audio.clip = paper2;
+                GetComponent<AudioSource>().clip = paper2;
                 break;
             case 3:
-                audio.clip = paper3;
+                GetComponent<AudioSource>().clip = paper3;
                 break;
         }
         //print("Playing Audio...");
-        audio.Play();
+        GetComponent<AudioSource>().Play();
     }
 
     // Coroutine called when focusing onto a note

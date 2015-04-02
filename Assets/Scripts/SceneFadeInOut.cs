@@ -9,10 +9,10 @@ public class SceneFadeInOut : MonoBehaviour {
 		
 	void Awake(){
 		currScene = Application.loadedLevelName;
-		guiTexture.pixelInset = new Rect(0f,0f, Screen.width, Screen.height);
+		GetComponent<GUITexture>().pixelInset = new Rect(0f,0f, Screen.width, Screen.height);
 		//print(currScene);
 		if(currScene == "Main_menu"){
-			guiTexture.color = Color.clear;
+			GetComponent<GUITexture>().color = Color.clear;
 		}
 	}
 	
@@ -23,28 +23,28 @@ public class SceneFadeInOut : MonoBehaviour {
 	}
 	
 	void FadeToClear(){
-		guiTexture.color = Color.Lerp(guiTexture.color, Color.clear, fadeSpeed * Time.deltaTime);
+		GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, Color.clear, fadeSpeed * Time.deltaTime);
 	}
 	
 	void FadeToBlack(){
-		guiTexture.color = Color.Lerp(guiTexture.color, Color.black, fadeSpeed * Time.deltaTime);
+		GetComponent<GUITexture>().color = Color.Lerp(GetComponent<GUITexture>().color, Color.black, fadeSpeed * Time.deltaTime);
 	}
 	
 	void StartScene(){
 		FadeToClear();
 		
-		if(guiTexture.color.a <= .05f){
-			guiTexture.color = Color.clear;
-			guiTexture.enabled = false;
+		if(GetComponent<GUITexture>().color.a <= .05f){
+			GetComponent<GUITexture>().color = Color.clear;
+			GetComponent<GUITexture>().enabled = false;
 			sceneStarting = false;
 		}
 	}
 	
 	public void EndScene(){		
-		guiTexture.enabled = true;
+		GetComponent<GUITexture>().enabled = true;
 		FadeToBlack();
 		
-		if(guiTexture.color.a >= .75f){
+		if(GetComponent<GUITexture>().color.a >= .75f){
 			Application.LoadLevel("noteClickZoom");
 		}
 	}
