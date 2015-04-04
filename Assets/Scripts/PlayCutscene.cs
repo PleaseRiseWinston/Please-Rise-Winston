@@ -65,13 +65,13 @@ public class PlayCutscene : MonoBehaviour {
         //print("second text");
         //new WaitForSeconds(6);
         //HOTween.To(c2.GetComponent<MeshRenderer>().sharedMaterial, 1f, "color", Color.clear);
-        yield return StartCoroutine(HOTween.To(camTransform, 25f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
         HOTween.To(GameObject.Find("Cutscene1-1").GetComponent<MeshRenderer>().sharedMaterial, 3f, "color", Color.clear, false);
-        yield return StartCoroutine(HOTween.To(camTransform, 10f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
         HOTween.To(GameObject.Find("Cutscene1-2").GetComponent<MeshRenderer>().sharedMaterial, 3f, "color", Color.clear, false);
-        yield return StartCoroutine(HOTween.To(camTransform, 10f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
         HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<MeshRenderer>().sharedMaterial, 3f, "color", Color.clear, false);
-        yield return StartCoroutine(HOTween.To(camTransform, 15, "position", new Vector3(50f, -180f, 0), true).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(50f, -180f, 0), true).WaitForCompletion());
 
         cutsceneAudio.Stop();
         //SwitchToGame();

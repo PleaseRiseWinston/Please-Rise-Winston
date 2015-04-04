@@ -1,4 +1,5 @@
-﻿using UnityEngine;using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using Holoville.HOTween;
 using UnityEngine.EventSystems;
 using System.Collections;
@@ -54,13 +55,6 @@ public class LineScript : MonoBehaviour
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
 		
-        /*
-        gameObject.AddComponent<BoxCollider2D>();
-        gameObject.AddComponent<ContentSizeFitter>();
-        gameObject.GetComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-        gameObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-        */
-
         defaultColor = Color.black;
         highlightColor = Color.red;
 
@@ -115,10 +109,6 @@ public class LineScript : MonoBehaviour
                 newWord.transform.localScale = newWord.transform.localScale * 1;
             }
 
-            //newWord.gameObject.AddComponent<ContentSizeFitter>();
-            //newWord.gameObject.GetComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-            //newWord.gameObject.GetComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
@@ -134,34 +124,6 @@ public class LineScript : MonoBehaviour
         }
         Transform[] childArray = gameObject.GetComponentsInChildren<Transform>();
         childCount = transform.childCount;
-
-        for (int i = 0; i < childCount; i++)
-        {
-            Transform childText = transform.GetChild(i);
-            childText.GetComponent<Text>().font = defaultFont;
-            Vector3[] corners = new Vector3[4];
-            childText.GetComponent<RectTransform>().GetWorldCorners(corners);
-            //Debug.Log(corners[0], childText);
-            float width = Mathf.Abs(corners[0].x - corners[3].x);
-        }
-        /*
-        foreach (string s in words)
-        {
-            if (paperScript.start || paperScript.exit)
-            {
-                GameObject newWord = Instantiate(textPrefab, transform.position + new Vector3(lastWordEnd, 0, 0) + (transform.forward * -0.2f), transform.rotation) as GameObject;
-                newWord.AddComponent<BoxCollider>();
-                TextMesh textMesh = newWord.GetComponent<TextMesh>();
-
-                Vector3[] corners = new Vector3[4];
-                textMesh.text = s;
-                textMesh.font = defaultFont;
-                
-                lastWordEnd = newWord.gameObject.GetComponent<MeshRenderer>().bounds.size.x;
-                Debug.Log(newWord.gameObject.GetComponent<MeshRenderer>().bounds.size.x);
-                Debug.Log(s);
-            }
-        }*/
     }
 
     public void OnEnter(BaseEventData e)

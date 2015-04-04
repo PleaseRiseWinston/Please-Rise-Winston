@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System;
 
 /*
  * Canvas reads the corresponding text file.
@@ -12,7 +13,7 @@ using System.Text.RegularExpressions;
 public class CanvasScript : MonoBehaviour {
 
     public float curSpacing;
-    public float lineSpacing = 0.035f;
+    public const float lineSpacing = -5f;
 
     public GameObject paper;
     public PaperScript paperScript;
@@ -22,8 +23,8 @@ public class CanvasScript : MonoBehaviour {
 
     public string noteContent;
 
-    private char delimiterNewline = '\n';
-    private char delimiterSpace = ' ';
+    private const char delimiterNewline = '\n';
+    private const char delimiterSpace = ' ';
     private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\|([A-Za-z]+)\}");
 
@@ -82,7 +83,7 @@ public class CanvasScript : MonoBehaviour {
 	
 	public void Parser(){
         // 'lines' array gets every single line with spaces
-        lines = noteContent.Split(delimiterNewline);
+        lines = noteContent.Split(Environment.NewLine.ToCharArray());
 		
 		foreach (string s in lines)
         {

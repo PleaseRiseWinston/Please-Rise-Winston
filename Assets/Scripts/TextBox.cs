@@ -29,7 +29,7 @@ public class TextBox : MonoBehaviour {
 	public List<string> arrText;
 	public string[] fileLoadWords;
 
-	public string editString = "";
+    [TextArea(3,10)] public string editString = "";
 	public string currDir;
 	public string[] fileEntries;
 	public int wordStructCount = 0;
