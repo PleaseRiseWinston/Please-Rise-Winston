@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Holoville.HOTween;
-using UnityEngine.EventSystems;
 using System.Collections;
-using System.Collections.Generic;
 
 public class CutsceneOverlay : MonoBehaviour {
 
@@ -39,6 +37,7 @@ public class CutsceneOverlay : MonoBehaviour {
 
     public void RunOverlay()
     {
+        // Staggers each consecutive overlay by 5s each
         for (int i = 0; i < transform.childCount; i++)
         {
             StartCoroutine(FadeText(overlays[i].transform, 5f * i));
@@ -47,7 +46,6 @@ public class CutsceneOverlay : MonoBehaviour {
 
     IEnumerator FadeText(Transform text, float stallTime)
     {
-        Debug.Log("Fading: " + text.name);
         yield return new WaitForSeconds(stallTime);
         StartCoroutine(HOTween.To(text.GetComponent<Image>(), 0.5f, "color", solid, false).WaitForCompletion());
         yield return new WaitForSeconds(5f);
