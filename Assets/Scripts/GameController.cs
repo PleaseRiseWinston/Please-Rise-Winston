@@ -43,28 +43,28 @@ public class GameController : MonoBehaviour
 	    }
 	}
 
-    public void ChangeBackgroundTo(MeshFilter background)
-    {
+    // public void ChangeBackgroundTo(MeshFilter background)
+    // {
         
-    }
+    // }
 
-    IEnumerator NewNote
-    {
+    // IEnumerator NewNote
+    // {
         
-    }
+    // }
 
-    IEnumerator ToWinston
-    {
+    // IEnumerator ToWinston
+    // {
         
-    }
+    // }
 
-    IEnumerator ToProsecutor
-    {
+    // IEnumerator ToProsecutor
+    // {
         
-    }
+    // }
 
-    IEnumerator ToJudge
-    {
+    // IEnumerator ToJudge
+    // {
         
-    }
+    // }
 }

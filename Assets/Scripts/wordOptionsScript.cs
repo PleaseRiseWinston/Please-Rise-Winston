@@ -29,7 +29,7 @@ public class wordOptionsScript : MonoBehaviour {
 		textMeshWord = GetComponent<TextMesh>().text;
 		
 		if(gameObject.transform.name == "WordOption2"){
-			lineScript.quickFixNum = 0;
+			canvasScript.quickFixNum = 0;
 			//canvasScript.wordOptionClicked = true;
 			
 			textBoxScript.Swap();
@@ -38,19 +38,54 @@ public class wordOptionsScript : MonoBehaviour {
 			
 			//Spacing may or may not be a problem
 			foreach(WordStructure wordStruct in textBoxScript.structList){
+				if(wordStruct.current == textMeshWord){
+					print("this is the wordID " + wordStruct.wordID);
+				}
 				//Rebuild {current|alt}
+				//print("curr " + wordStruct.current);
+				//print("alt " + wordStruct.alt);
 				if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies == null){
-					textBoxScript.editString += "{" + wordStruct.current + "|" + wordStruct.alt + "} "; 
+					textBoxScript.editString += "{" + wordStruct.current + "|" + wordStruct.alt + "}"; 
+					if (wordStruct.newLine && !wordStruct.lastWord){
+						//print("Working for {current|alt}");
+						textBoxScript.editString += "\n";
+					}
+					else if (!wordStruct.newLine && wordStruct.lastWord){
+						textBoxScript.editString += "";
+					}
+					else {
+						textBoxScript.editString += " "; 
+					}
 					canvasScript.noteContent = textBoxScript.editString; 
 				}
 				//Rebuild *wordID*{current|alt}
 				else if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies != null){
-					textBoxScript.editString += "*" + wordStruct.dependencies[0] + "*{" + wordStruct.current + "|" + wordStruct.alt + "} ";
+					textBoxScript.editString += "*" + wordStruct.dependencies[0] + "*{" + wordStruct.current + "|" + wordStruct.alt + "}";
+					if (wordStruct.newLine){
+						//print("Working for *wordID* words");
+						textBoxScript.editString += "\n";
+					}
+					else if (!wordStruct.newLine && wordStruct.lastWord){
+						textBoxScript.editString += "";
+					}
+					else{
+						textBoxScript.editString += " ";
+					}
 					canvasScript.noteContent = textBoxScript.editString;
 				}
 				//Add reg word to string
 				else if(wordStruct.current != "N/A" && wordStruct.alt == "N/A"){
-					textBoxScript.editString += wordStruct.current + " ";
+					textBoxScript.editString += wordStruct.current;
+					if (wordStruct.newLine){
+						//print("Working for regular words");
+						textBoxScript.editString += "\n";
+					}
+					else if (!wordStruct.newLine && wordStruct.lastWord){
+						textBoxScript.editString += "";
+					}
+					else {
+						textBoxScript.editString += " ";
+					}
 					canvasScript.noteContent = textBoxScript.editString;
 				}
 			}

@@ -41,7 +41,6 @@ public class LineScript : MonoBehaviour
     public Text word;
     public string[] words;
     public List<string> wordList = new List<string>();
-	public int quickFixNum = 0;
 	
 	public GameObject textBox;
 	public TextBox textBoxScript;
@@ -103,8 +102,8 @@ public class LineScript : MonoBehaviour
             else
             {
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -1.3f), transform.rotation) as Text;
-				newWord.name = "wordID" + quickFixNum;
-				quickFixNum++;
+				newWord.name = "wordID" + canvasScript.quickFixNum;
+				canvasScript.quickFixNum++;
                 newWord.transform.SetParent(transform);
                 newWord.transform.localScale = newWord.transform.localScale * 1;
             }
