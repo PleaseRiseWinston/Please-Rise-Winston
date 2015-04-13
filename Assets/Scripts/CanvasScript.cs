@@ -44,11 +44,6 @@ public class CanvasScript : MonoBehaviour {
 	public List<string> lineIDList = new List<string>();
 	
 	void Start () {
-		// linePosArray[0] = new Vector3(-118.7085f,120.0011f,-6.666268f);
-		// linePosArray[1] = new Vector3(-118.7085f,40.00085f,-6.666512f);
-		// linePosArray[2] = new Vector3(-118.7085f,-39.99902f,-6.666755f);
-		// linePosArray[3] = new Vector3(-118.7085f,-119.9989f,-6.666999f);
-		
 		// Canvas gets the parent paper object
         paper = transform.parent.gameObject;
         paperScript = paper.GetComponent<PaperScript>();

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Holoville.HOTween;
 
 public class GameController : MonoBehaviour
 {
 
     public int curAct;
-    public int curNote;
+    public GameObject curNote;
+    public GameObject curBackground;
 
     public GameObject[] backgroundArray;
     public GameObject[][] noteArray;
@@ -13,12 +15,20 @@ public class GameController : MonoBehaviour
     public GameObject backgrounds;
     public GameObject notes;
 
+    private Color transparent;
+    private Color solid;
+
     // Use this for initialization
 	void Start ()
 	{
         // Defaults current Act and Note to 1, 1
 	    curAct = 1;
-	    curNote = 1;
+	    curNote = noteArray[curAct][1];
+        curBackground = GameObject.Find("game_bg");
+
+        // Declarations for alpha states
+        transparent = new Color(1f, 1f, 1f, 0f);
+        solid = new Color(1f, 1f, 1f, 1f);
 
 	    backgrounds = GameObject.Find("Backgrounds").gameObject;
         notes = GameObject.Find("Notes").gameObject;
@@ -43,28 +53,37 @@ public class GameController : MonoBehaviour
 	    }
 	}
 
-    public void ChangeBackgroundTo(MeshFilter background)
+    public void ChangeBackgroundTo(GameObject background)
     {
-        
+        curBackground.GetComponent<SpriteRenderer>().color = transparent;
+        curBackground = background;
+        curBackground.GetComponent<SpriteRenderer>().color = solid;
     }
 
-    IEnumerator NewNote
+    IEnumerator GetNote()
     {
-        
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
     }
 
-    IEnumerator ToWinston
+    IEnumerator ToWinston()
     {
-        
+        // Send note to Winston (right)
+        HOTween.To(curNote.gameObject, 0.4f, "rotation", new Vector3(83, 31, -161), false);
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
     }
 
-    IEnumerator ToProsecutor
+    IEnumerator ToProsecutor()
     {
-        
+        // Send note to Prosecutor (left)
+        HOTween.To(curNote.gameObject, 0.4f, "rotation", new Vector3(83, 31, -161), false);
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
     }
 
-    IEnumerator ToJudge
+    IEnumerator ToJudge()
     {
-        
+        // Send note to Judge (behind)
+        HOTween.To(curNote.gameObject, 0.2f, "rotation", new Vector3(35, 12, -3), false);
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(114, 1360, -381), false).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(0, 0, -100), true).WaitForCompletion());
     }
 }
