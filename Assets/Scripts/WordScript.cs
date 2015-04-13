@@ -115,6 +115,8 @@ public class WordScript : MonoBehaviour {
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(curText == wordStruct.current){
 					if(wordStruct.alt != "N/A" && wordStruct.dependencies == null){
+						textBoxScript.clickedWordID = this.gameObject.name;
+						
 						wordOptions[0] = wordStruct.current;
 						wordOptions[1] = wordStruct.alt;
 						createText();

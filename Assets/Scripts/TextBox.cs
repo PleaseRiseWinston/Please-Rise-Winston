@@ -22,7 +22,7 @@ public class TextBox : MonoBehaviour {
 	public string[] lines;
 	
 	DirectoryInfo info;
-	public string fileName = "\\winstonNote";
+	public string fileName = "//winstonNote";
 	public int fileNum = 0;
 	public string fileExt = ".prw";
 	public int count = 0;
@@ -37,11 +37,14 @@ public class TextBox : MonoBehaviour {
 	public CanvasScript canvasScript;
 	public List<WordStructure> structList = new List<WordStructure>();
 	public int structListIndex = 0;
-
+	public string clickedWordID = "";
+	
+	
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					//makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
+		loadFile ();
 	}
 	
 	void Update(){
@@ -229,31 +232,44 @@ public class TextBox : MonoBehaviour {
 	public void Swap(){
 		//print("in swap");
 		int dependerIndex = 0;
-		for(int i = 0; i <= canvasScript.words.Length-1; i++){
-			Match swapResult = braceRe.Match(canvasScript.words[i]);
-			
-			if(swapResult.Success){
-				if(swapResult.Groups[1].Value != ""){
-					if(dependerIndex == int.Parse(swapResult.Groups[1].Value)){
-						foreach(WordStructure wStruct in structList){
-							if(wStruct.wordID == i){
-								structListIndex = i;
-								string tempString = wStruct.current;
-								wStruct.current = wStruct.alt;
-								wStruct.alt = tempString;
-								//#TYBM
-							}
-						}
+		foreach(string line in canvasScript.lines){
+			words = line.Split(delimiterSpace);
+			foreach (string word in words) {
+				foreach ( WordStructure i in structList) {
+					if (clickedWordID == "wordID"+ i.wordID){
+						Match swapResult = braceRe.Match(word);
 						
-					}
-				}
-				else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
-					dependerIndex = i;
-					foreach(WordStructure wStruct in structList){
-						if(wStruct.wordID == dependerIndex){
-							string tempString = wStruct.current;
-							wStruct.current = wStruct.alt;
-							wStruct.alt = tempString;
+						if(swapResult.Success){
+							if(swapResult.Groups[1].Value != ""){
+								if(dependerIndex == int.Parse(swapResult.Groups[1].Value)){
+									//print(swapResult.Groups[1].Value);
+									foreach(WordStructure wStruct in structList){
+										if(wStruct.current == swapResult.Groups[2].Value && wStruct.alt == swapResult.Groups[3].Value ){
+											//print("swapping " + wStruct.current);
+											//structListIndex = i;
+											string tempString = wStruct.current;
+											wStruct.current = wStruct.alt;
+											wStruct.alt = tempString;
+											//#TYBM
+										}
+									}
+									
+								}
+
+							}
+							else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
+								foreach(WordStructure wStruct in structList){
+									if(wStruct.current == swapResult.Groups[4].Value && wStruct.alt == swapResult.Groups[5].Value){
+
+										dependerIndex = wStruct.wordID;
+										//print("depIndex " + dependerIndex);
+										//print("swipping2 " + wStruct.current);
+										string tempString = wStruct.current;
+										wStruct.current = wStruct.alt;
+										wStruct.alt = tempString;
+									}
+								}
+							}
 						}
 					}
 				}

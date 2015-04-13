@@ -42,6 +42,8 @@ public class CanvasScript : MonoBehaviour {
 	
 	public int linePosCount;
 	public List<string> lineIDList = new List<string>();
+
+	public int quickFixNum = 0;
 	
 	void Start () {
 		// Canvas gets the parent paper object
@@ -79,9 +81,12 @@ public class CanvasScript : MonoBehaviour {
 	public void Parser(){
         // 'lines' array gets every single line with spaces
         lines = noteContent.Split(Environment.NewLine.ToCharArray());
-		
+		int lineCount = lines.Length;
+		int lineCounter = 1;
 		foreach (string s in lines)
         {
+			int arrayCount = 0;
+			displayWords.Clear();
             // Instantiates a new line and modifies its values accordingly
             if (!paperScript.start && !paperScript.exit)
             {
@@ -170,84 +175,75 @@ public class CanvasScript : MonoBehaviour {
                     wordList.Add(word);
                 }
             }
-
             lineScript.words = wordList.ToArray();
-        }
-		
-		if(!paperScript.start && !paperScript.exit){
-			//print(words.Length);
-			foreach(string t in words){
-				//print(t);
-                WordStructure wordStructure = new WordStructure();
-				Match secRes = braceRe.Match(t);
-				if(secRes.Success){
-					//*wordID*{word|alt}
-					//current = word
-					//alt = alt
-					//dependencies[] = [wordID]
-					if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-						textBoxScript.dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
-						wordStructure.current = secRes.Groups[2].Value;
-						wordStructure.alt = secRes.Groups[3].Value;
-						wordStructure.dependencies = textBoxScript.dependenciesList.ToArray();
-					}
-					//Assigns current word and alternate word
-					//{word|alt}
-					//current = word
-					//alt = alt
-					else if (secRes.Groups[4].Value != "" && secRes.Groups[5].Value != ""){
-						wordStructure.current = secRes.Groups[4].Value;
-						wordStructure.alt = secRes.Groups[5].Value;
-						//print("Dep = N/A");
-					}
-				}
-				else{
-					wordStructure.current = t;
-				}
-				wordStructure.wordID = textBoxScript.wordStructCount;
-				textBoxScript.wordStructCount++;
-
-                // Debug.Log(t + " word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
-				// if(wordStructure.dependencies != null){
-					// foreach(int num in wordStructure.dependencies){
-						// Debug.Log("Dependency " + num);
-					// }
-				// }
+			if(!paperScript.start && !paperScript.exit){
+				print(words.Length);
 				
-				textBoxScript.structList.Add(wordStructure);
-				displayWords.Add(wordStructure.current);
-				//print(wordStructure.current);
-            }
-			print(lineScript.words.Length);
-			lineScript.words = displayWords.ToArray();
-			
-		}
-		
-	}
-	
-	/* void Update(){
-		//Parser();
-		//print(wordOptionClicked);
-		if(wordOptionClicked == true){
-			textBoxScript.Swap();
-			textBoxScript.editString = "";
-			
-			//Spacing may or may not be a problem
-			foreach(WordStructure wordStruct in textBoxScript.structList){
-				//Rebuild {current|alt}
-				if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies == null){
-					textBoxScript.editString += "{" + wordStruct.current + "|" + wordStruct.alt + "} "; 
+				foreach(string t in words){
+					//print(t);
+
+					WordStructure wordStructure = new WordStructure();
+					Match secRes = braceRe.Match(t);
+					if(secRes.Success){
+						//*wordID*{word|alt}
+						//current = word
+						//alt = alt
+						//dependencies[] = [wordID]
+						if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
+							//print(secRes.Groups[1].Value);
+							//print(secRes.Groups[2].Value);
+							//print(secRes.Groups[3].Value);
+							textBoxScript.dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
+							wordStructure.current = secRes.Groups[2].Value;
+							wordStructure.alt = secRes.Groups[3].Value;
+							wordStructure.dependencies = textBoxScript.dependenciesList.ToArray();
+						}
+						//Assigns current word and alternate word
+						//{word|alt}
+						//current = word
+						//alt = alt
+						else if (secRes.Groups[4].Value != "" && secRes.Groups[5].Value != ""){
+							wordStructure.current = secRes.Groups[4].Value;
+							wordStructure.alt = secRes.Groups[5].Value;
+							//print("Dep = N/A");
+						}
+					}
+					else{
+						wordStructure.current = t;
+					}
+					wordStructure.wordID = textBoxScript.wordStructCount;
+					textBoxScript.wordStructCount++;
+					
+					// Debug.Log(t + " word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
+					// if(wordStructure.dependencies != null){
+					// foreach(int num in wordStructure.dependencies){
+					// Debug.Log("Dependency " + num);
+					// }
+					// }
+					
+					textBoxScript.structList.Add(wordStructure);
+					displayWords.Add(wordStructure.current);
+					//print(wordStructure.current);
+					if (arrayCount == words.Length - 1 && lineCount != lineCounter){
+						wordStructure.newLine = true;
+						wordStructure.lastWord = false;
+					}
+					else if (arrayCount == words.Length -1 && lineCount == lineCounter) {
+						wordStructure.newLine = false;
+						wordStructure.lastWord = true;
+					}
+					else {
+						wordStructure.newLine = false;
+						wordStructure.lastWord = false;
+					}
+					arrayCount++;
 				}
-				//Rebuild *wordID*{current|alt}
-				else if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies != null){
-					textBoxScript.editString += "*" + wordStruct.dependencies[0] + "*{" + wordStruct.current + "|" + wordStruct.alt + "} ";
-				}
-				//Add reg word to string
-				else if(wordStruct.current != "N/A" && wordStruct.alt == "N/A"){
-					textBoxScript.editString += wordStruct.current + " ";
-				}
+				//print(lineScript.words.Length);
+				lineScript.words = displayWords.ToArray();
+				
 			}
-		}
-		noteContent = textBoxScript.editString;
-	} */
+
+			lineCounter++;
+        }
+	}
 }
