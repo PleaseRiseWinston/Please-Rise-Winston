@@ -34,6 +34,8 @@ public class CanvasScript : MonoBehaviour {
 	
 	public GameObject textBox;
 	public TextBox textBoxScript;
+	public GameObject gameController;
+	public GameController gameControllerScript;
 	
 	//May or may not be useful... k
 	public List<string> displayWords = new List<string>();
@@ -44,6 +46,7 @@ public class CanvasScript : MonoBehaviour {
 	public List<string> lineIDList = new List<string>();
 
 	public int quickFixNum = 0;
+	public char submitPaperTo = '';
 	
 	void Start () {
 		// Canvas gets the parent paper object
@@ -52,6 +55,9 @@ public class CanvasScript : MonoBehaviour {
 		
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
+		
+		gameController = GameObject.Find("GameController");
+		gameControllerScript = gameController.GetComponent<GameController>();
 
         if (!paperScript.start && !paperScript.exit)
         {
@@ -115,38 +121,51 @@ public class CanvasScript : MonoBehaviour {
 
                     if (result.Success)
                     {
-                        // Parse *wordID*{word|alt} with and without punctuation
-						if (result.Groups[1].Value != "" && result.Groups[2].Value != ""){
-							wordList.Add(result.Groups[1].Value);
-							wordList.Add(result.Groups[2].Value + " ");
+						//@W
+						if(result.Groups[1].Value != ""){
+							//do something with controller
+							if(result.Groups[1].Value == "@W"){
+								submitPaperTo = 'w';
+							}
+							else if(result.Groups[1].Value == "@P"){
+								submitPaperTo = 'p';
+							}
+							else if(result.Groups[1].Value == "@J"){
+								submitPaperTo = 'j';
+							}
 						}
-						else if (result.Groups[3].Value != ""){
+                        // Parse *wordID*{word|alt} with and without punctuation
+						else if (result.Groups[2].Value != "" && result.Groups[3].Value != ""){
+							wordList.Add(result.Groups[2].Value);
 							wordList.Add(result.Groups[3].Value + " ");
 						}
-						//Parse {word|alt} with and without punctuation
-						else if (result.Groups[4].Value != "" && result.Groups[5].Value != "")
-						{
-							wordList.Add(result.Groups[4].Value);
-							wordList.Add(result.Groups[5].Value + " ");
+						else if (result.Groups[4].Value != ""){
+							wordList.Add(result.Groups[4].Value + " ");
 						}
-						else if (result.Groups[6].Value != ""){
+						//Parse {word|alt} with and without punctuation
+						else if (result.Groups[5].Value != "" && result.Groups[6].Value != "")
+						{
+							wordList.Add(result.Groups[5].Value);
 							wordList.Add(result.Groups[6].Value + " ");
 						}
+						else if (result.Groups[7].Value != ""){
+							wordList.Add(result.Groups[7].Value + " ");
+						}
 						// Parse conjunction + punctuation
-						else if (result.Groups[7].Value != "" && result.Groups[8].Value != ""){
-							wordList.Add(result.Groups[7].Value);
-							wordList.Add(result.Groups[8].Value + " ");
+						else if (result.Groups[8].Value != "" && result.Groups[9].Value != ""){
+							wordList.Add(result.Groups[8].Value);
+							wordList.Add(result.Groups[9].Value + " ");
 						}
 						// Parse normal word + punctuation
-						else if (result.Groups[9].Value != "" && result.Groups[10].Value != "")
+						else if (result.Groups[10].Value != "" && result.Groups[11].Value != "")
 						{
-							wordList.Add(result.Groups[9].Value);
-							wordList.Add(result.Groups[10].Value + " ");
+							wordList.Add(result.Groups[10].Value);
+							wordList.Add(result.Groups[11].Value + " ");
 						}
 						// Parse conjunction
-						else if (result.Groups[11].Value != "")
+						else if (result.Groups[12].Value != "")
 						{
-							wordList.Add(result.Groups[11].Value + " ");
+							wordList.Add(result.Groups[12].Value + " ");
 						}
                     }
                     else
