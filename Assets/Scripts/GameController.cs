@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
             noteArray[i] = new GameObject[notes.transform.GetChild(i).childCount];
 
             // Insert notes into the act's array
-            for (int j = 0; i < notes.transform.GetChild(j).childCount; j++)
+            for (int j = 0; j < notes.transform.GetChild(i).childCount; j++)
 	        {
                 noteArray[i][j] = notes.transform.GetChild(j).gameObject;
 	        }
@@ -60,9 +60,16 @@ public class GameController : MonoBehaviour
         curBackground.GetComponent<SpriteRenderer>().color = solid;
     }
 
+    // Note flies in from left
     IEnumerator GetNote()
     {
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
+    }
+
+    // Send note to tray on deskd
+    IEnumerator ToTray()
+    {
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(130, 1330, -396), false).WaitForCompletion());
     }
 
     IEnumerator ToWinston()

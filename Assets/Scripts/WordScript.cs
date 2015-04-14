@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Holoville.HOTween;
 using UnityEngine.EventSystems;
-using System.Collections;
 
 /* 
  * This script is attached to each Word object.
@@ -102,7 +100,7 @@ public class WordScript : MonoBehaviour {
         {
             // TODO: Detect current Act
             Debug.Log("Starting");
-            StartCoroutine(playCutscene.Play());
+            StartCoroutine(playCutscene.Play(1));
         }
         else if (paperScript.exit)
         {
