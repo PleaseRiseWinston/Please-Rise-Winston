@@ -25,6 +25,8 @@ public class WordScript : MonoBehaviour {
 
     private GameObject cameraController;
     private PlayCutscene playCutscene;
+	
+
 
 	//public bool wordOptionsUp = false;
 	public string[] wordOptions;
@@ -62,6 +64,7 @@ public class WordScript : MonoBehaviour {
         // Each word object gets the paper that it is on
         paper = transform.parent.parent.parent.gameObject;
         paperScript = paper.GetComponent<PaperScript>();
+		
 
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;
@@ -112,9 +115,9 @@ public class WordScript : MonoBehaviour {
         {
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(curText == wordStruct.current){
-					if(wordStruct.alt != "N/A" && wordStruct.dependencies == null){
+					if(wordStruct.alt != "N/A" && wordStruct.dependencies == -1){
 						textBoxScript.clickedWordID = this.gameObject.name;
-						
+						wordStruct.isClicked = true;
 						wordOptions[0] = wordStruct.current;
 						wordOptions[1] = wordStruct.alt;
 						createText();

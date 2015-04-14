@@ -46,7 +46,7 @@ public class CanvasScript : MonoBehaviour {
 	public List<string> lineIDList = new List<string>();
 
 	public int quickFixNum = 0;
-	public char submitPaperTo = '';
+	public char submitPaperTo;
 	
 	void Start () {
 		// Canvas gets the parent paper object
@@ -196,7 +196,7 @@ public class CanvasScript : MonoBehaviour {
             }
             lineScript.words = wordList.ToArray();
 			if(!paperScript.start && !paperScript.exit){
-				print(words.Length);
+				//print(words.Length);
 				
 				foreach(string t in words){
 					//print(t);
@@ -212,10 +212,11 @@ public class CanvasScript : MonoBehaviour {
 							//print(secRes.Groups[1].Value);
 							//print(secRes.Groups[2].Value);
 							//print(secRes.Groups[3].Value);
-							textBoxScript.dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
+							//textBoxScript.dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
 							wordStructure.current = secRes.Groups[2].Value;
 							wordStructure.alt = secRes.Groups[3].Value;
-							wordStructure.dependencies = textBoxScript.dependenciesList.ToArray();
+							//wordStructure.dependencies = textBoxScript.dependenciesList.ToArray();
+							wordStructure.dependencies = int.Parse(secRes.Groups[1].Value);
 						}
 						//Assigns current word and alternate word
 						//{word|alt}

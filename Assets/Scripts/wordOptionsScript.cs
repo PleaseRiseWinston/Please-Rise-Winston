@@ -44,7 +44,7 @@ public class wordOptionsScript : MonoBehaviour {
 				//Rebuild {current|alt}
 				//print("curr " + wordStruct.current);
 				//print("alt " + wordStruct.alt);
-				if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies == null){
+				if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies == -1){
 					textBoxScript.editString += "{" + wordStruct.current + "|" + wordStruct.alt + "}"; 
 					if (wordStruct.newLine && !wordStruct.lastWord){
 						//print("Working for {current|alt}");
@@ -59,8 +59,8 @@ public class wordOptionsScript : MonoBehaviour {
 					canvasScript.noteContent = textBoxScript.editString; 
 				}
 				//Rebuild *wordID*{current|alt}
-				else if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies != null){
-					textBoxScript.editString += "*" + wordStruct.dependencies[0] + "*{" + wordStruct.current + "|" + wordStruct.alt + "}";
+				else if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies != -1){
+					textBoxScript.editString += "*" + wordStruct.dependencies + "*{" + wordStruct.current + "|" + wordStruct.alt + "}";
 					if (wordStruct.newLine){
 						//print("Working for *wordID* words");
 						textBoxScript.editString += "\n";

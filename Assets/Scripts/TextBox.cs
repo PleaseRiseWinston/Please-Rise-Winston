@@ -199,10 +199,11 @@ public class TextBox : MonoBehaviour {
 					//alt = alt
 					//dependencies[] = [wordID]
 					if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-						dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
+						//dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
 						wordStructure.current = secRes.Groups[2].Value;
 						wordStructure.alt = secRes.Groups[3].Value;
-						wordStructure.dependencies = dependenciesList.ToArray();
+						//wordStructure.dependencies = dependenciesList.ToArray();
+						
 					}
 					//Assigns current word and alternate word
 					//{word|alt}
@@ -238,6 +239,7 @@ public class TextBox : MonoBehaviour {
 				foreach ( WordStructure i in structList) {
 					if (clickedWordID == "wordID"+ i.wordID){
 						Match swapResult = braceRe.Match(word);
+						//print(clickedWordID);
 						
 						if(swapResult.Success){
 							if(swapResult.Groups[1].Value != ""){
@@ -245,6 +247,7 @@ public class TextBox : MonoBehaviour {
 									//print(swapResult.Groups[1].Value);
 									foreach(WordStructure wStruct in structList){
 										if(wStruct.current == swapResult.Groups[2].Value && wStruct.alt == swapResult.Groups[3].Value ){
+											
 											//print("swapping " + wStruct.current);
 											//structListIndex = i;
 											string tempString = wStruct.current;
@@ -259,7 +262,7 @@ public class TextBox : MonoBehaviour {
 							}
 							else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
 								foreach(WordStructure wStruct in structList){
-									if(wStruct.current == swapResult.Groups[4].Value && wStruct.alt == swapResult.Groups[5].Value){
+									if(wStruct.current == swapResult.Groups[4].Value && wStruct.alt == swapResult.Groups[5].Value && wStruct.isClicked){
 
 										dependerIndex = wStruct.wordID;
 										//print("depIndex " + dependerIndex);
