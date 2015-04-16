@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
     }
 
-    // Send note to tray on deskd
+    // Send note to tray on desk
     IEnumerator ToTray()
     {
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(130, 1330, -396), false).WaitForCompletion());

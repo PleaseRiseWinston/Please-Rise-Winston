@@ -25,8 +25,9 @@ public class CanvasScript : MonoBehaviour {
 
     private const char delimiterNewline = '\n';
     private const char delimiterSpace = ' ';
-    private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\|([A-Za-z]+)\}");
+	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
+    private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}");
 
     public List<string> wordList = new List<string>();
     public string[] words;
@@ -222,9 +223,11 @@ public class CanvasScript : MonoBehaviour {
 						//{word|alt}
 						//current = word
 						//alt = alt
-						else if (secRes.Groups[4].Value != "" && secRes.Groups[5].Value != ""){
+						else if (secRes.Groups[4].Value != "" && int.Parse(secRes.Groups[5].Value) != -1 && secRes.Groups[6].Value != "" && int.Parse(secRes.Groups[7].Value) != -1){
 							wordStructure.current = secRes.Groups[4].Value;
-							wordStructure.alt = secRes.Groups[5].Value;
+							wordStructure.alt = secRes.Groups[6].Value;
+							wordStructure.wordWeightCurr = int.Parse(secRes.Groups[5].Value);
+							wordStructure.wordWeightAlt = int.Parse(secRes.Groups[7].Value);
 							//print("Dep = N/A");
 						}
 					}

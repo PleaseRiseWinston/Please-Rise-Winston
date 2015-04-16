@@ -11,6 +11,8 @@ public class WordStructure : MonoBehaviour {
 	public bool newLine;
 	public bool lastWord;
 	public bool isClicked;
+	public int wordWeightCurr;
+	public int wordWeightAlt;
 
     // Default Constructor
     public WordStructure()
@@ -23,11 +25,12 @@ public class WordStructure : MonoBehaviour {
 		newLine = false;
 		lastWord = false;
 		isClicked = false;
-
+		wordWeightCurr = -1;
+		wordWeightAlt = -1;
     }
 
     // Non-default(?) Constructor
-    public WordStructure(int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, bool isClicked)
+    public WordStructure(int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, bool isClicked, int wordWeightCurr, int wordWeightAlt)
     {
         this.wordID = wordID;
         this.current = current;
@@ -37,5 +40,7 @@ public class WordStructure : MonoBehaviour {
 		this.newLine = newLine;
 		this.lastWord = lastWord;
 		this.isClicked = isClicked;
+		this.wordWeightCurr = wordWeightCurr;
+		this.wordWeightAlt = wordWeightAlt;
     }
 }

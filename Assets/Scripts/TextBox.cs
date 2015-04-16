@@ -14,7 +14,7 @@ public class TextBox : MonoBehaviour {
 	private char delimiterNewline = '\n';
 	private char delimiterSpace = ' ';
 	private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\|([A-Za-z]+)\}"); //Looks for {word|alt}
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}"); //Looks for {word|alt}
 	
 	public List<string> wordList = new List<string>();
 	public List<int> dependenciesList = new List<int>();
@@ -260,16 +260,19 @@ public class TextBox : MonoBehaviour {
 								}
 
 							}
-							else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != ""){
+							else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != "" && swapResult.Groups[6].Value != "" && swapResult.Groups[7].Value != ""){
 								foreach(WordStructure wStruct in structList){
-									if(wStruct.current == swapResult.Groups[4].Value && wStruct.alt == swapResult.Groups[5].Value && wStruct.isClicked){
-
+									if(wStruct.current == swapResult.Groups[4].Value && wStruct.alt == swapResult.Groups[6].Value && wStruct.isClicked){
 										dependerIndex = wStruct.wordID;
 										//print("depIndex " + dependerIndex);
 										//print("swipping2 " + wStruct.current);
 										string tempString = wStruct.current;
 										wStruct.current = wStruct.alt;
 										wStruct.alt = tempString;
+										
+										int tempNum = wStruct.wordWeightCurr;
+										wStruct.wordWeightCurr = wStruct.wordWeightAlt;
+										wStruct.wordWeightAlt = tempNum;
 									}
 								}
 							}

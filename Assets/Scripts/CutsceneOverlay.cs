@@ -43,7 +43,7 @@ public class CutsceneOverlay : MonoBehaviour {
         // Staggers each consecutive overlay by 5s each
         for (int i = 0; i < transform.childCount; i++)
         {
-            StartCoroutine(FadeText(overlays[i].transform, 5f * i));
+           // StartCoroutine(FadeText(overlays[i].transform, 5f * i));
         }
     }
 

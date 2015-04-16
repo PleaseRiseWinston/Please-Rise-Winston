@@ -45,7 +45,7 @@ public class wordOptionsScript : MonoBehaviour {
 				//print("curr " + wordStruct.current);
 				//print("alt " + wordStruct.alt);
 				if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies == -1){
-					textBoxScript.editString += "{" + wordStruct.current + "|" + wordStruct.alt + "}"; 
+					textBoxScript.editString += "{" + wordStruct.current + "^" + wordStruct.wordWeightCurr + "|" + wordStruct.alt + "^" + wordStruct.wordWeightAlt + "}"; 
 					if (wordStruct.newLine && !wordStruct.lastWord){
 						//print("Working for {current|alt}");
 						textBoxScript.editString += "\n";
