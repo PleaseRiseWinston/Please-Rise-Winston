@@ -22,8 +22,9 @@ public class GameController : MonoBehaviour
 	void Start ()
 	{
         // Defaults current Act and Note to 1, 1
+        // 'curAct - 1' accounts for indexing convention
 	    curAct = 1;
-	    curNote = noteArray[curAct][1];
+	    curNote = noteArray[curAct - 1][1];
         curBackground = GameObject.Find("game_bg");
 
         // Declarations for alpha states
@@ -39,7 +40,7 @@ public class GameController : MonoBehaviour
 	        backgroundArray[i] = backgrounds.transform.GetChild(i).gameObject;
 	    }
 
-	    // Insert all notes into a jagged array
+	    // Insert all notes into jagged array
         noteArray = new GameObject[notes.transform.childCount][];
         for (int i = 0; i < notes.transform.childCount; i++)
 	    {
@@ -49,8 +50,11 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < notes.transform.GetChild(i).childCount; j++)
 	        {
                 noteArray[i][j] = notes.transform.GetChild(j).gameObject;
+	            noteArray[i][j].GetComponent<PaperScript>().noteID = j;
 	        }
 	    }
+
+	    GetNote();
 	}
 
     public void ChangeBackgroundTo(GameObject background)
@@ -66,31 +70,50 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
     }
 
-    // Send note to tray on deskd
+    // Send note to tray on desk
     IEnumerator ToTray()
     {
+        curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(130, 1330, -396), false).WaitForCompletion());
+        if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo != null)
+        {
+            if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
+            {
+                ToWinston();
+            }
+            else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'p')
+            {
+                ToProsecutor();
+            }
+            else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
+            {
+                ToWinston();
+            }
+        }
     }
 
+    // Send note to Winston (right)
     IEnumerator ToWinston()
     {
-        // Send note to Winston (right)
         HOTween.To(curNote.gameObject, 0.4f, "rotation", new Vector3(83, 31, -161), false);
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
+        GetNote();
     }
 
+    // Send note to Prosecutor (left)
     IEnumerator ToProsecutor()
     {
-        // Send note to Prosecutor (left)
         HOTween.To(curNote.gameObject, 0.4f, "rotation", new Vector3(83, 31, -161), false);
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
+        GetNote();
     }
 
+    // Send note to Judge (behind)
     IEnumerator ToJudge()
     {
-        // Send note to Judge (behind)
         HOTween.To(curNote.gameObject, 0.2f, "rotation", new Vector3(35, 12, -3), false);
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(114, 1360, -381), false).WaitForCompletion());
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(0, 0, -100), true).WaitForCompletion());
+        GetNote();
     }
 }
