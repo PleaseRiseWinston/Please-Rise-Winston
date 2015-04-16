@@ -11,8 +11,9 @@ using System.Collections.Generic;
  * All tweening from desktop to focused state is done in here.
 */
 
-public class PaperScript : MonoBehaviour {
-
+public class PaperScript : MonoBehaviour
+{
+    public int noteID;
     public bool start, exit;
 
     public Camera gameCamera;
@@ -23,9 +24,8 @@ public class PaperScript : MonoBehaviour {
     public string noteContent;
 
     public bool focused;
-    private bool scrollDown;
-    private bool isOffScreen;
-    private bool mouseOver;
+    public bool mouseOver;
+    public bool inTray;
 
     private Vector3 defaultNotePos;
     private Vector3 defaultCameraPos;
@@ -33,7 +33,9 @@ public class PaperScript : MonoBehaviour {
 	
 	public static int wordIDNum = 0;
 
-    public AudioClip paper1, paper2, paper3;
+    public AudioClip paper1;
+    public AudioClip paper2;
+    public AudioClip paper3;
 
     public Canvas canvas;
 	
@@ -49,6 +51,7 @@ public class PaperScript : MonoBehaviour {
 		textBoxScript = textBox.GetComponent<TextBox>();
 		
         focused = false;
+        inTray = false;
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
         if (start)
@@ -80,13 +83,6 @@ public class PaperScript : MonoBehaviour {
         defaultCameraPos += new Vector3(0, 0, 60);
         cameraFront = defaultCameraPos;
         //Debug.Log("defaultCameraPos = " + defaultCameraPos);
-
-        /*
-        text = transform.GetChild(0).gameObject;
-        text.transform.position = transform.position + (transform.forward * -0.1f);
-        text.transform.rotation = transform.rotation;
-        text.transform.localScale = transform.localScale * 0.065f;
-        */
 
         // Instantiates a canvas at the paper's position
         Canvas newCanvas = Instantiate(canvas, transform.position, transform.rotation) as Canvas;

@@ -13,6 +13,7 @@ public class CutsceneOverlay : MonoBehaviour {
     private Color solid;
 
     private float waitTime;
+    private float staggerTime;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class CutsceneOverlay : MonoBehaviour {
         transparent = new Color(1f, 1f, 1f, 0f);
         solid = new Color(1f, 1f, 1f, 1f);
         waitTime = 2f;
+	    staggerTime = 5f;
 
         // Insert all children planes into array and make transparent
         for (int i = 0; i < transform.childCount; i++)
@@ -33,7 +35,6 @@ public class CutsceneOverlay : MonoBehaviour {
             {
                 overlays[i][j] = transform.GetChild(i).GetChild(j).gameObject;
                 overlays[i][j].GetComponent<Image>().color = transparent;
-                //Debug.Log(overlays[i].name);
             }
         }
 	}
@@ -43,13 +44,14 @@ public class CutsceneOverlay : MonoBehaviour {
         // Staggers each consecutive overlay by 5s each
         for (int i = 0; i < transform.childCount; i++)
         {
-           // StartCoroutine(FadeText(overlays[i].transform, 5f * i));
+            StartCoroutine(FadeText(overlays[actNumber - 1][i].transform, staggerTime * i));
         }
     }
 
     IEnumerator FadeText(Transform text, float stallTime)
     {
         yield return new WaitForSeconds(stallTime);
+        //Debug.Log(text.name);
         StartCoroutine(HOTween.To(text.GetComponent<Image>(), 0.5f, "color", solid, false).WaitForCompletion());
         yield return new WaitForSeconds(5f);
         StartCoroutine(HOTween.To(text.GetComponent<Image>(), 0.5f, "color", transparent, false).WaitForCompletion());
