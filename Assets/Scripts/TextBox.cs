@@ -44,7 +44,14 @@ public class TextBox : MonoBehaviour {
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					//makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
-		loadFile ();
+		//loadFile ();
+		//Start and Exit quick fix 
+		for(int i = 0; i <= 1; i++){
+			loadFile();
+			for(int j = 0; j < lines.Length - 1; j++){
+				canvasScript.allNoteLines[i][j] = canvasScript.lines[j];
+			}
+		}
 	}
 	
 	void Update(){
@@ -103,7 +110,7 @@ public class TextBox : MonoBehaviour {
 		}
 	}
 	
-	void loadFile(){
+	public void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader = new StreamReader(info + fileName + count + fileExt);
 		//print("File Num" + count);

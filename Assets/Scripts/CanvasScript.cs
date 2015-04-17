@@ -32,6 +32,7 @@ public class CanvasScript : MonoBehaviour {
     public List<string> wordList = new List<string>();
     public string[] words;
     public string[] lines;
+	public string[][] allNoteLines;
 	
 	public GameObject textBox;
 	public TextBox textBoxScript;
@@ -59,6 +60,8 @@ public class CanvasScript : MonoBehaviour {
 		
 		gameController = GameObject.Find("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
+		
+		allNoteLines = new string[2][];
 
         if (!paperScript.start && !paperScript.exit)
         {
@@ -74,7 +77,7 @@ public class CanvasScript : MonoBehaviour {
         noteContent = paperScript.noteContent;
         //Debug.Log(noteContent);
 
-        Parser();
+		Parser();
 
         /*
         // Debugging
@@ -87,9 +90,11 @@ public class CanvasScript : MonoBehaviour {
 	
 	public void Parser(){
         // 'lines' array gets every single line with spaces
-        lines = noteContent.Split(Environment.NewLine.ToCharArray());
+       lines = noteContent.Split(Environment.NewLine.ToCharArray());
+		
 		int lineCount = lines.Length;
 		int lineCounter = 1;
+		
 		foreach (string s in lines)
         {
 			int arrayCount = 0;
@@ -124,7 +129,6 @@ public class CanvasScript : MonoBehaviour {
                     {
 						//@W
 						if(result.Groups[1].Value != ""){
-							//do something with controller
 							if(result.Groups[1].Value == "@W"){
 								submitPaperTo = 'w';
 							}
@@ -177,10 +181,6 @@ public class CanvasScript : MonoBehaviour {
 
                 // Increment curSpacing to add deviation to the line positions
                 curSpacing += lineSpacing;
-				/*for (int i =0; i<=3; i++){
-					print(linePosArray[i]);
-					linePosCount++;
-				}*/
             }
             else
             {
@@ -236,17 +236,8 @@ public class CanvasScript : MonoBehaviour {
 					}
 					wordStructure.wordID = textBoxScript.wordStructCount;
 					textBoxScript.wordStructCount++;
-					
-					// Debug.Log(t + " word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
-					// if(wordStructure.dependencies != null){
-					// foreach(int num in wordStructure.dependencies){
-					// Debug.Log("Dependency " + num);
-					// }
-					// }
-					
 					textBoxScript.structList.Add(wordStructure);
 					displayWords.Add(wordStructure.current);
-					//print(wordStructure.current);
 					if (arrayCount == words.Length - 1 && lineCount != lineCounter){
 						wordStructure.newLine = true;
 						wordStructure.lastWord = false;
@@ -261,7 +252,6 @@ public class CanvasScript : MonoBehaviour {
 					}
 					arrayCount++;
 				}
-				//print(lineScript.words.Length);
 				lineScript.words = displayWords.ToArray();
 				
 			}

@@ -85,9 +85,9 @@ public class GameController : MonoBehaviour
             {
                 ToProsecutor();
             }
-            else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
+            else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'j')
             {
-                ToWinston();
+                ToJudge();
             }
         }
     }
