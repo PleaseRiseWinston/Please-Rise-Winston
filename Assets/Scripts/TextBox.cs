@@ -38,20 +38,30 @@ public class TextBox : MonoBehaviour {
 	public List<WordStructure> structList = new List<WordStructure>();
 	public int structListIndex = 0;
 	public string clickedWordID = "";
+	public string[][] allNoteLines;
 	
+	public GameObject notes;
 	
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					//makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
+		allNoteLines = new string[5][];
+		
+		notes = GameObject.Find("Notes").gameObject;
+		
 		//loadFile ();
-		//Start and Exit quick fix 
-		for(int i = 0; i <= 1; i++){
-			loadFile();
-			for(int j = 0; j < lines.Length - 1; j++){
-				canvasScript.allNoteLines[i][j] = canvasScript.lines[j];
+		//allNoteLines[Act Number][Note Content]
+		for(int i = 0; i < notes.transform.childCount; i++){
+			//print(notes.transform.childCount);
+			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
+			for(int j = 0; j < notes.transform.GetChild(i).childCount; j++){
+				loadFile();
+				//print(notes.transform.GetChild(i).childCount);
+				allNoteLines[i][j] = editString;
 			}
 		}
+		//print(allNoteLines[0][1]);
 	}
 	
 	void Update(){

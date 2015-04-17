@@ -32,7 +32,6 @@ public class CanvasScript : MonoBehaviour {
     public List<string> wordList = new List<string>();
     public string[] words;
     public string[] lines;
-	public string[][] allNoteLines;
 	
 	public GameObject textBox;
 	public TextBox textBoxScript;
@@ -60,8 +59,6 @@ public class CanvasScript : MonoBehaviour {
 		
 		gameController = GameObject.Find("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
-		
-		allNoteLines = new string[2][];
 
         if (!paperScript.start && !paperScript.exit)
         {
@@ -72,12 +69,11 @@ public class CanvasScript : MonoBehaviour {
             curSpacing = 0;
         }
 		
+		Parser();
+		
 		// Note's contents are carried over from parent paper object and parsed
 		//linePosCount = 1;
-        noteContent = paperScript.noteContent;
         //Debug.Log(noteContent);
-
-		Parser();
 
         /*
         // Debugging
@@ -89,8 +85,9 @@ public class CanvasScript : MonoBehaviour {
 	}
 	
 	public void Parser(){
+		noteContent = paperScript.noteContent;
         // 'lines' array gets every single line with spaces
-       lines = noteContent.Split(Environment.NewLine.ToCharArray());
+		lines = noteContent.Split(Environment.NewLine.ToCharArray());
 		
 		int lineCount = lines.Length;
 		int lineCounter = 1;
