@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
-    IEnumerator ToTray()
+    public IEnumerator ToTray()
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(130, 1330, -396), false).WaitForCompletion());
