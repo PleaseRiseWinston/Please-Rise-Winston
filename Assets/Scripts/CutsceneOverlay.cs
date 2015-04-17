@@ -27,13 +27,17 @@ public class CutsceneOverlay : MonoBehaviour {
         waitTime = 2f;
 	    staggerTime = 5f;
 
+	    overlays = new GameObject[5][];
+
         // Insert all children planes into array and make transparent
         for (int i = 0; i < transform.childCount; i++)
         {
 			print(transform.childCount);
+            print(transform.GetChild(i).childCount);
             overlays[i] = new GameObject[transform.GetChild(i).childCount];
             for (int j = 0; j < transform.GetChild(i).childCount; j++)
             {
+                print(transform.GetChild(i).GetChild(j).gameObject.name);
                 overlays[i][j] = transform.GetChild(i).GetChild(j).gameObject;
                 overlays[i][j].GetComponent<Image>().color = transparent;
 				print(overlays[i][j].name);
@@ -44,8 +48,9 @@ public class CutsceneOverlay : MonoBehaviour {
     public void RunOverlay(int actNumber)
     {
         // Staggers each consecutive overlay by 5s each
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.GetChild(actNumber - 1).childCount; i++)
         {
+            //Debug.Log("Overlaying " + i);
             StartCoroutine(FadeText(overlays[actNumber - 1][i].transform, staggerTime * i));
         }
     }
