@@ -30,11 +30,13 @@ public class CutsceneOverlay : MonoBehaviour {
         // Insert all children planes into array and make transparent
         for (int i = 0; i < transform.childCount; i++)
         {
+			print(transform.childCount);
             overlays[i] = new GameObject[transform.GetChild(i).childCount];
-            for (int j = 0; j < transform.GetChild(j).childCount; j++)
+            for (int j = 0; j < transform.GetChild(i).childCount; j++)
             {
                 overlays[i][j] = transform.GetChild(i).GetChild(j).gameObject;
                 overlays[i][j].GetComponent<Image>().color = transparent;
+				print(overlays[i][j].name);
             }
         }
 	}

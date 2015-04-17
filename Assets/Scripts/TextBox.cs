@@ -106,7 +106,7 @@ public class TextBox : MonoBehaviour {
 	void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader = new StreamReader(info + fileName + count + fileExt);
-		print("File Num" + count);
+		//print("File Num" + count);
 		string sLine = "";
 		
 		while (sLine != null){
