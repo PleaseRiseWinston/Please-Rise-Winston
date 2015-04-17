@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 
     public int curAct;
     public GameObject curNote;
+    public int curNoteID;
     public GameObject curBackground;
 
     public GameObject[] backgroundArray;
@@ -24,7 +25,7 @@ public class GameController : MonoBehaviour
         // Defaults current Act and Note to 1, 1
         // 'curAct - 1' accounts for indexing convention
 	    curAct = 1;
-	    curNote = noteArray[curAct - 1][1];
+	    curNote = noteArray[curAct - 1][0];
         curBackground = GameObject.Find("game_bg");
 
         // Declarations for alpha states
@@ -42,11 +43,12 @@ public class GameController : MonoBehaviour
 
 	    // Insert all notes into jagged array
         noteArray = new GameObject[notes.transform.childCount][];
+
         for (int i = 0; i < notes.transform.childCount; i++)
 	    {
             noteArray[i] = new GameObject[notes.transform.GetChild(i).childCount];
 
-            // Insert notes into the act's array
+            // Insert notes into the act's array and index noteIDs in order starting from 0
             for (int j = 0; j < notes.transform.GetChild(i).childCount; j++)
 	        {
                 noteArray[i][j] = notes.transform.GetChild(j).gameObject;
@@ -54,7 +56,8 @@ public class GameController : MonoBehaviour
 	        }
 	    }
 
-	    GetNote();
+        curNoteID = curNote.GetComponent<PaperScript>().noteID;
+	    GetNote(curNoteID);
 	}
 
     public void ChangeBackgroundTo(GameObject background)
@@ -65,55 +68,81 @@ public class GameController : MonoBehaviour
     }
 
     // Note flies in from left
-    IEnumerator GetNote()
+    public IEnumerator GetNote(int noteID)
     {
-        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
+        // Finds the corresponding note with the correct ID and brings it to focus
+        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        {
+            if (GameObject.Find("Notes").transform.GetChild(curAct - 1).transform.GetComponent<PaperScript>().noteID == noteID)
+            yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
+        }
     }
 
-    // Send note to tray on desk
+    // Send note to tray on desk, increment noteID, and call for new note
     IEnumerator ToTray()
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(130, 1330, -396), false).WaitForCompletion());
-        if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo != null)
+
+        curNoteID++;
+
+        if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
         {
-            if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
-            {
-                ToWinston();
-            }
-            else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'p')
-            {
-                ToProsecutor();
-            }
-            else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
-            {
-                ToWinston();
-            }
+            ToWinston();
+        }
+        else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'p')
+        {
+            ToProsecutor();
+        }
+        else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'j')
+        {
+            ToJudge();
+        }
+        else
+        {
+            GetNote(curNoteID);
         }
     }
 
-    // Send note to Winston (right)
+    // Send tray to Winston (right)
     IEnumerator ToWinston()
     {
-        HOTween.To(curNote.gameObject, 0.4f, "rotation", new Vector3(83, 31, -161), false);
-        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
-        GetNote();
+        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        {
+            if (transform.GetComponent<PaperScript>().inTray == true)
+            {
+                HOTween.To(curNote.gameObject, 0.2f, "rotation", new Vector3(83, 31, -161), false);
+                yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
+            }
+        }
+        GetNote(curNoteID);
     }
 
-    // Send note to Prosecutor (left)
+    // Send tray to Prosecutor (left)
     IEnumerator ToProsecutor()
     {
-        HOTween.To(curNote.gameObject, 0.4f, "rotation", new Vector3(83, 31, -161), false);
-        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
-        GetNote();
+        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        {
+            if (transform.GetComponent<PaperScript>().inTray == true)
+            {
+                HOTween.To(curNote.gameObject, 0.2f, "rotation", new Vector3(83, 31, -161), false);
+                yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
+            }
+        }
+        GetNote(curNoteID);
     }
 
-    // Send note to Judge (behind)
+    // Send tray to Judge (behind)
     IEnumerator ToJudge()
     {
-        HOTween.To(curNote.gameObject, 0.2f, "rotation", new Vector3(35, 12, -3), false);
-        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(114, 1360, -381), false).WaitForCompletion());
-        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(0, 0, -100), true).WaitForCompletion());
-        GetNote();
+        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        {
+            if (transform.GetComponent<PaperScript>().inTray == true)
+            {
+                HOTween.To(curNote.gameObject, 0.2f, "rotation", new Vector3(35, 12, -3), false);
+                yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.2f, "position", new Vector3(114, 1360, -481), false).WaitForCompletion());
+            }
+        }
+        GetNote(curNoteID);
     }
 }
