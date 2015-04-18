@@ -29,7 +29,7 @@ public class wordOptionsScript : MonoBehaviour {
 		textMeshWord = GetComponent<TextMesh>().text;
 		
 		if(gameObject.transform.name == "WordOption2"){
-			canvasScript.quickFixNum = 0;
+			textBoxScript.quickFixNum = 0;
 			//canvasScript.wordOptionClicked = true;
 			
 			textBoxScript.Swap();
@@ -95,7 +95,7 @@ public class wordOptionsScript : MonoBehaviour {
 			textBoxScript.wordStructCount = 0;
 			
 			foreach(string s in canvasScript.lineIDList){
-				print("destroying");
+				//print("destroying");
 				Destroy(GameObject.Find(s));
 			}
 			canvasScript.curSpacing = 10;

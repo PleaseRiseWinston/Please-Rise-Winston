@@ -67,8 +67,6 @@ public class PaperScript : MonoBehaviour
             //noteContent = note.text;
             noteContent = textBoxScript.editString;
 
-            noteIDstr = gameObject.name.Substring(3, 2);
-            Debug.Log(IntParseFast(noteIDstr));
             focused = false;
             inTray = false;
         }

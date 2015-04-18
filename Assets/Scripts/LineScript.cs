@@ -102,8 +102,8 @@ public class LineScript : MonoBehaviour
             else
             {
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -1.3f), transform.rotation) as Text;
-				newWord.name = "wordID" + canvasScript.quickFixNum;
-				canvasScript.quickFixNum++;
+				newWord.name = "wordID" + textBoxScript.quickFixNum;
+				textBoxScript.quickFixNum++;
                 newWord.transform.SetParent(transform);
                 newWord.transform.localScale = newWord.transform.localScale * 1;
             }

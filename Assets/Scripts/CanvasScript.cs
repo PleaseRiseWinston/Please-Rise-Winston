@@ -47,7 +47,6 @@ public class CanvasScript : MonoBehaviour {
 	public int linePosCount;
 	public List<string> lineIDList = new List<string>();
 
-	public int quickFixNum = 0;
 	public char submitPaperTo;
 
 	public string noteName;
@@ -70,7 +69,7 @@ public class CanvasScript : MonoBehaviour {
         {
 			Match noteNumber = noteRegex.Match(noteName);
 			if (noteNumber.Success){
-				print(noteNumber.Groups[2].Value);
+				//print(noteNumber.Groups[2].Value);
 				
 				paperScript.noteContent = textBoxScript.allNoteLines[int.Parse(noteNumber.Groups[1].Value) -1][int.Parse(noteNumber.Groups[2].Value) - 1];
 				print(noteContent);
@@ -248,6 +247,7 @@ public class CanvasScript : MonoBehaviour {
 						wordStructure.current = t;
 					}
 					wordStructure.wordID = textBoxScript.wordStructCount;
+					print(wordStructure.current + " " + wordStructure.wordID);
 					textBoxScript.wordStructCount++;
 					textBoxScript.structList.Add(wordStructure);
 					displayWords.Add(wordStructure.current);

@@ -40,11 +40,13 @@ public class TextBox : MonoBehaviour {
 	public string clickedWordID = "";
 	public string[][] allNoteLines;
 	
+	public int quickFixNum = 0;
+	
 	public GameObject notes;
 	
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
-		currDir = info.ToString();					//makes directory into string
+		currDir = info.ToString();					       //makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
 		allNoteLines = new string[5][];
 		
@@ -61,6 +63,7 @@ public class TextBox : MonoBehaviour {
 				allNoteLines[i][j] = editString;
 			}
 		}
+		editString = allNoteLines[0][0];
 		//print(allNoteLines[0][1]);
 	}
 	
@@ -123,6 +126,7 @@ public class TextBox : MonoBehaviour {
 	public void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader = new StreamReader(info + fileName + count + fileExt);
+		
 		//print("File Num" + count);
 		string sLine = "";
 		
