@@ -139,16 +139,16 @@ public class WordScript : MonoBehaviour {
 		currY = 6;
 		currZ = -5;
 		int charCount = 1;
-		
+		print("In createText");
 		foreach(string w in wordOptions){
 			//Creates new object 
+			
 			GameObject textInstance;
 			textInstance = Instantiate(textPrefab, new Vector3(currX,currY,currZ), Quaternion.identity) as GameObject;
 			textInstance.name = "WordOption" + i;
-			textInstance.transform.parent = GameObject.Find("GamePaper").transform;
+			textInstance.transform.parent = GameObject.Find(transform.name).transform;
 			textInstance.GetComponent<TextMesh>().text = w;
 			textInstance.AddComponent<BoxCollider2D>();
-			
 			//currX = textInstance.transform.position.x;
 			//currY = textInstance.transform.position.y;
 			//currZ = textInstance.transform.position.z;

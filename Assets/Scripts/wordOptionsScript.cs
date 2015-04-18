@@ -17,7 +17,7 @@ public class wordOptionsScript : MonoBehaviour {
 	TextBox textBoxScript;
 	
 	void Start(){
-		paper = GameObject.Find("note1.1");
+		paper = GameObject.Find("1.1");
 		paperScript = paper.GetComponent<PaperScript>();
 		
 		textBox = GameObject.Find("TextBox");
