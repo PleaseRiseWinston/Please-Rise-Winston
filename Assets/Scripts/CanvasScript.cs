@@ -49,6 +49,9 @@ public class CanvasScript : MonoBehaviour {
 
 	public int quickFixNum = 0;
 	public char submitPaperTo;
+
+	public string noteName;
+	public int secondNumber;
 	
 	void Start () {
 		// Canvas gets the parent paper object
@@ -61,7 +64,7 @@ public class CanvasScript : MonoBehaviour {
 		gameController = GameObject.Find("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
 		
-		string noteName = transform.parent.name;
+		 noteName = transform.parent.name;
 
         if (!paperScript.start && !paperScript.exit)
         {
@@ -270,12 +273,11 @@ public class CanvasScript : MonoBehaviour {
         }
 	}
 	
-	void noteMatch(){
-		int secondNumber;
+	public int noteMatch(){
 		
 		Match noteNumber = noteRegex.Match(noteName);
 			if (noteNumber.Success){
-				secondNumber = noteNumber.Groups[2].Value;
+				secondNumber = int.Parse(noteNumber.Groups[2].Value);
 			}
 			return secondNumber;
 	}
