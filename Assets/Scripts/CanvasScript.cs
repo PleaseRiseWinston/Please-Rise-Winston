@@ -28,6 +28,7 @@ public class CanvasScript : MonoBehaviour {
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
     private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}");
+	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
     public string[] words;
@@ -59,15 +60,27 @@ public class CanvasScript : MonoBehaviour {
 		
 		gameController = GameObject.Find("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
+		
+		string noteName = transform.parent.name;
 
         if (!paperScript.start && !paperScript.exit)
         {
-            curSpacing = 10;
+			Match noteNumber = noteRegex.Match(noteName);
+			if (noteNumber.Success){
+				print(noteNumber.Groups[2].Value);
+				
+				paperScript.noteContent = textBoxScript.allNoteLines[int.Parse(noteNumber.Groups[1].Value) -1][int.Parse(noteNumber.Groups[2].Value) - 1];
+				print(noteContent);
+			}
+			
+			
+			curSpacing = 10;
         }
         else
         {
             curSpacing = 0;
         }
+		
 		
 		Parser();
 		
@@ -255,5 +268,15 @@ public class CanvasScript : MonoBehaviour {
 
 			lineCounter++;
         }
+	}
+	
+	void noteMatch(){
+		int secondNumber;
+		
+		Match noteNumber = noteRegex.Match(noteName);
+			if (noteNumber.Success){
+				secondNumber = noteNumber.Groups[2].Value;
+			}
+			return secondNumber;
 	}
 }
