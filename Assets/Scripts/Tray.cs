@@ -15,6 +15,7 @@ public class Tray : MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log("Tray clicked.");
         gameControllerScript.ToTray();
     }
 

@@ -18,7 +18,7 @@ public class CutsceneOverlay : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Reference CameraController
-        cameraController = GameObject.Find("CameraController");
+        cameraController = GameObject.FindGameObjectWithTag("CameraController");
         playCutscene = cameraController.GetComponent<PlayCutscene>();
 
         // Declarations for alpha states

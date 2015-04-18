@@ -4,7 +4,6 @@ using Holoville.HOTween;
 
 public class GameController : MonoBehaviour
 {
-
     public int curAct;
     public GameObject curNote;
     public int curNoteID;
@@ -19,21 +18,25 @@ public class GameController : MonoBehaviour
     private Color transparent;
     private Color solid;
 
-    // Use this for initialization
-	void Start ()
-	{
+    public int totalWeight;
+
+    void Start ()
+    {
+        totalWeight = 0;
+
         // Defaults current Act and Note to 1, 1
         // 'curAct - 1' accounts for indexing convention
 	    curAct = 1;
-	    curNote = noteArray[curAct - 1][0];
         curBackground = GameObject.Find("game_bg");
 
         // Declarations for alpha states
         transparent = new Color(1f, 1f, 1f, 0f);
         solid = new Color(1f, 1f, 1f, 1f);
 
-	    backgrounds = GameObject.Find("Backgrounds").gameObject;
-        notes = GameObject.Find("Notes").gameObject;
+        backgrounds = GameObject.FindGameObjectWithTag("Backgrounds").gameObject;
+        notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
+
+        backgroundArray = new GameObject[backgrounds.transform.childCount];
 
         // Insert all backgrounds into array
         for (int i = 0; i < backgrounds.transform.childCount; i++)
@@ -56,6 +59,7 @@ public class GameController : MonoBehaviour
 	        }
 	    }
 
+        curNote = noteArray[curAct - 1][0];
         curNoteID = curNote.GetComponent<PaperScript>().noteID;
 	    GetNote(curNoteID);
 	}
@@ -71,10 +75,10 @@ public class GameController : MonoBehaviour
     public IEnumerator GetNote(int noteID)
     {
         // Finds the corresponding note with the correct ID and brings it to focus
-        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        foreach (Transform child in notes.transform.GetChild(curAct - 1))
         {
-            if (GameObject.Find("Notes").transform.GetChild(curAct - 1).transform.GetComponent<PaperScript>().noteID == noteID)
-            yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -396), false).WaitForCompletion());
+            if (GameObject.FindGameObjectWithTag("Notes").transform.GetChild(curAct - 1).transform.GetComponent<PaperScript>().noteID == noteID)
+            yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
         }
     }
 
@@ -82,7 +86,7 @@ public class GameController : MonoBehaviour
     public IEnumerator ToTray()
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
-        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(130, 1330, -396), false).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(curNote.gameObject, 0.4f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
 
         curNoteID++;
 
@@ -107,7 +111,7 @@ public class GameController : MonoBehaviour
     // Send tray to Winston (right)
     IEnumerator ToWinston()
     {
-        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        foreach (Transform child in notes.transform.GetChild(curAct - 1))
         {
             if (transform.GetComponent<PaperScript>().inTray == true)
             {
@@ -121,7 +125,7 @@ public class GameController : MonoBehaviour
     // Send tray to Prosecutor (left)
     IEnumerator ToProsecutor()
     {
-        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        foreach (Transform child in notes.transform.GetChild(curAct - 1))
         {
             if (transform.GetComponent<PaperScript>().inTray == true)
             {
@@ -135,7 +139,7 @@ public class GameController : MonoBehaviour
     // Send tray to Judge (behind)
     IEnumerator ToJudge()
     {
-        foreach (Transform child in GameObject.Find("Notes").transform.GetChild(curAct - 1))
+        foreach (Transform child in notes.transform.GetChild(curAct - 1))
         {
             if (transform.GetComponent<PaperScript>().inTray == true)
             {

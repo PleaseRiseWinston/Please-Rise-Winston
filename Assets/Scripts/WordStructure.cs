@@ -25,8 +25,8 @@ public class WordStructure : MonoBehaviour {
 		newLine = false;
 		lastWord = false;
 		isClicked = false;
-		wordWeightCurr = -1;
-		wordWeightAlt = -1;
+		wordWeightCurr = 0;
+		wordWeightAlt = 0;
     }
 
     // Non-default(?) Constructor

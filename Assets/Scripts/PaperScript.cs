@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 using Holoville.HOTween;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 /* 
  * This script is attached to each Paper object.
@@ -14,6 +16,7 @@ using System.Collections.Generic;
 public class PaperScript : MonoBehaviour
 {
     public int noteID;
+    public string noteIDstr;
     public bool start, exit;
 
     public Camera gameCamera;
@@ -47,11 +50,8 @@ public class PaperScript : MonoBehaviour
         gameObject.AddComponent<AudioSource>();
         AudioSource audio = gameObject.GetComponent<AudioSource>();
 
-		textBox = GameObject.Find("TextBox");
+		textBox = GameObject.FindGameObjectWithTag("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
-		
-        focused = false;
-        inTray = false;
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
         if (start)
@@ -65,7 +65,12 @@ public class PaperScript : MonoBehaviour
         else
         {
             //noteContent = note.text;
-			noteContent = textBoxScript.editString;
+            noteContent = textBoxScript.editString;
+
+            noteIDstr = gameObject.name.Substring(3, 2);
+            Debug.Log(IntParseFast(noteIDstr));
+            focused = false;
+            inTray = false;
         }
         
         defaultNotePos = transform.position;
@@ -91,6 +96,17 @@ public class PaperScript : MonoBehaviour
 		}
         newCanvas.transform.localScale = transform.localScale;
         newCanvas.transform.SetParent(transform);
+    }
+
+    public static int IntParseFast(string value)
+    {
+        int result = 0;
+        for (int i = 0; i < value.Length; i++)
+        {
+            char letter = value[i];
+            result = 10 * result + (letter - 48);
+        }
+        return result;
     }
 
     public void OnMouseDown()
