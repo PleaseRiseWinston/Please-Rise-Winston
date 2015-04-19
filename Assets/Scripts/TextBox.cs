@@ -17,7 +17,7 @@ public class TextBox : MonoBehaviour {
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}"); //Looks for {word|alt}
 	
 	public List<string> wordList = new List<string>();
-	public List<int> dependenciesList = new List<int>();
+	public List<string> wordListTemp = new List<string>();
 	public string[] words;
 	public string[] lines;
 	
@@ -64,7 +64,6 @@ public class TextBox : MonoBehaviour {
 			}
 		}
 		editString = allNoteLines[0][0];
-		//print(allNoteLines[0][1]);
 	}
 	
 	void Update(){
@@ -126,7 +125,7 @@ public class TextBox : MonoBehaviour {
 	public void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader = new StreamReader(info + fileName + count + fileExt);
-		
+		//print(info+fileName+count);
 		//print("File Num" + count);
 		string sLine = "";
 		
@@ -152,7 +151,7 @@ public class TextBox : MonoBehaviour {
 		}
 	}
 
-	void Parser () {
+/* 	void Parser () {
 		lines = editString.Split(delimiterNewline);	
 		foreach (string s in lines)
 		{			
@@ -249,7 +248,7 @@ public class TextBox : MonoBehaviour {
 				structList.Add(wordStructure);
             }
         }
-	}
+	} */
 	
 	public void Swap(){
 		//print("in swap");

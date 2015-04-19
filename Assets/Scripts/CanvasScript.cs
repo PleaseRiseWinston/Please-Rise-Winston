@@ -70,12 +70,17 @@ public class CanvasScript : MonoBehaviour {
 			Match noteNumber = noteRegex.Match(noteName);
 			if (noteNumber.Success){
 				//print(noteNumber.Groups[2].Value);
+<<<<<<< HEAD
 				
 				paperScript.noteContent = textBoxScript.allNoteLines[int.Parse(noteNumber.Groups[1].Value) -1][int.Parse(noteNumber.Groups[2].Value) - 1];
 				//print(noteContent);
+=======
+				int firstNum = int.Parse(noteNumber.Groups[1].Value);
+				int secNum = int.Parse(noteNumber.Groups[2].Value);
+				//print(textBoxScript.allNoteLines[firstNum - 1].Length);
+				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
+>>>>>>> origin/master
 			}
-			
-			
 			curSpacing = 10;
         }
         else
@@ -106,6 +111,8 @@ public class CanvasScript : MonoBehaviour {
 		
 		int lineCount = lines.Length;
 		int lineCounter = 1;
+		
+		//print(lines[0]);
 		
 		foreach (string s in lines)
         {
@@ -271,6 +278,7 @@ public class CanvasScript : MonoBehaviour {
 
 			lineCounter++;
         }
+		
 	}
 	
 	public int noteMatch(){
