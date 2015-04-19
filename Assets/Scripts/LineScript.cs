@@ -121,7 +121,7 @@ public class LineScript : MonoBehaviour
             lastWordEnd += newWord.GetComponent<Transform>().right.x;
             //Debug.Log(newWord.GetComponent<Transform>().right.x);
         }
-        Transform[] childArray = gameObject.GetComponentsInChildren<Transform>();
+        //Transform[] childArray = gameObject.GetComponentsInChildren<Transform>();
         childCount = transform.childCount;
     }
 

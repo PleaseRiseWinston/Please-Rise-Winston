@@ -72,7 +72,7 @@ public class CanvasScript : MonoBehaviour {
 				//print(noteNumber.Groups[2].Value);
 				
 				paperScript.noteContent = textBoxScript.allNoteLines[int.Parse(noteNumber.Groups[1].Value) -1][int.Parse(noteNumber.Groups[2].Value) - 1];
-				print(noteContent);
+				//print(noteContent);
 			}
 			
 			
@@ -247,7 +247,7 @@ public class CanvasScript : MonoBehaviour {
 						wordStructure.current = t;
 					}
 					wordStructure.wordID = textBoxScript.wordStructCount;
-					print(wordStructure.current + " " + wordStructure.wordID);
+					//print(wordStructure.current + " " + wordStructure.wordID);
 					textBoxScript.wordStructCount++;
 					textBoxScript.structList.Add(wordStructure);
 					displayWords.Add(wordStructure.current);
