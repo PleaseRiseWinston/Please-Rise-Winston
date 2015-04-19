@@ -29,7 +29,6 @@ public class GameController : MonoBehaviour
         // 'curAct - 1' accounts for indexing convention
         curAct = 1;
         curNoteID = 1;
-        UpdateNoteName(curNoteID);
         curBackground = GameObject.Find("game_bg");
 
         // Declarations for alpha states
@@ -61,22 +60,22 @@ public class GameController : MonoBehaviour
 	        }
 	    }
 
-        curNote = noteArray[curAct - 1][0];
-	    //GetNote(curNoteName);
+        UpdateCurNote(curNoteID);
 	}
-    
-    // Converts input int to string for future searching and matching
-    public void UpdateNoteName(int noteID)
-    {
-        string noteIDstr = noteID.ToString();
-        curNoteName = curAct + "." + noteIDstr;
-    }
 
     public void ChangeBackgroundTo(GameObject background)
     {
         curBackground.GetComponent<SpriteRenderer>().color = transparent;
         curBackground = background;
         curBackground.GetComponent<SpriteRenderer>().color = solid;
+    }
+
+    // Converts input int to string for future searching and matching
+    public void UpdateCurNote(int noteID)
+    {
+        string noteIDstr = noteID.ToString();
+        curNoteName = curAct + "." + noteIDstr;
+        curNote = noteArray[curAct - 1][noteID - 1];
     }
 
     // Note flies in from left
@@ -88,25 +87,25 @@ public class GameController : MonoBehaviour
         {
             if (GameObject.FindGameObjectWithTag("Notes").transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
             {
-                StartCoroutine(MoveToCenter());
+                StartCoroutine(MoveToCenter(curAct - 1, i));
+                print(i);
             }
         }
     }
 
-    IEnumerator MoveToCenter()
+    IEnumerator MoveToCenter(int actIndex, int i)
     {
-        yield return StartCoroutine(HOTween.To(GameObject.Find(curNoteName).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("Notes").transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
     public void ToTray()
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
-        curNote.GetComponent<PaperScript>().ForceUnfocus();
         StartCoroutine(MoveToTray());
 
-        UpdateNoteName(curNoteID++);
-        Debug.Log("New note ID: " + curNoteID);
+        curNoteID++;
+        UpdateCurNote(curNoteID);
 
         if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
         {
@@ -128,6 +127,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator MoveToTray()
     {
+        HOTween.To(curNote.transform, 0.4f, "rotation", new Vector3(80, 0, 0), false);
         yield return StartCoroutine(HOTween.To(curNote.transform, 0.4f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
     }
 
