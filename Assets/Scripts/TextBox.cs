@@ -16,8 +16,7 @@ public class TextBox : MonoBehaviour {
 	private Regex re = new Regex(@"(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\{[A-Za-z]+\|[A-Za-z]+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}"); //Looks for {word|alt}
 	
-	public List<string> wordList = new List<string>();
-	public List<string> wordListTemp = new List<string>();
+	//public List<string> wordCountListTemp = new List<string>();
 	public string[] words;
 	public string[] lines;
 	
@@ -39,6 +38,7 @@ public class TextBox : MonoBehaviour {
 	public int structListIndex = 0;
 	public string clickedWordID = "";
 	public string[][] allNoteLines;
+	public int[][] noteWordCount;
 	
 	public int quickFixNum = 0;
 	
@@ -49,6 +49,7 @@ public class TextBox : MonoBehaviour {
 		currDir = info.ToString();					       //makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
 		allNoteLines = new string[5][];
+		noteWordCount = new int[5][];
 		
 		notes = GameObject.Find("Notes").gameObject;
 		
@@ -57,6 +58,7 @@ public class TextBox : MonoBehaviour {
 		for(int i = 0; i < notes.transform.childCount; i++){
 			//print(notes.transform.childCount);
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
+			noteWordCount[i] = new int[notes.transform.GetChild(i).childCount];
 			for(int j = 0; j < notes.transform.GetChild(i).childCount; j++){
 				loadFile();
 				//print(notes.transform.GetChild(i).childCount);

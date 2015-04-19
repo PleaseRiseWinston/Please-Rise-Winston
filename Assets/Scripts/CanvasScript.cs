@@ -51,6 +51,9 @@ public class CanvasScript : MonoBehaviour {
 
 	public string noteName;
 	public int secondNumber;
+	public int wordNum = 0;
+	public int firstNum = 0;
+	public int secNum = 0;
 	
 	void Start () {
 		// Canvas gets the parent paper object
@@ -70,8 +73,8 @@ public class CanvasScript : MonoBehaviour {
 			Match noteNumber = noteRegex.Match(noteName);
 			if (noteNumber.Success){
 				//print(noteNumber.Groups[2].Value);
-				int firstNum = int.Parse(noteNumber.Groups[1].Value);
-				int secNum = int.Parse(noteNumber.Groups[2].Value);
+				firstNum = int.Parse(noteNumber.Groups[1].Value);
+				secNum = int.Parse(noteNumber.Groups[2].Value);
 				//print(textBoxScript.allNoteLines[firstNum - 1].Length);
 				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
 			}
@@ -250,7 +253,9 @@ public class CanvasScript : MonoBehaviour {
 					wordStructure.wordID = textBoxScript.wordStructCount;
 					//print(wordStructure.current + " " + wordStructure.wordID);
 					textBoxScript.wordStructCount++;
+					wordNum++;
 					textBoxScript.structList.Add(wordStructure);
+					
 					displayWords.Add(wordStructure.current);
 					if (arrayCount == words.Length - 1 && lineCount != lineCounter){
 						wordStructure.newLine = true;
@@ -267,12 +272,14 @@ public class CanvasScript : MonoBehaviour {
 					arrayCount++;
 				}
 				lineScript.words = displayWords.ToArray();
-				
 			}
 
 			lineCounter++;
         }
 		
+		if(noteContent != "Start" && noteContent != "Exit"){
+			textBoxScript.noteWordCount[firstNum -1][textBoxScript.noteWordCount[firstNum - 1].Length - secNum] = wordNum;
+		}
 	}
 	
 	public int noteMatch(){

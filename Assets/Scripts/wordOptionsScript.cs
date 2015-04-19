@@ -16,17 +16,28 @@ public class wordOptionsScript : MonoBehaviour {
 	GameObject textBox;
 	TextBox textBoxScript;
 	
+	GameObject gameController;
+	GameController gameControllerScript;
+	
+	int endStringIndex = -1;
+	int currAct = 0;
+	
 	void Start(){
 		paper = GameObject.Find("1.1");
 		paperScript = paper.GetComponent<PaperScript>();
 		
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
+		
+		gameController = GameObject.FindGameObjectWithTag("GameController");
+		gameControllerScript = gameController.GetComponent<GameController>();
 	}
 	
 	void OnMouseDown(){
 		//Gets the the word in GameObject text box and sets it to a string
 		textMeshWord = GetComponent<TextMesh>().text;
+		
+		currAct = gameControllerScript.curAct - 1;
 		
 		if(gameObject.transform.name == "WordOption2"){
 			textBoxScript.quickFixNum = 0;
@@ -36,63 +47,75 @@ public class wordOptionsScript : MonoBehaviour {
 			textBoxScript.editString = "";
 			canvasScript.noteContent = "";
 			
-			//Spacing may or may not be a problem
-			foreach(WordStructure wordStruct in textBoxScript.structList){
-				if(wordStruct.current == textMeshWord){
-					print("this is the wordID " + wordStruct.wordID);
+			for(int i = 0; i < textBoxScript.noteWordCount[currAct].Length; i++){
+			    int startStringIndex = 0;
+				if(i > 0){
+					startStringIndex = endStringIndex + 1;
 				}
-				//Rebuild {current|alt}
-				//print("curr " + wordStruct.current);
-				//print("alt " + wordStruct.alt);
-				if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies == -1){
-					textBoxScript.editString += "{" + wordStruct.current + "^" + wordStruct.wordWeightCurr + "|" + wordStruct.alt + "^" + wordStruct.wordWeightAlt + "}"; 
-					if (wordStruct.newLine && !wordStruct.lastWord){
-						//print("Working for {current|alt}");
-						textBoxScript.editString += "\n";
+				
+				endStringIndex += textBoxScript.noteWordCount[currAct][i];
+				print("Iteration " + i + " : start index " + startStringIndex);
+				print("Iteration " + i + " : end index " + endStringIndex);
+				print("Iteration " + i + " : nWC curr" + textBoxScript.noteWordCount[currAct][i]);
+				
+				for(int j = startStringIndex; j <= endStringIndex; j++){
+					//Rebuild {current|alt}
+					if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt != "N/A" && textBoxScript.structList[j].dependencies == -1){
+						textBoxScript.editString += "{" + textBoxScript.structList[j].current + "^" + textBoxScript.structList[j].wordWeightCurr + "|" + textBoxScript.structList[j].alt + "^" + textBoxScript.structList[j].wordWeightAlt + "}"; 
+						if (textBoxScript.structList[j].newLine && !textBoxScript.structList[j].lastWord){
+							//print("Working for {current|alt}");
+							textBoxScript.editString += "\n";
+						}
+						else if (!textBoxScript.structList[j].newLine && textBoxScript.structList[j].lastWord){
+							textBoxScript.editString += "";
+						}
+						else {
+							textBoxScript.editString += " "; 
+						}
+						textBoxScript.allNoteLines[currAct][i] = textBoxScript.editString; 
 					}
-					else if (!wordStruct.newLine && wordStruct.lastWord){
-						textBoxScript.editString += "";
+					//Rebuild *wordID*{current|alt}
+					else if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt != "N/A" && textBoxScript.structList[j].dependencies != -1){
+						textBoxScript.editString += "*" + textBoxScript.structList[j].dependencies + "*{" + textBoxScript.structList[j].current + "|" + textBoxScript.structList[j].alt + "}";
+						if (textBoxScript.structList[j].newLine){
+							//print("Working for *wordID* words");
+							textBoxScript.editString += "\n";
+						}
+						else if (!textBoxScript.structList[j].newLine && textBoxScript.structList[j].lastWord){
+							textBoxScript.editString += "";
+						}
+						else{
+							textBoxScript.editString += " ";
+						}
+						textBoxScript.allNoteLines[currAct][i] = textBoxScript.editString;
 					}
-					else {
-						textBoxScript.editString += " "; 
+					//Add reg word to string
+					else if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt == "N/A"){
+						textBoxScript.editString += textBoxScript.structList[j].current;
+						if (textBoxScript.structList[j].newLine){
+							//print("Working for regular words");
+							textBoxScript.editString += "\n";
+						}
+						else if (!textBoxScript.structList[j].newLine && textBoxScript.structList[j].lastWord){
+							textBoxScript.editString += "";
+						}
+						else {
+							textBoxScript.editString += " ";
+						}
+						textBoxScript.allNoteLines[currAct][i] = textBoxScript.editString;
 					}
-					canvasScript.noteContent = textBoxScript.editString; 
 				}
-				//Rebuild *wordID*{current|alt}
-				else if(wordStruct.current != "N/A" && wordStruct.alt != "N/A" && wordStruct.dependencies != -1){
-					textBoxScript.editString += "*" + wordStruct.dependencies + "*{" + wordStruct.current + "|" + wordStruct.alt + "}";
-					if (wordStruct.newLine){
-						//print("Working for *wordID* words");
-						textBoxScript.editString += "\n";
-					}
-					else if (!wordStruct.newLine && wordStruct.lastWord){
-						textBoxScript.editString += "";
-					}
-					else{
-						textBoxScript.editString += " ";
-					}
-					canvasScript.noteContent = textBoxScript.editString;
-				}
-				//Add reg word to string
-				else if(wordStruct.current != "N/A" && wordStruct.alt == "N/A"){
-					textBoxScript.editString += wordStruct.current;
-					if (wordStruct.newLine){
-						//print("Working for regular words");
-						textBoxScript.editString += "\n";
-					}
-					else if (!wordStruct.newLine && wordStruct.lastWord){
-						textBoxScript.editString += "";
-					}
-					else {
-						textBoxScript.editString += " ";
-					}
-					canvasScript.noteContent = textBoxScript.editString;
-				}
+				textBoxScript.editString = "";
 			}
+			
+			print(textBoxScript.allNoteLines[currAct][0]);
+			print(textBoxScript.allNoteLines[currAct][1]);
+			print(textBoxScript.allNoteLines[currAct][2]);
+			
 			textBoxScript.structList.Clear();
 			canvasScript.displayWords.Clear();
 			//lineScript.words = null;
-			textBoxScript.wordStructCount = 0;
+			textBoxScript.wordStructCount = 0;			
 			
 			foreach(string s in canvasScript.lineIDList){
 				//print("destroying");
