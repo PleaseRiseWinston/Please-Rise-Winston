@@ -75,8 +75,10 @@ public class CanvasScript : MonoBehaviour {
 				//print(noteNumber.Groups[2].Value);
 				firstNum = int.Parse(noteNumber.Groups[1].Value);
 				secNum = int.Parse(noteNumber.Groups[2].Value);
+
 				//print(textBoxScript.allNoteLines[firstNum - 1].Length);
 				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
+
 			}
 			curSpacing = 10;
         }

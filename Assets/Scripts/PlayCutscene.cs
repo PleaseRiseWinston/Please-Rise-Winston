@@ -15,6 +15,9 @@ public class PlayCutscene : MonoBehaviour {
     public GameObject overlayCanvas;
     public CutsceneOverlay cutsceneOverlay;
 
+    public GameObject gameController;
+    public GameController gameControllerScript;
+
     public Vector3 cutsceneCamPos;
     public float cutsceneTime;
 
@@ -30,8 +33,11 @@ public class PlayCutscene : MonoBehaviour {
         mainCamera.enabled = true;
         cutsceneCamera.enabled = false;
 
-        overlayCanvas = GameObject.Find("CutsceneOverlay");
+        overlayCanvas = GameObject.FindGameObjectWithTag("CutsceneOverlay");
         cutsceneOverlay = overlayCanvas.GetComponent<CutsceneOverlay>();
+
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        gameControllerScript = gameController.GetComponent<GameController>();
 
         cutsceneTime = .5f;
     }
@@ -43,7 +49,7 @@ public class PlayCutscene : MonoBehaviour {
     public IEnumerator Play(int actNumber)
     {
         playingCutscene = true;
-        Debug.Log(actNumber);
+        //Debug.Log(actNumber);
 
         gameObject.AddComponent<AudioSource>();
         AudioSource cutsceneAudio = gameObject.GetComponent<AudioSource>();
@@ -67,14 +73,20 @@ public class PlayCutscene : MonoBehaviour {
                 HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
                 yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
                 yield return StartCoroutine(HOTween.To(GameObject.Find("Cutscene1-4").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false).WaitForCompletion());
+                gameControllerScript.GetNote("1.1");
+                print("End Cutscene");
                 break;
             case 2:
+                gameControllerScript.GetNote("2.1");
                 break;
             case 3:
+                gameControllerScript.GetNote("3.1");
                 break;
             case 4:
+                gameControllerScript.GetNote("4.1");
                 break;
             case 5:
+                gameControllerScript.GetNote("5.1");
                 break;
         }
 

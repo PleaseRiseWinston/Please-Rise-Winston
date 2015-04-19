@@ -64,4 +64,3 @@ public class CutsceneOverlay : MonoBehaviour {
         StartCoroutine(HOTween.To(text.GetComponent<Image>(), 0.5f, "color", transparent, false).WaitForCompletion());
     }
 }
-

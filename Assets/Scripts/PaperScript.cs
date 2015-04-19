@@ -15,8 +15,8 @@ using Random = UnityEngine.Random;
 
 public class PaperScript : MonoBehaviour
 {
-    public int noteID;
-    public string noteIDstr;
+    //public int noteID;
+    //public string noteIDstr;
     public bool start, exit;
 
     public Camera gameCamera;
@@ -53,7 +53,10 @@ public class PaperScript : MonoBehaviour
 		textBox = GameObject.FindGameObjectWithTag("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
 
-        // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file. 
+        focused = false;
+        inTray = false;
+
+        // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file
         if (start)
         {
             noteContent = "Start";
@@ -66,12 +69,9 @@ public class PaperScript : MonoBehaviour
         {
             //noteContent = note.text;
             noteContent = textBoxScript.editString;
-
-            focused = false;
-            inTray = false;
         }
-        
-        defaultNotePos = transform.position;
+
+        defaultNotePos = new Vector3(0, 1330, -400);
 
         // Sets camera default position depending on the intended camera
 		if(!start && !exit){
@@ -96,28 +96,19 @@ public class PaperScript : MonoBehaviour
         newCanvas.transform.SetParent(transform);
     }
 
-    public static int IntParseFast(string value)
-    {
-        int result = 0;
-        for (int i = 0; i < value.Length; i++)
-        {
-            char letter = value[i];
-            result = 10 * result + (letter - 48);
-        }
-        return result;
-    }
-
     public void OnMouseDown()
     {
         //Debug.Log("Focusing");
-        StartCoroutine(Focus());
+        if (!inTray)
+        {
+            StartCoroutine(Focus());
+        }
     }
 
     public void OnMouseOver()
     {
         // Toggles mouseover state while not in focused mode
-        if (focused)
-        {
+        if (focused){
             mouseOver = true;
         }
     }
@@ -131,10 +122,10 @@ public class PaperScript : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         // Detects clicks off the object
-        if (Input.GetMouseButtonDown(0) && !mouseOver && focused)
+        if (Input.GetMouseButtonDown(0) && !mouseOver && focused && !inTray)
         {
             //Debug.Log("Unfocusing");
             StartCoroutine(Unfocus());
@@ -144,7 +135,12 @@ public class PaperScript : MonoBehaviour
 			noteContent = textBoxScript.editString;
 		}
     }
-    
+
+    public void ForceUnfocus()
+    {
+        StartCoroutine(Unfocus());
+    }
+
     void PlayAudio()
     {
         int i = Mathf.Abs(Random.Range(1, 3));
