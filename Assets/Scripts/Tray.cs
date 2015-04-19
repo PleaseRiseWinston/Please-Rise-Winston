@@ -15,15 +15,9 @@ public class Tray : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("Tray clicked.");
         gameControllerScript.curNote.GetComponent<PaperScript>().inTray = true;
         gameControllerScript.ToTray();
 
         // TODO: Add Weights
     }
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

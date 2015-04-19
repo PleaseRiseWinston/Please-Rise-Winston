@@ -89,7 +89,8 @@ public class PaperScript : MonoBehaviour
 
         // Instantiates a canvas at the paper's position
         Canvas newCanvas = Instantiate(canvas, transform.position, transform.rotation) as Canvas;
-		if(!start && !exit){
+		if(!start && !exit)
+        {
 			newCanvas.name = "GameCanvas";
 		}
         newCanvas.transform.localScale = transform.localScale;
@@ -174,7 +175,7 @@ public class PaperScript : MonoBehaviour
     // Coroutine called when unfocusing away from a note
     IEnumerator Unfocus()
     {
-        //Debug.Log("Unfocusing");
+        Debug.Log("Unfocusing");
         PlayAudio();
         focused = false;
         HOTween.To(transform, 0.7f, "position", defaultNotePos, false);
