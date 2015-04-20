@@ -110,7 +110,7 @@ public class LineScript : MonoBehaviour
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
-			print(newWord.text);
+			
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(newWord.text == wordStruct.current && textBoxScript.quickFixNum == wordStruct.wordID){
 					newWord.name = "wordID" + wordStruct.wordID;
