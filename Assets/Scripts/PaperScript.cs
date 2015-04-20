@@ -175,7 +175,7 @@ public class PaperScript : MonoBehaviour
     // Coroutine called when unfocusing away from a note
     IEnumerator Unfocus()
     {
-        Debug.Log("Unfocusing");
+        //Debug.Log("Unfocusing");
         PlayAudio();
         focused = false;
         HOTween.To(transform, 0.7f, "position", defaultNotePos, false);

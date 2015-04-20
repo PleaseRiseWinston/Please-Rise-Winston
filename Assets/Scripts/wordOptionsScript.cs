@@ -19,6 +19,7 @@ public class wordOptionsScript : MonoBehaviour {
 	GameObject gameController;
 	GameController gameControllerScript;
 	
+	
 	int endStringIndex = -1;
 	int currAct = 0;
 	
@@ -54,13 +55,11 @@ public class wordOptionsScript : MonoBehaviour {
 				}
 				
 				endStringIndex += textBoxScript.noteWordCount[currAct][i];
-				print("Iteration " + i + " : start index " + startStringIndex);
-				print("Iteration " + i + " : end index " + endStringIndex);
-				print("Iteration " + i + " : nWC curr" + textBoxScript.noteWordCount[currAct][i]);
 				
 				for(int j = startStringIndex; j <= endStringIndex; j++){
 					//Rebuild {current|alt}
 					if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt != "N/A" && textBoxScript.structList[j].dependencies == -1){
+						print(j);
 						textBoxScript.editString += "{" + textBoxScript.structList[j].current + "^" + textBoxScript.structList[j].wordWeightCurr + "|" + textBoxScript.structList[j].alt + "^" + textBoxScript.structList[j].wordWeightAlt + "}"; 
 						if (textBoxScript.structList[j].newLine && !textBoxScript.structList[j].lastWord){
 							//print("Working for {current|alt}");
@@ -108,10 +107,6 @@ public class wordOptionsScript : MonoBehaviour {
 				textBoxScript.editString = "";
 			}
 			
-			print(textBoxScript.allNoteLines[currAct][0]);
-			print(textBoxScript.allNoteLines[currAct][1]);
-			print(textBoxScript.allNoteLines[currAct][2]);
-			
 			textBoxScript.structList.Clear();
 			canvasScript.displayWords.Clear();
 			//lineScript.words = null;
@@ -125,7 +120,12 @@ public class wordOptionsScript : MonoBehaviour {
 			canvasScript.linePosCount = 0;
 			
 			//print(canvasScript.noteContent);
-			canvasScript.Parser();
+			//canvasScript.Parser();
+			for(int k = 0; k<textBoxScript.allNoteLines[currAct].Length; k++){
+				string noteName = gameControllerScript.noteArray[currAct][k].name;
+				//print(noteName);
+				GameObject.Find(noteName).transform.GetChild(0).GetComponent<CanvasScript>().Parser();
+			}
 			//canvasScript.CreateNewLine();
 			//print(canvasScript.noteContent);
 		}

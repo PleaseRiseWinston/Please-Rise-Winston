@@ -39,6 +39,7 @@ public class TextBox : MonoBehaviour {
 	public string clickedWordID = "";
 	public string[][] allNoteLines;
 	public int[][] noteWordCount;
+	public bool didSwap = false;
 	
 	public int quickFixNum = 0;
 	
@@ -302,6 +303,7 @@ public class TextBox : MonoBehaviour {
 			}
 		}
 		
+		didSwap = true;
 		//canvasScript.wordOptionClicked = false;
 	}
 }

@@ -102,7 +102,7 @@ public class WordScript : MonoBehaviour {
         if (paperScript.start)
         {
             // TODO: Detect current Act
-            Debug.Log("Starting");
+            //Debug.Log("Starting");
             StartCoroutine(playCutscene.Play(1));
         }
         else if (paperScript.exit)
