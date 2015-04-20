@@ -81,14 +81,14 @@ public class GameController : MonoBehaviour
     // Note flies in from left
     public void GetNote(string noteID)
     {
-        Debug.Log("Getting Note: " + noteID);
+        //Debug.Log("Getting Note: " + noteID);
         // Finds the corresponding note with the correct ID and brings it to center
         for (int i = 0; i < notes.transform.GetChild(curAct - 1).childCount; i++)
         {
             if (GameObject.FindGameObjectWithTag("Notes").transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
             {
                 StartCoroutine(MoveToCenter(curAct - 1, i));
-                print(i);
+                //print(i);
             }
         }
     }

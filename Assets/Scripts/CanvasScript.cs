@@ -70,16 +70,7 @@ public class CanvasScript : MonoBehaviour {
 
         if (!paperScript.start && !paperScript.exit)
         {
-			Match noteNumber = noteRegex.Match(noteName);
-			if (noteNumber.Success){
-				//print(noteNumber.Groups[2].Value);
-				firstNum = int.Parse(noteNumber.Groups[1].Value);
-				secNum = int.Parse(noteNumber.Groups[2].Value);
-
-				//print(textBoxScript.allNoteLines[firstNum - 1].Length);
-				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
-
-			}
+			actNumberParse();
 			curSpacing = 10;
         }
         else
@@ -104,6 +95,9 @@ public class CanvasScript : MonoBehaviour {
 	}
 	
 	public void Parser(){
+		if(textBoxScript.didSwap == true){
+			actNumberParse();
+		}
 		noteContent = paperScript.noteContent;
         // 'lines' array gets every single line with spaces
 		lines = noteContent.Split(Environment.NewLine.ToCharArray());
@@ -284,12 +278,18 @@ public class CanvasScript : MonoBehaviour {
 		}
 	}
 	
-	public int noteMatch(){
-		
-		Match noteNumber = noteRegex.Match(noteName);
+	public void actNumberParse(){
+			Match noteNumber = noteRegex.Match(noteName);
 			if (noteNumber.Success){
-				secondNumber = int.Parse(noteNumber.Groups[2].Value);
+				//print(noteNumber.Groups[2].Value);
+				firstNum = int.Parse(noteNumber.Groups[1].Value);
+				secNum = int.Parse(noteNumber.Groups[2].Value);
+
+				//print(textBoxScript.allNoteLines[firstNum - 1].Length);
+				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
+				textBoxScript.editString = paperScript.noteContent;
+
 			}
-			return secondNumber;
+		//print(gameObject.transform.parent.name);
 	}
 }

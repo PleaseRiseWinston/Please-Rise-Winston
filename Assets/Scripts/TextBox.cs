@@ -39,6 +39,7 @@ public class TextBox : MonoBehaviour {
 	public string clickedWordID = "";
 	public string[][] allNoteLines;
 	public int[][] noteWordCount;
+	public bool didSwap = false;
 	
 	public int quickFixNum = 0;
 	
@@ -53,8 +54,6 @@ public class TextBox : MonoBehaviour {
 		
 		notes = GameObject.Find("Notes").gameObject;
 		
-		//loadFile ();
-		//allNoteLines[Act Number][Note Content]
 		for(int i = 0; i < notes.transform.childCount; i++){
 			//print(notes.transform.childCount);
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
@@ -304,6 +303,7 @@ public class TextBox : MonoBehaviour {
 			}
 		}
 		
+		didSwap = true;
 		//canvasScript.wordOptionClicked = false;
 	}
 }

@@ -74,7 +74,7 @@ public class PlayCutscene : MonoBehaviour {
                 yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
                 yield return StartCoroutine(HOTween.To(GameObject.Find("Cutscene1-4").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false).WaitForCompletion());
                 gameControllerScript.GetNote("1.1");
-                print("End Cutscene");
+                //print("End Cutscene");
                 break;
             case 2:
                 gameControllerScript.GetNote("2.1");
@@ -104,7 +104,7 @@ public class PlayCutscene : MonoBehaviour {
     {
 		Destroy(GameObject.Find("MenuPaper_Start"));
 		Destroy(GameObject.Find("MenuPaper_Exit"));
-        Debug.Log("Switching to Main");
+        //Debug.Log("Switching to Main");
         mainCamera.tag = "MainCamera";
         mainCamera.enabled = true;
         gameCamera.enabled = false;
@@ -121,7 +121,7 @@ public class PlayCutscene : MonoBehaviour {
     }
     public void SwitchToCutscene()
     {
-        Debug.Log("Switching to Cutscene");
+        //Debug.Log("Switching to Cutscene");
         mainCamera.enabled = false;
         gameCamera.enabled = false;
         cutsceneCamera.tag = "MainCamera";

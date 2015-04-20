@@ -127,7 +127,7 @@ public class LineScript : MonoBehaviour
 
     public void OnEnter(BaseEventData e)
     {
-        Debug.Log ("Over");
+        //Debug.Log ("Over");
         if (paperScript.focused)
         {
             StopAllCoroutines();
