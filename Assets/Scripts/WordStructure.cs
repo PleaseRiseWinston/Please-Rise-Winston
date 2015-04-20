@@ -17,7 +17,7 @@ public class WordStructure : MonoBehaviour {
     // Default Constructor
     public WordStructure()
     {
-        wordID = 0;
+        wordID = -1;
         current = "N/A";
         alt = "N/A";
         dependencies = -1;

@@ -25,8 +25,6 @@ public class WordScript : MonoBehaviour {
 
     private GameObject cameraController;
     private PlayCutscene playCutscene;
-	
-
 
 	//public bool wordOptionsUp = false;
 	public string[] wordOptions;

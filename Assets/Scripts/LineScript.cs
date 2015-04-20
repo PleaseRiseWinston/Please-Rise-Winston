@@ -84,7 +84,7 @@ public class LineScript : MonoBehaviour
 
         gameObject.AddComponent<HorizontalLayoutGroup>();
         HorizontalLayoutGroup layoutGroup = gameObject.GetComponent<HorizontalLayoutGroup>();
-        layoutGroup.spacing = 10;
+        layoutGroup.spacing = 3;
         layoutGroup.childForceExpandWidth = false;
 
         transform.localScale = new Vector3(0.05f, 0.05f, 1f);
@@ -102,8 +102,7 @@ public class LineScript : MonoBehaviour
             else
             {
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -1.3f), transform.rotation) as Text;
-				newWord.name = "wordID" + textBoxScript.quickFixNum;
-				textBoxScript.quickFixNum++;
+				//newWord.name = "wordID" + textBoxScript.wordStructCount;
                 newWord.transform.SetParent(transform);
                 newWord.transform.localScale = newWord.transform.localScale * 1;
             }
@@ -111,6 +110,13 @@ public class LineScript : MonoBehaviour
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
+			print(newWord.text);
+			foreach(WordStructure wordStruct in textBoxScript.structList){
+				if(newWord.text == wordStruct.current && textBoxScript.quickFixNum == wordStruct.wordID){
+					newWord.name = "wordID" + wordStruct.wordID;
+					textBoxScript.quickFixNum++;
+				}
+			}
 			
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(s == wordStruct.current && wordStruct.lineID == "N/A"){

@@ -27,7 +27,7 @@ public class CanvasScript : MonoBehaviour {
     private const char delimiterSpace = ' ';
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
     private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}|([^\w\s'])");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
@@ -116,7 +116,7 @@ public class CanvasScript : MonoBehaviour {
             {
 
 				//Creating newLine for paper on screen
-                GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.up * curSpacing), paper.transform.rotation) as GameObject;
+                GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.up * 14) + (paper.transform.up * curSpacing), paper.transform.rotation) as GameObject;
 				newLine.name = "Line" + linePosCount;
 				linePosCount++;
 				
@@ -207,13 +207,13 @@ public class CanvasScript : MonoBehaviour {
                     wordList.Add(word);
                 }
             }
+			
             lineScript.words = wordList.ToArray();
+			
 			if(!paperScript.start && !paperScript.exit){
 				//print(words.Length);
-				
-				foreach(string t in words){
+				foreach(string t in lineScript.words){
 					//print(t);
-
 					WordStructure wordStructure = new WordStructure();
 					Match secRes = braceRe.Match(t);
 					if(secRes.Success){
@@ -222,14 +222,14 @@ public class CanvasScript : MonoBehaviour {
 						//alt = alt
 						//dependencies[] = [wordID]
 						if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-							//print(secRes.Groups[1].Value);
-							//print(secRes.Groups[2].Value);
-							//print(secRes.Groups[3].Value);
-							//textBoxScript.dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
 							wordStructure.current = secRes.Groups[2].Value;
 							wordStructure.alt = secRes.Groups[3].Value;
-							//wordStructure.dependencies = textBoxScript.dependenciesList.ToArray();
 							wordStructure.dependencies = int.Parse(secRes.Groups[1].Value);
+							wordStructure.wordID = textBoxScript.wordStructCount;
+							textBoxScript.wordStructCount++;
+							wordNum++;
+							textBoxScript.structList.Add(wordStructure);					
+							displayWords.Add(wordStructure.current);
 						}
 						//Assigns current word and alternate word
 						//{word|alt}
@@ -240,19 +240,26 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.alt = secRes.Groups[6].Value;
 							wordStructure.wordWeightCurr = int.Parse(secRes.Groups[5].Value);
 							wordStructure.wordWeightAlt = int.Parse(secRes.Groups[7].Value);
-							//print("Dep = N/A");
+							wordStructure.wordID = textBoxScript.wordStructCount;
+							textBoxScript.wordStructCount++;
+							wordNum++;
+							textBoxScript.structList.Add(wordStructure);					
+							displayWords.Add(wordStructure.current);
+						}
+						else if(secRes.Groups[8].Value != ""){
+							wordStructure.current = secRes.Groups[8].Value;
+							displayWords.Add(wordStructure.current);
 						}
 					}
 					else{
 						wordStructure.current = t;
+						wordStructure.wordID = textBoxScript.wordStructCount;
+						textBoxScript.wordStructCount++;
+						wordNum++;
+						textBoxScript.structList.Add(wordStructure);					
+						displayWords.Add(wordStructure.current);
 					}
-					wordStructure.wordID = textBoxScript.wordStructCount;
-					//print(wordStructure.current + " " + wordStructure.wordID);
-					textBoxScript.wordStructCount++;
-					wordNum++;
-					textBoxScript.structList.Add(wordStructure);
-					
-					displayWords.Add(wordStructure.current);
+
 					if (arrayCount == words.Length - 1 && lineCount != lineCounter){
 						wordStructure.newLine = true;
 						wordStructure.lastWord = false;
@@ -269,7 +276,6 @@ public class CanvasScript : MonoBehaviour {
 				}
 				lineScript.words = displayWords.ToArray();
 			}
-
 			lineCounter++;
         }
 		
