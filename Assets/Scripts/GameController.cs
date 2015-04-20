@@ -23,22 +23,21 @@ public class GameController : MonoBehaviour
 
     void Start ()
     {
+        backgrounds = GameObject.FindGameObjectWithTag("Backgrounds").gameObject;
+        notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
+        backgroundArray = new GameObject[backgrounds.transform.childCount];
+
         totalWeight = 0;
 
         // Defaults current Act and Note to 1, 1
         // 'curAct - 1' accounts for indexing convention
         curAct = 1;
-        curNoteID = 1;
-        curBackground = GameObject.Find("game_bg");
+        curNoteID = notes.transform.GetChild(curAct - 1).childCount;
+        curBackground = GameObject.FindGameObjectWithTag("GameBackground");
 
         // Declarations for alpha states
         transparent = new Color(1f, 1f, 1f, 0f);
         solid = new Color(1f, 1f, 1f, 1f);
-
-        backgrounds = GameObject.FindGameObjectWithTag("Backgrounds").gameObject;
-        notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
-
-        backgroundArray = new GameObject[backgrounds.transform.childCount];
 
         // Insert all backgrounds into array
         for (int i = 0; i < backgrounds.transform.childCount; i++)
@@ -104,7 +103,7 @@ public class GameController : MonoBehaviour
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         StartCoroutine(MoveToTray());
 
-        curNoteID++;
+        curNoteID--;
         UpdateCurNote(curNoteID);
 
         if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')

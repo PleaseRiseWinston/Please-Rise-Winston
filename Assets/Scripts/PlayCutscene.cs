@@ -73,7 +73,7 @@ public class PlayCutscene : MonoBehaviour {
                 HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
                 yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
                 yield return StartCoroutine(HOTween.To(GameObject.Find("Cutscene1-4").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false).WaitForCompletion());
-                gameControllerScript.GetNote("1.1");
+                gameControllerScript.GetNote("1." + GameObject.FindGameObjectWithTag("Notes").transform.GetChild(gameControllerScript.curAct - 1).childCount);
                 print("End Cutscene");
                 break;
             case 2:

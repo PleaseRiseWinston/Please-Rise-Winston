@@ -43,7 +43,7 @@ public class TextBox : MonoBehaviour {
 	public int quickFixNum = 0;
 	
 	public GameObject notes;
-	
+
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					       //makes directory into string
@@ -51,10 +51,8 @@ public class TextBox : MonoBehaviour {
 		allNoteLines = new string[5][];
 		noteWordCount = new int[5][];
 		
-		notes = GameObject.Find("Notes").gameObject;
+		notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
 		
-		//loadFile ();
-		//allNoteLines[Act Number][Note Content]
 		for(int i = 0; i < notes.transform.childCount; i++){
 			//print(notes.transform.childCount);
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
