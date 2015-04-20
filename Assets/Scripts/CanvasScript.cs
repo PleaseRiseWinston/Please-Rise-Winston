@@ -154,40 +154,40 @@ public class CanvasScript : MonoBehaviour {
                         // Parse *wordID*{word|alt} with and without punctuation
 						else if (result.Groups[2].Value != "" && result.Groups[3].Value != ""){
 							wordList.Add(result.Groups[2].Value);
-							wordList.Add(result.Groups[3].Value + " ");
+							wordList.Add(result.Groups[3].Value);
 						}
 						else if (result.Groups[4].Value != ""){
-							wordList.Add(result.Groups[4].Value + " ");
+							wordList.Add(result.Groups[4].Value);
 						}
 						//Parse {word|alt} with and without punctuation
 						else if (result.Groups[5].Value != "" && result.Groups[6].Value != "")
 						{
 							wordList.Add(result.Groups[5].Value);
-							wordList.Add(result.Groups[6].Value + " ");
+							wordList.Add(result.Groups[6].Value);
 						}
 						else if (result.Groups[7].Value != ""){
-							wordList.Add(result.Groups[7].Value + " ");
+							wordList.Add(result.Groups[7].Value);
 						}
 						// Parse conjunction + punctuation
 						else if (result.Groups[8].Value != "" && result.Groups[9].Value != ""){
 							wordList.Add(result.Groups[8].Value);
-							wordList.Add(result.Groups[9].Value + " ");
+							wordList.Add(result.Groups[9].Value);
 						}
 						// Parse normal word + punctuation
 						else if (result.Groups[10].Value != "" && result.Groups[11].Value != "")
 						{
 							wordList.Add(result.Groups[10].Value);
-							wordList.Add(result.Groups[11].Value + " ");
+							wordList.Add(result.Groups[11].Value);
 						}
 						// Parse conjunction
 						else if (result.Groups[12].Value != "")
 						{
-							wordList.Add(result.Groups[12].Value + " ");
+							wordList.Add(result.Groups[12].Value);
 						}
                     }
                     else
                     {
-                        wordList.Add(word + " ");
+                        wordList.Add(word);
                     }
                 }
 
@@ -260,11 +260,11 @@ public class CanvasScript : MonoBehaviour {
 						displayWords.Add(wordStructure.current);
 					}
 
-					if (arrayCount == words.Length - 1 && lineCount != lineCounter){
+					if (arrayCount == lineScript.words.Length - 1 && lineCount != lineCounter){
 						wordStructure.newLine = true;
 						wordStructure.lastWord = false;
 					}
-					else if (arrayCount == words.Length -1 && lineCount == lineCounter) {
+					else if (arrayCount == lineScript.words.Length -1 && lineCount == lineCounter) {
 						wordStructure.newLine = false;
 						wordStructure.lastWord = true;
 					}

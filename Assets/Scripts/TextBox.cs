@@ -118,7 +118,7 @@ public class TextBox : MonoBehaviour {
 				print (w);
 			} */
 			foreach(WordStructure wordStruct in structList){
-				print(wordStruct.current + " " + wordStruct.wordID);
+				print(wordStruct.current + wordStruct.wordID);
 			}
 		}
 	}
