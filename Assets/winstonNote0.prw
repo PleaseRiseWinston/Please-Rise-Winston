@@ -1,6 +1,4 @@
-Welcome to case number
-1580.43F, translator.
-Today’s case involves one
-Winston who resides in
-Westholt. He is currently
-charged with: Treason. @J
+{Hello^1|Goodbye^2} this is a test.
+I want to hi sure that
+{things^1|others^2} work in this. *11*{Shall|May}
+we cross *0*{make|destroy} fingers?
