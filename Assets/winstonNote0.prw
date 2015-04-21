@@ -3,9 +3,9 @@ I want to hi sure that
 {things^1|others^2} work in this. *11*{Shall|May}
 we cross *0*{make|destroy} fingers?
 he
+ho
+ja
 he
-he
 ho
-ho
-ho
-ja ja ja
+ha
+ja ho he.

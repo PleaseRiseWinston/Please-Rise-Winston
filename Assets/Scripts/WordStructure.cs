@@ -13,6 +13,7 @@ public class WordStructure : MonoBehaviour {
 	public bool isClicked;
 	public int wordWeightCurr;
 	public int wordWeightAlt;
+	public bool isPunctuation;
 
     // Default Constructor
     public WordStructure()
@@ -27,11 +28,13 @@ public class WordStructure : MonoBehaviour {
 		isClicked = false;
 		wordWeightCurr = 0;
 		wordWeightAlt = 0;
+		isPunctuation = false;
     }
 
     // Non-default(?) Constructor
-    public WordStructure(int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, bool isClicked, int wordWeightCurr, int wordWeightAlt)
+    public WordStructure(bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, bool isClicked, int wordWeightCurr, int wordWeightAlt)
     {
+		this.isPunctuation = isPunctuation;
         this.wordID = wordID;
         this.current = current;
         this.alt = alt;

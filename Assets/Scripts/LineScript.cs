@@ -122,6 +122,11 @@ public class LineScript : MonoBehaviour
 				if(s == wordStruct.current && wordStruct.lineID == "N/A"){
 					wordStruct.lineID = gameObject.name;
 				}
+				
+				if(newWord.text == wordStruct.current && textBoxScript.quickFixNum == wordStruct.wordID){
+					newWord.name = "wordID" + wordStruct.wordID;
+					textBoxScript.quickFixNum++;
+				}
 			}
             
             lastWordEnd += newWord.GetComponent<Transform>().right.x;

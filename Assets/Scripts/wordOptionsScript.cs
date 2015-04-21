@@ -19,8 +19,8 @@ public class wordOptionsScript : MonoBehaviour {
 	GameObject gameController;
 	GameController gameControllerScript;
 	
-	int startStringIndex = 0;
-	int endStringIndex = -1;
+	// int startStringIndex = 0;
+	// int endStringIndex = -1;
 	int currAct = 0;
 	
 	void Start(){
@@ -41,6 +41,8 @@ public class wordOptionsScript : MonoBehaviour {
 		currAct = gameControllerScript.curAct - 1;
 		
 		if(gameObject.transform.name == "WordOption2"){
+			int startStringIndex = 0;
+			int endStringIndex = -1;
 			textBoxScript.quickFixNum = 0;
 			//canvasScript.wordOptionClicked = true;
 			
@@ -49,12 +51,16 @@ public class wordOptionsScript : MonoBehaviour {
 			textBoxScript.editString = "";
 			canvasScript.noteContent = "";
 			textBoxScript.wordStructCount = 0;
+			canvasScript.wordNum = 0;
 			
-			for(int i = 0; i < textBoxScript.noteWordCount[currAct].Length; i++){
+			//print(textBoxScript.noteWordCount[currAct].Length);
+			
+			for(int i = 0; i <= textBoxScript.noteWordCount[currAct].Length - 1; i++){
 				if(i > 0){
 					startStringIndex = endStringIndex + 1;
 				}
 				
+				//print(textBoxScript.noteWordCount[currAct][i]);
 				endStringIndex += textBoxScript.noteWordCount[currAct][i];
 				
 				for(int j = startStringIndex; j <= endStringIndex; j++){
@@ -108,27 +114,24 @@ public class wordOptionsScript : MonoBehaviour {
 			}
 			
 			// print(textBoxScript.allNoteLines[currAct][0]);
-			// print(textBoxScript.allNoteLines[currAct][1]);
+			//print(textBoxScript.allNoteLines[currAct][1]);
 			// print(textBoxScript.allNoteLines[currAct][2]);
-			
-			startStringIndex = 0;			
 			
 			textBoxScript.structList.Clear();
 			canvasScript.displayWords.Clear();
 			//lineScript.words = null;		
 			
-			foreach(string s in canvasScript.lineIDList){
-				//print("destroying");
-				Destroy(GameObject.Find(s));
-			}
 			canvasScript.curSpacing = 10;
-			canvasScript.linePosCount = 0;
 			
-			//print(canvasScript.noteContent);
-			//canvasScript.Parser();
+			foreach(GameObject currLine in GameObject.FindGameObjectsWithTag("Line")){
+				Destroy(currLine);
+			}
+			
+			//Reloads notes pre-parsed.
 			for(int k = textBoxScript.allNoteLines[currAct].Length - 1; k >= 0; k--){
 				string noteName = gameControllerScript.noteArray[currAct][k].name;
 				//print(noteName);
+				
 				GameObject.Find(noteName).transform.GetChild(0).GetComponent<CanvasScript>().Parser();
 			}
 			//canvasScript.CreateNewLine();
@@ -152,7 +155,7 @@ public class wordOptionsScript : MonoBehaviour {
 		canvas = GameObject.Find("GameCanvas");
 		canvasScript = canvas.GetComponent<CanvasScript>();
 		
-		line = GameObject.Find("Line0");
-		lineScript = line.GetComponent<LineScript>();
+		// line = GameObject.Find("Line0");
+		// lineScript = line.GetComponent<LineScript>();
 	}
 }

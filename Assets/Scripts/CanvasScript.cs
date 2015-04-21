@@ -78,23 +78,10 @@ public class CanvasScript : MonoBehaviour {
             curSpacing = 0;
         }
 		
-		
 		Parser();
-		
-		// Note's contents are carried over from parent paper object and parsed
-		//linePosCount = 1;
-        //Debug.Log(noteContent);
-
-        /*
-        // Debugging
-        for (int i = 0; i < wordList.Count; i++)
-        {
-            print(wordList[i]);
-        }
-        */
 	}
 	
-	public void Parser(){
+	public void Parser(){		
 		if(textBoxScript.didSwap == true){
 			actNumberParse();
 		}
@@ -107,6 +94,9 @@ public class CanvasScript : MonoBehaviour {
 		
 		//print(lines[0]);
 		
+		linePosCount = 0;
+		wordNum = 0;
+		
 		foreach (string s in lines)
         {
 			int arrayCount = 0;
@@ -118,6 +108,7 @@ public class CanvasScript : MonoBehaviour {
 				//Creating newLine for paper on screen
                 GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.up * 14) + (paper.transform.up * curSpacing), paper.transform.rotation) as GameObject;
 				newLine.name = "Line" + linePosCount;
+				newLine.tag = "Line";
 				linePosCount++;
 				
 				lineIDList.Add(newLine.name);
@@ -210,6 +201,7 @@ public class CanvasScript : MonoBehaviour {
 			
             lineScript.words = wordList.ToArray();
 			
+			/********** GIVING WORDS A WORD STRUCTURE **********/
 			if(!paperScript.start && !paperScript.exit){
 				//print(words.Length);
 				foreach(string t in lineScript.words){
@@ -228,7 +220,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							textBoxScript.wordStructCount++;
 							wordNum++;
-							textBoxScript.structList.Add(wordStructure);					
+							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
 						}
 						//Assigns current word and alternate word
@@ -243,12 +235,16 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							textBoxScript.wordStructCount++;
 							wordNum++;
-							textBoxScript.structList.Add(wordStructure);					
+							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
 						}
+						//punctuation
 						else if(secRes.Groups[8].Value != ""){
 							wordStructure.current = secRes.Groups[8].Value;
+							wordStructure.isPunctuation = true;
+							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
+							wordNum++;
 						}
 					}
 					else{
