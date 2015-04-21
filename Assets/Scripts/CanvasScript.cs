@@ -96,6 +96,7 @@ public class CanvasScript : MonoBehaviour {
 		
 		linePosCount = 0;
 		wordNum = 0;
+		curSpacing = 10;
 		
 		foreach (string s in lines)
         {

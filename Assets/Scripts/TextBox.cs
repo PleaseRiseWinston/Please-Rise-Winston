@@ -44,6 +44,8 @@ public class TextBox : MonoBehaviour {
 	public int quickFixNum = 0;
 	
 	public GameObject notes;
+	public GameObject gameController;
+	public GameController gameControllerScript;
 
 	void Start(){
 		info = new DirectoryInfo(Application.dataPath);
@@ -53,6 +55,8 @@ public class TextBox : MonoBehaviour {
 		noteWordCount = new int[5][];
 		
 		notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
+		gameController = GameObject.FindGameObjectWithTag("GameController").gameObject;
+		gameControllerScript = gameController.GetComponent<GameController>();
 		
 		for(int i = 0; i < notes.transform.childCount; i++){
 			//print(notes.transform.childCount);
@@ -118,7 +122,7 @@ public class TextBox : MonoBehaviour {
 				print (w);
 			} */
 			foreach(WordStructure wordStruct in structList){
-				print(wordStruct.current + wordStruct.wordID);
+				print(wordStruct.current + wordStruct.dependencies);
 			}
 		}
 	}
@@ -252,57 +256,32 @@ public class TextBox : MonoBehaviour {
 	} */
 	
 	public void Swap(){
-		//print("in swap");
-		int dependerIndex = 0;
-		foreach(string line in canvasScript.lines){
-			words = line.Split(delimiterSpace);
-			foreach (string word in words) {
-				foreach ( WordStructure i in structList) {
-					if (clickedWordID == "wordID"+ i.wordID){
-						Match swapResult = braceRe.Match(word);
-						//print(clickedWordID);
-						
-						if(swapResult.Success){
-							if(swapResult.Groups[1].Value != ""){
-								if(dependerIndex == int.Parse(swapResult.Groups[1].Value)){
-									//print(swapResult.Groups[1].Value);
-									foreach(WordStructure wStruct in structList){
-										if(wStruct.current == swapResult.Groups[2].Value && wStruct.alt == swapResult.Groups[3].Value ){
-											
-											//print("swapping " + wStruct.current);
-											//structListIndex = i;
-											string tempString = wStruct.current;
-											wStruct.current = wStruct.alt;
-											wStruct.alt = tempString;
-											//#TYBM
-										}
-									}
-									
-								}
+		int currAct = gameControllerScript.curAct - 1;
+		int currActTotalWords = 0;
+		int IDofClickedWord = 0;
 
-							}
-							else if(swapResult.Groups[4].Value != "" && swapResult.Groups[5].Value != "" && swapResult.Groups[6].Value != "" && swapResult.Groups[7].Value != ""){
-								foreach(WordStructure wStruct in structList){
-									if(wStruct.current == swapResult.Groups[4].Value && wStruct.alt == swapResult.Groups[6].Value && wStruct.isClicked){
-										dependerIndex = wStruct.wordID;
-										//print("depIndex " + dependerIndex);
-										//print("swipping2 " + wStruct.current);
-										string tempString = wStruct.current;
-										wStruct.current = wStruct.alt;
-										wStruct.alt = tempString;
-										
-										int tempNum = wStruct.wordWeightCurr;
-										wStruct.wordWeightCurr = wStruct.wordWeightAlt;
-										wStruct.wordWeightAlt = tempNum;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+		for(int i = 0; i <= noteWordCount[currAct].Length - 1; i++){
+			currActTotalWords += noteWordCount[currAct][i];
 		}
 		
+		for(int j = 0; j < currActTotalWords; j++){
+			if(clickedWordID == "wordID" + structList[j].wordID){
+				IDofClickedWord = structList[j].wordID;
+				string tempString = structList[j].current;
+				structList[j].current = structList[j].alt;
+				structList[j].alt = tempString;
+				
+				int tempNum = structList[j].wordWeightCurr;
+				structList[j].wordWeightCurr = structList[j].wordWeightAlt;
+				structList[j].wordWeightAlt = tempNum;
+			}
+			else if(IDofClickedWord == structList[j].dependencies){
+				string tempString = structList[j].current;
+				structList[j].current = structList[j].alt;
+				structList[j].alt = tempString;
+			}
+		}
+
 		didSwap = true;
 		//canvasScript.wordOptionClicked = false;
 	}
