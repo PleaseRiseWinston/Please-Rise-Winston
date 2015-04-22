@@ -114,11 +114,12 @@ public class WordScript : MonoBehaviour {
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(curText == wordStruct.current){
 					if(wordStruct.alt != "N/A" && wordStruct.dependencies == -1){
+						string noteParent = transform.parent.parent.parent.name;
 						textBoxScript.clickedWordID = this.gameObject.name;
 						wordStruct.isClicked = true;
 						wordOptions[0] = wordStruct.current;
 						wordOptions[1] = wordStruct.alt;
-						createText();
+						createText(noteParent);
 					}
 				}
 			}
@@ -128,7 +129,7 @@ public class WordScript : MonoBehaviour {
         }
     }
 	
-	void createText(){		
+	void createText(string noteParent){		
 		int i = 1;
 		//wordOptionsUp = true;
 		textPrefab = GameObject.Find("wordOptionMesh");
@@ -144,7 +145,7 @@ public class WordScript : MonoBehaviour {
 			GameObject textInstance;
 			textInstance = Instantiate(textPrefab, new Vector3(currX,currY,currZ), Quaternion.identity) as GameObject;
 			textInstance.name = "WordOption" + i;
-			textInstance.transform.parent = GameObject.Find(transform.parent.parent.name).transform;
+			textInstance.transform.parent = GameObject.Find(noteParent).transform;
 			textInstance.GetComponent<TextMesh>().text = w;
 			textInstance.AddComponent<BoxCollider2D>();
 			//currX = textInstance.transform.position.x;

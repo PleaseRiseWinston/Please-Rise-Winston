@@ -5,19 +5,14 @@ using System.Collections;
 
 public class WordStructure : MonoBehaviour {
 
-    public int wordID;
+    public int wordID, noteID, dependencies, wordWeightCurr, wordWeightAlt;
     public string current, alt, lineID;
-    public int dependencies;
-	public bool newLine;
-	public bool lastWord;
-	public bool isClicked;
-	public int wordWeightCurr;
-	public int wordWeightAlt;
-	public bool isPunctuation;
+	public bool newLine, lastWord, isPunctuation, isClicked;
 
     // Default Constructor
     public WordStructure()
     {
+		isClicked = false;
         wordID = -1;
         current = "N/A";
         alt = "N/A";
@@ -25,15 +20,16 @@ public class WordStructure : MonoBehaviour {
 		lineID = "N/A";
 		newLine = false;
 		lastWord = false;
-		isClicked = false;
 		wordWeightCurr = 0;
 		wordWeightAlt = 0;
 		isPunctuation = false;
+		noteID = 0;
     }
 
     // Non-default(?) Constructor
-    public WordStructure(bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, bool isClicked, int wordWeightCurr, int wordWeightAlt)
+    public WordStructure(bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, int wordWeightCurr, int wordWeightAlt, bool isClicked)
     {
+		this.noteID = noteID;
 		this.isPunctuation = isPunctuation;
         this.wordID = wordID;
         this.current = current;
@@ -42,8 +38,8 @@ public class WordStructure : MonoBehaviour {
 		this.lineID = lineID;
 		this.newLine = newLine;
 		this.lastWord = lastWord;
-		this.isClicked = isClicked;
 		this.wordWeightCurr = wordWeightCurr;
 		this.wordWeightAlt = wordWeightAlt;
+		this.isClicked = isClicked;
     }
 }

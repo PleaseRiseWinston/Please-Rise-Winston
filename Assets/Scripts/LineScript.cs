@@ -44,6 +44,9 @@ public class LineScript : MonoBehaviour
 	
 	public GameObject textBox;
 	public TextBox textBoxScript;
+	
+	public GameObject gameController;
+	public GameController gameControllerScript;
 
     /*** 3DText Attempt ***/
 
@@ -56,6 +59,9 @@ public class LineScript : MonoBehaviour
 		
         defaultColor = Color.black;
         highlightColor = Color.red;
+		
+		gameController = GameObject.FindGameObjectWithTag("GameController").gameObject;
+		gameControllerScript = gameController.GetComponent<GameController>();
 
         /*
          * 'paper' references the Paper object found as the parent to Canvas
@@ -88,7 +94,7 @@ public class LineScript : MonoBehaviour
         layoutGroup.childForceExpandWidth = false;
 
         transform.localScale = new Vector3(0.05f, 0.05f, 1f);
-
+		
         foreach (string s in words)
         {
             Text newWord;
@@ -102,30 +108,19 @@ public class LineScript : MonoBehaviour
             else
             {
                 newWord = Instantiate(word, paper.transform.position + (paper.transform.forward * -1.3f), transform.rotation) as Text;
-				//newWord.name = "wordID" + textBoxScript.wordStructCount;
                 newWord.transform.SetParent(transform);
                 newWord.transform.localScale = newWord.transform.localScale * 1;
+				newWord.name = "wordID" + textBoxScript.structList[textBoxScript.quickFixNum].wordID;
+				textBoxScript.quickFixNum++;
             }
 
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
-			
-			foreach(WordStructure wordStruct in textBoxScript.structList){
-				if(newWord.text == wordStruct.current && textBoxScript.quickFixNum == wordStruct.wordID){
-					newWord.name = "wordID" + wordStruct.wordID;
-					textBoxScript.quickFixNum++;
-				}
-			}
-			
+					
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(s == wordStruct.current && wordStruct.lineID == "N/A"){
 					wordStruct.lineID = gameObject.name;
-				}
-				
-				if(newWord.text == wordStruct.current && textBoxScript.quickFixNum == wordStruct.wordID){
-					newWord.name = "wordID" + wordStruct.wordID;
-					textBoxScript.quickFixNum++;
 				}
 			}
             

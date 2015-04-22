@@ -69,6 +69,8 @@ public class TextBox : MonoBehaviour {
 			}
 		}
 		editString = allNoteLines[0][0];
+		
+		//print(allNoteLines[0][0]);
 	}
 	
 	void Update(){
@@ -118,12 +120,11 @@ public class TextBox : MonoBehaviour {
 			// }
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			/* foreach(string w in canvasScript.displayWords){
-				print (w);
-			} */
 			foreach(WordStructure wordStruct in structList){
-				print(wordStruct.current + wordStruct.dependencies);
+				 print(wordStruct.current + wordStruct.wordID);
 			}
+			// print(allNoteLines[0][0]);
+			// print(allNoteLines[0][1]);
 		}
 	}
 	
@@ -155,108 +156,10 @@ public class TextBox : MonoBehaviour {
 			}
 		}
 	}
-
-/* 	void Parser () {
-		lines = editString.Split(delimiterNewline);	
-		foreach (string s in lines)
-		{			
-			words = s.Split(delimiterSpace);
-			
-			// Clears the list if there is any content to make room for new line
-			wordList.Clear();
-			
-			// Each word entry is parsed via regex
-			foreach (string word in words)
-			{
-				Match result = re.Match(word);
-				
-				if (result.Success)
-				{						
-					// Parse *wordID*{word|alt} with and without punctuation
-					if (result.Groups[1].Value != "" && result.Groups[2].Value != ""){
-						wordList.Add(result.Groups[1].Value);
-						wordList.Add(result.Groups[2].Value + " ");
-					}
-					else if (result.Groups[3].Value != ""){
-						wordList.Add(result.Groups[3].Value + " ");
-					}
-					//Parse {word|alt} with and without punctuation
-					else if (result.Groups[4].Value != "" && result.Groups[5].Value != "")
-					{
-						wordList.Add(result.Groups[4].Value);
-						wordList.Add(result.Groups[5].Value + " ");
-					}
-					else if (result.Groups[6].Value != ""){
-						wordList.Add(result.Groups[6].Value + " ");
-					}
-					// Parse conjunction + punctuation
-					else if (result.Groups[7].Value != "" && result.Groups[8].Value != ""){
-						wordList.Add(result.Groups[7].Value);
-						wordList.Add(result.Groups[8].Value + " ");
-					}
-					// Parse normal word + punctuation
-					else if (result.Groups[9].Value != "" && result.Groups[10].Value != "")
-					{
-						wordList.Add(result.Groups[9].Value);
-						wordList.Add(result.Groups[10].Value + " ");
-					}
-					// Parse conjunction
-					else if (result.Groups[11].Value != "")
-					{
-						wordList.Add(result.Groups[11].Value + " ");
-					}
-				}
-				else
-				{
-					wordList.Add(word + " ");
-				}
-			}
-			
-			// lineScript of child gets this line's wordList in array form
-			words = wordList.ToArray();
-
-            foreach(string t in words){
-                WordStructure wordStructure = new WordStructure();
-				Match secRes = braceRe.Match(t);
-				if(secRes.Success){
-					//*wordID*{word|alt}
-					//current = word
-					//alt = alt
-					//dependencies[] = [wordID]
-					if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-						//dependenciesList.Add(int.Parse(secRes.Groups[1].Value));
-						wordStructure.current = secRes.Groups[2].Value;
-						wordStructure.alt = secRes.Groups[3].Value;
-						//wordStructure.dependencies = dependenciesList.ToArray();
-						
-					}
-					//Assigns current word and alternate word
-					//{word|alt}
-					//current = word
-					//alt = alt
-					else if (secRes.Groups[4].Value != "" && secRes.Groups[5].Value != ""){
-						wordStructure.current = secRes.Groups[4].Value;
-						wordStructure.alt = secRes.Groups[5].Value;
-						//print("Dep = N/A");
-					}
-				}
-				wordStructure.wordID = wordStructCount;
-				wordStructCount++;
-
-                // Debug.Log(t + " word ID:" + wordStructure.wordID + " Current word: " + wordStructure.current + " Alt word: " + wordStructure.alt);
-				// if(wordStructure.dependencies != null){
-					// foreach(int num in wordStructure.dependencies){
-						// Debug.Log("Dependency " + num);
-					// }
-				// }
-				
-				structList.Add(wordStructure);
-            }
-        }
-	} */
 	
 	public void Swap(){
 		int currAct = gameControllerScript.curAct - 1;
+		int clickedWordCurrNote = 0;
 		int currActTotalWords = 0;
 		int IDofClickedWord = 0;
 
@@ -265,8 +168,10 @@ public class TextBox : MonoBehaviour {
 		}
 		
 		for(int j = 0; j < currActTotalWords; j++){
-			if(clickedWordID == "wordID" + structList[j].wordID){
+			if(clickedWordID == "wordID" + structList[j].wordID && structList[j].alt != "N/A" && structList[j].isClicked){
 				IDofClickedWord = structList[j].wordID;
+				clickedWordCurrNote = structList[j].noteID;
+				
 				string tempString = structList[j].current;
 				structList[j].current = structList[j].alt;
 				structList[j].alt = tempString;
@@ -275,13 +180,12 @@ public class TextBox : MonoBehaviour {
 				structList[j].wordWeightCurr = structList[j].wordWeightAlt;
 				structList[j].wordWeightAlt = tempNum;
 			}
-			else if(IDofClickedWord == structList[j].dependencies){
+			else if(IDofClickedWord == structList[j].dependencies && clickedWordCurrNote == structList[j].noteID){
 				string tempString = structList[j].current;
 				structList[j].current = structList[j].alt;
 				structList[j].alt = tempString;
 			}
 		}
-
 		didSwap = true;
 		//canvasScript.wordOptionClicked = false;
 	}

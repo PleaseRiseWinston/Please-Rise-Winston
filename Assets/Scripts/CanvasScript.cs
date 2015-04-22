@@ -26,8 +26,8 @@ public class CanvasScript : MonoBehaviour {
     private const char delimiterNewline = '\n';
     private const char delimiterSpace = ' ';
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
-    private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}|([^\w\s'])");
+    private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
+	private Regex braceRe = new Regex(@"\*([0-9])\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}|([^\w\s'])");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
@@ -50,8 +50,7 @@ public class CanvasScript : MonoBehaviour {
 	public char submitPaperTo;
 
 	public string noteName;
-	public int secondNumber;
-	public int wordNum = 0;
+	public int wordNum;
 	public int firstNum = 0;
 	public int secNum = 0;
 	
@@ -85,6 +84,7 @@ public class CanvasScript : MonoBehaviour {
 		if(textBoxScript.didSwap == true){
 			actNumberParse();
 		}
+		
 		noteContent = paperScript.noteContent;
         // 'lines' array gets every single line with spaces
 		lines = noteContent.Split(Environment.NewLine.ToCharArray());
@@ -92,11 +92,10 @@ public class CanvasScript : MonoBehaviour {
 		int lineCount = lines.Length;
 		int lineCounter = 1;
 		
-		//print(lines[0]);
-		
 		linePosCount = 0;
 		wordNum = 0;
 		curSpacing = 10;
+		textBoxScript.wordStructCount = 0;
 		
 		foreach (string s in lines)
         {
@@ -210,15 +209,18 @@ public class CanvasScript : MonoBehaviour {
 					WordStructure wordStructure = new WordStructure();
 					Match secRes = braceRe.Match(t);
 					if(secRes.Success){
-						//*wordID*{word|alt}
+						//*(noteID)*(wordID)*{(word)|(alt)}
 						//current = word
 						//alt = alt
 						//dependencies[] = [wordID]
-						if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != ""){
-							wordStructure.current = secRes.Groups[2].Value;
-							wordStructure.alt = secRes.Groups[3].Value;
-							wordStructure.dependencies = int.Parse(secRes.Groups[1].Value);
+						if (secRes.Groups[1].Value != "" && secRes.Groups[2].Value != "" && secRes.Groups[3].Value != "" &&  secRes.Groups[4].Value != ""){
+							wordStructure.current = secRes.Groups[3].Value;
+							wordStructure.alt = secRes.Groups[4].Value;
+							wordStructure.noteID = int.Parse(secRes.Groups[1].Value);
+							wordStructure.dependencies = int.Parse(secRes.Groups[2].Value);
 							wordStructure.wordID = textBoxScript.wordStructCount;
+							wordStructure.noteID = secNum;
+							
 							textBoxScript.wordStructCount++;
 							wordNum++;
 							textBoxScript.structList.Add(wordStructure);
@@ -228,21 +230,25 @@ public class CanvasScript : MonoBehaviour {
 						//{word|alt}
 						//current = word
 						//alt = alt
-						else if (secRes.Groups[4].Value != "" && int.Parse(secRes.Groups[5].Value) != -1 && secRes.Groups[6].Value != "" && int.Parse(secRes.Groups[7].Value) != -1){
-							wordStructure.current = secRes.Groups[4].Value;
-							wordStructure.alt = secRes.Groups[6].Value;
-							wordStructure.wordWeightCurr = int.Parse(secRes.Groups[5].Value);
-							wordStructure.wordWeightAlt = int.Parse(secRes.Groups[7].Value);
+						else if (secRes.Groups[5].Value != "" && int.Parse(secRes.Groups[6].Value) != -1 && secRes.Groups[7].Value != "" && int.Parse(secRes.Groups[8].Value) != -1){
+							wordStructure.current = secRes.Groups[5].Value;
+							wordStructure.alt = secRes.Groups[7].Value;
+							wordStructure.wordWeightCurr = int.Parse(secRes.Groups[6].Value);
+							wordStructure.wordWeightAlt = int.Parse(secRes.Groups[8].Value);
 							wordStructure.wordID = textBoxScript.wordStructCount;
+							wordStructure.noteID = secNum;
+							
 							textBoxScript.wordStructCount++;
 							wordNum++;
 							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
 						}
 						//punctuation
-						else if(secRes.Groups[8].Value != ""){
-							wordStructure.current = secRes.Groups[8].Value;
+						else if(secRes.Groups[9].Value != ""){
+							wordStructure.current = secRes.Groups[9].Value;
 							wordStructure.isPunctuation = true;
+							wordStructure.noteID = secNum;
+							
 							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
 							wordNum++;
@@ -251,6 +257,8 @@ public class CanvasScript : MonoBehaviour {
 					else{
 						wordStructure.current = t;
 						wordStructure.wordID = textBoxScript.wordStructCount;
+						wordStructure.noteID = secNum;
+						
 						textBoxScript.wordStructCount++;
 						wordNum++;
 						textBoxScript.structList.Add(wordStructure);					
@@ -277,7 +285,7 @@ public class CanvasScript : MonoBehaviour {
         }
 		
 		if(noteContent != "Start" && noteContent != "Exit"){
-			textBoxScript.noteWordCount[firstNum -1][textBoxScript.noteWordCount[firstNum - 1].Length - secNum] = wordNum;
+			textBoxScript.noteWordCount[firstNum -1][secNum - 1] = wordNum;
 		}
 	}
 	
@@ -288,10 +296,10 @@ public class CanvasScript : MonoBehaviour {
 				firstNum = int.Parse(noteNumber.Groups[1].Value);
 				secNum = int.Parse(noteNumber.Groups[2].Value);
 
-				//print(textBoxScript.allNoteLines[firstNum - 1].Length);
-				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
+				//paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
+				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][secNum - 1];
+				print(paperScript.noteContent);
 				textBoxScript.editString = paperScript.noteContent;
-
 			}
 		//print(gameObject.transform.parent.name);
 	}
