@@ -1,9 +1,7 @@
-The Department of Peace
-has nominated Prosecutor
-Myers to seek out the
-truth of the matter.
-Please note that one of
-our trusted judges will
-be monitoring this case.
-She currently *2*0*{resides|is}
-behind you. @J
+Some translations may be
+simple and have a clear
+answer: The sky {red^1|blue^2}.
+The above statement is
+*2*12*{false|true}
+
+
