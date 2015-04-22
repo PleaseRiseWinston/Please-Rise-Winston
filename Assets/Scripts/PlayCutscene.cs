@@ -93,18 +93,16 @@ public class PlayCutscene : MonoBehaviour {
 
         cutsceneAudio.Stop();
         playingCutscene = false;
-        //SwitchToGame();
-        Vector3 gameCameraPos = gameCamera.transform.position;
-        mainCamera.transform.position = gameCameraPos;
-        SwitchToMain();
+        SwitchToGame();
+
+        Destroy(GameObject.Find("MenuPaper_Start"));
+        Destroy(GameObject.Find("MenuPaper_Exit"));
     }
 
     // TODO: Add fade sequences at beginning and ends of each of these.
 
     public void SwitchToMain()
     {
-		Destroy(GameObject.Find("MenuPaper_Start"));
-		Destroy(GameObject.Find("MenuPaper_Exit"));
         Debug.Log("Switching to Main");
         mainCamera.tag = "MainCamera";
         mainCamera.enabled = true;
