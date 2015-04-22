@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class wordOptionsScript : MonoBehaviour {
 	public static string textMeshWord = "";
@@ -42,7 +43,8 @@ public class wordOptionsScript : MonoBehaviour {
 		
 		if(gameObject.transform.name == "WordOption2"){
 			int startStringIndex = 0;
-			int endStringIndex = -1;
+			int totalWordCountPerNote = textBoxScript.noteWordCount[currAct].Sum();
+			int endStringIndex = totalWordCountPerNote - 1;
 			textBoxScript.quickFixNum = 0;
 			//canvasScript.wordOptionClicked = true;
 			
@@ -54,17 +56,29 @@ public class wordOptionsScript : MonoBehaviour {
 			canvasScript.wordNum = 0;
 			
 			//print(textBoxScript.noteWordCount[currAct].Length);
+			//print(textBoxScript.structList.Count);
+			
+			//note 1 = 33
+			//note 2 = 37
 			
 			for(int i = 0; i <= textBoxScript.noteWordCount[currAct].Length - 1; i++){
+				// if(i > 0){
+					// startStringIndex = endStringIndex + 1;
+				// }
 				if(i > 0){
-					startStringIndex = endStringIndex + 1;
+					endStringIndex = startStringIndex - 1;
 				}
 				
-				//print(textBoxScript.noteWordCount[currAct][i]);
-				endStringIndex += textBoxScript.noteWordCount[currAct][i];
+				startStringIndex = totalWordCountPerNote - textBoxScript.noteWordCount[currAct][i];
+				totalWordCountPerNote = startStringIndex;
+				
+				print("start " + startStringIndex);
+				print("end " + endStringIndex);
+				print("total " + totalWordCountPerNote);
 				
 				for(int j = startStringIndex; j <= endStringIndex; j++){
-					//Rebuild {current|alt}
+					//print(startStringIndex);
+					//Rebuild {current^weight#|alt^weight#}
 					if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt != "N/A" && textBoxScript.structList[j].dependencies == -1){
 						textBoxScript.editString += "{" + textBoxScript.structList[j].current + "^" + textBoxScript.structList[j].wordWeightCurr + "|" + textBoxScript.structList[j].alt + "^" + textBoxScript.structList[j].wordWeightAlt + "}"; 
 						if (textBoxScript.structList[j].newLine && !textBoxScript.structList[j].lastWord){
@@ -79,9 +93,9 @@ public class wordOptionsScript : MonoBehaviour {
 						}
 						textBoxScript.allNoteLines[currAct][i] = textBoxScript.editString; 
 					}
-					//Rebuild *wordID*{current|alt}
-					else if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt != "N/A" && textBoxScript.structList[j].dependencies != -1){
-						textBoxScript.editString += "*" + textBoxScript.structList[j].dependencies + "*{" + textBoxScript.structList[j].current + "|" + textBoxScript.structList[j].alt + "}";
+					//Rebuild *noteID*wordID*{current|alt}
+					else if(textBoxScript.structList[j].current != "N/A" && textBoxScript.structList[j].alt != "N/A" && textBoxScript.structList[j].dependencies != -1 && textBoxScript.structList[j].noteID != 0){
+						textBoxScript.editString += "*" + textBoxScript.structList[j].noteID +  "*" + textBoxScript.structList[j].dependencies + "*{" + textBoxScript.structList[j].current + "|" + textBoxScript.structList[j].alt + "}";
 						if (textBoxScript.structList[j].newLine){
 							//print("Working for *wordID* words");
 							textBoxScript.editString += "\n";
@@ -114,7 +128,7 @@ public class wordOptionsScript : MonoBehaviour {
 			}
 			
 			// print(textBoxScript.allNoteLines[currAct][0]);
-			//print(textBoxScript.allNoteLines[currAct][1]);
+			// print(textBoxScript.allNoteLines[currAct][1]);
 			// print(textBoxScript.allNoteLines[currAct][2]);
 			
 			textBoxScript.structList.Clear();
@@ -128,12 +142,18 @@ public class wordOptionsScript : MonoBehaviour {
 			}
 			
 			//Reloads notes pre-parsed.
+			// for(int k = 0; k < textBoxScript.allNoteLines[currAct].Length; k++){
+				// string noteName = gameControllerScript.noteArray[currAct][k].name;
+				
+				// GameObject.Find(noteName).transform.GetChild(0).GetComponent<CanvasScript>().Parser();
+			// }
+			
 			for(int k = textBoxScript.allNoteLines[currAct].Length - 1; k >= 0; k--){
 				string noteName = gameControllerScript.noteArray[currAct][k].name;
-				//print(noteName);
 				
 				GameObject.Find(noteName).transform.GetChild(0).GetComponent<CanvasScript>().Parser();
 			}
+			
 			//canvasScript.CreateNewLine();
 			//print(canvasScript.noteContent);
 		}
