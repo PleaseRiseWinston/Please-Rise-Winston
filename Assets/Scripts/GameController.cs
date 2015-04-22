@@ -32,7 +32,8 @@ public class GameController : MonoBehaviour
         // Defaults current Act and Note to 1, 1
         // 'curAct - 1' accounts for indexing convention
         curAct = 1;
-        curNoteID = notes.transform.GetChild(curAct - 1).childCount;
+        curNoteID = 1;
+        //curNoteID = notes.transform.GetChild(curAct - 1).childCount;
         curBackground = GameObject.FindGameObjectWithTag("GameBackground");
 
         // Declarations for alpha states
@@ -113,12 +114,11 @@ public class GameController : MonoBehaviour
         }
         else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'j')
         {
-            print("to judge");
             StartCoroutine(ToJudge());
         }
         else
         {
-            curNoteID--;
+            curNoteID++;
             UpdateCurNote(curNoteID);
 
             GetNote(curNoteName);
@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator MoveToTray()
     {
-        HOTween.To(curNote.transform, 0.4f, "rotation", new Vector3(80, 0, 0), false);
+        HOTween.To(curNote.transform, 0.4f, "rotation", new Vector3(85, 0, 0), false);
         yield return StartCoroutine(HOTween.To(curNote.transform, 0.4f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
     }
 
@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
             }
         }
-        curNoteID--;
+        curNoteID++;
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
@@ -160,7 +160,7 @@ public class GameController : MonoBehaviour
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
             }
         }
-        curNoteID--;
+        curNoteID++;
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
@@ -177,7 +177,7 @@ public class GameController : MonoBehaviour
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "position", new Vector3(114, 1360, -481), false).WaitForCompletion());
             }
         }
-        curNoteID--;
+        curNoteID++;
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
