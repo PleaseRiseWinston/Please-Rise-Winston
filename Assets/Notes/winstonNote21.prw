@@ -1,11 +1,8 @@
-After the third knock on
-my neighbor's door my
-anxiety got the better of
-me. Suddenly, my great
-plan to simply speak to
-the woman who resides
-next door to me looked
-more insane than I ever
-thought possible. What
-would I say if she opened
-the door?
+My feet wanted to run and
+it began to get the
+better of me. As I
+stepped backward to {run^1|walk^2}
+home, my foot searched
+for where I thought the
+ground would be but came
+up short.

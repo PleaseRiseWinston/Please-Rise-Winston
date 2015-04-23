@@ -1,10 +1,6 @@
-Uhh, hello. I was told to
-open with an introduction
-so here I am. My name is
-Winston. Apparently my
-work has caused quite the
-uproar, I really wasn’t
-aware this was happening.
-I didn’t want people to
-get hurt or put in prison
-@J
+I’m sorry this is all
+very {overwhelming^1|annoying^2} Let me
+start over. My name is
+Winston. I don't believe
+that I am guilty of the
+crimes I am *11*6*{accused of|framed for}. @J

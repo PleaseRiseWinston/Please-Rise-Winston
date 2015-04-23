@@ -1,12 +1,12 @@
-I lost my footing and
-tried to regain to by
-stepping forward. In my
-confusion I pushed
-forward and broke my
-momentum with my
-neighbors front window.
-The glass shattered. My
-feet finally got the
-courage to take me
-somewhere else, so I ran
-home.
+Now, Translator. Recently
+in Westholt, there have
+been multiple reports of
+certain pieces of homes
+being vandalized, much
+like you have read in
+this passage. It may seem
+obvious to you and I, but
+Winston fails to see that
+his work is inspiring
+these vandals and
+lawbreakers.

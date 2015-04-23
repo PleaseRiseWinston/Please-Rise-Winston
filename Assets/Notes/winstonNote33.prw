@@ -1,12 +1,9 @@
-Before I could work up
-the courage to do so she
-spoke again, “I know how
-to fix things like this.
-I will complete this job.
-You can go.” Seeing an
-opportunity, I took it.
-My eyes remained locked
-to the ground as I turned
-around to go home, this
-time minding the space
-between the steps.
+Pressure began rising in
+my cheeks and eyes as I
+increased the stride to
+walk home. The *21*14*{worry|shame} I
+had felt earlier this
+day, now multiplied
+father than I could have
+anticipated, would sit
+with me for days.

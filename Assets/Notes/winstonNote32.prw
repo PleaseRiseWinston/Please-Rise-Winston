@@ -1,8 +1,10 @@
-To my surprise she spoke
-back, ‘Do you know how to
-fix it?’ My head tilted
-as I looked down at the
-pile of glass I had made.
-Still avoiding eye
-contact, “no, I don’t”.
-Again, I wanted to run.
+She spoke again, “I know
+how to fix things like
+this. I will complete
+this job. You can go.”
+Seeing an opportunity, I
+took it. My eyes looked
+at her {face^1|ground^2} as I
+turned around to go home,
+this time minding the
+space between the steps.

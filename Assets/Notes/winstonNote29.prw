@@ -1,11 +1,11 @@
-As I kneeled on the wood
-flooring failing to piece
-together what seemed like
-an endless amount of
-glass, my ears twitched
-at the sound of someone
-approaching. To my
-terror, the sound came
-from inside the house. I
-made eye contact with her
-as she did to me.
+I darted my head down
+trying to think of a
+reason to explain why a
+stranger was currently
+poking around her porch.
+I came up short. This was
+the first time I had ever
+tried to {converse with^4|speak to^2}
+someone outside of work,
+which in itself was only
+a few hours a week.

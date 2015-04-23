@@ -1,12 +1,9 @@
-I was told you have read
-the book, translator. I
-don’t know why they want
-me to tell you what it’s
-about. But, I will do
-this if it helps me
-though. The book tells a
-story of a woman in the
-first person. Please take
-a look at this excerpt
-from the beginning of the
-book
+My name is Joanna and I
+{want^1|need^3} more. Not more
+entertainment or freetime
+Not more rest or
+relaxation. I *15*6*{want|need} more
+of something else. The
+desire has always been
+with me and I believe
+always will.

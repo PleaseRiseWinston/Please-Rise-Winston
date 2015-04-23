@@ -1,11 +1,9 @@
-The days had weighed on
-me. Since my incident
-next door, I had been
-consumed by shame. If my
-first attempt at talking
-to someone was breaking a
-window, then I would most
-likely never try again.
-Not only that, but what
-would she think finding
-her house harmed?
+I couldn’t deal with the
+*21*14*{worry|guilt} any longer. I felt
+the only way to right
+this wrong was to go and
+fix this window. I have
+never done such a thing,
+but how hard could it be
+to at least put the glass
+back together?

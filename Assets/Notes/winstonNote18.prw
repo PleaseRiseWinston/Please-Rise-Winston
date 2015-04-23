@@ -1,9 +1,8 @@
-I really can’t tell you
-what this thing is or how
-to find it but this
-doesn’t change my
-thought. In a similar
-way, does the dog not
-knowing the name of her
-food make her hunger any
-less real?
+The writing can be dense.
+I know that Lowers like
+{me^1|us^4} usually don’t talk
+like this and the words
+might be a little
+confusing. So, uhh, sorry
+about the confusion if
+there is any.

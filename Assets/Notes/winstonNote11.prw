@@ -6,5 +6,5 @@ work has caused quite the
 uproar, I really wasn’t
 aware this was happening.
 I didn’t want people to
-get hurt or put in prison
+get hurt or put in {jail^1|prison^2}
 @J

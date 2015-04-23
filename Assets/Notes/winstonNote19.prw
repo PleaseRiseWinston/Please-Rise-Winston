@@ -1,8 +1,4 @@
-The writing can be dense.
-I know that us Lowers
-usually don’t talk like
-this and the words might
-be a little confusing.
-So, uhh, sorry about the
-confusion if there is
-any.
+Translator, please
+examine this excerpt we
+believe to be causing
+{problems^2|crimes^3} problems in Westholt.

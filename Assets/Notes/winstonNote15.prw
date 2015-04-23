@@ -1,8 +1,10 @@
-Let’s begin with an
-overview of this chapter.
-Winston has agreed to
-provide an introduction
-to this chapter, this
-should speed the process
-along.
-@J
+I don’t know why they
+want me to tell you what
+it’s about. But, I will
+do this if it helps me
+though. The book tells a
+story of a woman in the
+first person. Please take
+a look at this excerpt
+from the beginning of the
+book. 

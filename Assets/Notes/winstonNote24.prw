@@ -1,12 +1,10 @@
-Now, Translator. Recently
-in Westholt, there have
-been multiple reports of
-certain pieces of homes
-being vandalized, much
-like you have read in
-this passage. It may seem
-obvious to you and I, but
-Winston fails to see that
-his work is inspiring
-these vandals and
-lawbreakers.
+This is {obscene^4|not true^2}. I can’t
+understand how someone
+might believe that my
+work has inspired these
+'vandals'. Not only was
+Joanna not trying to
+break the window, but
+even if she had, one does
+not simply copy what they
+read.

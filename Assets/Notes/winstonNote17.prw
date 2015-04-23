@@ -1,9 +1,9 @@
-My name is Joanna and I
-want more. Not more
-entertainment or freetime
-Not more rest or
-relaxation. I want more
-of something else. The
-desire has always been
-with me and I believe
-always will.
+I really can’t tell you
+what this thing is or how
+to find it but this
+doesn’t change my
+thought. In a similar
+way, does the dog not
+knowing the name of her
+food make her hunger any
+less real? I *15*6*{want|need} more

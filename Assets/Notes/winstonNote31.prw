@@ -1,11 +1,8 @@
-Seeing that neither of us
-were moving, my blood
-began to rush. My mouth
-drew breathe as I
-prepared to calm the
-situation. ‘Your window
-was broken’, what I said
-couldn’t have been more
-than a whisper but it
-felt like I was
-screaming.
+To my surprise she spoke
+back, ‘Do you know how to
+fix it?’ My head tilted
+as I looked down at the
+pile of glass I had made.
+Still avoiding eye
+contact, “no, I don’t”.
+Again, I wanted to run.

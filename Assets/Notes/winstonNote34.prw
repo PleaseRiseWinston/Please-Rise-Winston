@@ -1,9 +1,6 @@
-Pressure began rising in
-my cheeks and eyes as I
-increased the stride to
-walk home. The shame I
-had felt earlier this
-day, now multiplied
-father than I could have
-anticipated, would sit
-with me for days.
+It twisted and turned
+while I slept, when I
+woke and as I went about
+my day.The events of that
+day, threatened to crush
+me.
