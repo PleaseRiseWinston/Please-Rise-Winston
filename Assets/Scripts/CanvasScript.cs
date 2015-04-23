@@ -237,6 +237,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.wordWeightAlt = int.Parse(secRes.Groups[8].Value);
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							wordStructure.noteID = secNum;
+							wordStructure.isChangeable = true;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;

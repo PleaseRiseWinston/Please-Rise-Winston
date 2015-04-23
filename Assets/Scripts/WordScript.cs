@@ -83,6 +83,12 @@ public class WordScript : MonoBehaviour {
         layoutElement.flexibleHeight = 0;
 
         gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+		
+		foreach(WordStructure wordStruct in textBoxScript.structList){
+			if(wordStruct.isChangeable){
+				changeable = true;
+			}
+		}
     }
 
     void Update()
