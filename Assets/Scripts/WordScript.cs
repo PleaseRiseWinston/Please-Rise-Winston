@@ -85,7 +85,7 @@ public class WordScript : MonoBehaviour {
         gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 		
 		foreach(WordStructure wordStruct in textBoxScript.structList){
-			if(wordStruct.isChangeable){
+			if(wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID){
 				changeable = true;
 			}
 		}
