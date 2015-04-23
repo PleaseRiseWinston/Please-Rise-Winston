@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
         totalWeight = 0;
 
         // Defaults current Act and Note to 1, 1
-        // 'curAct - 1' accounts for indexing convention
+        // 'curAct - 1' accounts for reverse indexing convention
         curAct = 1;
         curNoteID = 1;
         //curNoteID = notes.transform.GetChild(curAct - 1).childCount;
@@ -139,8 +139,8 @@ public class GameController : MonoBehaviour
             if (notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray == true)
             {
                 print("To Winston");
-                HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "rotation", new Vector3(83, 31, -161), false);
-                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
+                HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
+                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
             }
         }
         curNoteID++;
@@ -156,8 +156,8 @@ public class GameController : MonoBehaviour
             if (notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray == true)
             {
                 print("To Prosecutor");
-                HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "rotation", new Vector3(83, 31, -161), false);
-                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
+                HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
+                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
             }
         }
         curNoteID++;
@@ -173,8 +173,8 @@ public class GameController : MonoBehaviour
             if (notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray == true)
             {
                 print("To Judge");
-                HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "rotation", new Vector3(35, 12, -3), false);
-                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.6f, "position", new Vector3(114, 1360, -481), false).WaitForCompletion());
+                HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(35, 12, -3), false);
+                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(114, 1360, -581), false).WaitForCompletion());
             }
         }
         curNoteID++;

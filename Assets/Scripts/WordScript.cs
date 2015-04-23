@@ -15,6 +15,7 @@ public class WordScript : MonoBehaviour {
 
     //private string[] wordOptions;
     private string curText;
+    [SerializeField]
     private bool changeable;
 
     private GameObject paper;
