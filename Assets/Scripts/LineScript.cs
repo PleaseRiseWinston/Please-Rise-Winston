@@ -112,6 +112,11 @@ public class LineScript : MonoBehaviour
                 newWord.transform.localScale = newWord.transform.localScale * 1;
 				newWord.name = "wordID" + textBoxScript.structList[textBoxScript.quickFixNum].wordID;
 				textBoxScript.quickFixNum++;
+
+                if (newWord.GetComponent<WordScript>().changeable == true)
+                {
+                    newWord.GetComponent<Text>().color = Color.red;
+                }
             }
 
             // TODO: Set up mesh sizes to wrap to text
@@ -146,7 +151,6 @@ public class LineScript : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(untranslate());
     }
-
 
     /***Translate Functions***/
 
@@ -258,6 +262,22 @@ public class LineScript : MonoBehaviour
             }
         }
     }
+
+    /*
+    public IEnumerator Highlight()
+    {
+        for (int i = 0; i < childCount; i++)
+        {
+            if (transform.GetChild(i).GetComponent<WordScript>().changeable == true)
+            {
+                transform.GetChild(i).GetComponent<Text>().color = Color.red;
+            }
+        }
+    }
+    */
+
 }
+
+
 
 // Get over it, bitches.

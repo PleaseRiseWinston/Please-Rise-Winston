@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Linq;
+using Holoville.HOTween;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -14,9 +17,11 @@ public class WordScript : MonoBehaviour {
     public Color highlightColor;
 
     //private string[] wordOptions;
-    private string curText;
-    [SerializeField]
-    private bool changeable;
+    public string curText;
+    public bool changeable;
+
+    private GameObject gameController;
+    private GameController gameControllerScript;
 
     private GameObject paper;
     private PaperScript paperScript;
@@ -60,10 +65,12 @@ public class WordScript : MonoBehaviour {
          *       - etc...
         */
 
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        gameControllerScript = gameController.GetComponent<GameController>();
+
         // Each word object gets the paper that it is on
         paper = transform.parent.parent.parent.gameObject;
         paperScript = paper.GetComponent<PaperScript>();
-		
 
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;
@@ -75,7 +82,7 @@ public class WordScript : MonoBehaviour {
         
         curText = GetComponent<Text>().text;
         defaultColor = Color.black;
-        highlightColor = Color.red;
+        highlightColor = new Color(100, 149, 237);
 
         gameObject.AddComponent<LayoutElement>();
         LayoutElement layoutElement = gameObject.GetComponent<LayoutElement>();
@@ -84,20 +91,36 @@ public class WordScript : MonoBehaviour {
 
         gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 		
-		foreach(WordStructure wordStruct in textBoxScript.structList){
-			if(wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID){
-				changeable = true;
-			}
+		foreach (WordStructure wordStruct in textBoxScript.structList.Where(wordStruct => wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID && gameObject.GetComponent<Text>().text == wordStruct.current))
+		{
+		    changeable = true;
 		}
-    }
 
-    void Update()
-    {
-        // While a word is changeable and the current line is translated, highlight it
-        if (changeable && lineScript.isTranslated)
+        // While a word is changeable, highlight it with pulse
+        if (changeable)
         {
             // TODO: Add animations to highlight this changeable word; probably going to have a pulsing glow
+            transform.GetComponent<Text>().color = Color.red;
+            //StartCoroutine(Highlight());
         }
+    }
+
+    IEnumerator Highlight()
+    {
+        print("to highlight");
+        yield return StartCoroutine(HOTween.To(transform.GetComponent<Text>(), 5.0f, "color", highlightColor, false).WaitForCompletion());
+        print(("waiting 1"));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Unhighlight());
+    }
+
+    IEnumerator Unhighlight()
+    {
+        print("to black");
+        yield return StartCoroutine(HOTween.To(transform.GetComponent<Text>(), 5.0f, "color", defaultColor, false).WaitForCompletion());
+        print(("waiting 2"));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Highlight());
     }
 
     public void OnDown(BaseEventData e)
@@ -106,9 +129,8 @@ public class WordScript : MonoBehaviour {
         //Debug.Log(curText);
         if (paperScript.start)
         {
-            // TODO: Detect current Act
             //Debug.Log("Starting");
-            StartCoroutine(playCutscene.Play(1));
+            StartCoroutine(playCutscene.Play(gameControllerScript.curAct));
         }
         else if (paperScript.exit)
         {
