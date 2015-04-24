@@ -26,8 +26,8 @@ public class CanvasScript : MonoBehaviour {
     private const char delimiterNewline = '\n';
     private const char delimiterSpace = ' ';
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
-    private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([^\w\s'])|([A-Za-z]+'[a-z]+)");
-	private Regex braceRe = new Regex(@"\*([0-9])\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}|([^\w\s'])");
+    private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
+	private Regex braceRe = new Regex(@"\*([0-9])\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
@@ -175,6 +175,10 @@ public class CanvasScript : MonoBehaviour {
 						{
 							wordList.Add(result.Groups[12].Value);
 						}
+						else if(result.Groups[13].Value != "" && result.Groups[14].Value != ""){
+							wordList.Add(result.Groups[13].Value);
+							wordList.Add(result.Groups[14].Value);
+						}
                     }
                     else
                     {
@@ -299,7 +303,6 @@ public class CanvasScript : MonoBehaviour {
 
 				//paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
 				paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][secNum - 1];
-				print(paperScript.noteContent);
 				textBoxScript.editString = paperScript.noteContent;
 			}
 		//print(gameObject.transform.parent.name);

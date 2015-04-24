@@ -1,7 +1,10 @@
-Some translations may not
-have a clear answer: Today
-I feel {good^1|feelings^2}.
-The above statement is
-*4*11*{vague|unclear}. @J
-
-
+By clause 1.45 of our
+standard procedures we
+will now administer our
+basic translation
+competency test. This
+may appear to be a simple
+test, but please treat it
+with the same respect you
+will treat our trial.
+@J
