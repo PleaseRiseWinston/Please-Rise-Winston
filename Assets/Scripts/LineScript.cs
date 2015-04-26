@@ -262,22 +262,6 @@ public class LineScript : MonoBehaviour
             }
         }
     }
-
-    /*
-    public IEnumerator Highlight()
-    {
-        for (int i = 0; i < childCount; i++)
-        {
-            if (transform.GetChild(i).GetComponent<WordScript>().changeable == true)
-            {
-                transform.GetChild(i).GetComponent<Text>().color = Color.red;
-            }
-        }
-    }
-    */
-
 }
-
-
 
 // Get over it, bitches.

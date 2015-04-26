@@ -29,6 +29,7 @@ public class PaperScript : MonoBehaviour
     public bool focused;
     public bool mouseOver;
     public bool inTray;
+    public bool atDestination;
 
     private Vector3 defaultNotePos;
     private Vector3 defaultCameraPos;
@@ -55,23 +56,25 @@ public class PaperScript : MonoBehaviour
 
         focused = false;
         inTray = false;
+        atDestination = false;
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file
         if (start)
         {
             noteContent = "Start";
+            defaultNotePos = transform.position;
         }
         else if (exit)
         {
             noteContent = "Exit";
+            defaultNotePos = transform.position;
         }
         else
         {
             //noteContent = note.text;
             noteContent = textBoxScript.editString;
+            defaultNotePos = new Vector3(0, 1330, -400);
         }
-
-        defaultNotePos = new Vector3(0, 1330, -400);
 
         // Sets camera default position depending on the intended camera
 		if(!start && !exit){

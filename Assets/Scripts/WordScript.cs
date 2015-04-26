@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Linq;
+using System.Reflection.Emit;
 using Holoville.HOTween;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,6 +47,10 @@ public class WordScript : MonoBehaviour {
 
     public AudioClip cutsceneMusic;
 
+    public GameObject glowSystem;
+
+    private Vector3 defaultPos;
+
     void Start()
     {
 		textBox = GameObject.Find("TextBox");
@@ -78,8 +82,7 @@ public class WordScript : MonoBehaviour {
         cameraController = GameObject.FindGameObjectWithTag("CameraController");
         playCutscene = cameraController.GetComponent<PlayCutscene>();
 
-        // TODO: Read text into textOptions array here
-        
+        defaultPos = transform.position;
         curText = GetComponent<Text>().text;
         defaultColor = Color.black;
         highlightColor = new Color(100, 149, 237);
@@ -90,39 +93,56 @@ public class WordScript : MonoBehaviour {
         layoutElement.flexibleHeight = 0;
 
         gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-		
-		foreach (WordStructure wordStruct in textBoxScript.structList.Where(wordStruct => wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID && gameObject.GetComponent<Text>().text == wordStruct.current))
-		{
-		    changeable = true;
-		}
+
+        foreach (WordStructure wordStruct in textBoxScript.structList)
+        {
+            if (wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID && gameObject.GetComponent<Text>().text == wordStruct.current)
+            {
+                changeable = true;
+            }
+        }
 
         // While a word is changeable, highlight it with pulse
         if (changeable)
         {
-            // TODO: Add animations to highlight this changeable word; probably going to have a pulsing glow
-            transform.GetComponent<Text>().color = Color.red;
-            //StartCoroutine(Highlight());
+            GameObject glower = Instantiate(glowSystem, transform.position + (transform.forward * 0.5f), transform.rotation) as GameObject;
+            glower.transform.SetParent(transform);
+            ParticleSystem glow = glower.GetComponent<ParticleSystem>();
+            
+            glow.Play();
+        }
+    }
+    /*
+    public void OnEnter(BaseEventData e)
+    {
+        if (paperScript.focused && changeable)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Hover());
         }
     }
 
-    IEnumerator Highlight()
+    public void OnExit(BaseEventData e)
     {
-        print("to highlight");
-        yield return StartCoroutine(HOTween.To(transform.GetComponent<Text>(), 5.0f, "color", highlightColor, false).WaitForCompletion());
-        print(("waiting 1"));
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(Unhighlight());
+        if (changeable)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Unhover());
+        }
     }
 
-    IEnumerator Unhighlight()
+    IEnumerator Hover()
     {
-        print("to black");
-        yield return StartCoroutine(HOTween.To(transform.GetComponent<Text>(), 5.0f, "color", defaultColor, false).WaitForCompletion());
-        print(("waiting 2"));
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(Highlight());
+        StopAllCoroutines();
+        yield return StartCoroutine(HOTween.To(transform, 1.0f, "position", transform.position + (transform.forward * -2), false).WaitForCompletion());
     }
 
+    IEnumerator Unhover()
+    {
+        StopAllCoroutines();
+        yield return StartCoroutine(HOTween.To(transform, 0.7f, "position", defaultPos, false).WaitForCompletion());
+    }
+     */
     public void OnDown(BaseEventData e)
     {
 		
