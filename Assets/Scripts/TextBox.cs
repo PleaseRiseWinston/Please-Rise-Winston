@@ -121,7 +121,7 @@ public class TextBox : MonoBehaviour {
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
 			foreach(WordStructure wordStruct in structList){
-				 print(wordStruct.current + wordStruct.wordID);
+				 print(wordStruct.noteID);
 			}
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);

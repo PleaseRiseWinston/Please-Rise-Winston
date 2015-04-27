@@ -6,4 +6,4 @@ draped {curtains^1|blankets^2}
 over my body to keep
 me warm. The above
 statement seems
-*4*19*{valid|strange}.
+*6*20*{valid|strange}.

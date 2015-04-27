@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 using System;
 
 /*
@@ -25,6 +26,7 @@ public class CanvasScript : MonoBehaviour {
 
     private const char delimiterNewline = '\n';
     private const char delimiterSpace = ' ';
+	private string[] punctuationArray = {".", ".", ";", ":", "!", "?"};
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
     private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
 	private Regex braceRe = new Regex(@"\*([0-9])\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}");
@@ -86,6 +88,8 @@ public class CanvasScript : MonoBehaviour {
 		}
 		
 		noteContent = paperScript.noteContent;
+		
+		print(gameObject.transform.parent.name);
         // 'lines' array gets every single line with spaces
 		lines = noteContent.Split(Environment.NewLine.ToCharArray());
 		
@@ -249,8 +253,22 @@ public class CanvasScript : MonoBehaviour {
 							displayWords.Add(wordStructure.current);
 						}
 						//punctuation
-						else if(secRes.Groups[9].Value != ""){
-							wordStructure.current = secRes.Groups[9].Value;
+						// else if(secRes.Groups[9].Value != ""){
+							// wordStructure.current = secRes.Groups[9].Value;
+							// wordStructure.isPunctuation = true;
+							// wordStructure.noteID = secNum;
+							
+							// textBoxScript.structList.Add(wordStructure);
+							// displayWords.Add(wordStructure.current);
+							// wordNum++;
+						// }
+					}
+					else{
+						print(punctuationArray.Contains(t));
+						
+						if(punctuationArray.Contains(t) == true){
+							print("hi");
+							wordStructure.current = t;
 							wordStructure.isPunctuation = true;
 							wordStructure.noteID = secNum;
 							
@@ -258,16 +276,16 @@ public class CanvasScript : MonoBehaviour {
 							displayWords.Add(wordStructure.current);
 							wordNum++;
 						}
-					}
-					else{
-						wordStructure.current = t;
-						wordStructure.wordID = textBoxScript.wordStructCount;
-						wordStructure.noteID = secNum;
-						
-						textBoxScript.wordStructCount++;
-						wordNum++;
-						textBoxScript.structList.Add(wordStructure);					
-						displayWords.Add(wordStructure.current);
+						else{	
+							wordStructure.current = t;
+							wordStructure.wordID = textBoxScript.wordStructCount;
+							wordStructure.noteID = secNum;
+							
+							textBoxScript.wordStructCount++;
+							wordNum++;
+							textBoxScript.structList.Add(wordStructure);					
+							displayWords.Add(wordStructure.current);
+						}
 					}
 
 					if (arrayCount == lineScript.words.Length - 1 && lineCount != lineCounter){

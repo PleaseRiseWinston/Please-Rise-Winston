@@ -7,5 +7,4 @@ someone’s guilt or
 innocence. We ask that
 you take great care to
 seek the truth in these
-situations, translator.
-@J
+situations, translator. @J
