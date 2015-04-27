@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿#if  UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
+
 using System.Collections;
 
 public class ScriptEditor : EditorWindow
@@ -20,3 +22,4 @@ public class ScriptEditor : EditorWindow
         EditorGUILayout.TextArea(script, GUILayout.Height(position.height - 30));
     }
 }
+#endif

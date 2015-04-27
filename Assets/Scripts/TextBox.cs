@@ -81,7 +81,7 @@ public class TextBox : MonoBehaviour {
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
-	void OnGUI() {
+/* 	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
 
@@ -97,7 +97,7 @@ public class TextBox : MonoBehaviour {
 
 		if (GUI.Button(buttonParse, "Parse")){
 			canvasScript.Parser();
-			//Parser();
+			// Parser();
 		}
 		else if(GUI.Button(buttonSave, "Save")){
 			checkFileNum(fileName + fileNum + fileExt);
@@ -117,7 +117,7 @@ public class TextBox : MonoBehaviour {
 		}
 		else if(GUI.Button(buttonSwap, "Swap")){
 			Swap();
-			//print(structList[structListIndex].current + " " + structList[structListIndex].alt);
+			// print(structList[structListIndex].current + " " + structList[structListIndex].alt);
 			// foreach(WordStructure wordS in structList){
 				// print(wordS.current);
 			// }
@@ -131,7 +131,7 @@ public class TextBox : MonoBehaviour {
 			
 			print(swapWordList.Count);
 		}
-	}
+	} */
 	
 	public void loadFile(){
 		arrText = new List<string>();
