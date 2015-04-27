@@ -34,7 +34,10 @@ public class TextBox : MonoBehaviour {
 	public int wordStructCount = 0;
 	public GameObject canvas;
 	public CanvasScript canvasScript;
+	
 	public List<WordStructure> structList = new List<WordStructure>();
+	public List<WordStructure> swapWordList = new List<WordStructure>();
+	
 	public int structListIndex = 0;
 	public string clickedWordID = "";
 	public string[][] allNoteLines;
@@ -120,11 +123,13 @@ public class TextBox : MonoBehaviour {
 			// }
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			foreach(WordStructure wordStruct in structList){
-				 print(wordStruct.noteID);
-			}
+			// foreach(WordStructure wordStruct in structList){
+				 // print(wordStruct.noteID);
+			// }
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
+			
+			print(swapWordList.Count);
 		}
 	}
 	
@@ -163,29 +168,50 @@ public class TextBox : MonoBehaviour {
 		int currActTotalWords = 0;
 		int IDofClickedWord = 0;
 
-		for(int i = 0; i <= noteWordCount[currAct].Length - 1; i++){
-			currActTotalWords += noteWordCount[currAct][i];
+		// for(int i = 0; i <= noteWordCount[currAct].Length - 1; i++){
+			// currActTotalWords += noteWordCount[currAct][i];
+		// }
+		
+		// for(int j = 0; j < currActTotalWords; j++){
+			// if(clickedWordID == "wordID" + structList[j].wordID && structList[j].alt != "N/A" && structList[j].isClicked){
+				// IDofClickedWord = structList[j].wordID;
+				// clickedWordCurrNote = structList[j].noteID;
+				
+				// string tempString = structList[j].current;
+				// structList[j].current = structList[j].alt;
+				// structList[j].alt = tempString;
+				
+				// int tempNum = structList[j].wordWeightCurr;
+				// structList[j].wordWeightCurr = structList[j].wordWeightAlt;
+				// structList[j].wordWeightAlt = tempNum;
+			// }
+			// else if(IDofClickedWord == structList[j].dependencies && clickedWordCurrNote == structList[j].noteID){
+				// string tempString = structList[j].current;
+				// structList[j].current = structList[j].alt;
+				// structList[j].alt = tempString;
+			// }
+		// }
+		
+		foreach(WordStructure wordStruct in swapWordList){
+			if(clickedWordID == "wordID" + wordStruct.wordID && wordStruct.alt != "N/A" && wordStruct.isClicked){
+				IDofClickedWord = wordStruct.wordID;
+				clickedWordCurrNote = wordStruct.noteID;
+				
+				string tempString = wordStruct.current;
+				wordStruct.current = wordStruct.alt;
+				wordStruct.alt = tempString;
+				
+				int tempNum = wordStruct.wordWeightCurr;
+				wordStruct.wordWeightCurr = wordStruct.wordWeightAlt;
+				wordStruct.wordWeightAlt = tempNum;
+			}
+			else if(IDofClickedWord == wordStruct.dependencies && clickedWordCurrNote == wordStruct.noteID){
+				string tempString = wordStruct.current;
+				wordStruct.current = wordStruct.alt;
+				wordStruct.alt = tempString;
+			}
 		}
 		
-		for(int j = 0; j < currActTotalWords; j++){
-			if(clickedWordID == "wordID" + structList[j].wordID && structList[j].alt != "N/A" && structList[j].isClicked){
-				IDofClickedWord = structList[j].wordID;
-				clickedWordCurrNote = structList[j].noteID;
-				
-				string tempString = structList[j].current;
-				structList[j].current = structList[j].alt;
-				structList[j].alt = tempString;
-				
-				int tempNum = structList[j].wordWeightCurr;
-				structList[j].wordWeightCurr = structList[j].wordWeightAlt;
-				structList[j].wordWeightAlt = tempNum;
-			}
-			else if(IDofClickedWord == structList[j].dependencies && clickedWordCurrNote == structList[j].noteID){
-				string tempString = structList[j].current;
-				structList[j].current = structList[j].alt;
-				structList[j].alt = tempString;
-			}
-		}
 		didSwap = true;
 		//canvasScript.wordOptionClicked = false;
 	}

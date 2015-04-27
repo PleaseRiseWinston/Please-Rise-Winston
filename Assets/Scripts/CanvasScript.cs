@@ -232,6 +232,7 @@ public class CanvasScript : MonoBehaviour {
 							textBoxScript.wordStructCount++;
 							wordNum++;
 							textBoxScript.structList.Add(wordStructure);
+							textBoxScript.swapWordList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
 						}
 						//Assigns current word and alternate word
@@ -250,6 +251,7 @@ public class CanvasScript : MonoBehaviour {
 							textBoxScript.wordStructCount++;
 							wordNum++;
 							textBoxScript.structList.Add(wordStructure);
+							textBoxScript.swapWordList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
 						}
 						//punctuation

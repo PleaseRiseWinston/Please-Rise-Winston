@@ -132,6 +132,7 @@ public class wordOptionsScript : MonoBehaviour {
 			// print(textBoxScript.allNoteLines[currAct][2]);
 			
 			textBoxScript.structList.Clear();
+			textBoxScript.swapWordList.Clear();
 			canvasScript.displayWords.Clear();
 			//lineScript.words = null;		
 			
