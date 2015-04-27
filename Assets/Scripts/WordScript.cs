@@ -105,7 +105,8 @@ public class WordScript : MonoBehaviour {
         // While a word is changeable, highlight it with pulse
         if (changeable)
         {
-            GameObject glower = Instantiate(glowSystem, transform.position + (transform.forward * 0.5f), transform.rotation) as GameObject;
+            transform.GetComponent<Text>().color = Color.red;
+            GameObject glower = Instantiate(glowSystem, transform.position + (transform.forward * -0.5f), transform.rotation) as GameObject;
             glower.transform.SetParent(transform);
             ParticleSystem glow = glower.GetComponent<ParticleSystem>();
             
