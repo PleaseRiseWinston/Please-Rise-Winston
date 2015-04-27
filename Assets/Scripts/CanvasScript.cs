@@ -265,11 +265,8 @@ public class CanvasScript : MonoBehaviour {
 							// wordNum++;
 						// }
 					}
-					else{
-						print(punctuationArray.Contains(t));
-						
+					else{						
 						if(punctuationArray.Contains(t) == true){
-							print("hi");
 							wordStructure.current = t;
 							wordStructure.isPunctuation = true;
 							wordStructure.noteID = secNum;
