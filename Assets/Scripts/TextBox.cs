@@ -81,7 +81,7 @@ public class TextBox : MonoBehaviour {
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
-/* 	void OnGUI() {
+ 	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
 
@@ -123,15 +123,15 @@ public class TextBox : MonoBehaviour {
 			// }
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			// foreach(WordStructure wordStruct in structList){
-				 // print(wordStruct.noteID);
-			// }
+			foreach(WordStructure wordStruct in structList){
+				  print(wordStruct.current);
+			 }
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
 			
-			print(swapWordList.Count);
+			//print(swapWordList.Count);
 		}
-	} */
+	} 
 	
 	public void loadFile(){
 		arrText = new List<string>();
@@ -204,15 +204,34 @@ public class TextBox : MonoBehaviour {
 				int tempNum = wordStruct.wordWeightCurr;
 				wordStruct.wordWeightCurr = wordStruct.wordWeightAlt;
 				wordStruct.wordWeightAlt = tempNum;
+				
+				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current);
+				
+				wordStruct.isClicked = false;
 			}
 			else if(IDofClickedWord == wordStruct.dependencies && clickedWordCurrNote == wordStruct.noteID){
 				string tempString = wordStruct.current;
 				wordStruct.current = wordStruct.alt;
 				wordStruct.alt = tempString;
+				
+				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current);
 			}
 		}
 		
 		didSwap = true;
 		//canvasScript.wordOptionClicked = false;
+	}
+	
+	public void updatePaper(string lineID, int currentAct, int currentNote, int currentWordID, string currentWordText){
+		string actPointNote = currentAct + "." + currentNote;
+		
+		//print(actPointNote);
+		foreach(GameObject noteObj in GameObject.FindGameObjectsWithTag("Papers")){
+			if(noteObj.name == actPointNote){
+				GameObject wordToSwap = noteObj.transform.Find("GameCanvas/" + lineID + "/wordID" + currentWordID).gameObject;
+				wordToSwap.GetComponent<Text>().text = currentWordText;
+				wordToSwap.GetComponent<WordScript>().curText = currentWordText;
+			}
+		}
 	}
 }
