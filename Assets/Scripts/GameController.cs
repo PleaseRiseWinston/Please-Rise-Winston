@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     private Color solid;
 
     public int totalWeight;
-
+    
     void Start ()
     {
         backgrounds = GameObject.FindGameObjectWithTag("Backgrounds").gameObject;
