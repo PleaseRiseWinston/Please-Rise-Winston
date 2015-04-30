@@ -81,7 +81,7 @@ public class TextBox : MonoBehaviour {
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
- 	void OnGUI() {
+/*  	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
 
@@ -131,7 +131,7 @@ public class TextBox : MonoBehaviour {
 			
 			//print(swapWordList.Count);
 		}
-	} 
+	}  */
 	
 	public void loadFile(){
 		arrText = new List<string>();
