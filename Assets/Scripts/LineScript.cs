@@ -123,13 +123,13 @@ public class LineScript : MonoBehaviour
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
-					
-			foreach(WordStructure wordStruct in textBoxScript.structList){
-				if(s == wordStruct.current && wordStruct.lineID == "N/A"){
+            
+			foreach(WordStructure wordStruct in textBoxScript.swapWordList){
+				if(newWord.text == wordStruct.current && wordStruct.lineID == "N/A" && newWord.name == "wordID" + wordStruct.wordID){
 					wordStruct.lineID = gameObject.name;
 				}
 			}
-            
+			
             lastWordEnd += newWord.GetComponent<Transform>().right.x;
             //Debug.Log(newWord.GetComponent<Transform>().right.x);
         }

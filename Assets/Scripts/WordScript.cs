@@ -163,7 +163,6 @@ public class WordScript : MonoBehaviour {
         {
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(curText == wordStruct.current){
-					print("hi");
 					if(wordStruct.alt != "N/A" && wordStruct.dependencies == -1){
 						string noteParent = transform.parent.parent.parent.name;
 						textBoxScript.clickedWordID = this.gameObject.name;
