@@ -89,7 +89,7 @@ public class CanvasScript : MonoBehaviour {
 		
 		noteContent = paperScript.noteContent;
 		
-		print(gameObject.transform.parent.name);
+		//print(gameObject.transform.parent.name);
         // 'lines' array gets every single line with spaces
 		lines = noteContent.Split(Environment.NewLine.ToCharArray());
 		

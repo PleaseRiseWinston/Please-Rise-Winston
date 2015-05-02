@@ -18,11 +18,9 @@ public class Tray : MonoBehaviour
         // Only trays/moves curNote iff paper is unfocused and the last paper has arrived at its destination
         if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused)
         {
-            if (gameControllerScript.curNote == gameControllerScript.noteArray[gameControllerScript.curAct - 1][0] || gameControllerScript.noteArray[gameControllerScript.curAct - 1][gameControllerScript.curNoteID - 2].GetComponent<PaperScript>().atDestination || gameControllerScript.noteArray[gameControllerScript.curAct - 1][gameControllerScript.curNoteID - 2].GetComponent<PaperScript>().inTray)
-            {
-                gameControllerScript.curNote.GetComponent<PaperScript>().inTray = true;
-                gameControllerScript.ToTray();
-            }
+            print("curNote name: " + gameControllerScript.curNote.name);
+            gameControllerScript.curNote.GetComponent<PaperScript>().inTray = true;
+            gameControllerScript.ToTray();
         }
 
         // TODO: Add Weights

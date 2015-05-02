@@ -19,29 +19,16 @@ public class CameraScript : MonoBehaviour {
 
     void Start(){
         fadeTime = 1.2f;
-        defaultVignette = 1.5f;
         fadeVignette = 7.0f;
-    }
-	
-	public void FadeIn(){
-        StartCoroutine(Darken());
-    }
 
-    public void FadeOut()
-    {
-        StartCoroutine(Lighten());
-    }
-    /*
-    public void Blur()
-    {
-        StartCoroutine(BlurBackground());
-    }*/
+        if (transform.tag == "MainCamera")
+        {
+            defaultVignette = 1.5f;
+        }
+        else if (transform.tag == "GameCamera" || transform.tag == "CutsceneCamera")
+        {
+            defaultVignette = 7.0f;
+        }
 
-    IEnumerator Darken(){
-        yield return StartCoroutine(HOTween.To(vignette, fadeTime, "intensity", fadeVignette).WaitForCompletion());
-    }
-
-    IEnumerator Lighten(){
-        yield return StartCoroutine(HOTween.To(vignette, fadeTime, "intensity", defaultVignette).WaitForCompletion());
     }
 }
