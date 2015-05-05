@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
+using UnityStandardAssets.ImageEffects;
 
 /* 
  * This script is attached to each Paper object.
@@ -171,7 +172,9 @@ public class PaperScript : MonoBehaviour
         //Debug.Log("Focusing");
         PlayAudio();
         HOTween.To(transform, 0.7f, "rotation", new Vector3(0, 0, 0), false);
-        yield return StartCoroutine(HOTween.To(transform, 0.7f, "position", cameraFront, false).WaitForCompletion());
+        HOTween.To(transform, 0.7f, "position", cameraFront, false);
+        HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 0.5f);
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.7f).WaitForCompletion());
         focused = true;
     }
 
@@ -181,7 +184,8 @@ public class PaperScript : MonoBehaviour
         //Debug.Log("Unfocusing");
         PlayAudio();
         focused = false;
-        HOTween.To(transform, 0.7f, "position", defaultNotePos, false);
-        yield return StartCoroutine(HOTween.To(transform, 0.7f, "rotation", new Vector3(80, 0, 0), false).WaitForCompletion());
+        HOTween.To(transform, 0.7f, "position", defaultNotePos, false); HOTween.To(transform, 0.7f, "rotation", new Vector3(80, 0, 0), false);
+        HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 2.0f);
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.0f).WaitForCompletion());
     }
 }

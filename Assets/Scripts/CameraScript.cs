@@ -5,16 +5,16 @@ using UnityStandardAssets.ImageEffects;
 
 public class CameraScript : MonoBehaviour {
 
-    private Bloom bloom;
-    private VignetteAndChromaticAberration vignette;
+    private GameObject gameController;
+    private GameController gameControllerScript;
 
     public float fadeTime;
     public float defaultVignette;
     public float fadeVignette;
 
 	void Awake () {
-        bloom = gameObject.GetComponent<Bloom>() as Bloom;
-        vignette = gameObject.GetComponent<VignetteAndChromaticAberration>() as VignetteAndChromaticAberration;
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+	    gameControllerScript = gameController.GetComponent<GameController>();
 	}
 
     void Start(){
@@ -29,6 +29,14 @@ public class CameraScript : MonoBehaviour {
         {
             defaultVignette = 7.0f;
         }
-
     }
+    /*
+    void Update()
+    {
+        if (gameControllerScript.curNote.GetComponent<PaperScript>().focused)
+        {
+            
+        }
+    }
+     */
 }

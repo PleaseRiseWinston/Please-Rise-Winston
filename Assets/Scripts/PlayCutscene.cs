@@ -127,6 +127,7 @@ public class PlayCutscene : MonoBehaviour {
 
     IEnumerator FadeOut(string target)
     {
+        // Fades in corresponding black screens
         switch (GameObject.FindGameObjectWithTag("MainCamera").name)
         {
             case "MainCamera":
@@ -139,9 +140,12 @@ public class PlayCutscene : MonoBehaviour {
                 HOTween.To(GameObject.FindGameObjectWithTag("BlackCutscene").GetComponent<SpriteRenderer>(), 2f, "color", new Color(0, 0, 0, 1));
                 break;
         }
+
+        // Increase vignette value of that camera
         yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 2.5f, "intensity", 7.0f).WaitForCompletion());
         yield return new WaitForSeconds(1f);
 
+        // Swaps cameras by reassigning tags and enable booleans
         switch (target)
         {
             case "main":
@@ -170,6 +174,7 @@ public class PlayCutscene : MonoBehaviour {
                 break;
         }
 
+        // Fade out corresponding black screens
         switch (GameObject.FindGameObjectWithTag("MainCamera").name)
         {
             case "MainCamera":
@@ -182,6 +187,8 @@ public class PlayCutscene : MonoBehaviour {
                 HOTween.To(GameObject.FindGameObjectWithTag("BlackCutscene").GetComponent<SpriteRenderer>().GetComponent<SpriteRenderer>(), 2f, "color", Color.clear);
                 break;
         }
+
+        // Returns vignette effect to default
         yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 2.5f, "intensity", 1.5f).WaitForCompletion());
     }
 }
