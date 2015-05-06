@@ -28,7 +28,7 @@ public class CanvasScript : MonoBehaviour {
     private const char delimiterSpace = ' ';
 	private string[] punctuationArray = {".", ".", ";", ":", "!", "?"};
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
-    private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
+    private Regex re = new Regex(@"#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^([0-9])\|(.+)\^([0-9])\}");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
@@ -50,6 +50,7 @@ public class CanvasScript : MonoBehaviour {
 	public List<string> lineIDList = new List<string>();
 
 	public char submitPaperTo;
+	public string editBackgroundWith;
 
 	public string noteName;
 	public int wordNum;
@@ -134,54 +135,58 @@ public class CanvasScript : MonoBehaviour {
 
                     if (result.Success)
                     {
-						//@W
+						//#W
 						if(result.Groups[1].Value != ""){
-							if(result.Groups[1].Value == "@W"){
+							editBackgroundWith = result.Groups[1].Value;
+						}
+						//@W
+						else if(result.Groups[2].Value != ""){
+							if(result.Groups[2].Value == "@W"){
 								submitPaperTo = 'w';
 							}
-							else if(result.Groups[1].Value == "@P"){
+							else if(result.Groups[2].Value == "@P"){
 								submitPaperTo = 'p';
 							}
-							else if(result.Groups[1].Value == "@J"){
+							else if(result.Groups[2].Value == "@J"){
 								submitPaperTo = 'j';
 							}
 						}
                         // Parse *wordID*{word|alt} with and without punctuation
-						else if (result.Groups[2].Value != "" && result.Groups[3].Value != ""){
-							wordList.Add(result.Groups[2].Value);
+						else if (result.Groups[3].Value != "" && result.Groups[4].Value != ""){
 							wordList.Add(result.Groups[3].Value);
-						}
-						else if (result.Groups[4].Value != ""){
 							wordList.Add(result.Groups[4].Value);
 						}
-						//Parse {word|alt} with and without punctuation
-						else if (result.Groups[5].Value != "" && result.Groups[6].Value != "")
-						{
+						else if (result.Groups[5].Value != ""){
 							wordList.Add(result.Groups[5].Value);
-							wordList.Add(result.Groups[6].Value);
 						}
-						else if (result.Groups[7].Value != ""){
+						//Parse {word|alt} with and without punctuation
+						else if (result.Groups[6].Value != "" && result.Groups[7].Value != "")
+						{
+							wordList.Add(result.Groups[6].Value);
 							wordList.Add(result.Groups[7].Value);
 						}
-						// Parse conjunction + punctuation
-						else if (result.Groups[8].Value != "" && result.Groups[9].Value != ""){
+						else if (result.Groups[8].Value != ""){
 							wordList.Add(result.Groups[8].Value);
+						}
+						// Parse conjunction + punctuation
+						else if (result.Groups[9].Value != "" && result.Groups[10].Value != ""){
 							wordList.Add(result.Groups[9].Value);
+							wordList.Add(result.Groups[10].Value);
 						}
 						// Parse normal word + punctuation
-						else if (result.Groups[10].Value != "" && result.Groups[11].Value != "")
+						else if (result.Groups[11].Value != "" && result.Groups[12].Value != "")
 						{
-							wordList.Add(result.Groups[10].Value);
 							wordList.Add(result.Groups[11].Value);
-						}
-						// Parse conjunction
-						else if (result.Groups[12].Value != "")
-						{
 							wordList.Add(result.Groups[12].Value);
 						}
-						else if(result.Groups[13].Value != "" && result.Groups[14].Value != ""){
+						// Parse conjunction
+						else if (result.Groups[13].Value != "")
+						{
 							wordList.Add(result.Groups[13].Value);
+						}
+						else if(result.Groups[14].Value != "" && result.Groups[15].Value != ""){
 							wordList.Add(result.Groups[14].Value);
+							wordList.Add(result.Groups[15].Value);
 						}
                     }
                     else
