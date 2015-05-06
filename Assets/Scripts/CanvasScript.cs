@@ -29,7 +29,7 @@ public class CanvasScript : MonoBehaviour {
 	private string[] punctuationArray = {".", ".", ";", ":", "!", "?"};
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
     private Regex re = new Regex(@"(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})([^\w\s'])|(\*[0-9]\*[0-9]+\*\{[A-Za-z]+\|[A-Za-z]+\})|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})([^\w\s'])|(\{[A-Za-z]+\^[0-9]\|[A-Za-z]+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{([A-Za-z]+)\|([A-Za-z]+)\}|\{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])\}");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^([0-9])\|(.+)\^([0-9])\}");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
@@ -186,6 +186,7 @@ public class CanvasScript : MonoBehaviour {
                     }
                     else
                     {
+						print(word);
                         wordList.Add(word);
                     }
                 }
