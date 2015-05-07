@@ -27,6 +27,8 @@ public class TextBox : MonoBehaviour {
 	public int count = 0;
 	public List<string> arrText;
 	public string[] fileLoadWords;
+	public int actNumber = 1;
+	public int currDirFileCount = 0;
 
     [TextArea(3,10)] public string editString = "";
 	public string currDir;
@@ -70,6 +72,8 @@ public class TextBox : MonoBehaviour {
 				//print(notes.transform.GetChild(i).childCount);
 				allNoteLines[i][j] = editString;
 			}
+			count = 0;
+			actNumber++;
 		}
 		editString = allNoteLines[0][0];
 		
@@ -81,7 +85,7 @@ public class TextBox : MonoBehaviour {
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
-/*  	void OnGUI() {
+  	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
 
@@ -123,19 +127,20 @@ public class TextBox : MonoBehaviour {
 			// }
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			foreach(WordStructure wordStruct in structList){
-				  print(wordStruct.current);
-			 }
+			print(Resources.Load("Act1/Test"));
+			// foreach(WordStructure wordStruct in structList){
+				  // print(wordStruct.current);
+			 // }
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
 			
 			//print(swapWordList.Count);
 		}
-	}  */
+	} 
 	
 	public void loadFile(){
 		arrText = new List<string>();
-		StreamReader objReader = new StreamReader(info + fileName + count + fileExt);
+		StreamReader objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
 		//print(info+fileName+count);
 		//print("File Num" + count);
 		string sLine = "";

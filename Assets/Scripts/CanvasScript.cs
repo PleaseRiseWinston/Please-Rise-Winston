@@ -191,7 +191,6 @@ public class CanvasScript : MonoBehaviour {
                     }
                     else
                     {
-						print(word);
                         wordList.Add(word);
                     }
                 }
