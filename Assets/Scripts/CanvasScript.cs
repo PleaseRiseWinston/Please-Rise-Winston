@@ -14,7 +14,7 @@ using System;
 public class CanvasScript : MonoBehaviour {
 
     public float curSpacing;
-    public const float lineSpacing = -5f;
+    public const float lineSpacing = -4.5f;
 
     public GameObject paper;
     public PaperScript paperScript;

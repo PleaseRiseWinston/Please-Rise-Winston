@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using Holoville.HOTween;
 
@@ -20,6 +21,7 @@ public class GameController : MonoBehaviour
     private Color solid;
 
     public int totalWeight;
+    public bool curNoteInMotion;
     
     void Start ()
     {
@@ -28,6 +30,7 @@ public class GameController : MonoBehaviour
         backgroundArray = new GameObject[backgrounds.transform.childCount];
 
         totalWeight = 0;
+        curNoteInMotion = false;
 
         // Defaults current Act and Note to 1, 1
         // 'curAct - 1' accounts for reverse indexing convention
@@ -102,6 +105,7 @@ public class GameController : MonoBehaviour
     public void ToTray()
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
+        curNoteInMotion = true;
 
         if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
         {
@@ -130,6 +134,7 @@ public class GameController : MonoBehaviour
         HOTween.To(curNote.transform, 0.15f, "rotation", new Vector3(85, 0, 0), false);
         yield return StartCoroutine(HOTween.To(curNote.transform, 0.15f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
         curNote.GetComponent<PaperScript>().atDestination = true;
+        curNoteInMotion = false;
     }
 
     // Send tray to Winston (right)
@@ -144,6 +149,7 @@ public class GameController : MonoBehaviour
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
+                curNoteInMotion = false;
             }
         }
         curNoteID++;
@@ -163,6 +169,7 @@ public class GameController : MonoBehaviour
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
+                curNoteInMotion = false;
             }
         }
         curNoteID++;
@@ -182,6 +189,7 @@ public class GameController : MonoBehaviour
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(35, 12, -3), false);
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(114, 1360, -581), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
+                curNoteInMotion = false;
             }
         }
         curNoteID++;

@@ -149,7 +149,7 @@ public class PaperScript : MonoBehaviour
     void PlayAudio()
     {
         int i = Mathf.Abs(Random.Range(1, 3));
-        //print(gameObject.name + " " + i);
+        //Debug.Log(gameObject.name + " " + i);
         switch (i)
         {
             case 1:
@@ -162,7 +162,7 @@ public class PaperScript : MonoBehaviour
                 GetComponent<AudioSource>().clip = paper3;
                 break;
         }
-        //print("Playing Audio...");
+        //Debug.Log("Playing Audio...");
         GetComponent<AudioSource>().Play();
     }
 
@@ -171,11 +171,13 @@ public class PaperScript : MonoBehaviour
     {
         //Debug.Log("Focusing");
         PlayAudio();
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = true;
         HOTween.To(transform, 0.7f, "rotation", new Vector3(0, 0, 0), false);
         HOTween.To(transform, 0.7f, "position", cameraFront, false);
         HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 0.5f);
-        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.7f).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.2f).WaitForCompletion());
         focused = true;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = false;
     }
 
     // Coroutine called when unfocusing away from a note
@@ -184,8 +186,10 @@ public class PaperScript : MonoBehaviour
         //Debug.Log("Unfocusing");
         PlayAudio();
         focused = false;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = true;
         HOTween.To(transform, 0.7f, "position", defaultNotePos, false); HOTween.To(transform, 0.7f, "rotation", new Vector3(80, 0, 0), false);
         HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 2.0f);
         yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.0f).WaitForCompletion());
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = false;
     }
 }
