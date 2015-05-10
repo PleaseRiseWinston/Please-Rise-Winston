@@ -99,6 +99,7 @@ public class WordScript : MonoBehaviour {
             if (wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID && gameObject.GetComponent<Text>().text == wordStruct.current)
             {
                 changeable = true;
+                gameObject.layer = 8;
             }
         }
 
