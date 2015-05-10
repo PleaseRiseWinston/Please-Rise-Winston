@@ -84,7 +84,7 @@ public class TextBox : MonoBehaviour {
 		canvas = GameObject.Find("GameCanvas");
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
-	
+	/*
   	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
@@ -137,7 +137,7 @@ public class TextBox : MonoBehaviour {
 			//print(swapWordList.Count);
 		}
 	} 
-	
+	*/
 	public void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);

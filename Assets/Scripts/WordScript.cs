@@ -182,11 +182,10 @@ public class WordScript : MonoBehaviour {
 	void createText(string noteParent){		
 		int i = 1;
 		//wordOptionsUp = true;
-		textPrefab = GameObject.Find("wordOptionMesh");
 		//currX = -6;
 		currX = 0;
 		currY = 6;
-		currZ = -5;
+		currZ = 55;
 		int charCount = 1;
 		//print("In createText");
 		foreach(string w in wordOptions){
@@ -195,9 +194,11 @@ public class WordScript : MonoBehaviour {
 			GameObject textInstance;
 			textInstance = Instantiate(textPrefab, new Vector3(currX,currY,currZ), Quaternion.identity) as GameObject;
 			textInstance.name = "WordOption" + i;
-			textInstance.transform.parent = GameObject.Find(noteParent).transform;
+		    textInstance.tag = "WordOption";
+			textInstance.transform.parent = GameObject.FindGameObjectWithTag("MainCamera").transform;
 			textInstance.GetComponent<TextMesh>().text = w;
 			textInstance.AddComponent<BoxCollider2D>();
+		    textInstance.GetComponent<TextMesh>().color = new Color(0, 0, 0, 0);
 			//currX = textInstance.transform.position.x;
 			//currY = textInstance.transform.position.y;
 			//currZ = textInstance.transform.position.z;
@@ -211,11 +212,13 @@ public class WordScript : MonoBehaviour {
 			
 			//currX = -3.14f;
 			currX = 0;
-			currY = -2;
-			currZ = -5;
+			currY = 0.5f;
+			currZ = 55;
 			
 			i++;
 			charCount = 1;
+
+            HOTween.To(textInstance.GetComponent<TextMesh>(), 1.0f, "color", new Color(0, 0, 0, 1), false);
 		}
 	}
 

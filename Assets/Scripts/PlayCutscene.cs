@@ -69,7 +69,7 @@ public class PlayCutscene : MonoBehaviour {
         switch (actNumber)
         {
             case 1:
-                //cutsceneOverlay.RunOverlay(actNumber);
+                cutsceneOverlay.RunOverlay(actNumber);
 				//20f, 10f, 10f, 17f 
                 yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
                 HOTween.To(GameObject.Find("Cutscene1-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);

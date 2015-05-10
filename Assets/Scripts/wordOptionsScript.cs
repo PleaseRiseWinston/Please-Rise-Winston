@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Holoville.HOTween;
 
 public class wordOptionsScript : MonoBehaviour {
 	public static string textMeshWord = "";
@@ -27,9 +28,16 @@ public class wordOptionsScript : MonoBehaviour {
 			// }
 			
 		}
-		
-		//Destroy the words from game world
-		Destroy(GameObject.Find("WordOption1"));
-		Destroy(GameObject.Find("WordOption2"));
+	    StartCoroutine(FadeOut());
 	}
+
+    IEnumerator FadeOut()
+    {
+        //Destroy the words from game world
+        HOTween.To(GameObject.Find("WordOption1").GetComponent<TextMesh>(), 1.0f, "color", new Color(0, 0, 0, 0), false);
+        yield return StartCoroutine(HOTween.To(GameObject.Find("WordOption2").GetComponent<TextMesh>(), 1.0f, "color", new Color(0, 0, 0, 0), false).WaitForCompletion());
+
+        Destroy(GameObject.Find("WordOption1"));
+        Destroy(GameObject.Find("WordOption2"));
+    }
 }
