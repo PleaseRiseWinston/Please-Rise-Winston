@@ -172,30 +172,6 @@ public class TextBox : MonoBehaviour {
 		int clickedWordCurrNote = 0;
 		int currActTotalWords = 0;
 		int IDofClickedWord = 0;
-
-		// for(int i = 0; i <= noteWordCount[currAct].Length - 1; i++){
-			// currActTotalWords += noteWordCount[currAct][i];
-		// }
-		
-		// for(int j = 0; j < currActTotalWords; j++){
-			// if(clickedWordID == "wordID" + structList[j].wordID && structList[j].alt != "N/A" && structList[j].isClicked){
-				// IDofClickedWord = structList[j].wordID;
-				// clickedWordCurrNote = structList[j].noteID;
-				
-				// string tempString = structList[j].current;
-				// structList[j].current = structList[j].alt;
-				// structList[j].alt = tempString;
-				
-				// int tempNum = structList[j].wordWeightCurr;
-				// structList[j].wordWeightCurr = structList[j].wordWeightAlt;
-				// structList[j].wordWeightAlt = tempNum;
-			// }
-			// else if(IDofClickedWord == structList[j].dependencies && clickedWordCurrNote == structList[j].noteID){
-				// string tempString = structList[j].current;
-				// structList[j].current = structList[j].alt;
-				// structList[j].alt = tempString;
-			// }
-		// }
 		
 		foreach(WordStructure wordStruct in swapWordList){
 			if(clickedWordID == "wordID" + wordStruct.wordID && wordStruct.alt != "N/A" && wordStruct.isClicked){
@@ -224,7 +200,6 @@ public class TextBox : MonoBehaviour {
 		}
 		
 		didSwap = true;
-		//canvasScript.wordOptionClicked = false;
 	}
 	
 	public void updatePaper(string lineID, int currentAct, int currentNote, int currentWordID, string currentWordText, bool changeable){

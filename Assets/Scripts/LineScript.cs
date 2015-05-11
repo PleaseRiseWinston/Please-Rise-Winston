@@ -123,6 +123,10 @@ public class LineScript : MonoBehaviour
             // TODO: Set up mesh sizes to wrap to text
             // newWord gets string s as text
             newWord.text = s;
+			
+			if(newWord.text == ""){
+				isTranslated = true;
+			}
             
 			foreach(WordStructure wordStruct in textBoxScript.swapWordList){
 				if(newWord.text == wordStruct.current && wordStruct.lineID == "N/A" && newWord.name == "wordID" + wordStruct.wordID){

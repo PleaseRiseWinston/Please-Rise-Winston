@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
 
     public int totalWeight;
     public bool curNoteInMotion;
+	
+	string storySoFar = "";
     
     void Start ()
     {
@@ -106,21 +108,27 @@ public class GameController : MonoBehaviour
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         curNoteInMotion = true;
+		
+		//GameObject currNoteCanvas = transform.Find("Notes/" + curNoteName + "/GameCanvas").gameObject;
 
         if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
         {
+			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(ToWinston());
         }
         else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'p')
         {
+			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(ToProsecutor());
         }
         else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'j')
         {
+			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(ToJudge());
         }
         else
         {
+			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(MoveToTray());
             curNoteID++;
             UpdateCurNote(curNoteID);
@@ -196,4 +204,9 @@ public class GameController : MonoBehaviour
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
+	
+	// void addToPastNoteReference(GameObject currNoteCanvas){
+		// storySoFar += currNoteCanvas.GetComponent<CanvasScript>().noteContent;
+		// print(storySoFar);
+	// }
 }
