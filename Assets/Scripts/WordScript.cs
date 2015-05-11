@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection.Emit;
 using Holoville.HOTween;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -79,6 +80,7 @@ public class WordScript : MonoBehaviour {
         // Each word object gets the line that it is on
         line = transform.parent.gameObject;
         lineScript = line.GetComponent<LineScript>();
+
         cameraController = GameObject.FindGameObjectWithTag("CameraController");
         playCutscene = cameraController.GetComponent<PlayCutscene>();
 
@@ -149,18 +151,18 @@ public class WordScript : MonoBehaviour {
     {
 		
         //Debug.Log(curText);
-        if (paperScript.start)
+        if (paperScript.start && paperScript.focused)
         {
             //Debug.Log("Starting");
             StartCoroutine(playCutscene.Play(gameControllerScript.curAct));
         }
-        else if (paperScript.exit)
+        else if (paperScript.exit && paperScript.focused)
         {
-            Debug.Log("Exiting");
+            //Debug.Log("Exiting");
             Application.Quit();
         }
 		//changeable && 
-        else if (!paperScript.start && !paperScript.exit && paperScript.focused && lineScript.isTranslated)
+        else if (!paperScript.start && !paperScript.exit && paperScript.focused && lineScript.isTranslated && paperScript.focused)
         {
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(curText == wordStruct.current){
