@@ -16,7 +16,6 @@ public class LineScript : MonoBehaviour
 {
 
     public bool translateable = false;
-    public bool translated = false;
 
     public int beforeSize = 28;
     public int afterSize = 20;

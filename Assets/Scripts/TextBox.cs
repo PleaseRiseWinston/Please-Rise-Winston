@@ -210,7 +210,7 @@ public class TextBox : MonoBehaviour {
 				wordStruct.wordWeightCurr = wordStruct.wordWeightAlt;
 				wordStruct.wordWeightAlt = tempNum;
 				
-				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current);
+				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current, false);
 				
 				wordStruct.isClicked = false;
 			}
@@ -219,7 +219,7 @@ public class TextBox : MonoBehaviour {
 				wordStruct.current = wordStruct.alt;
 				wordStruct.alt = tempString;
 				
-				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current);
+				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current, true);
 			}
 		}
 		
@@ -227,7 +227,7 @@ public class TextBox : MonoBehaviour {
 		//canvasScript.wordOptionClicked = false;
 	}
 	
-	public void updatePaper(string lineID, int currentAct, int currentNote, int currentWordID, string currentWordText){
+	public void updatePaper(string lineID, int currentAct, int currentNote, int currentWordID, string currentWordText, bool changeable){
 		string actPointNote = currentAct + "." + currentNote;
 		
 		//print(actPointNote);
@@ -236,6 +236,12 @@ public class TextBox : MonoBehaviour {
 				GameObject wordToSwap = noteObj.transform.Find("GameCanvas/" + lineID + "/wordID" + currentWordID).gameObject;
 				wordToSwap.GetComponent<Text>().text = currentWordText;
 				wordToSwap.GetComponent<WordScript>().curText = currentWordText;
+			    if (changeable)
+			    {
+                    Debug.Log("BOOM!");
+                    GameObject switchLine = noteObj.transform.Find("GameCanvas/" + lineID).gameObject;
+			        StartCoroutine(switchLine.GetComponent<LineScript>().untranslate());
+			    }
 			}
 		}
 	}
