@@ -213,7 +213,7 @@ public class TextBox : MonoBehaviour {
 				wordToSwap.GetComponent<WordScript>().curText = currentWordText;
 			    if (changeable)
 			    {
-                    Debug.Log("BOOM!");
+                    //Debug.Log("BOOM!");
                     GameObject switchLine = noteObj.transform.Find("GameCanvas/" + lineID).gameObject;
 			        StartCoroutine(switchLine.GetComponent<LineScript>().untranslate());
 			    }

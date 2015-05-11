@@ -30,34 +30,41 @@ public class Tray : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        print("OnEnter");
         StopAllCoroutines();
         StartCoroutine(Glow());
     }
 
     public void OnMouseExit()
     {
-        print("OnExit");
         StopAllCoroutines();
         StartCoroutine(Unglow());
     }
 
     IEnumerator Glow()
     {
-        print("glowing");
         yield return StartCoroutine(HOTween.To(transform.GetChild(0).transform.GetComponent<SpriteRenderer>(), 0.8f, "color", defaultColor).WaitForCompletion());
     }
 
     IEnumerator Unglow()
     {
-        print("unglowing");
         yield return StartCoroutine(HOTween.To(transform.GetChild(0).transform.GetComponent<SpriteRenderer>(), 0.8f, "color", transparent).WaitForCompletion());
     }
 
     public void OnMouseDown()
     {
+        // Check all lines in curnote are translated
+        bool allTranslated = true;
+        for (int i = 0; i < gameControllerScript.curNote.transform.GetChild(0).transform.childCount; i++)
+        {
+            if (!gameControllerScript.curNote.transform.GetChild(0).transform.GetChild(i).GetComponent<LineScript>().isTranslated)
+            {
+                allTranslated = false;
+                Debug.Log("Line " + i + "not translated");
+            }
+        }
+
         // Only trays/moves curNote iff paper is unfocused and the last paper has arrived at its destination
-        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused && !gameControllerScript.curNoteInMotion && trayCooldown <= Time.time)
+        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused && !gameControllerScript.curNoteInMotion && trayCooldown <= Time.time && allTranslated)
         {
             //print("curNote name: " + gameControllerScript.curNote.name);
             gameControllerScript.curNote.GetComponent<PaperScript>().inTray = true;
