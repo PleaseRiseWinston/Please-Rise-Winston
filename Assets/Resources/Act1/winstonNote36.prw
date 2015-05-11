@@ -9,5 +9,3 @@ differently or if I
 should have even tried to
 {fix^1|speak^3} *35*39*{her|to} *35*39*{window|her} in the
 first place.
-
-

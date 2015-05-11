@@ -1,7 +1,7 @@
-I figured Winston may
-have taken issue with the
-base line facts, a
-subjective man himself.
-Well, let’s bring in a
-criminal to prove our
-point.
+Allow me introduce Miss
+Mellen. She also resides
+in Westholt, near the
+epicenter of this crime
+wave. She was caught in
+open conversation with
+another {resident|dissident}.

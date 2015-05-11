@@ -3,4 +3,4 @@ Welcome to case number
 Today’s case involves one
 Winston who resides in
 Westholt. He is currently
-charged with: Treason. @J
+charged with: Treason.

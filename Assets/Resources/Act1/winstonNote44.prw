@@ -1,10 +1,10 @@
-Why would she offer to
-help me? Before this
-internal dialogue took me
-any more than it already
-had she spoke again,
-“These things breaking
-may not stop happening.
-If you want to, I can
-teach you how to fix
-them.”
+Again, the way she spoke
+made me feel like she
+meant more than the words
+she said. I realized that
+I was taking too long to
+respond so I blurted,
+“{Yes|No}! That *44*29*{would|wouldn't} help
+me...” My neighbor *44*29*{smiled|frowned}
+in a way that I’m not
+sure I’ve seen before. @J

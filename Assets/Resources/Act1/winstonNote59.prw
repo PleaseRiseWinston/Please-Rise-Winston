@@ -1,8 +1,6 @@
-Translator, this woman is
-terrified. I never meant
-for this to happen. I
-can’t sit here and do
-nothing. Please just tell
-the prosecutor whatever
-he wants to hear from me
-to allow her to leave.
+I Winston believe that
+Miss Mellen is guilty of
+the crimes she is accused
+of. It {was|wasn't} an effect of
+my book. Therefore it *59*16*{did|didn't}
+influence her own freewill. @J

@@ -1,11 +1,10 @@
-Not knowing how to
-respond I too spoke in
-words we both could
-understand, work
-language. My lips parted,
-“I don’t know how to fix
-this.” I still faced
-forward, too scared to
-turn around and face the
-justice I felt was
-coming.
+“I can fix this as well.”
+the neighbor said. The
+{confusion|fright} forced my body
+around. I saw what looked
+to be a constructors belt
+around her waist. Of
+course she knows how to
+fix all these things,
+that’s her job. But why
+was she here?

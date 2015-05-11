@@ -1,10 +1,10 @@
-“I can fix this as well.”
-the neighbor said. The
-confusion forced my body
-around. I saw what looked
-to be a constructors belt
-around her waist. Of
-course she knows how to
-fix all these things,
-that’s her job. But why
-was she here?
+Why would she offer to
+help me? Before this
+internal dialogue took me
+any more than it already
+had she spoke again,
+“These things breaking
+may not stop happening.
+If you {want|need} to, I can
+teach you how to fix
+them.”

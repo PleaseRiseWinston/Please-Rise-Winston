@@ -1,10 +1,7 @@
-Now, before Winston’s
-book made its rounds we
-were experiencing
-approximately a 3% crime
-rate in the area.
-However, the crime rate
-has recently risen to
-nearly 14%. There is no
-question in my mind that
-these changes are linked.
+This may be a crime yes,
+but is this really that
+{terrible|serious} of an act?
+Taboo, surely, but a
+crime worth heavy
+punishment and
+imprisonment?

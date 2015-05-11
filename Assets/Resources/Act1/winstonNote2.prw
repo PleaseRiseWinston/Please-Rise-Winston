@@ -4,4 +4,4 @@ best translation.
 Please place this note
 in the box beside you
 to to indicate your
-dedication to the truth. @J
+dedication to the truth.

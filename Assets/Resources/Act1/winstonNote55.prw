@@ -1,9 +1,11 @@
-If it was my choice, we
-would follow procedure
-and simply transport you
-here. However, you are
-now a convicted criminal
-and owe the court an
-explanation for the
-crimes you have
-committed.
+I don’t know what to say.
+I really didn’t even want 
+to go outside that day.
+I ran into someone who 
+was very {passionate|aggressive} and 
+excited. He saw me and 
+immediately ran up to 
+speak. Neither of us had 
+met each other before, but 
+I think I had seen him in 
+town before.

@@ -1,7 +1,11 @@
-Translator, we have been
-receiving reports of
-residents of Westholt
-performing public
-displays of conversation.
-This is also a crime we
-do not treat lightly.
+Now, before Winston’s
+book made its rounds we
+were experiencing
+approximately a three
+percent crime rate in the
+area. However, the crime
+rate has recently risen
+to nearly *45*14*{nine|sixteen} percent.
+There is no question in
+my mind that these
+changes are linked. @W

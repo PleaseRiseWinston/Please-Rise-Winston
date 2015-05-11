@@ -1,7 +1,12 @@
-This may be a crime yes,
-but is this really that
-horrible of an act?
-Taboo, surely, but a
-crime worth serious
-punishment and
-imprisonment?
+Furthermore, how can
+someone simply point to
+the book of a lower and
+claim that a rising crime
+rate is the cause?
+Perhaps the area is
+simply {filled|infested} with
+problems? Perhaps there
+has been a small number
+of crime committers that
+have been very active. It
+is all very *48*28*{inconclusive|assumed}. @P

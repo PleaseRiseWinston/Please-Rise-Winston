@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     public int totalWeight;
     public bool curNoteInMotion;
 	
-	string storySoFar = "";
+	public string storySoFar = "";
     
     void Start ()
     {
@@ -130,7 +130,16 @@ public class GameController : MonoBehaviour
         {
 			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(MoveToTray());
-            curNoteID++;
+
+            if (curNoteID != notes.transform.GetChild(curAct).childCount)
+            {
+                curNoteID++;
+            }
+            else
+            {
+                curNoteID = 1;
+                curAct++;
+            }
             UpdateCurNote(curNoteID);
 
             GetNote(curNoteName);
