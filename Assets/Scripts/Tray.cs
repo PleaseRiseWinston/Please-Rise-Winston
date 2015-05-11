@@ -52,6 +52,7 @@ public class Tray : MonoBehaviour
 
     public void OnMouseDown()
     {
+        /*
         // Check all lines in curnote are translated
         bool allTranslated = true;
         for (int i = 0; i < gameControllerScript.curNote.transform.GetChild(0).transform.childCount; i++)
@@ -62,9 +63,10 @@ public class Tray : MonoBehaviour
                 Debug.Log("Line " + i + "not translated");
             }
         }
+        */
 
         // Only trays/moves curNote iff paper is unfocused and the last paper has arrived at its destination
-        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused && !gameControllerScript.curNoteInMotion && trayCooldown <= Time.time && allTranslated)
+        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused && !gameControllerScript.curNoteInMotion && trayCooldown <= Time.time)
         {
             //print("curNote name: " + gameControllerScript.curNote.name);
             gameControllerScript.curNote.GetComponent<PaperScript>().inTray = true;

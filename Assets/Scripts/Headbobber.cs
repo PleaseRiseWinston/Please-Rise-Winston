@@ -6,9 +6,9 @@ using Random = UnityEngine.Random;
 public class Headbobber : MonoBehaviour
 {
     float bobbingSpeed = 4.5f;
-    float horizontalBobbingAmount = 0.7f;
-    float verticalBobbingAmount = 1.5f;
-    float depthBobbingAmount = 1.5f;
+    float horizontalBobbingAmount = 0.3f;
+    float verticalBobbingAmount = 1.0f;
+    float depthBobbingAmount = 1.0f;
     Vector3 midpoint;
 
     void Start()

@@ -169,7 +169,17 @@ public class GameController : MonoBehaviour
                 curNoteInMotion = false;
             }
         }
-        curNoteID++;
+
+        if (curNoteID != notes.transform.GetChild(curAct).childCount)
+        {
+            curNoteID++;
+        }
+        else
+        {
+            curNoteID = 1;
+            curAct++;
+        }
+
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
@@ -189,7 +199,17 @@ public class GameController : MonoBehaviour
                 curNoteInMotion = false;
             }
         }
-        curNoteID++;
+
+        if (curNoteID != notes.transform.GetChild(curAct).childCount)
+        {
+            curNoteID++;
+        }
+        else
+        {
+            curNoteID = 1;
+            curAct++;
+        }
+
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
@@ -209,7 +229,17 @@ public class GameController : MonoBehaviour
                 curNoteInMotion = false;
             }
         }
-        curNoteID++;
+
+        if (curNoteID != notes.transform.GetChild(curAct).childCount)
+        {
+            curNoteID++;
+        }
+        else
+        {
+            curNoteID = 1;
+            curAct++;
+        }
+
         UpdateCurNote(curNoteID);
         GetNote(curNoteName);
     }
