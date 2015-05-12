@@ -5,7 +5,7 @@ understand, work
 language. My lips parted,
 “I don’t know how to fix
 this.” I still faced
-forward, too {afraid|panicked} to
+forward, too {afraid^1|panicked^2} to
 turn around and face the
-*41*31*{justice|punishment} I felt was
+*42*31*{justice|punishment} I felt was
 coming.

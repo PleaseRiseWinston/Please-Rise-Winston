@@ -7,4 +7,4 @@ beside me. Winston stands
 accused of treason. This
 is not a crime that our
 justice system treats
-lightly. @J
+lightly.

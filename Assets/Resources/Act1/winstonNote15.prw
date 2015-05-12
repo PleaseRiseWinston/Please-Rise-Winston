@@ -7,4 +7,4 @@ story of a woman in the
 first person. Please take
 a look at this excerpt
 from the beginning of the
-book. 
+first chapter. @J

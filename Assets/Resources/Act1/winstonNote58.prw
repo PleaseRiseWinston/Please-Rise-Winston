@@ -1,6 +1,6 @@
-Translator, this {woman|victim}
+Translator, this {victim^3|person^1}
 is terrified. I never
-*58*2*{meant|intended} for this to
+*59*2*{meant|intended} for this to
 happen. I can’t sit here
 and do nothing. Please
 just tell the prosecutor

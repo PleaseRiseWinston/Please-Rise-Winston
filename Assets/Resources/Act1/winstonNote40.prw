@@ -1,4 +1,4 @@
-My face *39*41*{contorted|relaxed} as I
+My face *41*41*{contorted|relaxed} as I
 prepared for whatever
 punishment I knew would
 be coming my way. My

@@ -1,6 +1,6 @@
 “I can fix this as well.”
 the neighbor said. The
-{confusion|fright} forced my body
+{confusion^2|fright^3} forced my body
 around. I saw what looked
 to be a constructors belt
 around her waist. Of

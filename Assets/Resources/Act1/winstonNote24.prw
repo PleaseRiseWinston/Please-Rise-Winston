@@ -1,4 +1,4 @@
-This is {obscene^4|not true^2}. I can’t
+This is {obscene^4|incorrect^2}. I can’t
 understand how someone
 might believe that my
 work has inspired these
@@ -7,4 +7,4 @@ Joanna not trying to
 break the window, but
 even if she had, one does
 not simply copy what they
-read.
+read. @P

@@ -4,7 +4,7 @@ meant more than the words
 she said. I realized that
 I was taking too long to
 respond so I blurted,
-“{Yes|No}! That *44*29*{would|wouldn't} help
-me...” My neighbor *44*29*{smiled|frowned}
+“{Yes^5|No^3}! That *45*29*{would|wouldn't} help
+me...” My neighbor *45*29*{smiled|frowned}
 in a way that I’m not
 sure I’ve seen before. @J

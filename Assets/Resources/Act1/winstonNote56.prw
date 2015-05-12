@@ -1,9 +1,9 @@
 He just began talking.
 About nothing really.
 Before we were caught, he
-*55*24*{handed|forced} me this note. Then
+*56*24*{forced|handed} me this note. Then
 everything happened very
-quickly. I was *54*20*{hurried|shoved}
+quickly. I was *56*24*{shoved|hurried}
 into a car and driven to
 the city. I don’t know
 what else to say about
