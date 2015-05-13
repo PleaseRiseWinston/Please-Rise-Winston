@@ -2,6 +2,8 @@
 using UnityEngine;
 using System.Collections;
 using Holoville.HOTween;
+using UnityEditor.Animations;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -65,8 +67,31 @@ public class GameController : MonoBehaviour
 	        }
 	    }
 
+        ToggleAct(curAct);
         UpdateCurNote(curNoteID);
 	}
+
+    public void ToggleAct(int curAct)
+    {
+        // Toggles all non-current acts false
+        for(int i = 0; i < notes.transform.childCount; i++)
+        {
+            if (i == (curAct - 1))
+            {
+                for (int j = 0; j < notes.transform.GetChild(i).transform.childCount; j++)
+                {
+                    notes.transform.GetChild(i).transform.GetChild(j).gameObject.SetActive(true);
+                }
+            }
+            else if (i != (curAct - 1))
+            {
+                for (int j = 0; j < notes.transform.GetChild(i).transform.childCount; j++)
+                {
+                    notes.transform.GetChild(i).transform.GetChild(j).gameObject.SetActive(false);
+                }
+            }
+        }
+    }
 
     public void ChangeBackgroundTo(GameObject background)
     {
@@ -139,6 +164,7 @@ public class GameController : MonoBehaviour
             {
                 curNoteID = 1;
                 curAct++;
+                ToggleAct(curAct);
             }
             UpdateCurNote(curNoteID);
 
@@ -178,6 +204,7 @@ public class GameController : MonoBehaviour
         {
             curNoteID = 1;
             curAct++;
+            ToggleAct(curAct);
         }
 
         UpdateCurNote(curNoteID);
@@ -208,6 +235,7 @@ public class GameController : MonoBehaviour
         {
             curNoteID = 1;
             curAct++;
+            ToggleAct(curAct);
         }
 
         UpdateCurNote(curNoteID);
@@ -238,6 +266,7 @@ public class GameController : MonoBehaviour
         {
             curNoteID = 1;
             curAct++;
+            ToggleAct(curAct);
         }
 
         UpdateCurNote(curNoteID);
