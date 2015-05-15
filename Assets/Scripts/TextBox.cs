@@ -29,7 +29,8 @@ public class TextBox : MonoBehaviour {
 	public string[] fileLoadWords;
 	public int actNumber = 1;
 	public int currDirFileCount = 0;
-	public char fileAorB = 'a';
+	public char fileA = 'a';
+	public char fileB = 'b';
 
     [TextArea(3,10)] public string editString = "";
 	public string currDir;
@@ -69,7 +70,7 @@ public class TextBox : MonoBehaviour {
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
 			noteWordCount[i] = new int[notes.transform.GetChild(i).childCount];
 			for(int j = 0; j < notes.transform.GetChild(i).childCount; j++){
-				loadFile(count, fileAorB);
+				loadFile(count, fileA, fileB);
 				//print(notes.transform.GetChild(i).childCount);
 				allNoteLines[i][j] = editString;
 			}
@@ -139,15 +140,20 @@ public class TextBox : MonoBehaviour {
 		}
 	} 
 	*/
-	public void loadFile(int count, char fileAorB){
+	public void loadFile(int fileCount, char branchFileA, char branchFileB){
 		arrText = new List<string>();
 		StreamReader objReader;
 		//Check for A/B file else check for normal file
-		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
-			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
+		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + fileCount + branchFileA + fileExt)){
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + branchFileA + fileExt);
+		}
+		else if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + fileCount + branchFileB + fileExt)){
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + branchFileB + fileExt);
 		}
 		else{
-			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
+			print(actNumber);
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + fileCount + fileExt);
+			count++;
 		}
 		//print(info+fileName+count);
 		//print("File Num" + count);
@@ -162,7 +168,6 @@ public class TextBox : MonoBehaviour {
 		objReader.Close();
 		fileLoadWords = arrText.ToArray();
 		editString = string.Join("\n", fileLoadWords);
-		count++;
 	}
 	
 	void checkFileNum(string currFile){
