@@ -55,6 +55,8 @@ public class TextBox : MonoBehaviour {
 	public GameController gameControllerScript;
 
 	void Start(){
+		print(count + "");
+		
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					       //makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
@@ -199,7 +201,7 @@ public class TextBox : MonoBehaviour {
 				wordStruct.wordWeightCurr = wordStruct.wordWeightAlt;
 				wordStruct.wordWeightAlt = tempNum;
 				
-				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current, false);
+				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current, false, wordStruct.branchAB);
 				
 				wordStruct.isClicked = false;
 			}
@@ -208,15 +210,15 @@ public class TextBox : MonoBehaviour {
 				wordStruct.current = wordStruct.alt;
 				wordStruct.alt = tempString;
 				
-				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current, true);
+				updatePaper(wordStruct.lineID, currAct + 1, wordStruct.noteID, wordStruct.wordID, wordStruct.current, true, wordStruct.branchAB);
 			}
 		}
 		
 		didSwap = true;
 	}
 	
-	public void updatePaper(string lineID, int currentAct, int currentNote, int currentWordID, string currentWordText, bool changeable){
-		string actPointNote = currentAct + "." + currentNote;
+	public void updatePaper(string lineID, int currentAct, int currentNote, int currentWordID, string currentWordText, bool changeable, string noteAorB){
+		string actPointNote = currentAct + "." + currentNote + noteAorB;
 		
 		//print(actPointNote);
 		foreach(GameObject noteObj in GameObject.FindGameObjectsWithTag("Papers")){

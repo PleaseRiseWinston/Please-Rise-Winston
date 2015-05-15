@@ -6,7 +6,7 @@ using System.Collections;
 public class WordStructure : MonoBehaviour {
 
     public int wordID, noteID, dependencies, wordWeightCurr, wordWeightAlt;
-    public string current, alt, lineID;
+    public string current, alt, lineID, branchAB;
 	public bool newLine, lastWord, isPunctuation, isClicked, isChangeable;
 
     // Default Constructor
@@ -25,10 +25,11 @@ public class WordStructure : MonoBehaviour {
 		isPunctuation = false;
 		noteID = 0;
 		isChangeable = false;
+		branchAB = "";
     }
 
     // Non-default(?) Constructor
-    public WordStructure(bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, int wordWeightCurr, int wordWeightAlt, bool isClicked, bool isChangeable)
+    public WordStructure(bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, int wordWeightCurr, int wordWeightAlt, bool isClicked, bool isChangeable, string branchAB)
     {
 		this.noteID = noteID;
 		this.isPunctuation = isPunctuation;
@@ -43,5 +44,6 @@ public class WordStructure : MonoBehaviour {
 		this.wordWeightAlt = wordWeightAlt;
 		this.isClicked = isClicked;
 		this.isChangeable = isChangeable;
+		this.branchAB = branchAB;
     }
 }
