@@ -1,4 +1,4 @@
-﻿Shader "UI/Default Font" {
+﻿Shader "UI/FontGlow" {
 	Properties {
 		_MainTex ("Font Texture", 2D) = "white" {}
 		_Color ("Text Color", Color) = (1,1,1,1)
@@ -10,6 +10,9 @@
 		_StencilReadMask ("Stencil Read Mask", Float) = 255
 
 		_ColorMask ("Color Mask", Float) = 15
+
+		_GlowColor ("Glow Color", Color)  = (1,1,1,1)
+		_GlowStrength ("Glow Strength", Float) = 1.0
 	}
 
 	SubShader {
@@ -18,8 +21,9 @@
 		{
 			"Queue"="Transparent"
 			"IgnoreProjector"="True"
-			"RenderType"="Transparent"
 			"PreviewType"="Plane"
+			"RenderType"="Glow11Transparent"
+			"RenderEffect"="Glow11Transparent"
 		}
 		
 		Stencil
@@ -84,4 +88,5 @@
 			ENDCG 
 		}
 	}
+	CustomEditor "GlowMatInspector"
 }

@@ -71,19 +71,20 @@ public class PlayCutscene : MonoBehaviour {
             case 1:
                 cutsceneOverlay.RunOverlay(actNumber);
 				//20f, 10f, 10f, 17f 
-                yield return StartCoroutine(HOTween.To(camTransform, 20f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
                 HOTween.To(GameObject.Find("Cutscene1-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                yield return StartCoroutine(HOTween.To(camTransform, 10f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
                 HOTween.To(GameObject.Find("Cutscene1-2").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                yield return StartCoroutine(HOTween.To(camTransform, 10f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
                 HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                yield return StartCoroutine(HOTween.To(camTransform, 17f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
 
                 cutsceneAudio.Stop();
                 playingCutscene = false;
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);
+                GameObject.FindGameObjectWithTag("BlackGame").SetActive(false);
                 gameControllerScript.GetNote("1.1");
                 //gameControllerScript.GetNote("1." + GameObject.FindGameObjectWithTag("Notes").transform.GetChild(gameControllerScript.curAct - 1).childCount);
                 print("End Cutscene");
