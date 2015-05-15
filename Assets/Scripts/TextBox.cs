@@ -29,6 +29,7 @@ public class TextBox : MonoBehaviour {
 	public string[] fileLoadWords;
 	public int actNumber = 1;
 	public int currDirFileCount = 0;
+	public char fileAorB = 'a';
 
     [TextArea(3,10)] public string editString = "";
 	public string currDir;
@@ -68,7 +69,7 @@ public class TextBox : MonoBehaviour {
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
 			noteWordCount[i] = new int[notes.transform.GetChild(i).childCount];
 			for(int j = 0; j < notes.transform.GetChild(i).childCount; j++){
-				loadFile();
+				loadFile(count, fileAorB);
 				//print(notes.transform.GetChild(i).childCount);
 				allNoteLines[i][j] = editString;
 			}
@@ -138,9 +139,16 @@ public class TextBox : MonoBehaviour {
 		}
 	} 
 	*/
-	public void loadFile(){
+	public void loadFile(int count, char fileAorB){
 		arrText = new List<string>();
-		StreamReader objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
+		StreamReader objReader;
+		//Check for A/B file else check for normal file
+		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
+		}
+		else{
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
+		}
 		//print(info+fileName+count);
 		//print("File Num" + count);
 		string sLine = "";
