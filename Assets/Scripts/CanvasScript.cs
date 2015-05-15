@@ -50,7 +50,7 @@ public class CanvasScript : MonoBehaviour {
 	public List<string> lineIDList = new List<string>();
 
 	public char submitPaperTo;
-	public string editBackgroundWith;
+	public string witnessState;
 
 	public string noteName;
 	public int wordNum;
@@ -137,7 +137,7 @@ public class CanvasScript : MonoBehaviour {
                     {
 						//#W
 						if(result.Groups[1].Value != ""){
-							editBackgroundWith = result.Groups[1].Value;
+							witnessState = result.Groups[1].Value;
 						}
 						//@W
 						else if(result.Groups[2].Value != ""){
