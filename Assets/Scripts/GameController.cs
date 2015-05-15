@@ -24,7 +24,9 @@ public class GameController : MonoBehaviour
 
     public int totalWeight;
     public bool curNoteInMotion;
-	
+
+    public bool overlayActive = false;
+
 	public string storySoFar = "";
     
     void Start ()
@@ -93,10 +95,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void ChangeBackgroundTo(GameObject background)
+    public void ChangeBackgroundTo(string backgroundName)
     {
         curBackground.GetComponent<SpriteRenderer>().color = transparent;
-        curBackground = background;
+        curBackground = GameObject.Find("backgroundName");
         curBackground.GetComponent<SpriteRenderer>().color = solid;
     }
 
@@ -159,16 +161,17 @@ public class GameController : MonoBehaviour
             if (curNoteID != notes.transform.GetChild(curAct).childCount)
             {
                 curNoteID++;
+                UpdateCurNote(curNoteID);
+                GetNote(curNoteName);
             }
             else
             {
                 curNoteID = 1;
                 curAct++;
                 ToggleAct(curAct);
+                UpdateCurNote(curNoteID);
+                GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
             }
-            UpdateCurNote(curNoteID);
-
-            GetNote(curNoteName);
         }
     }
 
@@ -199,16 +202,17 @@ public class GameController : MonoBehaviour
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
             curNoteID++;
+            UpdateCurNote(curNoteID);
+            GetNote(curNoteName);
         }
         else
         {
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
+            UpdateCurNote(curNoteID);
+            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
-
-        UpdateCurNote(curNoteID);
-        GetNote(curNoteName);
     }
 
     // Send tray to Prosecutor (left)
@@ -230,16 +234,17 @@ public class GameController : MonoBehaviour
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
             curNoteID++;
+            UpdateCurNote(curNoteID);
+            GetNote(curNoteName);
         }
         else
         {
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
+            UpdateCurNote(curNoteID);
+            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
-
-        UpdateCurNote(curNoteID);
-        GetNote(curNoteName);
     }
 
     // Send tray to Judge (behind)
@@ -261,16 +266,17 @@ public class GameController : MonoBehaviour
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
             curNoteID++;
+            UpdateCurNote(curNoteID);
+            GetNote(curNoteName);
         }
         else
         {
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
+            UpdateCurNote(curNoteID);
+            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
-
-        UpdateCurNote(curNoteID);
-        GetNote(curNoteName);
     }
 	
 	// void addToPastNoteReference(GameObject currNoteCanvas){

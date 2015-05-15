@@ -51,8 +51,28 @@ public class WordScript : MonoBehaviour {
 
     private Vector3 defaultPos;
 
+    private bool _glowing;
+    public bool Glowing
+    {
+        get { return _glowing; }
+        set
+        {
+            _glowing = value;
+            if (_glowing)
+            {
+                // make font glow
+            }
+            else
+            {
+                // make font dtop g;pwoimg
+            }
+        }
+    }
+
     void Start()
     {
+        this.Glowing = true;
+
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
         /*
@@ -223,5 +243,4 @@ public class WordScript : MonoBehaviour {
             HOTween.To(textInstance.GetComponent<TextMesh>(), 1.0f, "color", new Color(0, 0, 0, 1), false);
 		}
 	}
-
 }
