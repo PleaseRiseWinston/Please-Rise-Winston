@@ -11,6 +11,7 @@
 
 		_ColorMask ("Color Mask", Float) = 15
 
+		_GlowTex ("Glow", 2D) = "" {}
 		_GlowColor ("Glow Color", Color)  = (1,1,1,1)
 		_GlowStrength ("Glow Strength", Float) = 1.0
 	}

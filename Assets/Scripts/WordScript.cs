@@ -51,6 +51,10 @@ public class WordScript : MonoBehaviour {
 
     private Vector3 defaultPos;
 
+    private Material fontMaterial;
+    private float glowStrength;
+    [SerializeField] private Material _glowMaterial;
+
     private bool _glowing;
     public bool Glowing
     {
@@ -61,17 +65,29 @@ public class WordScript : MonoBehaviour {
             if (_glowing)
             {
                 // make font glow
+                HOTween.To(this, 0.3f, new TweenParms().Prop("glowStrength", 1.0f).OnUpdate(OnTweenUpdate));
             }
             else
             {
-                // make font dtop g;pwoimg
+                HOTween.To(this, 0.3f, new TweenParms().Prop("glowStrength", 0.0f).OnUpdate(OnTweenUpdate));
             }
         }
     }
 
+    private void OnTweenUpdate()
+    {
+        fontMaterial.SetFloat("_GlowStrength", glowStrength);
+    }
+
     void Start()
     {
-        this.Glowing = true;
+        fontMaterial = new Material(_glowMaterial);
+        Texture2D texture = new Texture2D(1, 1);
+        texture.SetPixel(0, 0, Color.cyan);
+        texture.Apply();
+        fontMaterial.SetTexture("_GlowTex", texture);
+        gameObject.GetComponent<Text>().material = fontMaterial;
+        Glowing = true;
 
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();

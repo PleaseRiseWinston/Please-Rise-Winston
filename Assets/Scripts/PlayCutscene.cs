@@ -31,6 +31,8 @@ public class PlayCutscene : MonoBehaviour {
     private Vector3 direction;
 
     public AudioClip cutsceneMusic;
+
+    public bool skipCutscene;
 	
     void Start() {
         gameCamera.enabled = false;
@@ -69,18 +71,21 @@ public class PlayCutscene : MonoBehaviour {
         switch (actNumber)
         {
             case 1:
-                cutsceneOverlay.RunOverlay(actNumber);
-				//20f, 10f, 10f, 17f 
-                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
-                HOTween.To(GameObject.Find("Cutscene1-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
-                HOTween.To(GameObject.Find("Cutscene1-2").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
-                HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
+                if (!skipCutscene)
+                {
+                    cutsceneOverlay.RunOverlay(actNumber);
+                    //20f, 10f, 10f, 17f 
+                    yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+                    HOTween.To(GameObject.Find("Cutscene1-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
+                    yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+                    HOTween.To(GameObject.Find("Cutscene1-2").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
+                    yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
+                    HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
+                    yield return StartCoroutine(HOTween.To(camTransform, 0f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
 
-                cutsceneAudio.Stop();
-                playingCutscene = false;
+                    cutsceneAudio.Stop();
+                    playingCutscene = false;
+                }
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);

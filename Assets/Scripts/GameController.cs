@@ -97,9 +97,9 @@ public class GameController : MonoBehaviour
 
     public void ChangeBackgroundTo(string backgroundName)
     {
-        curBackground.GetComponent<SpriteRenderer>().color = transparent;
-        curBackground = GameObject.Find("backgroundName");
-        curBackground.GetComponent<SpriteRenderer>().color = solid;
+        HOTween.To(curBackground.GetComponent<SpriteRenderer>(), 0.7f, "color", transparent);
+        curBackground = GameObject.FindGameObjectWithTag(backgroundName);
+        HOTween.To(curBackground.GetComponent<SpriteRenderer>(), 0.7f, "color", solid);
     }
 
     // Converts input int to string for future searching and matching
@@ -114,20 +114,47 @@ public class GameController : MonoBehaviour
     public void GetNote(string noteID)
     {
         Debug.Log("Getting Note: " + noteID);
+
+        // Changes background to witness and back on cue
+        if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().witnessState != null)
+        {
+            switch (curNote.transform.GetChild(0).GetComponent<CanvasScript>().witnessState)
+            {
+                case "WE":
+                    ChangeBackgroundTo("Witness1");
+                    break;
+                case "WL":
+                    ChangeBackgroundTo("GameBackground");
+                    break;
+            }
+        }
+        
         // Finds the corresponding note with the correct ID and brings it to center
         for (int i = 0; i < notes.transform.GetChild(curAct - 1).childCount; i++)
         {
-            if (GameObject.FindGameObjectWithTag("Notes").transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
+            if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
             {
-                StartCoroutine(MoveToCenter(curAct - 1, i));
-                print(curAct - 1 + ", " + i);
+                //Debug.Log(curAct - 1 + ", " + i);
+                MoveToCenter(curAct - 1, i, false);
+            }
+            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
+            {
+                noteID = noteID + "a";
+                MoveToCenter(curAct - 1, i, true);
+            }
+            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "b")
+            {
+                noteID = noteID + "b";
+                MoveToCenter(curAct - 1, i, true);
             }
         }
     }
 
-    IEnumerator MoveToCenter(int actIndex, int i)
+    IEnumerator MoveToCenter(int actIndex, int i, bool branch)
     {
-        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("Notes").transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
+        {
+            yield return StartCoroutine(HOTween.To(notes.transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
+        }
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
