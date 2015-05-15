@@ -67,7 +67,7 @@ public class Tray : MonoBehaviour
 
         // Only trays/moves curNote iff paper is unfocused and the last paper has arrived at its destination
 		// add && allTranslated so every line has to be translated
-        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused && !gameControllerScript.curNoteInMotion && trayCooldown <= Time.time)
+        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused && !gameControllerScript.curNoteInMotion && trayCooldown <= Time.time && allTranslated)
         {
             //print("curNote name: " + gameControllerScript.curNote.name);
             gameControllerScript.curNote.GetComponent<PaperScript>().inTray = true;
