@@ -207,6 +207,7 @@ public class WordScript : MonoBehaviour {
 						wordStruct.isClicked = true;
 						wordOptions[0] = wordStruct.current;
 						wordOptions[1] = wordStruct.alt;
+						gameControllerScript.overlayActive = true;
 						createText(noteParent);
 					}
 				}

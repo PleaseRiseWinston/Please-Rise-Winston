@@ -46,6 +46,9 @@ public class PaperScript : MonoBehaviour
 	
 	public GameObject textBox;
 	public TextBox textBoxScript;
+	
+	GameObject gameController;
+	GameController gameControllerScript;
 
     void Start()
     {
@@ -58,6 +61,9 @@ public class PaperScript : MonoBehaviour
         focused = false;
         inTray = false;
         atDestination = false;
+		
+		gameController = GameObject.FindGameObjectWithTag("GameController");
+		gameControllerScript = gameController.GetComponent<GameController>();
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file
         if (start)
@@ -130,7 +136,7 @@ public class PaperScript : MonoBehaviour
     public void LateUpdate()
     {
         // Detects clicks off the object
-        if (Input.GetMouseButtonDown(0) && !mouseOver && focused && !inTray)
+        if (Input.GetMouseButtonDown(0) && !mouseOver && focused && !inTray && !gameControllerScript.overlayActive)
         {
             //Debug.Log("Unfocusing");
             StartCoroutine(Unfocus());

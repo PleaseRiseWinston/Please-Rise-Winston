@@ -5,13 +5,14 @@ using System.Collections;
 
 public class WordStructure : MonoBehaviour {
 
-    public int wordID, noteID, dependencies, wordWeightCurr, wordWeightAlt;
+    public int wordID, noteID, dependencies, wordWeightCurr, wordWeightAlt, actID;
     public string current, alt, lineID, branchAB;
 	public bool newLine, lastWord, isPunctuation, isClicked, isChangeable;
 
     // Default Constructor
     public WordStructure()
     {
+		actID = 0;
 		isClicked = false;
         wordID = -1;
         current = "N/A";
@@ -29,8 +30,9 @@ public class WordStructure : MonoBehaviour {
     }
 
     // Non-default(?) Constructor
-    public WordStructure(bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, int wordWeightCurr, int wordWeightAlt, bool isClicked, bool isChangeable, string branchAB)
+    public WordStructure(int actID, bool isPunctuation, int wordID, string current, string alt, int dependencies, string lineID, bool newLine, bool lastWord, int wordWeightCurr, int wordWeightAlt, bool isClicked, bool isChangeable, string branchAB)
     {
+		this.actID = actID;
 		this.noteID = noteID;
 		this.isPunctuation = isPunctuation;
         this.wordID = wordID;

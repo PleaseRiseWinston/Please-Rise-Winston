@@ -246,6 +246,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.dependencies = int.Parse(secRes.Groups[2].Value);
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							wordStructure.noteID = secNum;
+							wordStructure.actID = firstNum;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;
@@ -265,6 +266,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							wordStructure.noteID = secNum;
 							wordStructure.isChangeable = true;
+							wordStructure.actID = firstNum;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;

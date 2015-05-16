@@ -161,6 +161,12 @@ public class GameController : MonoBehaviour
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         curNoteInMotion = true;
 		
+		foreach(WordStructure wordStruct in textBoxScript.structList){
+			if(wordStruct.noteID == curNoteID && wordStruct.actID == curAct){
+				//Do stuff with weights using wordStruct.wordWeightCurr
+			}
+		}
+		
 		//GameObject currNoteCanvas = transform.Find("Notes/" + curNoteName + "/GameCanvas").gameObject;
 
         if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')

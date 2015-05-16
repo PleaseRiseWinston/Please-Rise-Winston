@@ -8,9 +8,15 @@ public class wordOptionsScript : MonoBehaviour {
 	GameObject textBox;
 	TextBox textBoxScript;
 	
+	GameObject gameController;
+	GameController gameControllerScript;
+	
 	void Start(){
 		textBox = GameObject.Find("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
+		
+		gameController = GameObject.FindGameObjectWithTag("GameController");
+		gameControllerScript = gameController.GetComponent<GameController>();
 	}
 	
 	void OnMouseDown(){
@@ -39,5 +45,6 @@ public class wordOptionsScript : MonoBehaviour {
 
         Destroy(GameObject.Find("WordOption1"));
         Destroy(GameObject.Find("WordOption2"));
+		gameControllerScript.overlayActive = false;
     }
 }

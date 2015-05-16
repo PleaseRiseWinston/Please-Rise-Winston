@@ -29,8 +29,7 @@ public class TextBox : MonoBehaviour {
 	public string[] fileLoadWords;
 	public int actNumber = 1;
 	public int currDirFileCount = 0;
-	public char fileA = 'a';
-	public char fileB = 'b';
+	public char fileAorB;
 
     [TextArea(3,10)] public string editString = "";
 	public string currDir;
@@ -55,8 +54,7 @@ public class TextBox : MonoBehaviour {
 	public GameController gameControllerScript;
 
 	void Start(){
-		print(count + "");
-		
+		fileAorB = 'a';
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					       //makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
@@ -72,7 +70,7 @@ public class TextBox : MonoBehaviour {
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
 			noteWordCount[i] = new int[notes.transform.GetChild(i).childCount];
 			for(int j = 0; j < notes.transform.GetChild(i).childCount; j++){
-				loadFile(count, fileA, fileB);
+				loadFile();
 				//print(notes.transform.GetChild(i).childCount);
 				allNoteLines[i][j] = editString;
 			}
@@ -142,19 +140,27 @@ public class TextBox : MonoBehaviour {
 		}
 	} 
 	*/
-	public void loadFile(int fileCount, char branchFileA, char branchFileB){
+	public void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader;
+		
 		//Check for A/B file else check for normal file
-		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + fileCount + branchFileA + fileExt)){
-			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + branchFileA + fileExt);
-		}
-		else if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + fileCount + branchFileB + fileExt)){
-			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + branchFileB + fileExt);
+		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
+			print(fileAorB);
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
+			if(fileAorB == 'a'){
+				print("hi");
+				fileAorB = 'b';
+			}
+			else{
+				print("hello");
+				fileAorB = 'a';
+				count++;
+			}
 		}
 		else{
-			print(actNumber);
-			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + fileCount + fileExt);
+			//print(actNumber);
+			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
 			count++;
 		}
 		//print(info+fileName+count);
