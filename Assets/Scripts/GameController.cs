@@ -135,26 +135,24 @@ public class GameController : MonoBehaviour
             if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
             {
                 //Debug.Log(curAct - 1 + ", " + i);
-                MoveToCenter(curAct - 1, i, false);
+                StartCoroutine(MoveToCenter(curAct - 1, i, false));
             }
             else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
             {
                 noteID = noteID + "a";
-                MoveToCenter(curAct - 1, i, true);
+                StartCoroutine(MoveToCenter(curAct - 1, i, true));
             }
             else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "b")
             {
                 noteID = noteID + "b";
-                MoveToCenter(curAct - 1, i, true);
+                StartCoroutine(MoveToCenter(curAct - 1, i, true));
             }
         }
     }
 
     IEnumerator MoveToCenter(int actIndex, int i, bool branch)
     {
-        {
-            yield return StartCoroutine(HOTween.To(notes.transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
-        }
+		yield return StartCoroutine(HOTween.To(notes.transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
