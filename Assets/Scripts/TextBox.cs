@@ -86,7 +86,7 @@ public class TextBox : MonoBehaviour {
 		canvas = GameObject.Find("GameCanvas");
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
-	/*
+	
   	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
@@ -129,17 +129,16 @@ public class TextBox : MonoBehaviour {
 			// }
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			print(Resources.Load("Act1/Test"));
-			// foreach(WordStructure wordStruct in structList){
-				  // print(wordStruct.current);
-			 // }
+			foreach(WordStructure wordStruct in swapWordList){
+				  print(wordStruct.current);
+			}
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
 			
 			//print(swapWordList.Count);
 		}
 	} 
-	*/
+	
 	public void loadFile(){
 		arrText = new List<string>();
 		StreamReader objReader;

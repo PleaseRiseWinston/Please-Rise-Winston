@@ -167,7 +167,8 @@ public class CanvasScript : MonoBehaviour {
 						//Parse {word|alt} with and without punctuation
 						else if (result.Groups[7].Value != "" && result.Groups[8].Value != "")
 						{
-							wordList.Add(result.Groups[8].Value);
+							//print(result.Groups[7].Value);
+							wordList.Add(result.Groups[7].Value);
 							wordList.Add(result.Groups[8].Value);
 						}
 						else if (result.Groups[9].Value != ""){
@@ -259,6 +260,7 @@ public class CanvasScript : MonoBehaviour {
 						//current = word
 						//alt = alt
 						else if (secRes.Groups[5].Value != "" && int.Parse(secRes.Groups[6].Value) != -1 && secRes.Groups[7].Value != "" && int.Parse(secRes.Groups[8].Value) != -1){
+							print(secRes.Groups[5].Value);
 							wordStructure.current = secRes.Groups[5].Value;
 							wordStructure.alt = secRes.Groups[7].Value;
 							wordStructure.wordWeightCurr = int.Parse(secRes.Groups[6].Value);
@@ -287,6 +289,7 @@ public class CanvasScript : MonoBehaviour {
 					}
 					else{						
 						if(punctuationArray.Contains(t) == true){
+							//print(t);
 							wordStructure.current = t;
 							wordStructure.isPunctuation = true;
 							wordStructure.noteID = secNum;
