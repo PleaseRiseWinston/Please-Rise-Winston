@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
 
         totalWeight = 0;
         curNoteInMotion = false;
-
+		
         // Defaults current Act and Note to 1, 1
         // 'curAct - 1' accounts for reverse indexing convention
         curAct = 1;

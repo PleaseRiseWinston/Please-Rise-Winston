@@ -53,7 +53,7 @@ public class TextBox : MonoBehaviour {
 	public GameObject gameController;
 	public GameController gameControllerScript;
 
-	void Start(){
+	void Start(){		
 		fileAorB = 'a';
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					       //makes directory into string
@@ -145,14 +145,11 @@ public class TextBox : MonoBehaviour {
 		
 		//Check for A/B file else check for normal file
 		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
-			print(fileAorB);
 			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
 			if(fileAorB == 'a'){
-				print("hi");
 				fileAorB = 'b';
 			}
 			else{
-				print("hello");
 				fileAorB = 'a';
 				count++;
 			}
