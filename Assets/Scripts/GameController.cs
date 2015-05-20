@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections;
 using Holoville.HOTween;
-using UnityEditor.Animations;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
