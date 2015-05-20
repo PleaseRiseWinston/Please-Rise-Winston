@@ -5,7 +5,8 @@ using System.Collections;
 
 public class WordStructure : MonoBehaviour {
 
-    public int wordID, noteID, dependencies, wordWeightCurr, wordWeightAlt, actID;
+    public int wordID, noteID, dependencies, actID;
+	public int? wordWeightCurr, wordWeightAlt;
     public string current, alt, lineID, branchAB;
 	public bool newLine, lastWord, isPunctuation, isClicked, isChangeable;
 
@@ -21,8 +22,8 @@ public class WordStructure : MonoBehaviour {
 		lineID = "N/A";
 		newLine = false;
 		lastWord = false;
-		wordWeightCurr = 0;
-		wordWeightAlt = 0;
+		wordWeightCurr = null;
+		wordWeightAlt = null;
 		isPunctuation = false;
 		noteID = 0;
 		isChangeable = false;

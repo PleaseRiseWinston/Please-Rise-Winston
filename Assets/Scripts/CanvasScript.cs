@@ -28,8 +28,8 @@ public class CanvasScript : MonoBehaviour {
     private const char delimiterSpace = ' ';
 	private string[] punctuationArray = {".", ",", ";", ":", "!", "?"};
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
-    private Regex re = new Regex(@"(\$BRANCH)|#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})([.,!?:;])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})|(\{.+\^[0-9]\|.+\^[0-9]\})([^\w\s'])|(\{.+\^[0-9]\|.+\^[0-9]\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^([0-9])\|(.+)\^([0-9])\}");
+    private Regex re = new Regex(@"(\$BRANCH)|#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})([.,!?:;])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})|(\{.+\^.+\|.+\^.+\})([^\w\s'])|(\{.+\^.+\|.+\^.+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^(.+)\|(.+)\^(.+)\}");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
