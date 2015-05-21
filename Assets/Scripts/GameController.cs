@@ -69,7 +69,7 @@ public class GameController : MonoBehaviour
 	    }
 
         ToggleAct(curAct);
-        UpdateCurNote(curNoteID);
+        UpdateCurNote(curNoteID, null);
 	}
 
     public void ToggleAct(int curAct)
@@ -102,11 +102,24 @@ public class GameController : MonoBehaviour
     }
 
     // Converts input int to string for future searching and matching
-    public void UpdateCurNote(int noteID)
+    public void UpdateCurNote(int noteID, string branchSuffix)
     {
-        string noteIDstr = noteID.ToString();
+        string noteIDstr = (noteID.ToString());
         curNoteName = curAct + "." + noteIDstr;
-        curNote = noteArray[curAct - 1][noteID - 1];
+
+        // Grabs correct note
+        if (branchSuffix != null)
+        {
+            switch (branchSuffix)
+            {
+                case "a":
+                    curNote = noteArray[curAct - 1][noteID - 1];
+                    break;
+                case "b":
+                    curNote = noteArray[curAct - 1][noteID];
+                    break;
+            }
+        }
     }
 
     // Note flies in from left
@@ -190,16 +203,33 @@ public class GameController : MonoBehaviour
 
             if (curNoteID != notes.transform.GetChild(curAct).childCount)
             {
-                curNoteID++;
-                UpdateCurNote(curNoteID);
-                GetNote(curNoteName);
+                if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+                {
+                    curNoteID++;
+                    UpdateCurNote(curNoteID, null);
+                    GetNote(curNoteName);
+                }
+                else
+                {
+                    curNoteID++;
+                    if (totalWeight >= 0)
+                    {
+                        UpdateCurNote(curNoteID, "a");
+                    }
+                    else if (totalWeight < 0)
+                    {
+                        UpdateCurNote(curNoteID, "b");
+                    }
+                    GetNote(curNoteName);
+                }
             }
             else
             {
+                // Increments act and resets note ID
                 curNoteID = 1;
                 curAct++;
                 ToggleAct(curAct);
-                UpdateCurNote(curNoteID);
+                UpdateCurNote(curNoteID, null);
                 GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
             }
         }
@@ -228,19 +258,35 @@ public class GameController : MonoBehaviour
                 curNoteInMotion = false;
             }
         }
-
+        
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
-            curNoteID++;
-            UpdateCurNote(curNoteID);
-            GetNote(curNoteName);
+            if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+            {
+                curNoteID++;
+                UpdateCurNote(curNoteID, null);
+                GetNote(curNoteName);
+            }
+            else
+            {
+                curNoteID++;
+                if (totalWeight >= 0)
+                {
+                    UpdateCurNote(curNoteID, "a");
+                }
+                else if (totalWeight < 0)
+                {
+                    UpdateCurNote(curNoteID, "b");
+                }
+                GetNote(curNoteName);
+            }
         }
         else
         {
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
-            UpdateCurNote(curNoteID);
+            UpdateCurNote(curNoteID, null);
             GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
     }
@@ -263,16 +309,32 @@ public class GameController : MonoBehaviour
 
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
-            curNoteID++;
-            UpdateCurNote(curNoteID);
-            GetNote(curNoteName);
+            if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+            {
+                curNoteID++;
+                UpdateCurNote(curNoteID, null);
+                GetNote(curNoteName);
+            }
+            else
+            {
+                curNoteID++;
+                if (totalWeight >= 0)
+                {
+                    UpdateCurNote(curNoteID, "a");
+                }
+                else if (totalWeight < 0)
+                {
+                    UpdateCurNote(curNoteID, "b");
+                }
+                GetNote(curNoteName);
+            }
         }
         else
         {
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
-            UpdateCurNote(curNoteID);
+            UpdateCurNote(curNoteID, null);
             GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
     }
@@ -295,16 +357,32 @@ public class GameController : MonoBehaviour
 
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
-            curNoteID++;
-            UpdateCurNote(curNoteID);
-            GetNote(curNoteName);
+            if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+            {
+                curNoteID++;
+                UpdateCurNote(curNoteID, null);
+                GetNote(curNoteName);
+            }
+            else
+            {
+                curNoteID++;
+                if (totalWeight >= 0)
+                {
+                    UpdateCurNote(curNoteID, "a");
+                }
+                else if (totalWeight < 0)
+                {
+                    UpdateCurNote(curNoteID, "b");
+                }
+                GetNote(curNoteName);
+            }
         }
         else
         {
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
-            UpdateCurNote(curNoteID);
+            UpdateCurNote(curNoteID, null);
             GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
     }
