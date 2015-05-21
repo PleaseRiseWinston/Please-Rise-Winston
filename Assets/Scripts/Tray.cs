@@ -60,7 +60,7 @@ public class Tray : MonoBehaviour
             if (!gameControllerScript.curNote.transform.GetChild(0).transform.GetChild(i).GetComponent<LineScript>().isTranslated)
             {
                 allTranslated = false;
-                Debug.Log("Line " + i + "not translated");
+                Debug.Log("Line " + i + " not translated");
             }
         }
         

@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
 
     public bool overlayActive = false;
 
-	public string storySoFar = "";
+	public string storySoFar = null;
     
     void Start ()
     {
@@ -104,7 +104,7 @@ public class GameController : MonoBehaviour
     // Converts input int to string for future searching and matching
     public void UpdateCurNote(int noteID, string branchSuffix)
     {
-        string noteIDstr = (noteID.ToString());
+        string noteIDstr = noteID + branchSuffix;
         curNoteName = curAct + "." + noteIDstr;
 
         // Grabs correct note
@@ -120,12 +120,37 @@ public class GameController : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            curNote = noteArray[curAct - 1][noteID - 1];
+        }
+        Debug.Log("Update done: " + curNoteName);
     }
 
     // Note flies in from left
     public void GetNote(string noteID)
     {
         Debug.Log("Getting Note: " + noteID);
+        
+        // Finds the corresponding note with the correct ID and brings it to center
+        for (int i = 0; i < notes.transform.GetChild(curAct - 1).childCount; i++)
+        {
+            if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
+            {
+                Debug.Log(curAct - 1 + ", " + i);
+                StartCoroutine(MoveToCenter(curAct - 1, i, false));
+            }
+            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
+            {
+                noteID = noteID + "a";
+                StartCoroutine(MoveToCenter(curAct - 1, i, true));
+            }
+            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "b")
+            {
+                noteID = noteID + "b";
+                StartCoroutine(MoveToCenter(curAct - 1, i, true));
+            }
+        }
 
         // Changes background to witness and back on cue
         if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().witnessState != null)
@@ -140,31 +165,19 @@ public class GameController : MonoBehaviour
                     break;
             }
         }
-        
-        // Finds the corresponding note with the correct ID and brings it to center
-        for (int i = 0; i < notes.transform.GetChild(curAct - 1).childCount; i++)
-        {
-            if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
-            {
-                //Debug.Log(curAct - 1 + ", " + i);
-                StartCoroutine(MoveToCenter(curAct - 1, i, false));
-            }
-            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
-            {
-                noteID = noteID + "a";
-                StartCoroutine(MoveToCenter(curAct - 1, i, true));
-            }
-            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "b")
-            {
-                noteID = noteID + "b";
-                StartCoroutine(MoveToCenter(curAct - 1, i, true));
-            }
-        }
     }
 
     IEnumerator MoveToCenter(int actIndex, int i, bool branch)
     {
 		yield return StartCoroutine(HOTween.To(notes.transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
+    }
+
+    IEnumerator MoveToTray()
+    {
+        HOTween.To(curNote.transform, 0.15f, "rotation", new Vector3(85, 0, 0), false);
+        yield return StartCoroutine(HOTween.To(curNote.transform, 0.15f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
+        curNote.GetComponent<PaperScript>().atDestination = true;
+        curNoteInMotion = false;
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
@@ -203,10 +216,12 @@ public class GameController : MonoBehaviour
 
             if (curNoteID != notes.transform.GetChild(curAct).childCount)
             {
-                if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+                print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState);
+                if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
                 {
                     curNoteID++;
                     UpdateCurNote(curNoteID, null);
+                    print("new curNoteID: " + curNoteID + "; curNote: " + curNote.name);
                     GetNote(curNoteName);
                 }
                 else
@@ -235,14 +250,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    IEnumerator MoveToTray()
-    {
-        HOTween.To(curNote.transform, 0.15f, "rotation", new Vector3(85, 0, 0), false);
-        yield return StartCoroutine(HOTween.To(curNote.transform, 0.15f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
-        curNote.GetComponent<PaperScript>().atDestination = true;
-        curNoteInMotion = false;
-    }
-
     // Send tray to Winston (right)
     IEnumerator ToWinston()
     {
@@ -261,7 +268,7 @@ public class GameController : MonoBehaviour
         
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
-            if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+            if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
             {
                 curNoteID++;
                 UpdateCurNote(curNoteID, null);
@@ -309,7 +316,7 @@ public class GameController : MonoBehaviour
 
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
-            if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+            if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
             {
                 curNoteID++;
                 UpdateCurNote(curNoteID, null);
@@ -357,7 +364,7 @@ public class GameController : MonoBehaviour
 
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
-            if (!curNote.transform.GetComponent<CanvasScript>().branchState)
+            if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
             {
                 curNoteID++;
                 UpdateCurNote(curNoteID, null);

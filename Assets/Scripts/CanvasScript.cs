@@ -51,7 +51,7 @@ public class CanvasScript : MonoBehaviour {
 
 	public char submitPaperTo;
 	public string witnessState;
-	public bool branchState = false;
+	public bool branchState;
 
 	public string noteName;
 	public int wordNum;

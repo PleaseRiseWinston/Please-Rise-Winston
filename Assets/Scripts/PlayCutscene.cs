@@ -82,10 +82,10 @@ public class PlayCutscene : MonoBehaviour {
                     yield return StartCoroutine(HOTween.To(camTransform, 10f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
                     HOTween.To(GameObject.Find("Cutscene1-3").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
                     yield return StartCoroutine(HOTween.To(camTransform, 17f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
-
-                    cutsceneAudio.Stop();
-                    playingCutscene = false;
                 }
+
+                cutsceneAudio.Stop();
+                playingCutscene = false;
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);
