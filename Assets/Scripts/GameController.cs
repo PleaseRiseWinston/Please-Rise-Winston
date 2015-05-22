@@ -186,6 +186,7 @@ public class GameController : MonoBehaviour
     public void ToTray()
     {
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
+		curNote.gameObject.GetComponent<PaperScript>().isClickable = false;
         curNoteInMotion = true;
 		
         foreach(WordStructure wordStruct in GameObject.FindGameObjectWithTag("TextBox").GetComponent<TextBox>().structList){
@@ -262,6 +263,7 @@ public class GameController : MonoBehaviour
             {
                 print("To Winston");
                 notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray = false;
+				notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().isClickable = false;
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.05f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
@@ -326,6 +328,7 @@ public class GameController : MonoBehaviour
             {
                 print("To Prosecutor");
                 notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray = false;
+				notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().isClickable = false;
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.05f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
@@ -390,6 +393,7 @@ public class GameController : MonoBehaviour
             {
                 print("To Judge");
                 notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray = false;
+				notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().isClickable = false;
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(35, 12, -3), false);
                 yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.05f, "position", new Vector3(114, 1360, -581), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;

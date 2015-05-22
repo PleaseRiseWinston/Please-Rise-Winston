@@ -49,6 +49,8 @@ public class PaperScript : MonoBehaviour
 	
 	GameObject gameController;
 	GameController gameControllerScript;
+	
+	public bool isClickable;
 
     void Start()
     {
@@ -58,6 +60,7 @@ public class PaperScript : MonoBehaviour
 		textBox = GameObject.FindGameObjectWithTag("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
 
+		isClickable = true;
         focused = false;
         inTray = false;
         atDestination = false;
@@ -110,7 +113,7 @@ public class PaperScript : MonoBehaviour
     public void OnMouseDown()
     {
         //Debug.Log("Focusing");
-        if (!inTray)
+        if (!inTray && isClickable)
         {
             StartCoroutine(Focus());
         }
