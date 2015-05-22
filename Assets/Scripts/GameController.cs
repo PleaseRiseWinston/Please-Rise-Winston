@@ -21,7 +21,8 @@ public class GameController : MonoBehaviour
     private Color transparent;
     private Color solid;
 
-    public int totalWeight;
+    public int? totalWeight;
+    public int? subtotalWeight;
     public bool curNoteInMotion;
 
     public bool overlayActive = false;
@@ -94,6 +95,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // Takes a string of the tag and focuses the corresponding background
     public void ChangeBackgroundTo(string backgroundName)
     {
         HOTween.To(curBackground.GetComponent<SpriteRenderer>(), 0.7f, "color", transparent);
@@ -131,7 +133,7 @@ public class GameController : MonoBehaviour
     public void GetNote(string noteID)
     {
         Debug.Log("Getting Note: " + noteID);
-        
+
         // Finds the corresponding note with the correct ID and brings it to center
         for (int i = 0; i < notes.transform.GetChild(curAct - 1).childCount; i++)
         {
@@ -186,11 +188,12 @@ public class GameController : MonoBehaviour
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
         curNoteInMotion = true;
 		
-	/* 	foreach(WordStructure wordStruct in textBoxScript.structList){
+        foreach(WordStructure wordStruct in GameObject.FindGameObjectWithTag("TextBox").GetComponent<TextBox>().structList){
 			if(wordStruct.noteID == curNoteID && wordStruct.actID == curAct){
 				//Do stuff with weights using wordStruct.wordWeightCurr
+			    subtotalWeight += wordStruct.wordWeightCurr;
 			}
-		} */
+		}
 		
 		//GameObject currNoteCanvas = transform.Find("Notes/" + curNoteName + "/GameCanvas").gameObject;
 
@@ -260,7 +263,7 @@ public class GameController : MonoBehaviour
                 print("To Winston");
                 notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray = false;
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
-                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.05f, "position", new Vector3(244, 1396, -25), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
                 curNoteInMotion = false;
             }
@@ -268,6 +271,22 @@ public class GameController : MonoBehaviour
         
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
+            /*
+            if (subtotalWeight >= 5)
+            {
+                ChangeBackgroundTo("WinstonHappy");
+            }
+            else if (subtotalWeight <= 5)
+            {
+                ChangeBackgroundTo("ProsecutorHappy");
+            }
+            else
+            {
+                ChangeBackgroundTo("Neutral");
+            }*/
+            totalWeight += subtotalWeight;
+            subtotalWeight = 0;
+
             if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
             {
                 curNoteID++;
@@ -308,7 +327,7 @@ public class GameController : MonoBehaviour
                 print("To Prosecutor");
                 notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray = false;
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(83, 31, -161), false);
-                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.05f, "position", new Vector3(-285, 1396, -79), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
                 curNoteInMotion = false;
             }
@@ -316,6 +335,22 @@ public class GameController : MonoBehaviour
 
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
+            /*
+            if (subtotalWeight >= 5)
+            {
+                ChangeBackgroundTo("WinstonHappy");
+            }
+            else if (subtotalWeight <= 5)
+            {
+                ChangeBackgroundTo("ProsecutorHappy");
+            }
+            else
+            {
+                ChangeBackgroundTo("Neutral");
+            }*/
+            totalWeight += subtotalWeight;
+            subtotalWeight = 0;
+
             if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
             {
                 curNoteID++;
@@ -356,7 +391,7 @@ public class GameController : MonoBehaviour
                 print("To Judge");
                 notes.transform.GetChild(curAct - 1).GetChild(i).GetComponent<PaperScript>().inTray = false;
                 HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "rotation", new Vector3(35, 12, -3), false);
-                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.2f, "position", new Vector3(114, 1360, -581), false).WaitForCompletion());
+                yield return StartCoroutine(HOTween.To(notes.transform.GetChild(curAct - 1).GetChild(i).transform, 0.05f, "position", new Vector3(114, 1360, -581), false).WaitForCompletion());
                 curNote.GetComponent<PaperScript>().atDestination = true;
                 curNoteInMotion = false;
             }
@@ -364,6 +399,22 @@ public class GameController : MonoBehaviour
 
         if (curNoteID != notes.transform.GetChild(curAct).childCount)
         {
+            /*
+            if (subtotalWeight >= 5)
+            {
+                ChangeBackgroundTo("WinstonHappy");
+            }
+            else if (subtotalWeight <= 5)
+            {
+                ChangeBackgroundTo("ProsecutorHappy");
+            }
+            else
+            {
+                ChangeBackgroundTo("Neutral");
+            }*/
+            totalWeight += subtotalWeight;
+            subtotalWeight = 0;
+
             if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
             {
                 curNoteID++;
