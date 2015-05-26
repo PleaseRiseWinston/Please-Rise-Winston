@@ -1,9 +1,10 @@
-Just as the Judge who is
-presiding over this case,
-our officials don’t sully
-their mind with anything
-less than their language
-of holy jurisdiction.
-Not only is this 
-situation taboo but it
-is simply not possible. @W
+I had only been to the
+city a few times. I had
+few reasons to leave home
+and even fewer to make
+the days journey to the
+city. If I had some kind
+of transportation this
+would have been a lot
+faster, but I all I had
+were my legs.

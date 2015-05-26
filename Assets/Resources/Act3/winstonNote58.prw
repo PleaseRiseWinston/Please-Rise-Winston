@@ -1,9 +1,11 @@
-“Who are you?” rang
-through my head. Perhaps
-I should go answer. I
-walked towards the room
-Isa was in and strode
-through the doorway. Isa
-closed the door behind
-me and began barricading
-the door.
+Well, it was about a
+month ago. It was
+nighttime and I was
+sitting in my house when
+I heard something
+outside. Sometimes
+there’s some animals that
+push around in my trash
+but when I looked out my
+window I saw a man
+instead.

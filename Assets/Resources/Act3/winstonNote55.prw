@@ -1,7 +1,10 @@
-My mind wandered to what
-Mary had asked me the
-first time we really
-talked. What was is she
-was asking with, “Who are
-you?” A simple question,
-but it suggested more.
+Allow me to introduce
+Logan. Thank you so much
+for making the trip from
+Westholt. We appreciate
+your effort, sir. Now,
+would you please explain
+who you are and what your
+relation to Winston is?
+
+@W

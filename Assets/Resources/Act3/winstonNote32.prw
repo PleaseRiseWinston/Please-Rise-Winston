@@ -1,8 +1,10 @@
-Maybe consider that you
-do not know something if
-you are told it. Do our
-Historian’s have any
-proof of what has
-occurred, or are we
-taking them at their
-word? @P
+As sunset was drawing
+closer I saw a small
+house off the path I was
+walking on. It was clear
+that this place could not
+be seen from the road and
+suspected it may have
+been noticed at all had
+it not been for the scent
+coming from its chimney.

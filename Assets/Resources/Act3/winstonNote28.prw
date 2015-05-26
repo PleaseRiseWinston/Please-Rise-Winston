@@ -1,8 +1,11 @@
-To suggest otherwise is
-not only calling into
-question the validity of
-our officials but the
-grounds on which our 
-very country is founded
-upon. This sort of idea
-is dangerous.
+In fact, all the jobs
+that I knew of were all
+close to the housing
+units I inhabited. I
+would have been surprised
+if anyone could make this
+walk very well. As the
+day dragged on I realized
+I wouldn’t be able to
+make this walk without
+more water.

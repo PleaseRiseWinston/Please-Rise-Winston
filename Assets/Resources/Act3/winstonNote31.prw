@@ -1,8 +1,10 @@
-This is a ridiculous 
-line of questioning.
-I know what is the past
-because of the work our
-Historians perform. It
-is no easy task, but
-they deliver time and
-time again. @W
+I shouldn’t have come all
+the way out here. I could
+have planned this much
+more carefully. The
+urgency I had felt
+walking out of Mary’s
+house yesterday had
+driven me to momentary
+insanity. Still, I
+continued to walk.

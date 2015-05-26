@@ -1,6 +1,11 @@
-I hope this is all 
-recorded. None of this is
-helping you Winston. Let’s
-move on a later part of
-the book. This is after
-the ludicrous exchange.
+I must stop again here.
+If the evidence of Joanna
+being a conversationalist
+wasn't clear already this
+should solidify that. She
+is choosing here to go
+and talk to someone whom
+she has no work to
+discuss. I feel we can
+all see just what kind of
+person would do this. @W

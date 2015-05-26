@@ -1,9 +1,10 @@
-Maybe someone else would
-take up this cause. I
-tried to remind myself of
-the sacrifice Mary made,
-of the sacrifice Isa was
-making. As she passed by
-my with equipment I
-could see her hands
-trembling.
+Quite an emotional
+reaction for someone
+usually so composed. I
+believe there may be a
+reason for that. This
+would be a perfect time
+to bring in our next
+witness.
+
+@J #we#

@@ -1,11 +1,9 @@
-We just need the vessel
-with which to do it. I
-have heard of your
-exploits in your journey
-to find me. I’ve heard
-of others beginning to
-speak, because of you.”
-I hadn’t realized Isa
-had been keeping such a
-close watch on me, but
-she was right.
+And why should someone
+want to wander too far
+away from the comforts of
+home? All very illogical
+by nature, Winston. We
+are nearly complete with
+this chapter so we should
+move on.
+@W

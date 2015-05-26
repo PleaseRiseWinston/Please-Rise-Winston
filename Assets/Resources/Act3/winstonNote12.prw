@@ -1,11 +1,9 @@
-I quickly began admiring
-the interior of this home.
-In my many years at the
-deconstruction plant, I
-had never seen a home
-this large, this well put
-together, this official.
-I craned my head to see a
-painting of Isa on the
-wall. She was sitting in
-a chair looking distinguished. <<- changeable
+It said, “I’m sorry
+things have to be like
+this. I wish I could keep
+you here forever, but
+that’s not how this world
+works.” Below that line
+was an address. I
+recognized that it was
+somewhere in the city.

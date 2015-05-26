@@ -1,11 +1,11 @@
-Winston, I hope you 
-realize the line your
-character has crossed
-with what’s going on 
-here. Not only is 
-Cardinal Historian a most
-respected position, but
-she would never bother
-herself with neither a
-lower nor even the words
-of a lower.
+I think I would have
+enjoyed that novel quite
+a bit more. Perhaps you
+wouldn’t be here in that
+case as well. Let’s move
+on to the next section.
+Be careful in your work,
+Translator. There is a
+large amount
+interpretability in the
+following text. @J

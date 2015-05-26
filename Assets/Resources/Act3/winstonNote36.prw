@@ -1,8 +1,8 @@
-We have skipped some of
-the back and forth
-because we have all seen
-all we need to see, but
-I believe something
-important happens at this
-point. If you would,
-Translator. @J
+I feel like Joanna
+doesn’t have very much of
+a choice. If my life were
+in immediate danger I
+might do something
+similar.
+
+@P

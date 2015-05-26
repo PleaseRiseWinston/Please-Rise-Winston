@@ -1,10 +1,11 @@
-“But, why tell me all
-this?” I asked Isa. “Why
-me and why now?” Isa
-looked conflicted.
-“Because I can’t tell
-this to everyone, I would
-be passed off as losing
-my way from those above
-me, and no Lower would
-believe me.
+A confession, this is
+going better than I could
+have hoped. Might I
+suggest in the future
+going to the nearest
+authority to help you. I
+feel as if I’m repeating
+myself, but if you are in
+danger, any officer would
+be more than happy to
+help. @W

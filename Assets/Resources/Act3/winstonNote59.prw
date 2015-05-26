@@ -1,9 +1,11 @@
-This was a detail of the
-plan that I wasn’t
-expecting, that this
-would most likely not be
-a quiet exchange. There
-were two chairs situated
-in the middle of the room
-with a camera pointed
-at them.
+It was Winston, I was
+sure. I had seen him
+around town before so I
+knew what he looked like.
+Anyway, after awhile I
+saw him take a few things
+from my trash can and
+walk back to his house. I
+was pretty scared so I
+didn’t want to ask him
+for my stuff back. @P

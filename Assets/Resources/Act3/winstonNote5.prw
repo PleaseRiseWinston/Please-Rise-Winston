@@ -1,10 +1,10 @@
-As my feet strode up the
-smooth stone stairs
-towards the front door
-I was reminded of the
-initial incident at
-Mary’s home. I took care
-not to trip and smash any
-windows on my way up to
-the door. My heart was
-pounding.
+Mary had indeed
+made this home hers and
+it showed. The way the
+furniture was laid out,
+the paintings on the
+wall, the pictures she
+had on display. For a
+moment I forgot what had
+happened nights before,
+forgot she was gone.

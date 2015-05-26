@@ -1,8 +1,7 @@
-“How long would we have?”
-“Not long, a matter of
-minutes. They would not
-hesitate with any means
-of shutting us down. That
-will work to our favor,
-but I hope you know what
-I ask of you.”
+Eventually I wandered
+toward a window, watching
+my step, and looked
+inside. The room was dark
+but I could see the
+embers of a fire in the
+fireplace.

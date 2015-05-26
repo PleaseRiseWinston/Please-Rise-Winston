@@ -1,11 +1,11 @@
-The question is how. My
-people would hush you
-before you ever started.”
-My eyes were drifting
-downward. I was losing
-hope, even Isa could see
-that this was an
-impossible task. “But
-there is a way.” My gaze
-darted back up to meet
-Isa. “It would require
+Hands shaking once again,
+I approached the house. I
+prayed this would go half
+as well as the first time
+it went with Mary. That
+ended in a broken window,
+so maybe I should have
+set the bar higher.
+Regardless, I walked up
+closer and closer to the
+front door.

@@ -1,7 +1,9 @@
-As I have said before,
-this is fiction. You are
-right Prosecutor, I’ve
-never engaged with an
-official and I’m sure I 
-never will.
-
+So, when day broke, I
+walked. I took myself
+along a dirt walkway
+towards the buildings
+that stretched upwards. I
+didn’t want to draw
+attention to a no-name
+Lower wandering towards
+the city. @J

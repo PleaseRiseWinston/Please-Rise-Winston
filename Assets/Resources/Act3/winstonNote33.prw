@@ -1,9 +1,11 @@
-I must be misunderstanding
-something, Winston. To
-question our officials is
-to question the power
-above: something I
-believe you are incapable
-of doing. You are too
-smart a man to question
-such a thing. @W
+My stomach churned and
+moved while I swallowed
+and felt the dryness of
+my throat. I was again
+stuck. I thought back to
+Mary’s home. I thought
+what had driven me to
+knock on her door. This
+situation wasn’t the
+same, but maybe it could
+go as well.

@@ -1,10 +1,10 @@
-Before my poorly and
-hastily constructed lie
-could get any worse, she
-spoke again “Please come
-inside, miss.” I was
-taken aback. I wasn’t
-sure if she was going to
-house me or call the
-police to throw me back
-out into my home.
+The frame popped open to
+reveal the picture
+inside. I pulled it out
+and held it in my hand.
+Same as the frame, the
+edges were worn and old.
+Perhaps because of my
+sleepless nights, the
+picture slipped out of my
+hand and onto the floor.

@@ -1,11 +1,9 @@
-everything from you, and
-from me too.” I had a
-sinking feeling begin to
-grow in my chest. “I
-have access to our
-broadcast system in my
-home, it comes with the
-territory of historian.
-We need to be able to
-make quick adjustments
-and announcements if
+The house reminded me of
+my own, but at the same
+time it looked older and
+beaten down. If the
+person inside could not
+take care of their own
+home, I wondered if they
+would even be able to
+spare me some water.

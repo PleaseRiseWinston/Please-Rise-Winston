@@ -1,10 +1,11 @@
-“She’s dead. I know. It
-brought me a great deal
-of sadness to hear of
-this. Never easy to let
-someone go.” Isa spoke
-strangely. There was a
-sadness that I’m not sure
-I had witnessed before.
-“Mary was my niece, 
-Joanna.”
+I could continue watching
+the shows I used to,
+working like I used to. I
+could return to routine
+and comfortability. Or, I
+could pick the other path
+and find out who this
+person in the picture
+was. I knew what Mary
+would have told me to do.
+@J

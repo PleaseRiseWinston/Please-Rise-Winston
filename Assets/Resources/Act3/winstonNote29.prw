@@ -1,10 +1,10 @@
-Perhaps if your book had 
-ended at it’s outset you
-would have received some
-sort of jail time for
-writing a taboo story,
-but now you’re
-distributing treason.
-What possible reason
-would you put yourself
-in this position? @W
+I had already drank
+everything I had and
+didn’t know where I could
+get any more. I didn’t
+panic all at once, but I
+knew I was too far from
+home to turn back. I
+became very aware of the
+scratch in my throat and
+the sweat on my head.

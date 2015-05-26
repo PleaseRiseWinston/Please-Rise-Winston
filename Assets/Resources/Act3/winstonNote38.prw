@@ -1,9 +1,9 @@
-I would quickly be
-replaced and swept under
-the rug. You know as well
-I do that you want to
-teach others how to speak
-to one another, how to be
-close.” I did. “And if 
-our people did it before,
-we can do it again. 
+That may be the case in
+the city but that is
+certainly not how we are
+treated in Westholt. I
+mean, if you’re in your
+house doing what we as
+Lowers are supposed to
+do, then nothing usually
+happens. @P

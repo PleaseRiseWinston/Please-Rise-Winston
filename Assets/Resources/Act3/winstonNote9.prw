@@ -1,10 +1,12 @@
- “Hello there, Joanna.
- I’m Isa.” She knew my
- name. Mary must have
- told her I was coming.
- “Good evening. I didn’t
- mean to interrupt your
- night, I was just
- looking at the stone
- your house is made from,
- I…”
+They stood fairly close.
+She looked similar to
+Mary in some ways, but
+not in others. The edge
+of the picture frame
+looked worn on one side.
+I sat up and held the
+frame in my hand. I
+pressed my finger on the
+edge of the frame where
+the plastic had worn
+down.

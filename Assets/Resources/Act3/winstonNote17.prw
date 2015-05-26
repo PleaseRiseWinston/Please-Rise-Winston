@@ -1,9 +1,8 @@
-All the television shows
-about history flashed
-over my mind. The
-founding of our country,
-it’s construction, the
-ideologies that supported
-its building. All, things
-we’re taught very
-early on. @J
+Well I imagine if I wrote
+Joanna as the type of
+person to be tied up with
+staying at work then this
+book would be a lot
+different.
+
+@P

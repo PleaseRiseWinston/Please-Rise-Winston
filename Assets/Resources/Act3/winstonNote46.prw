@@ -1,9 +1,11 @@
-I felt something in my
-feet stir. It triggered
-the memory of Mary’s
-window, and what I did
-then. I didn’t want my
-life to be defined by
-running. For once,
-I wanted to stand 
-for something. @J
+I timidly walked back
+towards the front door.
+Where there was nothing
+before, there was now a
+small glass of water and
+a few slices of bread. I
+immediately knocked on
+the door again, hoping to
+ask the person inside if
+this food was intended
+for someone else.

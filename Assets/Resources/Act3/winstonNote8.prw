@@ -1,11 +1,11 @@
-Had I knocked without
-realizing it? Maybe I
-had made too much noise
-coming up to the house.
-My mind was racing and
-was reminded of my feet,
-again wanting to flee
-this porch. As my weight
-was shifting around the
-door opened. I was
-greeted by an older woman.
+I wondered what her
+intentions could have
+been. Feeling like I
+might never know the
+answer to this, I sat
+down on Mary’s bed. My
+head fell over and I
+stared forward towards
+her nightstand. On it was
+a picture of Mary and
+someone else.

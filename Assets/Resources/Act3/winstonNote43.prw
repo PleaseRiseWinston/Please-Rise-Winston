@@ -1,11 +1,9 @@
-something gets out of
-hand.” I realized what
-she was suggesting. “You
-want me to tell them, and
-ask them the questions
-Mary asked me.” Isa
-nodded. “They would know
-who did it, and who
-broadcasted it.” This
-meant our lives, there
-was no question in that.
+I raised my hand to the
+door and clenched my
+fingers into a fist. I
+held my hand there,
+unmoving, for awhile.
+Finally, I knocked and
+waited. I listened for
+footsteps inside the
+home. None came.

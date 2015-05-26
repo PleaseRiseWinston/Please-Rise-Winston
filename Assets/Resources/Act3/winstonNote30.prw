@@ -1,7 +1,11 @@
-I’d like to remind you
-I did not distribute this
-book to the people, they
-did that themselves.
-Also, may I ask how you
-know what has happened
-in the past, Prosecutor?
+Realistically, I didn’t
+know how long I could go
+without water. It was
+always emphasized in the
+ration packets we
+received that we needed
+to drink all the water
+allocated to us everyday.
+I never considered what
+would happen if I didn’t.
+This was a mistake.

@@ -1,11 +1,10 @@
-I finally made it to the
-place Mary had spoken of.
-I could see from afar
-that the walls in this
-home were made of a 
-special kind stone, a
-luxury reserved for those
-in wealth or power. I
-don’t know who this 
-person is, but I intended
-to find out.
+I drifted around the
+house of a ghost. I felt
+like I was both
+trespassing but I also
+knew Mary wouldn’t mind.
+The past few days had
+robbed me of any
+enthusiasm that I had
+once had for getting out
+of bed.
