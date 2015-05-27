@@ -1,11 +1,7 @@
-I could continue watching
-the shows I used to,
-working like I used to. I
-could return to routine
-and comfortability. Or, I
-could pick the other path
-and find out who this
-person in the picture
-was. I knew what Mary
-would have told me to do.
-@J
+I would like to point out
+at this point that your
+main character is
+choosing to leave her
+post at work and also the
+comfort of her home.
+

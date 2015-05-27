@@ -1,11 +1,10 @@
-It was Winston, I was
-sure. I had seen him
-around town before so I
-knew what he looked like.
-Anyway, after awhile I
-saw him take a few things
-from my trash can and
-walk back to his house. I
-was pretty scared so I
-didn’t want to ask him
-for my stuff back. @P
+Shocking. The very act
+that was described in
+your book, Winston was
+originally performed by
+you. Theft is not
+something we take
+lightly, perhaps this
+could be another trial in
+itself. What do you have
+to say for yourself? @W $BRANCH

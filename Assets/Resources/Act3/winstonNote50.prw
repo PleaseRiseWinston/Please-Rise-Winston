@@ -1,10 +1,11 @@
-We have a word for what
-you just described,
-Winston. It’s called
-theft. Joanna, your
-herald of disruption, has
-just stolen goods from
-another person. How would
-you view such an action
-is something like this
-happened to you? @W
+This act really wasn’t
+written to be viewed as
+thievery. I had hoped
+that the person reading
+this would think that
+perhaps someone out there
+may realize the struggle
+Joanna was going through.
+I feel that a great many
+people might do something
+similar. @P

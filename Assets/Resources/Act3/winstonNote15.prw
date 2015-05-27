@@ -1,7 +1,8 @@
-I would like to point out
-at this point that your
-main character is
-choosing to leave her
-post at work and also the
-comfort of her home.
-
+It’s unfortunate that you
+paint the picture of a
+person not only not
+responsible enough to
+continue the small amount
+of work she has, but also
+to reject the comforts of
+home. @W

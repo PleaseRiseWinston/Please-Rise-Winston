@@ -1,10 +1,8 @@
-You know as well as I do
-that this isn’t true.
-I’ve been harassed for
-wandering around, even in
-Westholt. How would
-someone from the city
-react if there were
-suddenly droves of people
-from my town walking
-their streets? @P
+Sure, thousands of people
+suddenly flooding the
+city would cause some
+amount of logistical
+headaches, but this would
+certainly get resolved.
+Our citizens are not
+treated like a plague. @W

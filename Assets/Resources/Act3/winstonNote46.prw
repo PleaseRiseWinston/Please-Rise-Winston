@@ -1,11 +1,11 @@
-I timidly walked back
-towards the front door.
-Where there was nothing
-before, there was now a
-small glass of water and
-a few slices of bread. I
-immediately knocked on
-the door again, hoping to
-ask the person inside if
-this food was intended
-for someone else.
+Again, no one came. I
+stared down at the
+rations on the ground. I
+crouched low touched the
+bread, it was still warm.
+I wrestled with my mind,
+hoping that somehow in
+the time it took to
+decide someone inside
+would come and tell me
+this was theirs or not.

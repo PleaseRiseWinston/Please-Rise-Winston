@@ -1,11 +1,8 @@
-There was no way to know.
-Knowing I might not make
-it to the city if I
-didn’t do something, I
-drank the water and took
-one piece of the bread. I
-hoped I wasn’t making
-someone starve, but I had
-little choice. After
-yelling ‘Thank you’, I
-left.
+Realizing that I might
+have changed my mind and
+doomed myself, I opted to
+keep moving. Another
+hours walk and I would be
+within the city.
+
+@J

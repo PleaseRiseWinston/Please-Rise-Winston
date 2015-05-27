@@ -1,11 +1,9 @@
-Hands shaking once again,
-I approached the house. I
-prayed this would go half
-as well as the first time
-it went with Mary. That
-ended in a broken window,
-so maybe I should have
-set the bar higher.
-Regardless, I walked up
-closer and closer to the
-front door.
+The house reminded me of
+my own, but at the same
+time it looked older and
+beaten down. If the
+person inside could not
+take care of their own
+home, I wondered if they
+would even be able to
+spare me some water.

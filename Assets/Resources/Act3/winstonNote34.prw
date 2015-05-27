@@ -1,7 +1,11 @@
-I also felt like I didn’t
-have much of a choice.
-
-
-
-
-@J
+I must stop again here.
+If the evidence of Joanna
+being a conversationalist
+wasn't clear already this
+should solidify that. She
+is choosing here to go
+and talk to someone whom
+she has no work to
+discuss. I feel we can
+all see just what kind of
+person would do this. @W

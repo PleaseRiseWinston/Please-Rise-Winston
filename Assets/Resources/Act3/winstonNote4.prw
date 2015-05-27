@@ -1,10 +1,10 @@
-I drifted around the
-house of a ghost. I felt
-like I was both
-trespassing but I also
-knew Mary wouldn’t mind.
-The past few days had
-robbed me of any
-enthusiasm that I had
-once had for getting out
-of bed.
+Mary had indeed
+made this home hers and
+it showed. The way the
+furniture was laid out,
+the paintings on the
+wall, the pictures she
+had on display. For a
+moment I forgot what had
+happened nights before,
+forgot she was gone.

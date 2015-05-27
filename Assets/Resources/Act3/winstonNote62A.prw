@@ -1,7 +1,8 @@
-I really didn’t mean to
-steal from Logan here,
-but I felt like I had
-little choice.
-
-
-@P
+At least there is some
+honesty here today
+Winston. I can’t imagine
+our judge will look
+lightly on an admitting
+of guilt for this crime.
+That will be all today.
+Thank you again, Logan.

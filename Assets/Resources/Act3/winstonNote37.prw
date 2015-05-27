@@ -1,11 +1,9 @@
-A confession, this is
-going better than I could
-have hoped. Might I
-suggest in the future
-going to the nearest
-authority to help you. I
-feel as if I’m repeating
-myself, but if you are in
-danger, any officer would
-be more than happy to
-help. @W
+That may be the case in
+the city but that is
+certainly not how we are
+treated in Westholt. I
+mean, if you’re in your
+house doing what we as
+Lowers are supposed to
+do, then nothing usually
+happens. @P

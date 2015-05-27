@@ -1,7 +1,9 @@
-I landed face down and I
-reached down to grab it.
-I noticed some
-scribblings on the back.
-I pulled the picture
-closer to my face and
-read it.
+It said, “I’m sorry
+things have to be like
+this. I wish I could keep
+you here forever, but
+that’s not how this world
+works.” Below that line
+was an address. I
+recognized that it was
+somewhere in the city.

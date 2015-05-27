@@ -1,11 +1,11 @@
-Well, it was about a
-month ago. It was
-nighttime and I was
-sitting in my house when
-I heard something
-outside. Sometimes
-there’s some animals that
-push around in my trash
-but when I looked out my
-window I saw a man
-instead.
+It was Winston, I was
+sure. I had seen him
+around town before so I
+knew what he looked like.
+Anyway, after awhile I
+saw him take a few things
+from my trash can and
+walk back to his house. I
+was pretty scared so I
+didn’t want to ask him
+for my stuff back. @P

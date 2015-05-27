@@ -1,9 +1,10 @@
-It said, “I’m sorry
-things have to be like
-this. I wish I could keep
-you here forever, but
-that’s not how this world
-works.” Below that line
-was an address. I
-recognized that it was
-somewhere in the city.
+Surely this had to be the
+person Mary knew. I
+stared at the address for
+longer than I should
+have. I saw two paths in
+front of me. One lead
+back to my home. I could
+put this picture back in
+it’s frame and walk back
+into my home.

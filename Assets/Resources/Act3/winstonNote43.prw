@@ -1,9 +1,7 @@
-I raised my hand to the
-door and clenched my
-fingers into a fist. I
-held my hand there,
-unmoving, for awhile.
-Finally, I knocked and
-waited. I listened for
-footsteps inside the
-home. None came.
+Eventually I wandered
+toward a window, watching
+my step, and looked
+inside. The room was dark
+but I could see the
+embers of a fire in the
+fireplace.

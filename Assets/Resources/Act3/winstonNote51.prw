@@ -1,11 +1,8 @@
-This act really wasn’t
-written to be viewed as
-thievery. I had hoped
-that the person reading
-this would think that
-perhaps someone out there
-may realize the struggle
-Joanna was going through.
-I feel that a great many
-people might do something
-similar. @P
+Even still, how are we to
+know the intention of the
+person inside the house?
+All we see is Joanna
+taking goods that have no
+reason for being on this
+porch. All we have is
+theft. @W

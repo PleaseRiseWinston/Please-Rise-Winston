@@ -1,7 +1,7 @@
-I suppose yeah. If you
-remember from before the
-recess, Joanna had just
-experienced the death of
-her neighbor. For the
-next few days she was
-reasonably somber.
+However, she had gathered
+the courage to go into
+Mary’s house and look for
+anything that she might
+be able to hold onto.
+That’s where this next
+section starts. @J

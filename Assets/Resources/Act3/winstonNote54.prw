@@ -1,10 +1,10 @@
-Quite an emotional
-reaction for someone
-usually so composed. I
-believe there may be a
-reason for that. This
-would be a perfect time
-to bring in our next
-witness.
+Allow me to introduce
+Logan. Thank you so much
+for making the trip from
+Westholt. We appreciate
+your effort, sir. Now,
+would you please explain
+who you are and what your
+relation to Winston is?
 
-@J #we#
+@W

@@ -1,11 +1,10 @@
-I think I would have
-enjoyed that novel quite
-a bit more. Perhaps you
-wouldn’t be here in that
-case as well. Let’s move
-on to the next section.
-Be careful in your work,
-Translator. There is a
-large amount
-interpretability in the
-following text. @J
+I had only been to the
+city a few times. I had
+few reasons to leave home
+and even fewer to make
+the days journey to the
+city. If I had some kind
+of transportation this
+would have been a lot
+faster, but I all I had
+were my legs.

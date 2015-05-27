@@ -1,11 +1,10 @@
-In fact, all the jobs
-that I knew of were all
-close to the housing
-units I inhabited. I
-would have been surprised
-if anyone could make this
-walk very well. As the
-day dragged on I realized
-I wouldn’t be able to
-make this walk without
-more water.
+I had already drank
+everything I had and
+didn’t know where I could
+get any more. I didn’t
+panic all at once, but I
+knew I was too far from
+home to turn back. I
+became very aware of the
+scratch in my throat and
+the sweat on my head.

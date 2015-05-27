@@ -1,12 +1,10 @@
-They stood fairly close.
-She looked similar to
-Mary in some ways, but
-not in others. The edge
-of the picture frame
-looked worn on one side.
-I sat up and held the
-frame in my hand. I
-pressed my finger on the
-edge of the frame where
-the plastic had worn
-down.
+The frame popped open to
+reveal the picture
+inside. I pulled it out
+and held it in my hand.
+Same as the frame, the
+edges were worn and old.
+Perhaps because of my
+sleepless nights, the
+picture slipped out of my
+hand and onto the floor.

@@ -1,8 +1,10 @@
-Realizing that I might
-have changed my mind and
-doomed myself, I opted to
-keep moving. Another
-hours walk and I would be
-within the city.
-
-@J
+We have a word for what
+you just described,
+Winston. It’s called
+theft. Joanna, your
+herald of disruption, has
+just stolen goods from
+another person. How would
+you view such an action
+is something like this
+happened to you? @W

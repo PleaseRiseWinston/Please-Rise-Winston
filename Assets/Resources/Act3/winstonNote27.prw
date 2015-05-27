@@ -1,9 +1,11 @@
-The sun was overhead and
-my body was drained. Even
-walking this far had
-become incredibly
-exhausting. I realized
-all at once that the walk
-from my home to my work
-wasn’t even close to
-this.
+In fact, all the jobs
+that I knew of were all
+close to the housing
+units I inhabited. I
+would have been surprised
+if anyone could make this
+walk very well. As the
+day dragged on I realized
+I wouldn’t be able to
+make this walk without
+more water.

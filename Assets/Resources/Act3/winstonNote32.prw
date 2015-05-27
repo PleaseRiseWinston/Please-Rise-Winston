@@ -1,10 +1,11 @@
-As sunset was drawing
-closer I saw a small
-house off the path I was
-walking on. It was clear
-that this place could not
-be seen from the road and
-suspected it may have
-been noticed at all had
-it not been for the scent
-coming from its chimney.
+My stomach churned and
+moved while I swallowed
+and felt the dryness of
+my throat. I was again
+stuck. I thought back to
+Mary’s home. I thought
+what had driven me to
+knock on her door. This
+situation wasn’t the
+same, but maybe it could
+go as well.

@@ -1,8 +1,11 @@
-Well I imagine if I wrote
-Joanna as the type of
-person to be tied up with
-staying at work then this
-book would be a lot
-different.
-
-@P
+I think I would have
+enjoyed that novel quite
+a bit more. Perhaps you
+wouldn’t be here in that
+case as well. Let’s move
+on to the next section.
+Be careful in your work,
+Translator. There is a
+large amount
+interpretability in the
+following text. @J

@@ -1,10 +1,11 @@
-I had already drank
-everything I had and
-didn’t know where I could
-get any more. I didn’t
-panic all at once, but I
-knew I was too far from
-home to turn back. I
-became very aware of the
-scratch in my throat and
-the sweat on my head.
+Realistically, I didn’t
+know how long I could go
+without water. It was
+always emphasized in the
+ration packets we
+received that we needed
+to drink all the water
+allocated to us everyday.
+I never considered what
+would happen if I didn’t.
+This was a mistake.

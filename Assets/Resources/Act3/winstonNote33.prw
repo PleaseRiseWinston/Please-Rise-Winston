@@ -1,11 +1,7 @@
-My stomach churned and
-moved while I swallowed
-and felt the dryness of
-my throat. I was again
-stuck. I thought back to
-Mary’s home. I thought
-what had driven me to
-knock on her door. This
-situation wasn’t the
-same, but maybe it could
-go as well.
+I also felt like I didn’t
+have much of a choice.
+
+
+
+
+@J

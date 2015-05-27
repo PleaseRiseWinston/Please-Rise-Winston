@@ -1,8 +1,8 @@
-Even still, how are we to
-know the intention of the
-person inside the house?
-All we see is Joanna
-taking goods that have no
-reason for being on this
-porch. All we have is
-theft. @W
+We know because I wrote
+it! I know what the
+person inside the house
+was thinking because I
+wrote who they were.
+
+
+@P

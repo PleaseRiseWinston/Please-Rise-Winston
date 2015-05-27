@@ -1,8 +1,8 @@
-This feels very much like
-a double standard. Maybe
-if there was some sort of
-proof that could place me
-there this could be a
-better claim. I really
-don’t think this can be
-considered proof. @P
+A shame that you feel the
+need to be so defensive
+about something that you
+claim you did not do.
+Unfortunate as well that
+we could not arrive at
+some form of truth on
+this matter.
