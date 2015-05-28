@@ -137,7 +137,7 @@ public class WordScript : MonoBehaviour {
             {
                 changeable = true;
                 gameObject.layer = 8;
-            }
+			}
         }
 
         // While a word is changeable, highlight it with pulse
@@ -204,6 +204,8 @@ public class WordScript : MonoBehaviour {
 					if(wordStruct.alt != "N/A" && wordStruct.dependencies == -1 && gameObject.name == "wordID" + wordStruct.wordID && gameObject.transform.parent.parent.parent.name == gameControllerScript.curAct + "." + wordStruct.noteID){
 						string noteParent = transform.parent.parent.parent.name;
 						textBoxScript.clickedWordID = this.gameObject.name;
+						textBoxScript.clickedWordLineID = this.gameObject.transform.parent.name;
+						textBoxScript.clickedWordNoteID = this.gameObject.transform.parent.parent.parent.name;
 						wordStruct.isClicked = true;
 						wordOptions[0] = wordStruct.current;
 						wordOptions[1] = wordStruct.alt;

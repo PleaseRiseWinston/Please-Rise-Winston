@@ -43,6 +43,8 @@ public class TextBox : MonoBehaviour {
 	
 	public int structListIndex = 0;
 	public string clickedWordID = "";
+	public string clickedWordLineID = "";
+	public string clickedWordNoteID = "";
 	public string[][] allNoteLines;
 	public int[][] noteWordCount;
 	public bool didSwap = false;
@@ -225,6 +227,7 @@ public class TextBox : MonoBehaviour {
 		//print(actPointNote);
 		foreach(GameObject noteObj in GameObject.FindGameObjectsWithTag("Papers")){
 			if(noteObj.name == actPointNote){
+				print(currentWordText + " " + actPointNote + " " + lineID + " wordID" + currentWordID);
 				GameObject wordToSwap = noteObj.transform.Find("GameCanvas/" + lineID + "/wordID" + currentWordID).gameObject;
 				wordToSwap.GetComponent<Text>().text = currentWordText;
 				wordToSwap.GetComponent<WordScript>().curText = currentWordText;

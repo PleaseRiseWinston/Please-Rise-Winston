@@ -128,11 +128,11 @@ public class LineScript : MonoBehaviour
 				isTranslated = true;
 			}
             
-			foreach(WordStructure wordStruct in textBoxScript.swapWordList){
+			/* foreach(WordStructure wordStruct in textBoxScript.swapWordList){
 				if(newWord.text == wordStruct.current && wordStruct.lineID == "N/A" && newWord.name == "wordID" + wordStruct.wordID){
 					wordStruct.lineID = gameObject.name;
 				}
-			}
+			} */
 			
             lastWordEnd += newWord.GetComponent<Transform>().right.x;
             //Debug.Log(newWord.GetComponent<Transform>().right.x);

@@ -96,8 +96,7 @@ public class CanvasScript : MonoBehaviour {
         // 'lines' array gets every single line with spaces
 		lines = noteContent.Split(Environment.NewLine.ToCharArray());
 		
-		int lineCount = lines.Length;
-		int lineCounter = 1;
+		int lineCounter = 0;
 		
 		linePosCount = 0;
 		wordNum = 0;
@@ -249,6 +248,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							wordStructure.noteID = secNum;
 							wordStructure.actID = firstNum;
+							wordStructure.lineID = "Line" + lineCounter;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;
@@ -269,6 +269,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.noteID = secNum;
 							wordStructure.isChangeable = true;
 							wordStructure.actID = firstNum;
+							wordStructure.lineID = "Line" + lineCounter;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;
@@ -293,6 +294,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.current = t;
 							wordStructure.isPunctuation = true;
 							wordStructure.noteID = secNum;
+							wordStructure.lineID = "Line" + lineCounter;
 							
 							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
@@ -302,25 +304,13 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.current = t;
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							wordStructure.noteID = secNum;
+							wordStructure.lineID = "Line" + lineCounter;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;
 							textBoxScript.structList.Add(wordStructure);					
 							displayWords.Add(wordStructure.current);
 						}
-					}
-
-					if (arrayCount == lineScript.words.Length - 1 && lineCount != lineCounter){
-						wordStructure.newLine = true;
-						wordStructure.lastWord = false;
-					}
-					else if (arrayCount == lineScript.words.Length -1 && lineCount == lineCounter) {
-						wordStructure.newLine = false;
-						wordStructure.lastWord = true;
-					}
-					else {
-						wordStructure.newLine = false;
-						wordStructure.lastWord = false;
 					}
 					arrayCount++;
 				}
