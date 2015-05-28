@@ -56,7 +56,7 @@ public class TextBox : MonoBehaviour {
 	public GameController gameControllerScript;
 
 	void Start(){		
-		fileAorB = 'a';
+		fileAorB = 'A';
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					       //makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
@@ -148,11 +148,11 @@ public class TextBox : MonoBehaviour {
 		//Check for A/B file else check for normal file
 		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
 			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
-			if(fileAorB == 'a'){
-				fileAorB = 'b';
+			if(fileAorB == 'A'){
+				fileAorB = 'B';
 			}
 			else{
-				fileAorB = 'a';
+				fileAorB = 'A';
 				count++;
 			}
 		}
