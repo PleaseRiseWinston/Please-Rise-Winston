@@ -1,6 +1,6 @@
 Last evening Mary and I
 were up particularly late
-fixing a light in the
+{breaking^-2|fixing^2} a light in the
 back of my house. As she
 was wiring up the fixture
 she asked me something

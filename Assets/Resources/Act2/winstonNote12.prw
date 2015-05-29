@@ -8,4 +8,4 @@ be able to make o there.”
 A part of me had hoped
 she would say we could
 leave immediately, but I
-knew better.
+knew better. 

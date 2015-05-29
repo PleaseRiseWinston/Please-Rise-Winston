@@ -1,4 +1,4 @@
-She instead rested her
+She instead {rested^-1|put^1} her
 hand on my shoulder, I
 don’t remember a time
 I’ve seen anyone do this.

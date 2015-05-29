@@ -1,9 +1,9 @@
 As the days passed Mary
 and I continued to find
-excuses to learn from one
+{excuses^-1|reaspons^1} to learn from one
 another. Things on each
 of our houses would
-'break' every so often
+'break' every so often,
 and like clockwork one of
 us would show up shortly
 thereafter. Both of us

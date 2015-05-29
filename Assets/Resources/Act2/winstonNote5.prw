@@ -4,7 +4,7 @@ other information I could
 have given. Mary nodded
 along with my answer, she
 looked like she was
-waiting for something. I
+waiting for {something^1|me^-1}. I
 didn’t know what, so I
 mirrored the question.
 “Who are you?”
