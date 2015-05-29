@@ -127,7 +127,7 @@ public class PaperScript : MonoBehaviour
         }
     }
 
-    public void OnMouseOver()
+    public void OnMouseEnter()
     {
         // Toggles mouseover state while not in focused mode
         if (focused){
@@ -158,13 +158,13 @@ public class PaperScript : MonoBehaviour
     IEnumerator Glow()
     {
         print("entered");
-        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>(), 0.8f, "color", defaultColor, false).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", defaultColor, false).WaitForCompletion());
     }
 
     IEnumerator Unglow()
     {
         print("exited");
-        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>(), 0.8f, "color", transparent, false).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", transparent, false).WaitForCompletion());
     }
 
     public void LateUpdate()
@@ -188,7 +188,7 @@ public class PaperScript : MonoBehaviour
 
     void PlayAudio()
     {
-        int i = Mathf.Abs(Random.Range(1, 4));
+        int i = Mathf.Abs(Random.Range(1, 3));
         //Debug.Log(gameObject.name + " " + i);
         switch (i)
         {
