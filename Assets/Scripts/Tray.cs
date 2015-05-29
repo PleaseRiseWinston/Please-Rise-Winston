@@ -28,16 +28,22 @@ public class Tray : MonoBehaviour
         transform.GetChild(0).transform.GetComponent<SpriteRenderer>().color = transparent;
 	}
 
-    public void OnMouseEnter()
+    public void OnMouseOver()
     {
-        StopAllCoroutines();
-        StartCoroutine(Glow());
+        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Glow());
+        }
     }
 
     public void OnMouseExit()
     {
-        StopAllCoroutines();
-        StartCoroutine(Unglow());
+        if (!gameControllerScript.curNote.GetComponent<PaperScript>().focused)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Unglow());
+        }
     }
 
     IEnumerator Glow()

@@ -49,6 +49,9 @@ public class PaperScript : MonoBehaviour
 	
 	GameObject gameController;
 	GameController gameControllerScript;
+
+    public Color defaultColor;
+    public Color transparent;
 	
 	public bool isClickable;
 
@@ -67,6 +70,11 @@ public class PaperScript : MonoBehaviour
 		
 		gameController = GameObject.FindGameObjectWithTag("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
+
+        // Records/declares colors, then sets glow to transparent
+        defaultColor = GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>().color;
+        transparent = new Color(1, 1, 1, 0);
+        GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>().color = transparent;
 
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file
         if (start)
@@ -113,7 +121,7 @@ public class PaperScript : MonoBehaviour
     public void OnMouseDown()
     {
         //Debug.Log("Focusing");
-        if (!inTray && isClickable)
+        if (!inTray && isClickable && !focused)
         {
             StartCoroutine(Focus());
         }
@@ -125,6 +133,12 @@ public class PaperScript : MonoBehaviour
         if (focused){
             mouseOver = true;
         }
+
+        if (!focused && gameObject == gameControllerScript.curNote)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Glow());
+        }
     }
 
     public void OnMouseExit()
@@ -134,6 +148,23 @@ public class PaperScript : MonoBehaviour
         {
             mouseOver = false;
         }
+        else if (!focused && gameObject == gameControllerScript.curNote)
+        {
+            StopAllCoroutines();
+            StartCoroutine(Unglow());
+        }
+    }
+
+    IEnumerator Glow()
+    {
+        print("entered");
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>(), 0.8f, "color", defaultColor, false).WaitForCompletion());
+    }
+
+    IEnumerator Unglow()
+    {
+        print("exited");
+        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>(), 0.8f, "color", transparent, false).WaitForCompletion());
     }
 
     public void LateUpdate()
@@ -157,7 +188,7 @@ public class PaperScript : MonoBehaviour
 
     void PlayAudio()
     {
-        int i = Mathf.Abs(Random.Range(1, 3));
+        int i = Mathf.Abs(Random.Range(1, 4));
         //Debug.Log(gameObject.name + " " + i);
         switch (i)
         {
