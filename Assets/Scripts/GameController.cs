@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour
     public bool curNoteInMotion;
 
     public bool overlayActive = false;
+    public bool onBranch = false;
+
+    public int branchDiscrepancy = 0;
 
 	public string storySoFar = null;
     
@@ -109,22 +112,44 @@ public class GameController : MonoBehaviour
         string noteIDstr = noteID + branchSuffix;
         curNoteName = curAct + "." + noteIDstr;
 
-        // Grabs correct note
-        if (branchSuffix != null)
+        // At branch start:
+        if (branchSuffix != null && !onBranch)
+        {
+            onBranch = true;
+            switch (branchSuffix)
+            {
+                case "a":
+                    curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
+                    break;
+                case "b":
+                    curNote = noteArray[curAct - 1][noteID + branchDiscrepancy];
+                    break;
+            }
+            branchDiscrepancy++;
+        }
+        // During branch:
+        else if (branchSuffix != null && onBranch)
         {
             switch (branchSuffix)
             {
                 case "a":
-                    curNote = noteArray[curAct - 1][noteID - 1];
+                    curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
                     break;
                 case "b":
-                    curNote = noteArray[curAct - 1][noteID];
+                    curNote = noteArray[curAct - 1][noteID + branchDiscrepancy];
                     break;
             }
+            branchDiscrepancy++;
+        }
+        // At branch end:
+        else if (branchSuffix == null && onBranch)
+        {
+            onBranch = false;
+            curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
         }
         else
         {
-            curNote = noteArray[curAct - 1][noteID - 1];
+            curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
         }
         Debug.Log("Update done: " + curNoteName);
     }
@@ -443,6 +468,7 @@ public class GameController : MonoBehaviour
         {
             curNoteID = 1;
             curAct++;
+            branchDiscrepancy = 0;
             ToggleAct(curAct);
             UpdateCurNote(curNoteID, null);
             GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
