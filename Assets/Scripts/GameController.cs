@@ -76,6 +76,15 @@ public class GameController : MonoBehaviour
         UpdateCurNote(curNoteID, null);
 	}
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            curNote.GetComponent<PaperScript>().inTray = true;
+            ToTray();
+        }
+    }
+
     public void ToggleAct(int curAct)
     {
         // Toggles all non-current acts false
