@@ -89,7 +89,7 @@ public class TextBox : MonoBehaviour {
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
-/*   	void OnGUI() {
+   	void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
 
@@ -131,15 +131,22 @@ public class TextBox : MonoBehaviour {
 			// }
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			foreach(WordStructure wordStruct in swapWordList){
-				  print(wordStruct.current);
-			}
+			/* foreach(WordStructure wordStruct in structList){
+				if(wordStruct.actID == 1 && wordStruct.noteID == 30){
+					print("wordID" + wordStruct.wordID + " " + wordStruct.current + " changeable: " + wordStruct.isChangeable);				
+				}
+			} */
+			
+			print(allNoteLines[0][60]);
+			print(allNoteLines[0][61]);
+			print(allNoteLines[0][62]);
+			print(allNoteLines[0][63]);
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
 			
 			//print(swapWordList.Count);
 		}
-	}  */
+	}  
 	
 	public void loadFile(){
 		arrText = new List<string>();

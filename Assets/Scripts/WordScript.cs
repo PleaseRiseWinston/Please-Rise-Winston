@@ -131,9 +131,9 @@ public class WordScript : MonoBehaviour {
 
         gameObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
 
-        foreach (WordStructure wordStruct in textBoxScript.structList)
+        foreach (WordStructure wordStruct in textBoxScript.swapWordList)
         {
-            if (wordStruct.isChangeable && wordStruct.alt != "N/A" && this.gameObject.name == "wordID" + wordStruct.wordID && gameObject.GetComponent<Text>().text == wordStruct.current)
+            if (wordStruct.isChangeable == true && this.gameObject.name == "wordID" + wordStruct.wordID && gameObject.GetComponent<Text>().text == wordStruct.current && this.gameObject.transform.parent.name == wordStruct.lineID && this.gameObject.transform.parent.parent.parent.name == wordStruct.actID + "." + wordStruct.noteID)
             {
                 changeable = true;
                 gameObject.layer = 8;

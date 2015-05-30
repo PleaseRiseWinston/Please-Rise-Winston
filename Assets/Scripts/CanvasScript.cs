@@ -26,9 +26,9 @@ public class CanvasScript : MonoBehaviour {
 
     private const char delimiterNewline = '\n';
     private const char delimiterSpace = ' ';
-	private string[] punctuationArray = {".", ",", ";", ":", "!", "?"};
+	private string[] punctuationArray = {".", ",", ";", ":", "!", "?","..."};
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
-    private Regex re = new Regex(@"(\$BRANCH)|#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})([.,!?:;])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})|(\{.+\^.+\|.+\^.+\})([^\w\s'])|(\{.+\^.+\|.+\^.+\})|([A-Za-z]+'[a-z]+)([^\w\s'])|([A-Za-z]+)([.,!?:;])|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s'])");
+    private Regex re = new Regex(@"(\$BRANCH)|#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})([.,!?:;]+)|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})|(\{.+\^.+\|.+\^.+\})([^\w\s']+)|(\{.+\^.+\|.+\^.+\})|([A-Za-z]+'[a-z]+)([^\w\s']+)|([A-Za-z]+)([.,!?:;]+)|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s']+)");
 	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^(.+)\|(.+)\^(.+)\}");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
@@ -295,6 +295,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.isPunctuation = true;
 							wordStructure.noteID = secNum;
 							wordStructure.lineID = "Line" + lineCounter;
+							wordStructure.actID = firstNum;
 							
 							textBoxScript.structList.Add(wordStructure);
 							displayWords.Add(wordStructure.current);
@@ -305,6 +306,7 @@ public class CanvasScript : MonoBehaviour {
 							wordStructure.wordID = textBoxScript.wordStructCount;
 							wordStructure.noteID = secNum;
 							wordStructure.lineID = "Line" + lineCounter;
+							wordStructure.actID = firstNum;
 							
 							textBoxScript.wordStructCount++;
 							wordNum++;
@@ -336,9 +338,11 @@ public class CanvasScript : MonoBehaviour {
 				//paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
 				if(noteName == firstNum + "." + secNum + "a"){
 					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex('a')];
+					noteIndexCount--;
 				}
 				else if(noteName == firstNum + "." + secNum + "b"){
 					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex('b')];
+					noteIndexCount--;
 				}
 				else{
 					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][secNum - 1];
@@ -351,6 +355,7 @@ public class CanvasScript : MonoBehaviour {
 	public int findABNoteIndex(char extAorB){
 		foreach(GameObject notes in GameObject.FindGameObjectsWithTag("Papers")){
 			if(noteName == notes.name){
+				//print(noteIndexCount);
 				return noteIndexCount;
 			}
 			noteIndexCount--;
