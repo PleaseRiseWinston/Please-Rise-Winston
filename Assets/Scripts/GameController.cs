@@ -18,8 +18,8 @@ public class GameController : MonoBehaviour
     public GameObject backgrounds;
     public GameObject notes;
 
-    private Color transparent;
-    private Color solid;
+    public Color transparent;
+    public Color solid;
 
     public int? totalWeight;
     public int? subtotalWeight;
@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     public bool onBranch = false;
 
     public int branchDiscrepancy = 0;
+    public char branchState;
 
 	public string storySoFar = null;
     
@@ -51,6 +52,9 @@ public class GameController : MonoBehaviour
         // Declarations for alpha states
         transparent = new Color(1f, 1f, 1f, 0f);
         solid = new Color(1f, 1f, 1f, 1f);
+        GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>().color = transparent;
+        GameObject.FindGameObjectWithTag("PaperGlowStart").transform.GetComponent<SpriteRenderer>().color = transparent;
+        GameObject.FindGameObjectWithTag("PaperGlowExit").transform.GetComponent<SpriteRenderer>().color = transparent;
 
         // Insert all backgrounds into array
         for (int i = 0; i < backgrounds.transform.childCount; i++)
@@ -83,6 +87,15 @@ public class GameController : MonoBehaviour
             curNote.GetComponent<PaperScript>().inTray = true;
             ToTray();
         }
+    }
+
+    // Shoves 1.1's glow to end of the index list
+    public void PushChildToEnd(string noteID)
+    {
+        GameObject parent = GameObject.Find(noteID);
+        GameObject child = parent.transform.GetChild(0).gameObject;
+        child.transform.SetParent(null, true);
+        child.transform.SetParent(parent.transform, true);
     }
 
     public void ToggleAct(int curAct)
@@ -118,6 +131,7 @@ public class GameController : MonoBehaviour
     // Converts input int to string for future searching and matching
     public void UpdateCurNote(int noteID, string branchSuffix)
     {
+        Debug.Log(branchSuffix + ", " + onBranch);
         string noteIDstr = noteID + branchSuffix;
         curNoteName = curAct + "." + noteIDstr;
 
@@ -125,6 +139,7 @@ public class GameController : MonoBehaviour
         if (branchSuffix != null && !onBranch)
         {
             onBranch = true;
+            Debug.Log("Branch Start.");
             switch (branchSuffix)
             {
                 case "a":
@@ -139,10 +154,11 @@ public class GameController : MonoBehaviour
         // During branch:
         else if (branchSuffix != null && onBranch)
         {
+            Debug.Log("During Branch.");
             switch (branchSuffix)
             {
                 case "a":
-                    curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
+;                   curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
                     break;
                 case "b":
                     curNote = noteArray[curAct - 1][noteID + branchDiscrepancy];
@@ -153,11 +169,13 @@ public class GameController : MonoBehaviour
         // At branch end:
         else if (branchSuffix == null && onBranch)
         {
+            Debug.Log("Branch End.");
             onBranch = false;
             curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
         }
         else
         {
+            Debug.Log("Normal Note.");
             curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
         }
         Debug.Log("Update done: " + curNoteName);
@@ -166,14 +184,12 @@ public class GameController : MonoBehaviour
     // Note flies in from left
     public void GetNote(string noteID)
     {
-        Debug.Log("Getting Note: " + noteID);
-
         // Finds the corresponding note with the correct ID and brings it to center
         for (int i = 0; i < notes.transform.GetChild(curAct - 1).childCount; i++)
         {
             if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
             {
-                Debug.Log(curAct - 1 + ", " + i);
+                Debug.Log("Getting Note: " + noteID + " at index " + (curAct - 1) + ", " + i);
                 StartCoroutine(MoveToCenter(curAct - 1, i, false));
             }
             else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
@@ -189,9 +205,9 @@ public class GameController : MonoBehaviour
         }
 
         // Changes background to witness and back on cue
-        if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().witnessState != null)
+        if (curNote.transform.GetComponentInChildren<CanvasScript>().witnessState != null)
         {
-            switch (curNote.transform.GetChild(0).GetComponent<CanvasScript>().witnessState)
+            switch (curNote.transform.GetComponentInChildren<CanvasScript>().witnessState)
             {
                 case "WE":
                     ChangeBackgroundTo("Witness1");
@@ -232,17 +248,17 @@ public class GameController : MonoBehaviour
 		
 		//GameObject currNoteCanvas = transform.Find("Notes/" + curNoteName + "/GameCanvas").gameObject;
 
-        if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'w')
+        if (curNote.transform.GetComponentInChildren<CanvasScript>().submitPaperTo == 'w')
         {
 			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(ToWinston());
         }
-        else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'p')
+        else if (curNote.transform.GetComponentInChildren<CanvasScript>().submitPaperTo == 'p')
         {
 			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(ToProsecutor());
         }
-        else if (curNote.transform.GetChild(0).GetComponent<CanvasScript>().submitPaperTo == 'j')
+        else if (curNote.transform.GetComponentInChildren<CanvasScript>().submitPaperTo == 'j')
         {
 			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(ToJudge());
@@ -254,8 +270,8 @@ public class GameController : MonoBehaviour
 
             if (curNoteID != notes.transform.GetChild(curAct).childCount)
             {
-                print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState);
-                if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
+                print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
+                if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
                 {
                     curNoteID++;
                     UpdateCurNote(curNoteID, null);
@@ -281,6 +297,7 @@ public class GameController : MonoBehaviour
                 // Increments act and resets note ID
                 curNoteID = 1;
                 curAct++;
+                branchDiscrepancy = 0;
                 ToggleAct(curAct);
                 UpdateCurNote(curNoteID, null);
                 GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
@@ -323,7 +340,7 @@ public class GameController : MonoBehaviour
             totalWeight += subtotalWeight;
             subtotalWeight = 0;
 
-            if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
+            if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
             {
                 curNoteID++;
                 UpdateCurNote(curNoteID, null);
@@ -347,6 +364,7 @@ public class GameController : MonoBehaviour
         {
             curNoteID = 1;
             curAct++;
+            branchDiscrepancy = 0;
             ToggleAct(curAct);
             UpdateCurNote(curNoteID, null);
             GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
@@ -388,7 +406,7 @@ public class GameController : MonoBehaviour
             totalWeight += subtotalWeight;
             subtotalWeight = 0;
 
-            if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
+            if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
             {
                 curNoteID++;
                 UpdateCurNote(curNoteID, null);
@@ -412,6 +430,7 @@ public class GameController : MonoBehaviour
         {
             curNoteID = 1;
             curAct++;
+            branchDiscrepancy = 0;
             ToggleAct(curAct);
             UpdateCurNote(curNoteID, null);
             GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
@@ -453,7 +472,7 @@ public class GameController : MonoBehaviour
             totalWeight += subtotalWeight;
             subtotalWeight = 0;
 
-            if (!curNote.transform.GetChild(0).GetComponent<CanvasScript>().branchState)
+            if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
             {
                 curNoteID++;
                 UpdateCurNote(curNoteID, null);

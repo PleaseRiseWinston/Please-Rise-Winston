@@ -90,6 +90,7 @@ public class PlayCutscene : MonoBehaviour {
 
                 yield return new WaitForSeconds(5);
                 GameObject.FindGameObjectWithTag("BlackGame").SetActive(false);
+                gameControllerScript.UpdateCurNote(1, null);
                 gameControllerScript.GetNote("1.1");
                 //gameControllerScript.GetNote("1." + GameObject.FindGameObjectWithTag("Notes").transform.GetChild(gameControllerScript.curAct - 1).childCount);
                 print("End Cutscene");
@@ -108,8 +109,8 @@ public class PlayCutscene : MonoBehaviour {
                 break;
         }
 
-        Destroy(GameObject.Find("MenuPaper_Start"));
-        Destroy(GameObject.Find("MenuPaper_Exit"));
+        GameObject.Find("MenuPaper_Start").SetActive(false);
+        GameObject.Find("MenuPaper_Exit").SetActive(false);
     }
 
     // TODO: Add fade sequences at beginning and ends of each of these.

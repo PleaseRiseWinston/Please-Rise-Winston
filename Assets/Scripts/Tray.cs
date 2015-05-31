@@ -51,6 +51,11 @@ public class Tray : MonoBehaviour
         yield return StartCoroutine(HOTween.To(transform.GetChild(0).transform.GetComponent<SpriteRenderer>(), 0.8f, "color", defaultColor).WaitForCompletion());
     }
 
+    IEnumerator FastGlow()
+    {
+        yield return StartCoroutine(HOTween.To(transform.GetChild(0).transform.GetComponent<SpriteRenderer>(), 0.4f, "color", defaultColor).WaitForCompletion());
+    }
+
     IEnumerator Unglow()
     {
         yield return StartCoroutine(HOTween.To(transform.GetChild(0).transform.GetComponent<SpriteRenderer>(), 0.8f, "color", transparent).WaitForCompletion());
@@ -67,6 +72,8 @@ public class Tray : MonoBehaviour
             {
                 allTranslated = false;
                 Debug.Log("Line " + i + " not translated");
+                StartCoroutine(FastGlow());
+                StartCoroutine(Unglow());
             }
         }
         

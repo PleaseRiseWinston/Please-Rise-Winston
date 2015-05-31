@@ -71,11 +71,6 @@ public class PaperScript : MonoBehaviour
 		gameController = GameObject.FindGameObjectWithTag("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
 
-        // Records/declares colors, then sets glow to transparent
-        defaultColor = GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>().color;
-        transparent = new Color(1, 1, 1, 0);
-        GameObject.FindGameObjectWithTag("PaperGlow").transform.GetComponent<SpriteRenderer>().color = transparent;
-
         // If there is no content or file not given, this paper is a menu button. Otherwise, read content from .txt file
         if (start)
         {
@@ -134,7 +129,7 @@ public class PaperScript : MonoBehaviour
             mouseOver = true;
         }
 
-        if (!focused && gameObject == gameControllerScript.curNote)
+        if (!focused)
         {
             StopAllCoroutines();
             StartCoroutine(Glow());
@@ -148,7 +143,7 @@ public class PaperScript : MonoBehaviour
         {
             mouseOver = false;
         }
-        else if (!focused && gameObject == gameControllerScript.curNote)
+        else if (!focused)
         {
             StopAllCoroutines();
             StartCoroutine(Unglow());
@@ -157,14 +152,37 @@ public class PaperScript : MonoBehaviour
 
     IEnumerator Glow()
     {
-        print("entered");
-        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", defaultColor, false).WaitForCompletion());
+        if (!focused)
+        {
+            if (start)
+            {
+                yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlowStart").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.solid).WaitForCompletion());
+            }
+            else if (exit)
+            {
+                yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlowExit").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.solid).WaitForCompletion());
+            }
+            else if (gameObject == gameControllerScript.curNote)
+            {
+                yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.solid).WaitForCompletion());
+            }
+        }
     }
 
     IEnumerator Unglow()
     {
-        print("exited");
-        yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", transparent, false).WaitForCompletion());
+        if (start)
+        {
+            yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlowStart").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.transparent).WaitForCompletion());
+        }
+        else if (exit)
+        {
+            yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlowExit").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.transparent).WaitForCompletion());
+        }
+        else if (gameObject == gameControllerScript.curNote)
+        {
+            yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.transparent).WaitForCompletion());
+        }
     }
 
     public void LateUpdate()
@@ -188,7 +206,7 @@ public class PaperScript : MonoBehaviour
 
     void PlayAudio()
     {
-        int i = Mathf.Abs(Random.Range(1, 3));
+        int i = Mathf.Abs(Random.Range(1, 4));
         //Debug.Log(gameObject.name + " " + i);
         switch (i)
         {
@@ -210,6 +228,7 @@ public class PaperScript : MonoBehaviour
     IEnumerator Focus()
     {
         //Debug.Log("Focusing");
+        StartCoroutine(Unglow());
         PlayAudio();
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = true;
         HOTween.To(transform, 0.7f, "rotation", new Vector3(0, 0, 0), false);
