@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
     public int branchDiscrepancy = 0;
     public char branchState;
 
+    public float stackHeight = 0;
+
 	public string storySoFar = null;
     
     void Start ()
@@ -227,9 +229,10 @@ public class GameController : MonoBehaviour
     IEnumerator MoveToTray()
     {
         HOTween.To(curNote.transform, 0.15f, "rotation", new Vector3(85, 0, 0), false);
-        yield return StartCoroutine(HOTween.To(curNote.transform, 0.15f, "position", new Vector3(85, 1330, -400), false).WaitForCompletion());
+        yield return StartCoroutine(HOTween.To(curNote.transform, 0.15f, "position", new Vector3(85, 1330 + stackHeight, -400), false).WaitForCompletion());
         curNote.GetComponent<PaperScript>().atDestination = true;
         curNoteInMotion = false;
+        stackHeight += 0.6f;
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
@@ -251,16 +254,19 @@ public class GameController : MonoBehaviour
         if (curNote.transform.GetComponentInChildren<CanvasScript>().submitPaperTo == 'w')
         {
 			//addToPastNoteReference(currNoteCanvas);
+            stackHeight = 0;
             StartCoroutine(ToWinston());
         }
         else if (curNote.transform.GetComponentInChildren<CanvasScript>().submitPaperTo == 'p')
         {
-			//addToPastNoteReference(currNoteCanvas);
+            //addToPastNoteReference(currNoteCanvas);
+            stackHeight = 0;
             StartCoroutine(ToProsecutor());
         }
         else if (curNote.transform.GetComponentInChildren<CanvasScript>().submitPaperTo == 'j')
         {
-			//addToPastNoteReference(currNoteCanvas);
+            //addToPastNoteReference(currNoteCanvas);
+            stackHeight = 0;
             StartCoroutine(ToJudge());
         }
         else
