@@ -5,6 +5,6 @@ Yeah. One of my most
 senior officers was
 assaulted in the street
 by someone who was
-clearly inspired and
-angered by the events in
+clearly {motivated^-1|inspired^1} and
+*53*29*{angered|upset} by the events in
 your book, citizen. @W

@@ -5,6 +5,6 @@ you are suggesting that
 the government is
 performing these acts.
 This is simply not true
-but also harmful to the
+but also {hurtful^1|harmful^-1} to the
 reality of what our
 government does.

@@ -7,5 +7,5 @@ entertainment. My eyes
 peered up as I heard the
 sound of rubber tires
 across a gravel driveway.
-Someone had driven to
+Someone had {come^0|driven^0} to
 Mary’s house.

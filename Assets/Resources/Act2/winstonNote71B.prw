@@ -3,6 +3,7 @@ to protect everyone. So
 you need not worry about
 such things, Winston. You
 live in one of the most
-easy times in history, I
-might take some solace in
-that fact. @W
+{wonderful^-1|easy^1} times in
+history, I might take
+some solace in that fact.
+@W

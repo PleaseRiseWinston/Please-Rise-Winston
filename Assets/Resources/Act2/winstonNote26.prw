@@ -1,6 +1,6 @@
 I believe the judge
 may have had enough of us
-rambling on about this.
+{arguing^1|rambling^-1} on about this.
 
 
 @P

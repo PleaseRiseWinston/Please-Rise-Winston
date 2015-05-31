@@ -1,3 +1,4 @@
-I hadn’t heard of this
-happening. What happened
-to both of these people? @P
+I hadn’t been {aware^1|told^-1} of
+this happening. What was
+done to both of these
+people? @P

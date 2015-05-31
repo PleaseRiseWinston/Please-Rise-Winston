@@ -1,7 +1,10 @@
-I know of the act that
-prosecutor is referring
-to. I think it’s
-preposterous that he
+I know of the {crime^1|act^-1} that
+prosecutor Myers is
+referring to. I think
+it’s {assumptive^1|preposterous^-1} that he
 could suggest that Joanna
 and Mary are poised to do
 such a thing.
+Logistically, I don’t
+know how such a thing
+would occur.

@@ -4,5 +4,6 @@ focus onto what comes
 next. I think this may be
 something that is more
 black and white. Again,
-please translate this
-section, Translator. @J
+please take care
+translating this section,
+Translator. @J

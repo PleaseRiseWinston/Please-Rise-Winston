@@ -1,7 +1,7 @@
 Somewhere in me, I hoped
 that Mary had just been
 knocked out. The bag that
-she was being slipped
+she was being {slipped^1|shoved^-2}
 into suggested otherwise.
 My knees finally gave way
 and my body fell to the
