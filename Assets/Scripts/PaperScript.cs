@@ -235,8 +235,8 @@ public class PaperScript : MonoBehaviour
         HOTween.To(transform, 0.7f, "position", cameraFront, false);
         HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 0.5f);
         yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.2f).WaitForCompletion());
-        focused = true;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = false;
+        focused = true;
     }
 
     // Coroutine called when unfocusing away from a note
