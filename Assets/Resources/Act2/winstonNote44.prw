@@ -6,4 +6,5 @@ to feel something. In a
 different book this could
 have been done in a
 different way, but it
-isn’t.
+isn’t a different book.
+It's mine.

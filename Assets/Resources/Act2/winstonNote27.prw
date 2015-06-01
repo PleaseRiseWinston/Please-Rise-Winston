@@ -5,5 +5,4 @@ next. I think this may be
 something that is more
 black and white. Again,
 please take care
-translating this section,
-Translator. @J
+translating this section. @J

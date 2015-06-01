@@ -4,7 +4,7 @@ First let’s talk about
 the violence. If it
 wasn’t clear from the
 window incident, surely
-it is now. Using murder
+it is now. Using *40*5*{murder|death}
 as a way to push your
 book forward is
 offensive, low, and

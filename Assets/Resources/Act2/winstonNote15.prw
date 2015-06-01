@@ -6,5 +6,5 @@ practice that not only is
 lewd but stands to throw
 our tight population
 limits into disarray. It
-is {unlawful^1|unnatural^-1}unnatural what he is
+is {unlawful^1|unnatural^-1} what he is
 suggesting. @J

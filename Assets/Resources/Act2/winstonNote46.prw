@@ -1,7 +1,7 @@
 I felt wronged, Winston.
 Maybe if this was a
 discussion of how well
-written this work is, we
+written this {work^-1|art^4} is, we
 could talk on how it made
 us feel. However, the
 fact remains that the
