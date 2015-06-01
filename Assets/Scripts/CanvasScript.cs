@@ -337,11 +337,11 @@ public class CanvasScript : MonoBehaviour {
 
 				//paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
 				if(noteName == firstNum + "." + secNum + "a"){
-					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex('a')];
+					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex(firstNum, secNum, 'A')];
 					noteIndexCount--;
 				}
 				else if(noteName == firstNum + "." + secNum + "b"){
-					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex('b')];
+					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex(firstNum, secNum, 'B')];
 					noteIndexCount--;
 				}
 				else{
@@ -352,14 +352,17 @@ public class CanvasScript : MonoBehaviour {
 		//print(gameObject.transform.parent.name);
 	}
 	
-	public int findABNoteIndex(char extAorB){
-		foreach(GameObject notes in GameObject.FindGameObjectsWithTag("Papers")){
-			if(noteName == notes.name){
-				//print(noteIndexCount);
-				return noteIndexCount;
+	public int findABNoteIndex(int actNum, int noteNum, char AorB){
+		noteNum -= 1;
+		string newNoteNum = noteNum.ToString() + AorB;
+		foreach(string noteABInfoStr in textBoxScript.noteABIndex){
+			string[] noteABInfo = noteABInfoStr.Split(delimiterSpace);
+			
+			if(int.Parse(noteABInfo[0]) == actNum  && noteABInfo[1] == newNoteNum){
+				return int.Parse(noteABInfo[2]);
 			}
-			noteIndexCount--;
 		}
+		
 		return 0;
 	}
 }

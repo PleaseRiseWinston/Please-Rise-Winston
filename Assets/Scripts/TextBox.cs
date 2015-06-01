@@ -47,9 +47,11 @@ public class TextBox : MonoBehaviour {
 	public string clickedWordNoteID = "";
 	public string[][] allNoteLines;
 	public int[][] noteWordCount;
+	public List<string> noteABIndex = new List<string>();
 	public bool didSwap = false;
 	
 	public int quickFixNum = 0;
+	public int ABindexCount = 0;
 	
 	public GameObject notes;
 	public GameObject gameController;
@@ -60,8 +62,8 @@ public class TextBox : MonoBehaviour {
 		info = new DirectoryInfo(Application.dataPath);
 		currDir = info.ToString();					       //makes directory into string
 		fileEntries = Directory.GetFiles(currDir);  //gets files in current directory
-		allNoteLines = new string[5][];
-		noteWordCount = new int[5][];
+		allNoteLines = new string[4][];
+		noteWordCount = new int[4][];
 		
 		notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
 		gameController = GameObject.FindGameObjectWithTag("GameController").gameObject;
@@ -71,6 +73,7 @@ public class TextBox : MonoBehaviour {
 			//print(notes.transform.childCount);
 			allNoteLines[i] = new string[notes.transform.GetChild(i).childCount];
 			noteWordCount[i] = new int[notes.transform.GetChild(i).childCount];
+			
 			for(int j = 0; j < notes.transform.GetChild(i).childCount; j++){
 				loadFile();
 				//print(notes.transform.GetChild(i).childCount);
@@ -79,6 +82,7 @@ public class TextBox : MonoBehaviour {
 			count = 0;
 			actNumber++;
 		}
+		
 		editString = allNoteLines[0][0];
 		
 		//print(allNoteLines[0][0]);
@@ -137,10 +141,9 @@ public class TextBox : MonoBehaviour {
 				}
 			} */
 			
-			print(allNoteLines[0][60]);
-			print(allNoteLines[0][61]);
-			print(allNoteLines[0][62]);
-			print(allNoteLines[0][63]);
+			foreach(string num in noteABIndex){
+				print(num);
+			}
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
 			
@@ -154,7 +157,9 @@ public class TextBox : MonoBehaviour {
 		
 		//Check for A/B file else check for normal file
 		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
+			noteABIndex.Add(actNumber + " " +  count + fileAorB + " " + ABindexCount);
 			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
+			
 			if(fileAorB == 'A'){
 				fileAorB = 'B';
 			}
@@ -162,11 +167,14 @@ public class TextBox : MonoBehaviour {
 				fileAorB = 'A';
 				count++;
 			}
+			
+			ABindexCount++;
 		}
 		else{
 			//print(actNumber);
 			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
 			count++;
+			ABindexCount++;
 		}
 		//print(info+fileName+count);
 		//print("File Num" + count);
