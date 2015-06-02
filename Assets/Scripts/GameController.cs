@@ -14,7 +14,6 @@ public class GameController : MonoBehaviour
 
     public GameObject[] backgroundArray;
     public GameObject[][] noteArray;
-
     public GameObject backgrounds;
     public GameObject notes;
 
@@ -89,15 +88,6 @@ public class GameController : MonoBehaviour
             curNote.GetComponent<PaperScript>().inTray = true;
             ToTray();
         }
-    }
-
-    // Shoves 1.1's glow to end of the index list
-    public void PushChildToEnd(string noteID)
-    {
-        GameObject parent = GameObject.Find(noteID);
-        GameObject child = parent.transform.GetChild(0).gameObject;
-        child.transform.SetParent(null, true);
-        child.transform.SetParent(parent.transform, true);
     }
 
     public void ToggleAct(int curAct)

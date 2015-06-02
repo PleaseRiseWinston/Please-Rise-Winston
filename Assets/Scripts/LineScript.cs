@@ -144,7 +144,7 @@ public class LineScript : MonoBehaviour
     public void OnEnter(BaseEventData e)
     {
         //Debug.Log ("Over");
-        if (paperScript.focused)
+        if (paperScript.Focused)
         {
             StopAllCoroutines();
             StartCoroutine(translate());
@@ -161,7 +161,7 @@ public class LineScript : MonoBehaviour
 
     public IEnumerator translate()
     {
-        if (isVisible && paperScript.focused)
+        if (isVisible && paperScript.Focused)
         {
             isVisible = false;
             for (int i = 0; i < childCount; i++)
@@ -177,7 +177,7 @@ public class LineScript : MonoBehaviour
             }
         }
 
-        if (!isTranslated && paperScript.focused)
+        if (!isTranslated && paperScript.Focused)
         {
             for (int i = 0; i < childCount; i++)
             {
@@ -188,7 +188,7 @@ public class LineScript : MonoBehaviour
             isTranslated = true;
         }
 
-        if (!isVisible && paperScript.focused)
+        if (!isVisible && paperScript.Focused)
         {
             isVisible = true;
             if (translateable)
@@ -224,7 +224,7 @@ public class LineScript : MonoBehaviour
 
     public IEnumerator untranslate()
     {
-        if (isVisible && paperScript.focused)
+        if (isVisible && paperScript.Focused)
         {
             isVisible = false;
             for (int i = 0; i < childCount; i++)
@@ -240,7 +240,7 @@ public class LineScript : MonoBehaviour
             }
         }
 
-        if (isTranslated && paperScript.focused)
+        if (isTranslated && paperScript.Focused)
         {
             for (int i = 0; i < childCount; i++)
             {

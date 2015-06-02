@@ -186,18 +186,18 @@ public class WordScript : MonoBehaviour {
     {
 		
         //Debug.Log(curText);
-        if (paperScript.start && paperScript.focused)
+        if (paperScript.start && paperScript.Focused)
         {
             //Debug.Log("Starting");
             StartCoroutine(playCutscene.Play(gameControllerScript.curAct));
         }
-        else if (paperScript.exit && paperScript.focused)
+        else if (paperScript.exit && paperScript.Focused)
         {
             //Debug.Log("Exiting");
             Application.Quit();
         }
 		//changeable && 
-        else if (!paperScript.start && !paperScript.exit && paperScript.focused && lineScript.isTranslated && paperScript.focused)
+        else if (!paperScript.start && !paperScript.exit && paperScript.Focused && lineScript.isTranslated && paperScript.Focused)
         {
 			foreach(WordStructure wordStruct in textBoxScript.structList){
 				if(curText == wordStruct.current){

@@ -27,7 +27,9 @@ public class PaperScript : MonoBehaviour
     public TextAsset note;
     public string noteContent;
 
-    public bool focused;
+    [SerializeField]
+    private bool _focused;
+    public bool Focused { get { return _focused; } }
     public bool mouseOver;
     public bool inTray;
     public bool atDestination;
@@ -55,6 +57,11 @@ public class PaperScript : MonoBehaviour
 	
 	public bool isClickable;
 
+    private Coroutine glowCoroutine = null;
+    private bool _focusing;
+
+    private SpriteRenderer _spriteRenderer;
+
     void Start()
     {
         gameObject.AddComponent<AudioSource>();
@@ -62,12 +69,11 @@ public class PaperScript : MonoBehaviour
 
 		textBox = GameObject.FindGameObjectWithTag("TextBox");
 		textBoxScript = textBox.GetComponent<TextBox>();
-
 		isClickable = true;
-        focused = false;
         inTray = false;
         atDestination = false;
 		
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 		gameController = GameObject.FindGameObjectWithTag("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
 
@@ -104,19 +110,20 @@ public class PaperScript : MonoBehaviour
         //Debug.Log("defaultCameraPos = " + defaultCameraPos);
 
         // Instantiates a canvas at the paper's position
-        Canvas newCanvas = Instantiate(canvas, transform.position, transform.rotation) as Canvas;
+        canvas = Instantiate(canvas, transform.position, transform.rotation) as Canvas;
 		if(!start && !exit)
         {
-			newCanvas.name = "GameCanvas";
+            canvas.name = "GameCanvas";
 		}
-        newCanvas.transform.localScale = transform.localScale;
-        newCanvas.transform.SetParent(transform);
+        canvas.sortingLayerName = "Text";
+        canvas.transform.localScale = transform.localScale;
+        canvas.transform.SetParent(transform);
     }
 
     public void OnMouseDown()
     {
         //Debug.Log("Focusing");
-        if (!inTray && isClickable && !focused)
+        if (!inTray && isClickable && !Focused)
         {
             StartCoroutine(Focus());
         }
@@ -125,34 +132,40 @@ public class PaperScript : MonoBehaviour
     public void OnMouseEnter()
     {
         // Toggles mouseover state while not in focused mode
-        if (focused){
+        if (Focused){
             mouseOver = true;
         }
 
-        if (!focused)
+        if (!Focused && !_focusing)
         {
-            StopAllCoroutines();
-            StartCoroutine(Glow());
+            if(glowCoroutine != null)
+            {
+                StopCoroutine(glowCoroutine);
+            }
+            glowCoroutine = StartCoroutine(Glow());
         }
     }
 
     public void OnMouseExit()
     {
         // Toggles mouseover state while not in focused mode
-        if (focused)
+        if (Focused)
         {
             mouseOver = false;
         }
-        else if (!focused)
+        else if (!Focused)
         {
-            StopAllCoroutines();
-            StartCoroutine(Unglow());
+            if (glowCoroutine != null)
+            {
+                StopCoroutine(glowCoroutine);
+            }
+            glowCoroutine = StartCoroutine(Unglow());
         }
     }
-
+    
     IEnumerator Glow()
     {
-        if (!focused)
+        if (!Focused)
         {
             if (start)
             {
@@ -167,6 +180,7 @@ public class PaperScript : MonoBehaviour
                 yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.solid).WaitForCompletion());
             }
         }
+        glowCoroutine = null;
     }
 
     IEnumerator Unglow()
@@ -183,12 +197,13 @@ public class PaperScript : MonoBehaviour
         {
             yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("PaperGlow").GetComponent<SpriteRenderer>(), 0.8f, "color", gameControllerScript.transparent).WaitForCompletion());
         }
+        glowCoroutine = null;
     }
 
-    public void LateUpdate()
+    public void Update()
     {
         // Detects clicks off the object
-        if (Input.GetMouseButtonDown(0) && !mouseOver && focused && !inTray && !gameControllerScript.overlayActive)
+        if (Input.GetMouseButtonDown(0) && !mouseOver && Focused && !inTray && !gameControllerScript.overlayActive)
         {
             //Debug.Log("Unfocusing");
             StartCoroutine(Unfocus());
@@ -197,11 +212,6 @@ public class PaperScript : MonoBehaviour
 		if(noteContent != "Start" && noteContent != "Exit"){
 			noteContent = textBoxScript.editString;
 		}
-    }
-
-    public void ForceUnfocus()
-    {
-        StartCoroutine(Unfocus());
     }
 
     void PlayAudio()
@@ -227,7 +237,10 @@ public class PaperScript : MonoBehaviour
     // Coroutine called when focusing onto a note
     IEnumerator Focus()
     {
-        //Debug.Log("Focusing");
+        // Flag to stop glow from turning back on during animation --BG
+        _focusing = true;
+        _spriteRenderer.sortingLayerName = "Focused Paper";
+        canvas.sortingLayerName = "Focused Text";
         StartCoroutine(Unglow());
         PlayAudio();
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = true;
@@ -236,19 +249,23 @@ public class PaperScript : MonoBehaviour
         HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 0.5f);
         yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.2f).WaitForCompletion());
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = false;
-        focused = true;
+        _focused = true;
+        _focusing = false;
     }
+
 
     // Coroutine called when unfocusing away from a note
     IEnumerator Unfocus()
     {
-        //Debug.Log("Unfocusing");
+        Debug.Log("Unfocusing");
         PlayAudio();
-        focused = false;
+        _focused = false;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = true;
         HOTween.To(transform, 0.7f, "position", defaultNotePos, false); HOTween.To(transform, 0.7f, "rotation", new Vector3(80, 0, 0), false);
         HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Bloom>(), 0.7f, "bloomIntensity", 2.0f);
         yield return StartCoroutine(HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.7f, "blur", 0.0f).WaitForCompletion());
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().curNoteInMotion = false;
+        _spriteRenderer.sortingLayerName = "Desk Stuff";
+        canvas.sortingLayerName = "Text";
     }
 }

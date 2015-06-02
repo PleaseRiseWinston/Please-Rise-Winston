@@ -110,7 +110,7 @@ public class CanvasScript : MonoBehaviour {
             // Instantiates a new line and modifies its values accordingly
             if (!paperScript.start && !paperScript.exit)
             {
-
+    
 				//Creating newLine for paper on screen
                 GameObject newLine = Instantiate(line, paper.transform.position + (paper.transform.up * 14) + (paper.transform.up * curSpacing), paper.transform.rotation) as GameObject;
 				newLine.name = "Line" + linePosCount;
@@ -118,22 +118,22 @@ public class CanvasScript : MonoBehaviour {
 				linePosCount++;
 				
 				lineIDList.Add(newLine.name);
-
+    
                 lineScript = newLine.GetComponent<LineScript>();
                 newLine.transform.SetParent(transform);
 				//End newLine
 				
 				//Adding to words array
                 words = s.Split(delimiterSpace);
-
+    
                 // Clears the list if there is any content to make room for new line
                 wordList.Clear();
-
+    
                 // Each word entry is parsed via regex
                 foreach (string word in words)
                 {
                     Match result = re.Match(word);
-
+    
                     if (result.Success)
                     {
 						//$BRANCH
@@ -200,19 +200,19 @@ public class CanvasScript : MonoBehaviour {
                         wordList.Add(word);
                     }
                 }
-
+    
                 // Increment curSpacing to add deviation to the line positions
                 curSpacing += lineSpacing;
             }
             else
             {
                 GameObject newLine = Instantiate(line, (paper.transform.position) + (paper.transform.forward * -0.1f), paper.transform.rotation) as GameObject;
-
+    
                 lineScript = newLine.GetComponent<LineScript>();
                 newLine.transform.SetParent(transform);
-
+    
                 words = s.Split(delimiterSpace);
-
+    
                 foreach(string word in words){
                     wordList.Add(word);
                 }
