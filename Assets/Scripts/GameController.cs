@@ -222,7 +222,7 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(HOTween.To(curNote.transform, 0.15f, "position", new Vector3(85, 1330 + stackHeight, -400), false).WaitForCompletion());
         curNote.GetComponent<PaperScript>().atDestination = true;
         curNoteInMotion = false;
-        stackHeight += 0.6f;
+        stackHeight += 0.9f;
     }
 
     // Send note to tray on desk, increment noteID, and call for new note
