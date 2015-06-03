@@ -80,7 +80,9 @@ public class TextBox : MonoBehaviour {
 				allNoteLines[i][j] = editString;
 			}
 			count = 0;
+			ABindexCount = 0;
 			actNumber++;
+			fileAorB = 'A';
 		}
 		
 		editString = allNoteLines[0][0];
@@ -147,7 +149,7 @@ public class TextBox : MonoBehaviour {
 	
 	public void loadFile(){
 		arrText = new List<string>();
-		StreamReader objReader;
+		StreamReader objReader = null;
 		
 		//Check for A/B file else check for normal file
 		if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt)){
@@ -164,11 +166,27 @@ public class TextBox : MonoBehaviour {
 			
 			ABindexCount++;
 		}
-		else{
+		else if(File.Exists(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt)){
 			//print(actNumber);
 			objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileExt);
 			count++;
 			ABindexCount++;
+		}
+		else{
+			if(fileAorB == 'A'){
+				fileAorB = 'B';
+				noteABIndex.Add(actNumber + " " +  count + fileAorB + " " + ABindexCount);
+				objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
+				count++;
+				fileAorB = 'A';
+			}
+			else if(fileAorB == 'B'){
+				fileAorB = 'A';
+				count++;
+				noteABIndex.Add(actNumber + " " +  count + fileAorB + " " + ABindexCount);
+				objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
+				fileAorB = 'B';
+			}
 		}
 		//print(info+fileName+count);
 		//print("File Num" + count);
