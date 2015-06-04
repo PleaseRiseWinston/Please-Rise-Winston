@@ -356,9 +356,8 @@ public class CanvasScript : MonoBehaviour {
 		noteNum -= 1;
 		string newNoteNum = noteNum.ToString() + AorB;
 		
-		print(newNoteNum);
 		foreach(string noteABInfoStr in textBoxScript.noteABIndex){
-			print(noteABInfoStr);
+			//print(noteABInfoStr);
 			string[] noteABInfo = noteABInfoStr.Split(delimiterSpace);
 			
 			if(int.Parse(noteABInfo[0]) == actNum  && noteABInfo[1] == newNoteNum){
