@@ -30,13 +30,4 @@ public class CameraScript : MonoBehaviour {
             defaultVignette = 7.0f;
         }
     }
-    /*
-    void Update()
-    {
-        if (gameControllerScript.curNote.GetComponent<PaperScript>().focused)
-        {
-            
-        }
-    }
-     */
 }

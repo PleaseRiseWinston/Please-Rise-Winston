@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour
     public Color transparent;
     public Color solid;
 
-    public int? totalWeight;
-    public int? subtotalWeight;
+    public int totalWeight = 0;
+    public int subtotalWeight = 0;
     public bool curNoteInMotion;
 
     public bool overlayActive = false;
@@ -40,7 +40,6 @@ public class GameController : MonoBehaviour
         notes = GameObject.FindGameObjectWithTag("Notes").gameObject;
         backgroundArray = new GameObject[backgrounds.transform.childCount];
 
-        totalWeight = 0;
         curNoteInMotion = false;
 		
         // Defaults current Act and Note to 1, 1
@@ -186,12 +185,12 @@ public class GameController : MonoBehaviour
             }
             else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
             {
-                noteID = noteID + "a";
+                Debug.Log("Getting Note: " + noteID + " at index " + (curAct - 1) + ", " + i);
                 StartCoroutine(MoveToCenter(curAct - 1, i, true));
             }
             else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "b")
             {
-                noteID = noteID + "b";
+                Debug.Log("Getting Note: " + noteID + " at index " + (curAct - 1) + ", " + i);
                 StartCoroutine(MoveToCenter(curAct - 1, i, true));
             }
         }
@@ -231,11 +230,12 @@ public class GameController : MonoBehaviour
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
 		curNote.gameObject.GetComponent<PaperScript>().isClickable = false;
         curNoteInMotion = true;
-		
+        curNote.GetComponent<PaperScript>().canvas.sortingLayerName = "Desk Stuff";
+
         foreach(WordStructure wordStruct in GameObject.FindGameObjectWithTag("TextBox").GetComponent<TextBox>().structList){
 			if(wordStruct.noteID == curNoteID && wordStruct.actID == curAct){
 				//Do stuff with weights using wordStruct.wordWeightCurr
-			    subtotalWeight += wordStruct.wordWeightCurr;
+			    subtotalWeight += wordStruct.wordWeightCurr.GetValueOrDefault();
 			}
 		}
 		
@@ -264,7 +264,7 @@ public class GameController : MonoBehaviour
 			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(MoveToTray());
 
-            if (curNoteID != notes.transform.GetChild(curAct).childCount)
+            if (curNoteID != notes.transform.GetChild(curAct).childCount + branchDiscrepancy)
             {
                 print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
                 if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
@@ -318,7 +318,7 @@ public class GameController : MonoBehaviour
             }
         }
         
-        if (curNoteID != notes.transform.GetChild(curAct).childCount)
+        if (curNoteID != notes.transform.GetChild(curAct).childCount + branchDiscrepancy)
         {
             /*
             if (subtotalWeight >= 5)
@@ -384,7 +384,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        if (curNoteID != notes.transform.GetChild(curAct).childCount)
+        if (curNoteID != notes.transform.GetChild(curAct).childCount + branchDiscrepancy)
         {
             /*
             if (subtotalWeight >= 5)
@@ -450,7 +450,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        if (curNoteID != notes.transform.GetChild(curAct).childCount)
+        if (curNoteID != notes.transform.GetChild(curAct).childCount + branchDiscrepancy)
         {
             /*
             if (subtotalWeight >= 5)
