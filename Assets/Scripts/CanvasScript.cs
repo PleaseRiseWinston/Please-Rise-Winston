@@ -337,10 +337,22 @@ public class CanvasScript : MonoBehaviour {
 
 				//paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][textBoxScript.allNoteLines[firstNum - 1].Length - secNum];
 				if(noteName == firstNum + "." + secNum + "a"){
+					foreach(GameObject note in GameObject.FindGameObjectsWithTag("Papers")){
+						if(note.name == noteName){
+							note.GetComponent<PaperScript>().branchType = 'a';
+						}
+					}
+					
 					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex(firstNum, secNum, 'A')];
 					noteIndexCount--;
 				}
 				else if(noteName == firstNum + "." + secNum + "b"){
+					foreach(GameObject note in GameObject.FindGameObjectsWithTag("Papers")){
+						if(note.name == noteName){
+							note.GetComponent<PaperScript>().branchType = 'b';
+						}
+					}
+					
 					paperScript.noteContent = textBoxScript.allNoteLines[firstNum -1][findABNoteIndex(firstNum, secNum, 'B')];
 					noteIndexCount--;
 				}
