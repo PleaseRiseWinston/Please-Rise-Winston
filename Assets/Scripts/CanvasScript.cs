@@ -339,7 +339,7 @@ public class CanvasScript : MonoBehaviour {
 				if(noteName == firstNum + "." + secNum + "a"){
 					foreach(GameObject note in GameObject.FindGameObjectsWithTag("Papers")){
 						if(note.name == noteName){
-							note.GetComponent<PaperScript>().branchType = 'a';
+							note.GetComponent<PaperScript>().branchType = "a";
 						}
 					}
 					
@@ -349,7 +349,7 @@ public class CanvasScript : MonoBehaviour {
 				else if(noteName == firstNum + "." + secNum + "b"){
 					foreach(GameObject note in GameObject.FindGameObjectsWithTag("Papers")){
 						if(note.name == noteName){
-							note.GetComponent<PaperScript>().branchType = 'b';
+							note.GetComponent<PaperScript>().branchType = "b";
 						}
 					}
 					

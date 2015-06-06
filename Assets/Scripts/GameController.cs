@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
 
     public GameObject[] backgroundArray;
     public GameObject[][] noteArray;
+    public GameObject[][] branchA;
+    public GameObject[][] branchB;
     public GameObject backgrounds;
     public GameObject notes;
 
@@ -28,7 +30,8 @@ public class GameController : MonoBehaviour
     public bool onBranch = false;
 
     public int branchDiscrepancy = 0;
-    public char branchState;
+    public bool branchState;
+    public char branchType;
 
     public float stackHeight = 0;
 
@@ -62,17 +65,36 @@ public class GameController : MonoBehaviour
 	        backgroundArray[i] = backgrounds.transform.GetChild(i).gameObject;
 	    }
 
-	    // Insert all notes into jagged array
+	    // Instantiate, then insert all notes into jagged array
         noteArray = new GameObject[notes.transform.childCount][];
+        branchA = new GameObject[notes.transform.childCount][];
+        branchB = new GameObject[notes.transform.childCount][];
 
         for (int i = 0; i < notes.transform.childCount; i++)
 	    {
             noteArray[i] = new GameObject[notes.transform.GetChild(i).childCount];
+            branchA[i] = new GameObject[notes.transform.GetChild(i).childCount];
+            branchB[i] = new GameObject[notes.transform.GetChild(i).childCount];
+            int counterA = 0;
+            int counterB = 0;
 
             // Insert notes into the act's array and index noteIDs in order starting from 0
             for (int j = 0; j < notes.transform.GetChild(i).childCount; j++)
 	        {
                 noteArray[i][j] = notes.transform.GetChild(i).GetChild(j).gameObject;
+                print(noteArray[i][j].GetComponent<PaperScript>().branchType);
+                if (notes.transform.GetChild(i).GetChild(j).GetComponent<PaperScript>().branchType == "a")
+                {
+                    branchA[i][counterA] = notes.transform.GetChild(i).GetChild(j).gameObject;
+                    print(branchA[i][counterA].name);
+                    counterA++;
+                }
+                if (notes.transform.GetChild(i).GetChild(j).GetComponent<PaperScript>().branchType == "b")
+                {
+                    branchB[i][counterB] = notes.transform.GetChild(i).GetChild(j).gameObject;
+                    print(branchB[i][counterB].name);
+                    counterB++;
+                }
 	        }
 	    }
 
@@ -105,21 +127,21 @@ public class GameController : MonoBehaviour
                 for (int j = 0; j < notes.transform.GetChild(i).transform.childCount; j++)
                 {
                     notes.transform.GetChild(i).transform.GetChild(j).gameObject.SetActive(true);
-                    switch (curAct)
-                    {
-                        case 1:
-                            branchDiscrepancy = 2;
-                            break;
-                        case 2:
-                            branchDiscrepancy = 3;
-                            break;
-                        case 3:
-                            branchDiscrepancy = 3;
-                            break;
-                        case 4:
-                            branchDiscrepancy = 0;
-                            break;
-                    }
+                    //switch (curAct)
+                    //{
+                    //    case 1:
+                    //        branchDiscrepancy = 2;
+                    //        break;
+                    //    case 2:
+                    //        branchDiscrepancy = 3;
+                    //        break;
+                    //    case 3:
+                    //        branchDiscrepancy = 3;
+                    //        break;
+                    //    case 4:
+                    //        branchDiscrepancy = 0;
+                    //        break;
+                    //}
                 }
             }
             else if (i != (curAct - 1))
@@ -255,7 +277,7 @@ public class GameController : MonoBehaviour
 
         foreach(WordStructure wordStruct in GameObject.FindGameObjectWithTag("TextBox").GetComponent<TextBox>().structList){
 			if(wordStruct.noteID == curNoteID && wordStruct.actID == curAct){
-				//Do stuff with weights using wordStruct.wordWeightCurr
+				// Adds up submitted weights
 			    subtotalWeight += wordStruct.wordWeightCurr.GetValueOrDefault();
 			}
 		}

@@ -61,7 +61,7 @@ public class PaperScript : MonoBehaviour
     private bool _focusing;
 
     private SpriteRenderer _spriteRenderer;
-	public char branchType;
+	public string branchType;
 
     void Start()
     {
