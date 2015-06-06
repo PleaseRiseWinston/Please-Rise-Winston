@@ -27,11 +27,14 @@ public class GameController : MonoBehaviour
     public bool curNoteInMotion;
 
     public bool overlayActive = false;
-    public bool onBranch = false;
 
+    public bool onBranch = false;
     public int branchDiscrepancy = 0;
     public bool branchState;
-    public char branchType;
+    public string branchType;
+    public string pathTaken = "";
+    public int countA = 0;
+    public int countB = 0;
 
     public float stackHeight = 0;
 
@@ -70,40 +73,48 @@ public class GameController : MonoBehaviour
         branchA = new GameObject[notes.transform.childCount][];
         branchB = new GameObject[notes.transform.childCount][];
 
+        // Delayed coroutine to allow CanvasScript to load before checking for branchTypes
+        StartCoroutine(InsertNotes());
+	}
+
+    IEnumerator InsertNotes()
+    {
+        yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < notes.transform.childCount; i++)
-	    {
+        {
             noteArray[i] = new GameObject[notes.transform.GetChild(i).childCount];
             branchA[i] = new GameObject[notes.transform.GetChild(i).childCount];
             branchB[i] = new GameObject[notes.transform.GetChild(i).childCount];
-            int counterA = 0;
-            int counterB = 0;
+            int countA = 0;
+            int countB = 0;
 
             // Insert notes into the act's array and index noteIDs in order starting from 0
             for (int j = 0; j < notes.transform.GetChild(i).childCount; j++)
-	        {
+            {
                 noteArray[i][j] = notes.transform.GetChild(i).GetChild(j).gameObject;
                 print(noteArray[i][j].GetComponent<PaperScript>().branchType);
                 if (notes.transform.GetChild(i).GetChild(j).GetComponent<PaperScript>().branchType == "a")
                 {
-                    branchA[i][counterA] = notes.transform.GetChild(i).GetChild(j).gameObject;
-                    print(branchA[i][counterA].name);
-                    counterA++;
+                    branchA[i][countA] = notes.transform.GetChild(i).GetChild(j).gameObject;
+                    //print(branchA[i][counterA].name);
+                    countA++;
                 }
                 if (notes.transform.GetChild(i).GetChild(j).GetComponent<PaperScript>().branchType == "b")
                 {
-                    branchB[i][counterB] = notes.transform.GetChild(i).GetChild(j).gameObject;
-                    print(branchB[i][counterB].name);
-                    counterB++;
+                    branchB[i][countB] = notes.transform.GetChild(i).GetChild(j).gameObject;
+                    //print(branchB[i][counterB].name);
+                    countB++;
                 }
-	        }
-	    }
+            }
 
-        ToggleAct(curAct);
-        UpdateCurNote(curNoteID, null);
-	}
+            ToggleAct(curAct);
+            UpdateCurNote(curNoteID, null);
+        }
+    }
 
     public void Update()
     {
+        // 'A' submits curNote; 'S' jumps to note 1.59
         if (Input.GetKeyDown(KeyCode.A))
         {
             curNote.GetComponent<PaperScript>().inTray = true;
@@ -112,6 +123,12 @@ public class GameController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             curNoteID = 59;
+            curNote.GetComponent<PaperScript>().inTray = true;
+            ToTray();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            curNoteID = 69;
             curNote.GetComponent<PaperScript>().inTray = true;
             ToTray();
         }
@@ -127,21 +144,6 @@ public class GameController : MonoBehaviour
                 for (int j = 0; j < notes.transform.GetChild(i).transform.childCount; j++)
                 {
                     notes.transform.GetChild(i).transform.GetChild(j).gameObject.SetActive(true);
-                    //switch (curAct)
-                    //{
-                    //    case 1:
-                    //        branchDiscrepancy = 2;
-                    //        break;
-                    //    case 2:
-                    //        branchDiscrepancy = 3;
-                    //        break;
-                    //    case 3:
-                    //        branchDiscrepancy = 3;
-                    //        break;
-                    //    case 4:
-                    //        branchDiscrepancy = 0;
-                    //        break;
-                    //}
                 }
             }
             else if (i != (curAct - 1))
@@ -165,54 +167,42 @@ public class GameController : MonoBehaviour
     // Converts input int to string for future searching and matching
     public void UpdateCurNote(int noteID, string branchSuffix)
     {
-        Debug.Log(branchSuffix + ", " + onBranch);
-        string noteIDstr = noteID + branchSuffix;
-        curNoteName = curAct + "." + noteIDstr;
-
-        // At branch start:
-        if (branchSuffix != null && !onBranch)
+        // If curNote is not the last note in the act:
+        if (branchSuffix != "final")
         {
-            onBranch = true;
-            Debug.Log("Branch Start.");
-            switch (branchSuffix)
+            if (branchSuffix == null || branchSuffix == "")
             {
-                case "a":
-                    curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
-                    break;
-                case "b":
-                    curNote = noteArray[curAct - 1][noteID + branchDiscrepancy];
-                    break;
+                // Get note normally
+                Debug.Log("Normal Note");
+                curNote = noteArray[curAct - 1][noteID - 1];
+                curNoteName = curNote.gameObject.name;
             }
-            branchDiscrepancy++;
-        }
-        // During branch:
-        else if (branchSuffix != null && onBranch)
-        {
-            Debug.Log("During Branch.");
-            switch (branchSuffix)
+            else
             {
-                case "a":
-                    curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
-                    break;
-                case "b":
-                    curNote = noteArray[curAct - 1][noteID + branchDiscrepancy];
-                    break;
+                // Step through the A/B note respectively
+                if (branchSuffix == "a")
+                {
+                    curNote = branchA[curAct - 1][noteID - 1];
+                    curNoteName = curNote.gameObject.name;
+                }
+                else if (branchSuffix == "b")
+                {
+                    curNote = branchB[curAct - 1][noteID - 1];
+                    curNoteName = curNote.gameObject.name;
+                }
             }
-            branchDiscrepancy++;
-        }
-        // At branch end:
-        else if (branchSuffix == null && onBranch)
-        {
-            Debug.Log("Branch End.");
-            onBranch = false;
-            curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
         }
         else
         {
-            Debug.Log("Normal Note.");
-            curNote = noteArray[curAct - 1][noteID - 1 + branchDiscrepancy];
+            // Increments act and resets note ID if curNote was the last
+            pathTaken = "";
+            curNoteID = 1;
+            curAct++;
+            ToggleAct(curAct);
+            curNote = noteArray[curAct - 1][0];
+            GetNote(curNote.name);
+            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
         }
-        Debug.Log("Update done: " + curNoteName);
     }
 
     // Note flies in from left
@@ -224,17 +214,7 @@ public class GameController : MonoBehaviour
             if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID)
             {
                 Debug.Log("Getting Note: " + noteID + " at index " + (curAct - 1) + ", " + i);
-                StartCoroutine(MoveToCenter(curAct - 1, i, false));
-            }
-            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "a")
-            {
-                Debug.Log("Getting Note: " + noteID + " at index " + (curAct - 1) + ", " + i);
-                StartCoroutine(MoveToCenter(curAct - 1, i, true));
-            }
-            else if (notes.transform.GetChild(curAct - 1).GetChild(i).gameObject.name == noteID + "b")
-            {
-                Debug.Log("Getting Note: " + noteID + " at index " + (curAct - 1) + ", " + i);
-                StartCoroutine(MoveToCenter(curAct - 1, i, true));
+                StartCoroutine(MoveToCenter(curAct - 1, i));
             }
         }
 
@@ -253,7 +233,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    IEnumerator MoveToCenter(int actIndex, int i, bool branch)
+    IEnumerator MoveToCenter(int actIndex, int i)
     {
 		yield return StartCoroutine(HOTween.To(notes.transform.GetChild(actIndex).GetChild(i).transform, 0.8f, "position", new Vector3(0, 1330, -400), false).WaitForCompletion());
     }
@@ -270,6 +250,10 @@ public class GameController : MonoBehaviour
     // Send note to tray on desk, increment noteID, and call for new note
     public void ToTray()
     {
+        // Record branchState and branchType for this note
+        branchState = curNote.transform.GetComponentInChildren<CanvasScript>().branchState;
+        branchType = curNote.transform.GetComponent<PaperScript>().branchType;
+
         curNote.gameObject.GetComponent<PaperScript>().inTray = true;
 		curNote.gameObject.GetComponent<PaperScript>().isClickable = false;
         curNoteInMotion = true;
@@ -307,39 +291,45 @@ public class GameController : MonoBehaviour
 			//addToPastNoteReference(currNoteCanvas);
             StartCoroutine(MoveToTray());
 
-            if ((curNoteID != notes.transform.GetChild(curAct - 1).childCount - branchDiscrepancy && totalWeight >= 0) || (curNoteID != notes.transform.GetChild(curAct - 1).childCount - 1 - branchDiscrepancy && totalWeight < 0))
+            print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
+            if (!branchState && branchType == "")
             {
-                print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
-                if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
+                curNoteID++;
+                UpdateCurNote(curNoteID, null);
+                print("new curNoteID: " + curNoteID + "; curNote: " + curNote.name);
+                GetNote(curNoteName);
+            }
+            // If a path is taken:
+            else if (pathTaken != "")
+            {
+                // Step through A/B notes depending on chosen path
+                curNoteID++;
+                if (!curNote.GetComponent<PaperScript>().lastInAct)
                 {
-                    curNoteID++;
-                    UpdateCurNote(curNoteID, null);
-                    print("new curNoteID: " + curNoteID + "; curNote: " + curNote.name);
+                    UpdateCurNote(curNoteID, pathTaken);
                     GetNote(curNoteName);
                 }
                 else
                 {
-                    curNoteID++;
-                    if (totalWeight >= 0)
-                    {
-                        UpdateCurNote(curNoteID, "a");
-                    }
-                    else if (totalWeight < 0)
-                    {
-                        UpdateCurNote(curNoteID, "b");
-                    }
-                    GetNote(curNoteName);
+                    UpdateCurNote(curNoteID, "final");
                 }
             }
-            else
+            // If $BRANCH flag is detected in pre-branch note:
+            else if (branchState)
             {
-                // Increments act and resets note ID
+                // Zero out curNoteID to begin at beginning of branch array
                 curNoteID = 1;
-                curAct++;
-                branchDiscrepancy = 0;
-                ToggleAct(curAct);
-                UpdateCurNote(curNoteID, null);
-                GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
+                if (totalWeight >= 0)
+                {
+                    pathTaken = "a";
+                    UpdateCurNote(curNoteID, pathTaken);
+                }
+                else if (totalWeight < 0)
+                {
+                    pathTaken = "b";
+                    UpdateCurNote(curNoteID, pathTaken);
+                }
+                GetNote(curNoteName);
             }
         }
     }
@@ -361,52 +351,62 @@ public class GameController : MonoBehaviour
             }
         }
 
-        if ((curNoteID != notes.transform.GetChild(curAct - 1).childCount - branchDiscrepancy && totalWeight >= 0) || (curNoteID != notes.transform.GetChild(curAct - 1).childCount - 1 - branchDiscrepancy && totalWeight < 0))
+        /*
+        if (subtotalWeight >= 5)
         {
-            /*
-            if (subtotalWeight >= 5)
-            {
-                ChangeBackgroundTo("WinstonHappy");
-            }
-            else if (subtotalWeight <= 5)
-            {
-                ChangeBackgroundTo("ProsecutorHappy");
-            }
-            else
-            {
-                ChangeBackgroundTo("Neutral");
-            }*/
-            totalWeight += subtotalWeight;
-            subtotalWeight = 0;
-
-            if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
-            {
-                curNoteID++;
-                UpdateCurNote(curNoteID, null);
-                GetNote(curNoteName);
-            }
-            else
-            {
-                curNoteID++;
-                if (totalWeight >= 0)
-                {
-                    UpdateCurNote(curNoteID, "a");
-                }
-                else if (totalWeight < 0)
-                {
-                    UpdateCurNote(curNoteID, "b");
-                }
-                GetNote(curNoteName);
-            }
+            ChangeBackgroundTo("WinstonHappy");
+        }
+        else if (subtotalWeight <= 5)
+        {
+            ChangeBackgroundTo("ProsecutorHappy");
         }
         else
         {
-            curNoteID = 1;
-            curAct++;
-            branchDiscrepancy = 0;
-            ToggleAct(curAct);
+            ChangeBackgroundTo("Neutral");
+        }*/
+
+        totalWeight += subtotalWeight;
+        subtotalWeight = 0;
+
+        print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
+        if (!branchState && branchType == "")
+        {
+            curNoteID++;
             UpdateCurNote(curNoteID, null);
-            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
+            print("new curNoteID: " + curNoteID + "; curNote: " + curNote.name);
+            GetNote(curNoteName);
+        }
+        // If a path is taken:
+        else if (pathTaken != "")
+        {
+            // Step through A/B notes depending on chosen path
+            curNoteID++;
+            if (!curNote.GetComponent<PaperScript>().lastInAct)
+            {
+                UpdateCurNote(curNoteID, pathTaken);
+                GetNote(curNoteName);
+            }
+            else
+            {
+                UpdateCurNote(curNoteID, "final");
+            }
+        }
+        // If $BRANCH flag is detected in pre-branch note:
+        else if (branchState)
+        {
+            // Zero out curNoteID to begin at beginning of branch array
+            curNoteID = 1;
+            if (totalWeight >= 0)
+            {
+                pathTaken = "a";
+                UpdateCurNote(curNoteID, pathTaken);
+            }
+            else if (totalWeight < 0)
+            {
+                pathTaken = "b";
+                UpdateCurNote(curNoteID, pathTaken);
+            }
+            GetNote(curNoteName);
         }
     }
 
@@ -427,52 +427,62 @@ public class GameController : MonoBehaviour
             }
         }
 
-        if ((curNoteID != notes.transform.GetChild(curAct - 1).childCount - branchDiscrepancy && totalWeight >= 0) || (curNoteID != notes.transform.GetChild(curAct - 1).childCount - 1 - branchDiscrepancy && totalWeight < 0))
+        /*
+        if (subtotalWeight >= 5)
         {
-            /*
-            if (subtotalWeight >= 5)
-            {
-                ChangeBackgroundTo("WinstonHappy");
-            }
-            else if (subtotalWeight <= 5)
-            {
-                ChangeBackgroundTo("ProsecutorHappy");
-            }
-            else
-            {
-                ChangeBackgroundTo("Neutral");
-            }*/
-            totalWeight += subtotalWeight;
-            subtotalWeight = 0;
-
-            if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
-            {
-                curNoteID++;
-                UpdateCurNote(curNoteID, null);
-                GetNote(curNoteName);
-            }
-            else
-            {
-                curNoteID++;
-                if (totalWeight >= 0)
-                {
-                    UpdateCurNote(curNoteID, "a");
-                }
-                else if (totalWeight < 0)
-                {
-                    UpdateCurNote(curNoteID, "b");
-                }
-                GetNote(curNoteName);
-            }
+            ChangeBackgroundTo("WinstonHappy");
+        }
+        else if (subtotalWeight <= 5)
+        {
+            ChangeBackgroundTo("ProsecutorHappy");
         }
         else
         {
-            curNoteID = 1;
-            curAct++;
-            branchDiscrepancy = 0;
-            ToggleAct(curAct);
+            ChangeBackgroundTo("Neutral");
+        }*/
+
+        totalWeight += subtotalWeight;
+        subtotalWeight = 0;
+
+        print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
+        if (!branchState && branchType == "")
+        {
+            curNoteID++;
             UpdateCurNote(curNoteID, null);
-            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
+            print("new curNoteID: " + curNoteID + "; curNote: " + curNote.name);
+            GetNote(curNoteName);
+        }
+        // If a path is taken:
+        else if (pathTaken != "")
+        {
+            // Step through A/B notes depending on chosen path
+            curNoteID++;
+            if (!curNote.GetComponent<PaperScript>().lastInAct)
+            {
+                UpdateCurNote(curNoteID, pathTaken);
+                GetNote(curNoteName);
+            }
+            else
+            {
+                UpdateCurNote(curNoteID, "final");
+            }
+        }
+        // If $BRANCH flag is detected in pre-branch note:
+        else if (branchState)
+        {
+            // Zero out curNoteID to begin at beginning of branch array
+            curNoteID = 1;
+            if (totalWeight >= 0)
+            {
+                pathTaken = "a";
+                UpdateCurNote(curNoteID, pathTaken);
+            }
+            else if (totalWeight < 0)
+            {
+                pathTaken = "b";
+                UpdateCurNote(curNoteID, pathTaken);
+            }
+            GetNote(curNoteName);
         }
     }
 
@@ -493,52 +503,61 @@ public class GameController : MonoBehaviour
             }
         }
 
-        if ((curNoteID != notes.transform.GetChild(curAct - 1).childCount - branchDiscrepancy && totalWeight >= 0) || (curNoteID != notes.transform.GetChild(curAct - 1).childCount - 1 - branchDiscrepancy && totalWeight < 0))
+        /*
+        if (subtotalWeight >= 5)
         {
-            /*
-            if (subtotalWeight >= 5)
-            {
-                ChangeBackgroundTo("WinstonHappy");
-            }
-            else if (subtotalWeight <= 5)
-            {
-                ChangeBackgroundTo("ProsecutorHappy");
-            }
-            else
-            {
-                ChangeBackgroundTo("Neutral");
-            }*/
-            totalWeight += subtotalWeight;
-            subtotalWeight = 0;
-
-            if (!curNote.transform.GetComponentInChildren<CanvasScript>().branchState)
-            {
-                curNoteID++;
-                UpdateCurNote(curNoteID, null);
-                GetNote(curNoteName);
-            }
-            else
-            {
-                curNoteID++;
-                if (totalWeight >= 0)
-                {
-                    UpdateCurNote(curNoteID, "a");
-                }
-                else if (totalWeight < 0)
-                {
-                    UpdateCurNote(curNoteID, "b");
-                }
-                GetNote(curNoteName);
-            }
+            ChangeBackgroundTo("WinstonHappy");
+        }
+        else if (subtotalWeight <= 5)
+        {
+            ChangeBackgroundTo("ProsecutorHappy");
         }
         else
         {
-            curNoteID = 1;
-            curAct++;
-            branchDiscrepancy = 0;
-            ToggleAct(curAct);
+            ChangeBackgroundTo("Neutral");
+        }*/
+        totalWeight += subtotalWeight;
+        subtotalWeight = 0;
+
+        print("last curNoteID: " + curNoteID + "; curNote: " + curNote.name + "; branchState: " + curNote.transform.GetComponentInChildren<CanvasScript>().branchState);
+        if (!branchState && branchType == "")
+        {
+            curNoteID++;
             UpdateCurNote(curNoteID, null);
-            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
+            print("new curNoteID: " + curNoteID + "; curNote: " + curNote.name);
+            GetNote(curNoteName);
+        }
+        // If a path is taken:
+        else if (pathTaken != "")
+        {
+            // Step through A/B notes depending on chosen path
+            curNoteID++;
+            if (!curNote.GetComponent<PaperScript>().lastInAct)
+            {
+                UpdateCurNote(curNoteID, pathTaken);
+                GetNote(curNoteName);
+            }
+            else
+            {
+                UpdateCurNote(curNoteID, "final");
+            }
+        }
+        // If $BRANCH flag is detected in pre-branch note:
+        else if (branchState)
+        {
+            // Zero out curNoteID to begin at beginning of branch array
+            curNoteID = 1;
+            if (totalWeight >= 0)
+            {
+                pathTaken = "a";
+                UpdateCurNote(curNoteID, pathTaken);
+            }
+            else if (totalWeight < 0)
+            {
+                pathTaken = "b";
+                UpdateCurNote(curNoteID, pathTaken);
+            }
+            GetNote(curNoteName);
         }
     }
 	

@@ -62,6 +62,7 @@ public class PaperScript : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 	public string branchType;
+    public bool lastInAct;
 
     void Start()
     {

@@ -96,15 +96,19 @@ public class PlayCutscene : MonoBehaviour {
                 print("End Cutscene");
                 break;
             case 2:
+                Debug.Log("Starting Act 2");
                 gameControllerScript.GetNote("2.1");
                 break;
             case 3:
+                Debug.Log("Starting Act 3");
                 gameControllerScript.GetNote("3.1");
                 break;
             case 4:
+                Debug.Log("Starting Act 4");
                 gameControllerScript.GetNote("4.1");
                 break;
             case 5:
+                Debug.Log("Starting Act 5");
                 gameControllerScript.GetNote("5.1");
                 break;
         }
