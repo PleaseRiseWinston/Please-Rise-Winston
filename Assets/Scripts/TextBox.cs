@@ -95,8 +95,8 @@ public class TextBox : MonoBehaviour {
 		canvasScript = canvas.GetComponent<CanvasScript>();
 	}
 	
-    /*
-   	void OnGUI() {
+    
+   	/*void OnGUI() {
 		const int buttonWidth = 84;
 		const int buttonHeight = 50;
 
@@ -131,19 +131,21 @@ public class TextBox : MonoBehaviour {
 			count = 0;
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			foreach(WordStructure wordStruct in structList){
-				if(wordStruct.actID == 1 && wordStruct.noteID == 30){
-					print("wordID" + wordStruct.wordID + " " + wordStruct.current + " changeable: " + wordStruct.isChangeable);				
-				}
-			}
-			
-			foreach(string num in noteABIndex){
-				print(num);
-			}
 			// print(allNoteLines[0][0]);
 			// print(allNoteLines[0][1]);
 			
 			//print(swapWordList.Count);
+			print(allNoteLines[1][70]);
+			print(allNoteLines[1][71]);
+			print(allNoteLines[1][72]);
+			print(allNoteLines[1][73]);
+			print(allNoteLines[1][74]);
+			print(allNoteLines[1][75]);
+			print(allNoteLines[1][76]);
+			print(allNoteLines[1][77]);
+			print(allNoteLines[1][78]);
+			print(allNoteLines[1][79]);
+			print(allNoteLines[1][80]);
 		}
     }*/
 	
@@ -178,12 +180,14 @@ public class TextBox : MonoBehaviour {
 				noteABIndex.Add(actNumber + " " +  count + fileAorB + " " + ABindexCount);
 				objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
 				count++;
+				ABindexCount++;
 				fileAorB = 'A';
 			}
 			else if(fileAorB == 'B'){
 				fileAorB = 'A';
 				count++;
 				noteABIndex.Add(actNumber + " " +  count + fileAorB + " " + ABindexCount);
+				ABindexCount++;
 				objReader = new StreamReader(info + "/Resources/Act" + actNumber + "/" + fileName + count + fileAorB + fileExt);
 				fileAorB = 'B';
 			}
