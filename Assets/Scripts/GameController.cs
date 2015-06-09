@@ -132,6 +132,9 @@ public class GameController : MonoBehaviour
             curNote.GetComponent<PaperScript>().inTray = true;
             ToTray();
         }
+		if(Input.GetKeyDown(KeyCode.R)){
+			Application.LoadLevel("TextSwap");
+		}
     }
 
     public void ToggleAct(int curAct)
