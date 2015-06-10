@@ -1,7 +1,7 @@
 Yes, I wrote a book of
 musings. Yes, it is set
 in our world and is about
-things I think {could^2|should^4}
+things I think {could^2|should^-2}
 happen, but it is also a
 work of fiction. I’m
 being treated like I

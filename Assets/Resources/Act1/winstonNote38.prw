@@ -6,5 +6,5 @@ me. As I drew closer to
 my home I noticed a board
 jutting out from the side
 of my house. My heart
-rate {increased^1|slowed^1} as did my
+rate {increased^0|slowed^0} as did my
 walking pace.

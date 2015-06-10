@@ -1,5 +1,5 @@
 Clearly this was an act
-of {retaliation^2|intimidation^3}. The board
+of {retaliation^-1|intimidation^1}. The board
 was broken off in such a
 way that demanded
 attention. As I studied

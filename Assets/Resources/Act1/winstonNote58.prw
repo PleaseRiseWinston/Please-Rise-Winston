@@ -1,4 +1,4 @@
-Translator, this {victim^3|person^1}
+Translator, this {victim^-2|person^1}
 is terrified. I never
 *59*2*{meant|intended} for this to
 happen. I can’t sit here

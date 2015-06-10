@@ -5,7 +5,7 @@ stranger was currently
 poking around her porch.
 I came up short. This was
 the first time I had ever
-tried to {converse^4|speak^2} to
+tried to {converse^2|speak^-2} to
 someone outside of work,
 which in itself was only
 a few hours a week.

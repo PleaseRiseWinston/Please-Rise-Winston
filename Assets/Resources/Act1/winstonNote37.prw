@@ -1,4 +1,4 @@
-As {provoking^2|pointless^1} as these
+As {provoking^-1|pointless^1} as these
 thoughts were, I could
 not stop them from
 happening. During the
