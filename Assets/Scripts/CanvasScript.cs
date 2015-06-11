@@ -142,7 +142,16 @@ public class CanvasScript : MonoBehaviour {
 						}
 						//#W
 						if(result.Groups[2].Value != ""){
-							witnessState = result.Groups[2].Value;
+							if(result.Groups[2].Value == "we" || result.Groups[2].Value == "wl"){
+								witnessState = result.Groups[2].Value;
+							}
+							else if(result.Groups[2].Value == "d" || result.Groups[2].Value == "p" || result.Groups[2].Value == "b"){
+								foreach(GameObject note in GameObject.FindGameObjectsWithTag("Papers")){
+									if(note.name == noteName){
+										note.GetComponent<PaperScript>().fontFlag = result.Groups[2].Value;
+									}
+								}
+							}
 						}
 						//@W
 						else if(result.Groups[3].Value != ""){
