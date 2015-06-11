@@ -28,8 +28,8 @@ public class CanvasScript : MonoBehaviour {
     private const char delimiterSpace = ' ';
 	private string[] punctuationArray = {".", ",", ";", ":", "!", "?","..."};
 	//{([A-Za-z]+)\^([0-9])\|([A-Za-z]+)\^([0-9])}
-    private Regex re = new Regex(@"(\$BRANCH)|#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})([.,!?:;]+)|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})|(\{.+\^.+\|.+\^.+\})([^\w\s']+)|(\{.+\^.+\|.+\^.+\})|([A-Za-z]+'[a-z]+)([^\w\s']+)|([A-Za-z]+)([.,!?:;]+)|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s']+)");
-	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^(.+)\|(.+)\^(.+)\}");
+    private Regex re = new Regex(@"(\$BRANCH)|#([A-Za-z]+)|(@[A-Z])|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})([.,!?:;]+)|(\*[0-9]+\*[0-9]+\*\{.+\|.+\})|(\{.+\})([^\w\s']+)|(\{.+\})|([A-Za-z]+'[a-z]+)([^\w\s']+)|([A-Za-z]+)([.,!?:;]+)|([A-Za-z]+'[a-z]+)|([0-9]+\.[0-9]+[A-Za-z])([^\w\s']+)");
+	private Regex braceRe = new Regex(@"\*([0-9]+)\*([0-9]+)\*\{(.+)\|(.+)\}|\{(.+)\^([0-9]+|\-[0-9]+)\|(.+)\^([0-9]+|\-[0-9]+)\}");
 	private Regex noteRegex = new Regex(@"([0-9]+).([0-9]+)");
 
     public List<string> wordList = new List<string>();
@@ -167,11 +167,12 @@ public class CanvasScript : MonoBehaviour {
 						//Parse {word|alt} with and without punctuation
 						else if (result.Groups[7].Value != "" && result.Groups[8].Value != "")
 						{
-							//print(result.Groups[7].Value);
+							print(result.Groups[7].Value);
 							wordList.Add(result.Groups[7].Value);
 							wordList.Add(result.Groups[8].Value);
 						}
 						else if (result.Groups[9].Value != ""){
+							print(result.Groups[9].Value);
 							wordList.Add(result.Groups[9].Value);
 						}
 						// Parse conjunction + punctuation
@@ -260,7 +261,7 @@ public class CanvasScript : MonoBehaviour {
 						//{word|alt}
 						//current = word
 						//alt = alt
-						else if (secRes.Groups[5].Value != "" && int.Parse(secRes.Groups[6].Value) != -1 && secRes.Groups[7].Value != "" && int.Parse(secRes.Groups[8].Value) != -1){
+						else if (secRes.Groups[5].Value != "" && int.Parse(secRes.Groups[6].Value) != null && secRes.Groups[7].Value != "" && int.Parse(secRes.Groups[8].Value) != null){
 							wordStructure.current = secRes.Groups[5].Value;
 							wordStructure.alt = secRes.Groups[7].Value;
 							wordStructure.wordWeightCurr = int.Parse(secRes.Groups[6].Value);

@@ -131,21 +131,9 @@ public class TextBox : MonoBehaviour {
 			count = 0;
 		}
 		else if(GUI.Button(buttonDisplay2Con, "Print")){
-			// print(allNoteLines[0][0]);
-			// print(allNoteLines[0][1]);
-			
-			//print(swapWordList.Count);
-			print(allNoteLines[1][70]);
-			print(allNoteLines[1][71]);
-			print(allNoteLines[1][72]);
-			print(allNoteLines[1][73]);
-			print(allNoteLines[1][74]);
-			print(allNoteLines[1][75]);
-			print(allNoteLines[1][76]);
-			print(allNoteLines[1][77]);
-			print(allNoteLines[1][78]);
-			print(allNoteLines[1][79]);
-			print(allNoteLines[1][80]);
+			foreach(WordStructure wordStruct in swapWordList){
+				print(wordStruct.current + " " + wordStruct.actID + " "+ wordStruct.noteID);
+			}
 		}
     }*/
 	
