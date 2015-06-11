@@ -7,4 +7,4 @@ shame that Winston could
 not come to the same
 conclusion we all have,
 given the amount of
-evidence. @J $BRANCH
+evidence. @J
