@@ -44,6 +44,12 @@ public class PaperScript : MonoBehaviour
     public AudioClip paper2;
     public AudioClip paper3;
 
+    public string fontFlag;
+    public Font winstonFont;
+    public Font bookFont;
+    public Font prosecutorFont;
+    public Font selectedFont;
+
     public Canvas canvas;
 	
 	public GameObject textBox;
@@ -120,6 +126,19 @@ public class PaperScript : MonoBehaviour
         canvas.sortingLayerName = "Text";
         canvas.transform.localScale = transform.localScale;
         canvas.transform.SetParent(transform);
+
+        switch (fontFlag)
+        {
+            case "w":
+                selectedFont = winstonFont;
+                break;
+            case "b":
+                selectedFont = bookFont;
+                break;
+            case "p":
+                selectedFont = prosecutorFont;
+                break;
+        }
     }
 
     public void OnMouseDown()

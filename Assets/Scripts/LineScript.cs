@@ -84,6 +84,8 @@ public class LineScript : MonoBehaviour
         canvas = transform.parent.GetComponent<Canvas>();
         canvasScript = canvas.GetComponent<CanvasScript>();
 
+        defaultFont = paperScript.selectedFont;
+
         // Iterate through the wordList and instantiate words with space buffers in between
         lastWordEnd = 0;
         oldPosition = 0;
