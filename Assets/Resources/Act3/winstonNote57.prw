@@ -1,7 +1,7 @@
 Well, it was about a
-month ago. It was
+{month|year} ago. It was
 nighttime and I was
-sitting in my house when
+*55*36*{sitting|sleeping} when
 I heard something
 outside. Sometimes
 there’s some animals that

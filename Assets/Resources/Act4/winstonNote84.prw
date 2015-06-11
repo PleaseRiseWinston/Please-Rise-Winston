@@ -1,4 +1,4 @@
-Well, I didn’t bring her
+Well, I didn’t {bring|ask} her
 here to talk. I met Lois
 very recently. She lives
 near me in Westholt, and

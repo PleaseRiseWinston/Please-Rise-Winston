@@ -7,4 +7,4 @@ Mary’s home. I took care
 not to trip and smash any
 windows on my way up to
 the door. My heart was
-pounding.
+*4*31*{pounding|racing}.

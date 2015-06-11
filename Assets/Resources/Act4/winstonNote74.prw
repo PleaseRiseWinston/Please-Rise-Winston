@@ -1,4 +1,4 @@
-A strange note to end
+A {strange|provoking} note to end
 the work on Winston. Are
 you suggesting that in
 the end, Joanna chose to

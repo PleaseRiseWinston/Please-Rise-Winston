@@ -4,5 +4,5 @@ you are told it. Do our
 Historian’s have any
 proof of what has
 occurred, or are we
-taking them at their
+*31*3*{taking|believing} them for their
 word? @P

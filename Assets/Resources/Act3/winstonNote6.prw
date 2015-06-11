@@ -1,6 +1,6 @@
 It read, “I got your
-notice. I hope you were
-more careful than you
+*0*16*{notice|message}. I hope you
+were more careful than you
 were last time in getting
 it to me. Either way,
 I’ll prepare everything

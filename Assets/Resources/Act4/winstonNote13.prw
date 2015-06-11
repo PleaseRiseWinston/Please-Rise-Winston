@@ -1,9 +1,9 @@
 At the bottom it read,
 “Cardinal Historian.” My
-head darted off of a
+head darted off to a
 painting as Isa spoke,
 “I see Mary isn’t with
-you.” Guilt washed over
+you.” {Guilt|Regret} washed over
 me all at once. She
 wouldn’t have known why
 I am here and Mary is

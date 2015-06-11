@@ -4,7 +4,7 @@ I could see from afar
 that the walls in this
 home were made of a 
 special kind stone, a
-luxury reserved for those
+luxury {reserved|stockpiled} for those
 in wealth or power. I
 don’t know who this 
 person is, but I intended

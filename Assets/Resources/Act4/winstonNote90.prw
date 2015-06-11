@@ -6,5 +6,5 @@ seems by the time the
 case came to a close
 somehow the evidence was
 sparse and I was
-interpreted to not be as
+{interpreted|portrayed} to not be as
 bad as others hoped. @P

@@ -6,5 +6,5 @@ the days journey to the
 city. If I had some kind
 of transportation this
 would have been a lot
-faster, but I all I had
-were my legs.
+faster, but all I had
+were my {tired|quivering} legs.

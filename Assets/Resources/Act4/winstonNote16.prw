@@ -5,6 +5,6 @@ I believe you saw that on
 the painting in the front
 room. What that means is
 that I make sure our
-government communicates
+government {conveys|documents}
 the correct history to
 it’s people.”

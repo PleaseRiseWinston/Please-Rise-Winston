@@ -1,7 +1,7 @@
 The woman turned her body
 around and began walking
 back into her house, she
-expected me to follow. I
+*10*4*{expected|wanted} me to follow. I
 did. As I entered the
 doorway, I closed the
 door behind me, heavier

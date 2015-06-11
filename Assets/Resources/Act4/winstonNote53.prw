@@ -1,7 +1,7 @@
 As the hours went by and
 Isa prepared her room 
 for broadcast, I grew
-more and more nervous.
+more and more {nervous|terrified}.
 Every moment was another
 opportunity to run away
 and never look back.

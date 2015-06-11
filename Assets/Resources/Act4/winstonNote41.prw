@@ -1,5 +1,5 @@
 The question is how. My
-people would hush you
+people would *40*39*{hush|end} you
 before you ever started.”
 My eyes were drifting
 downward. I was losing

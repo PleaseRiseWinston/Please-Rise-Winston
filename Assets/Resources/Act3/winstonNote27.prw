@@ -7,5 +7,5 @@ if anyone could make this
 walk very well. As the
 day dragged on I realized
 I wouldn’t be able to
-make this walk without
-more water.
+*26*8*{survive|continue} this walk
+without more water.

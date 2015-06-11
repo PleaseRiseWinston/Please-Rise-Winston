@@ -2,8 +2,8 @@ It was Winston, I was
 sure. I had seen him
 around town before so I
 knew what he looked like.
-Anyway, after awhile I
-saw him take a few things
+Anyway, after a while I
+saw him {take|steal} a few things
 from my trash can and
 walk back to his house. I
 was pretty scared so I

@@ -4,7 +4,7 @@ I know, but if something
 were to happen to me,
 what would that count
 for? Perhaps I’m just a
-foolish girl who wanted
+{foolish|hopeful} girl who wanted
 to believe I could speak
 to others. I heard the
 deadbolt shifting weight

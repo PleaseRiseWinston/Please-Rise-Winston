@@ -2,8 +2,8 @@ Surely this had to be the
 person Mary knew. I
 stared at the address for
 longer than I should
-have. I saw two paths in
-front of me. One lead
+have. I saw two {options|evils}
+in front of me. One lead
 back to my home. I could
 put this picture back in
 it’s frame and walk back

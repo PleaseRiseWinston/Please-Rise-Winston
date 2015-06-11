@@ -1,8 +1,8 @@
 I wondered what her
-intentions could have
+{intentions|angle} could have
 been. Feeling like I
 might never know the
-answer to this, I sat
+*7*4*{answer|truth} to this, I sat
 down on Mary’s bed. My
 head fell over and I
 stared forward towards

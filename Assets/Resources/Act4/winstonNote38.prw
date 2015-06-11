@@ -1,5 +1,5 @@
 I would quickly be
-replaced and swept under
+*37*16*{replaced|finished} and swept under
 the rug. You know as well
 I do that you want to
 teach others how to speak

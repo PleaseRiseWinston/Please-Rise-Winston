@@ -5,5 +5,5 @@ usually watch T.V. in my
 freetime and I live in
 the same district as
 Winston. In fact, I’ve
-seen Winston rummaging
-through my things. @P
+seen Winston {rummaging|sifting}
+through {my|other's} belongings. @P

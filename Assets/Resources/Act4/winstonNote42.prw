@@ -1,6 +1,6 @@
 everything from you, and
 from me too.” I had a
-sinking feeling begin to
+{sinking|exciting} feeling begin to
 grow in my chest. “I
 have access to our
 broadcast system in my

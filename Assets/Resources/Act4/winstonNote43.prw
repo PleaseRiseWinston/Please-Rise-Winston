@@ -1,5 +1,5 @@
 something gets out of
-hand.” I realized what
+*42*10*{hand|control}.” I realized what
 she was suggesting. “You
 want me to tell them, and
 ask them the questions

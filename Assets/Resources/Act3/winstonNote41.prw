@@ -6,4 +6,4 @@ person inside could not
 take care of their own
 home, I wondered if they
 would even be able to
-spare me some water.
+{spare|offer} me some water.

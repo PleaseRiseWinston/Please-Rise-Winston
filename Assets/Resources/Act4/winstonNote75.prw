@@ -3,6 +3,6 @@ missed the point,
 Prosecutor. She chose to
 die for what dying stood
 for. Something bigger
-than herself. 
+than {herself|television}. 
 
 @P

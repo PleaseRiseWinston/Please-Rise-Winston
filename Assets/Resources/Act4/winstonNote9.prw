@@ -3,7 +3,7 @@
  name. Mary must have
  told her I was coming.
  “Good evening. I didn’t
- mean to interrupt your
+ mean to *8*24*{disrupt|stop} your
  night, I was just
  looking at the stone
  your house is made from,

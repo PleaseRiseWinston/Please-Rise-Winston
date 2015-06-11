@@ -1,5 +1,5 @@
 And why should someone
-want to wander too far
+want to {wander|stray} too far
 away from the comforts of
 home? All very illogical
 by nature, Winston. We

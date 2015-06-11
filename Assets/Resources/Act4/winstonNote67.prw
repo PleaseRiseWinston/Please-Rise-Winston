@@ -7,5 +7,5 @@ I have come together to
 tell you this. Joanna,
 might you introduce
 yourself?” My heart was
-pounding, but with
-clarity.
+pounding with
+{certainty|fright}.

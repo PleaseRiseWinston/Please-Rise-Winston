@@ -1,7 +1,7 @@
 My mind wandered to what
 Mary had asked me the
 first time we really
-talked. What was is she
-was asking with, “Who are
+talked. “Who are
 you?” A simple question,
-but it suggested more.
+but it *53*17*{seeked|meant} more.
+

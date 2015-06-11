@@ -1,5 +1,5 @@
-The frame popped open to
-reveal the picture
+The frame *8*23*{popped|snapped} open
+to reveal the picture
 inside. I pulled it out
 and held it in my hand.
 Same as the frame, the

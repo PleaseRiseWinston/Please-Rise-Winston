@@ -1,6 +1,6 @@
 So, you were not found
 guilty, but who took
-your paintings?
+your *92*41*{paintings|work}?
 
 
 

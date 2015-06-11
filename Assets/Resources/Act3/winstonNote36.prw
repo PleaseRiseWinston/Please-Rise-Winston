@@ -6,6 +6,6 @@ going to the nearest
 authority to help you. I
 feel as if I’m repeating
 myself, but if you are in
-danger, any officer would
+{danger|need}, any officer would
 be more than happy to
 help. @W

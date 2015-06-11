@@ -1,7 +1,7 @@
 Again, no one came. I
 stared down at the
 rations on the ground. I
-crouched low touched the
+crouched low and *45*2*{touched|ate} the
 bread, it was still warm.
 I wrestled with my mind,
 hoping that somehow in

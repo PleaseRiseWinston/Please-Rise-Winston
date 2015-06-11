@@ -1,4 +1,4 @@
-I timidly walked back
+I {timidly|brazenly} walked back
 towards the front door.
 Where there was nothing
 before, there was now a

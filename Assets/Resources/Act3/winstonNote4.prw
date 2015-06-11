@@ -1,6 +1,6 @@
 Mary had indeed
 made this home hers and
-it showed. The way the
+it *1*18*{showed|shone}. The way the
 furniture was laid out,
 the paintings on the
 wall, the pictures she

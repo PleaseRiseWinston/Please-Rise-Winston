@@ -1,8 +1,8 @@
 The sun was overhead and
-my body was drained. Even
-walking this far had
+my body was {drained|energized}.
+Walking this far had
 become incredibly
-exhausting. I realized
+*26*8*{exhausting|surprising}. I realized
 all at once that the walk
 from my home to my work
 wasn’t even close to

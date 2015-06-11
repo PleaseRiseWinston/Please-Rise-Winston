@@ -1,1 +1,1 @@
-...she’s brave. @P
+...she’s *46*28*{daring|strong}. @P

@@ -7,4 +7,4 @@ some people were throwing
 out paper everyday and
 that if it was in their
 trash that they might not
-have wanted it.
+have {wanted|needed} it.

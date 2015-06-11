@@ -1,11 +1,11 @@
 I think I would have
-enjoyed that novel quite
-a bit more. Perhaps you
-wouldn’t be here in that
+*16*14*{enjoyed|loved} that novel quite
+a bit. Perhaps you
+wouldn’t be here in this
 case as well. Let’s move
 on to the next section.
 Be careful in your work,
 Translator. There is a
-large amount
-interpretability in the
-following text. @J
+large amount of grey
+area in the following
+text. @J
