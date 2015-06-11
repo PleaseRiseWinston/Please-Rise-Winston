@@ -141,6 +141,19 @@ public class LineScript : MonoBehaviour
         }
         //Transform[] childArray = gameObject.GetComponentsInChildren<Transform>();
         childCount = transform.childCount;
+		
+		switch (paperScript.fontFlag)
+        {
+            case "d":
+                translatedFont = paperScript.winstonFont;
+                break;
+            case "b":
+                translatedFont = paperScript.bookFont;
+                break;
+            case "p":
+                translatedFont = paperScript.prosecutorFont;
+                break;
+        }
     }
 
     public void OnEnter(BaseEventData e)

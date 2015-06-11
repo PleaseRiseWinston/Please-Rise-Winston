@@ -126,19 +126,6 @@ public class PaperScript : MonoBehaviour
         canvas.sortingLayerName = "Text";
         canvas.transform.localScale = transform.localScale;
         canvas.transform.SetParent(transform);
-
-        switch (fontFlag)
-        {
-            case "w":
-                selectedFont = winstonFont;
-                break;
-            case "b":
-                selectedFont = bookFont;
-                break;
-            case "p":
-                selectedFont = prosecutorFont;
-                break;
-        }
     }
 
     public void OnMouseDown()
