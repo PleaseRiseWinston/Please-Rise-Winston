@@ -4,4 +4,4 @@ Thank you, Mellon. I
 appreciate your co-
 operation. I will arrange
 for your judgement to be
-somewhat less harsh due. $BRANCH
+somewhat less harsh due.
