@@ -8,4 +8,4 @@ window, then I would most
 likely never try again.
 Not only that, but what
 would she think finding
-her house harmed?
+her house harmed?  #b

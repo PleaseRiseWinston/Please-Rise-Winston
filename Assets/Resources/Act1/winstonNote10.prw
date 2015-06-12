@@ -8,4 +8,4 @@ we will examine the first
 chapter of his writing,
 in which he advocates
 violence and public
-displays of conversation. @J
+displays of conversation. @J #p

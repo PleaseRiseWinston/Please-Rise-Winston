@@ -9,4 +9,4 @@ obvious to you and I, but
 Winston fails to see that
 his work is inspiring
 these vandals and
-lawbreakers. @J
+lawbreakers. @J #p

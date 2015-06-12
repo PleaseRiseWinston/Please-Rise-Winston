@@ -3,5 +3,5 @@ very {overwhelming^1|annoying^-1}. Let me
 start over. My name is
 Winston. I don't believe
 that I am guilty of the
-crimes I am *11*6*{accused|framed} of.
+crimes I am *11*6*{accused|framed} of. #d
 

@@ -8,4 +8,4 @@ was broken," what I said
 couldn’t have been more
 than a {whimper^1|whisper^-1} but it
 felt like I was
-*31*36*{yelling|screaming}.
+*31*36*{yelling|screaming}. #b

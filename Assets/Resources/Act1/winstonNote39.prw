@@ -5,4 +5,4 @@ way that demanded
 attention. As I studied
 the splinters of my
 house, I felt someone
-approach from behind me.
+approach from behind me. #b

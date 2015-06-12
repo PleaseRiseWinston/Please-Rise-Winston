@@ -5,4 +5,4 @@ if she herself was not a
 crusader for the crimes
 you *58*9*{encouraged|orchestrated}, she is
 still involved and still
-culpable for the crime. @W
+culpable for the crime. @W #p

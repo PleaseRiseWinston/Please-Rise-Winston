@@ -5,4 +5,4 @@ happening. During the
 middle of the week I was
 plodding along towards my
 home after a days work at
-the deconstruction plant.
+the deconstruction plant. #b

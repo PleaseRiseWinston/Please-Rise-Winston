@@ -8,4 +8,4 @@ next door to me looked
 more *21*9*{strange|insane} than I ever
 thought possible. What
 would I {say^-1|do^1} if she opened
-the door?
+the door? #b

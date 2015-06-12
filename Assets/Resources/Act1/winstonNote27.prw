@@ -6,4 +6,4 @@ fix this window. I have
 never done such a thing,
 but how hard could it be
 to at least put the glass
-back together?
+back together? #b

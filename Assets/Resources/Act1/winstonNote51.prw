@@ -6,4 +6,4 @@ directly from the first
 portion of your {hogwash^1|doctrine^-1},
 Winston. Miss Mellen,
 what do you have to say
-for yourself? @J
+for yourself? @J #p

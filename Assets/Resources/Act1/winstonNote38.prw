@@ -7,4 +7,4 @@ my home I noticed a board
 jutting out from the side
 of my house. My heart
 rate {increased^0|slowed^0} as did my
-walking pace.
+walking pace. #b
