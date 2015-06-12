@@ -8,4 +8,4 @@ be able to make out
 there.” A part of me had
 hoped she would say we
 could {leave^-4|stay^2} *11*47*{immediately|forever},
-but I knew better.
+but I knew better. #b

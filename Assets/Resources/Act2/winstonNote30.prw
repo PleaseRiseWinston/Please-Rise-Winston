@@ -7,4 +7,4 @@ inside of her home, Mary
 inside. I couldn’t hear
 the words they said, but
 it was clear they were
-{bickering^1|arguing^-1}.
+{bickering^1|arguing^-1}. #b

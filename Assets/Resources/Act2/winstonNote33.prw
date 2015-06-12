@@ -8,4 +8,4 @@ cause of all this. My
 eyes were locked on Mary
 as she was forced to her
 knees with her arms
-*31*54*{restrained|bound}.
+*31*54*{restrained|bound}. #b

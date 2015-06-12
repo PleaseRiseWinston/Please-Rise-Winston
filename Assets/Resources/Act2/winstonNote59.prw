@@ -1,7 +1,3 @@
 What happened once he was
 taken to the hospital? Is
-he recovering as well?
-
-
-
-@P
+he recovering as well? @P #d

@@ -8,4 +8,4 @@ something in his hand. He
 *34*15*{pressed|shoved} whatever it was
 to Mary’s temple. There
 was very little sound
-when it happened.
+when it happened. #b

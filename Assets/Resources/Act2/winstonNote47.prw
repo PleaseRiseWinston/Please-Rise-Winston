@@ -8,4 +8,4 @@ isn't *46*8*{true|real}. Again, we
 can’t allow people
 believing that they could
 be pulled from their
-homes and {hurt^1|killed^-1}.
+homes and {hurt^1|killed^-1}. #p

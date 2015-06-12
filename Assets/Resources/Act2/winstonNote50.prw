@@ -5,4 +5,4 @@ of our state. This means
 I’m making *49*9*{big|important}
 decisions on how we
 handle things and how we
-{view^0|treat^0} our people. @P 
+{view^0|treat^0} our people. @P #p

@@ -7,4 +7,4 @@ couldn’t move.
 Methodically, the people
 outside began a process
 that looked well
-{practiced^-1|rehearsed^1}.
+{practiced^-1|rehearsed^1}. #b

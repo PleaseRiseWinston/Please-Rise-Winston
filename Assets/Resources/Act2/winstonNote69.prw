@@ -3,6 +3,4 @@ might believe that you
 are taking your few
 required work hours and
 your free government care
-for granted.
-
-@W
+for granted. @W #p

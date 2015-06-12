@@ -8,4 +8,4 @@ weight of what just
 happened. I no longer
 cared if those same
 {people^1|murderers^-2} came in to *39*18*{hual|take}
-me away as well.
+me away as well. #b

@@ -8,4 +8,4 @@ fear talking, but I all I
 could do was watch on in
 horror. They *28*42*{brought|pulled} Mary
 out to the front of her
-yard and {restrained^-1|detained^1} her.
+yard and {restrained^-1|detained^1} her. #b

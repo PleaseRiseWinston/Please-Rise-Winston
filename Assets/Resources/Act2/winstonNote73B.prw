@@ -5,4 +5,4 @@ so dedicated to the law
 and carrying it out.
 That’s all I have for
 today. We can now call a
-recess. @J #wl
+recess. @J #p #wl

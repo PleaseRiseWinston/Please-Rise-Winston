@@ -1,7 +1,2 @@
 Then why would Joanna or
-Mary?
-
-
-
-
-@P
+Mary? @P #d

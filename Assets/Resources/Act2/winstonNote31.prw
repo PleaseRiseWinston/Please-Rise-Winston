@@ -7,4 +7,4 @@ person at the front door
 said something and Mary
 tried to *28*42*{close|slam} the door.
 The figure in the front
-had expected this.
+had expected this. #b

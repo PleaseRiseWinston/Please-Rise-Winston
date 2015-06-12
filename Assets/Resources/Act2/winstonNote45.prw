@@ -8,4 +8,4 @@ that front and center has
 a certain effect on the
 reader. What did you feel
 when Mary was {killed^1|executed^-1},
-Prosecutor Myers? @P
+Prosecutor Myers? @P #d

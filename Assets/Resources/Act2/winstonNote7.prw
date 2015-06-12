@@ -6,4 +6,4 @@ nor had I ever heard it.
 Perhaps she was using a
 foreign word for
 supervisor, or maybe she
-had misspoke altogether.
+had misspoke altogether. #b

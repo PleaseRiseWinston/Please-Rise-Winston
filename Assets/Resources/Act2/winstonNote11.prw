@@ -6,4 +6,4 @@ unanswered forever. “I’d
 {like^1|love^-3}like to do that. When can
 we go?” Mary turned
 around and flipped on the
-light, it *2*10*{broke|worked}.
+light, it *2*10*{broke|worked}. #b

@@ -9,4 +9,4 @@ The words seemed shallow
 as they exited me, a well
 rehearsed dance that I
 never {wanted^1|needed^-2} to *3*48*{learn|memorize} in
-the first place.
+the first place. #b

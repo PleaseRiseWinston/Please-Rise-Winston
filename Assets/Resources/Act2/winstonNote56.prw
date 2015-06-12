@@ -5,4 +5,4 @@ treatment for his wounds.
 He’s doing {better^1|okay^-1} now, but
 we weren’t sure how that
 would turn out the day
-progressed. @W
+progressed. @W #p
