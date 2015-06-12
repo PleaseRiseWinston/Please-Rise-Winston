@@ -7,4 +7,4 @@ edges were worn and old.
 Perhaps because of my
 sleepless nights, the
 picture slipped out of my
-hand and onto the floor.
+hand and onto the floor. #b

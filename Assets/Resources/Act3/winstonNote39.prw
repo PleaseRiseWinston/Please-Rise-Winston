@@ -3,6 +3,4 @@ should please take note
 of how Joanna handles
 herself here. Everything
 will make sense after we
-are finished.
-
-@J
+are finished. @J #p

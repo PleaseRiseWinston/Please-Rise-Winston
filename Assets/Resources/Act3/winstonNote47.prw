@@ -8,4 +8,4 @@ hoped I wasn’t making
 someone starve, but I had
 {little|no} choice. After
 yelling ‘Thank you’, I
-left.
+left. #b

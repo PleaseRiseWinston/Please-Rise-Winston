@@ -4,4 +4,4 @@ I noticed some
 scribblings on the back.
 I pulled the picture
 closer to my face and
-read it.
+read it. #b

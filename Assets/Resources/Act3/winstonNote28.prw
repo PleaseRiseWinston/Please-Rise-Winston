@@ -7,4 +7,4 @@ knew I was too far from
 home to turn back. I
 became very {aware|scared} of the
 scratch in my throat and
-the sweat on my head.
+the sweat on my head. #b

@@ -7,4 +7,4 @@ The past few days had
 {robbed|stripped} me of any
 enthusiasm that I had
 once had for getting out
-of bed.
+of bed. #b

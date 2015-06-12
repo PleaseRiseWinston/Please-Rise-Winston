@@ -4,4 +4,4 @@ recess, Joanna had just
 experienced the death of
 her {neighbor|cohort}. For the
 next few days she was
-reasonably somber.
+reasonably somber. #d

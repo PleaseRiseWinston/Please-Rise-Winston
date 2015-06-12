@@ -7,4 +7,4 @@ close in quick
 succession. I expected
 to see someone coming
 towards me but no
-one came.
+one came. #b

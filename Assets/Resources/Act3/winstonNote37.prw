@@ -6,4 +6,4 @@ mean, if you’re in your
 house doing what we as
 Lowers are supposed to
 do, then nothing usually
-happens. @P
+happens. @P #d

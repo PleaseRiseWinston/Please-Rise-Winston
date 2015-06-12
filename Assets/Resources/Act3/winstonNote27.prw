@@ -8,4 +8,4 @@ walk very well. As the
 day dragged on I realized
 I wouldn’t be able to
 *26*8*{survive|continue} this walk
-without more water.
+without more water. #b

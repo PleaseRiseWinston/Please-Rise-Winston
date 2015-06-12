@@ -7,4 +7,4 @@ in front of me. One lead
 back to my home. I could
 put this picture back in
 it’s frame and walk back
-into my home.
+into my home. #b

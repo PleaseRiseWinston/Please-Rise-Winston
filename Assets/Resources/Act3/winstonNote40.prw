@@ -7,4 +7,4 @@ broken window, so maybe I
 should have set the bar
 higher. Regardless, I
 walked up closer and closer
-to the front door.
+to the front door. #b

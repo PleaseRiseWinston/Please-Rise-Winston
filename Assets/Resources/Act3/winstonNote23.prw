@@ -6,4 +6,4 @@ amount of logistical
 would certainly get
 resolved. Our citizens
 are not treated like
-a plague. @W
+a plague. @W #d

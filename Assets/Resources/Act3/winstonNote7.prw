@@ -8,4 +8,4 @@ head fell over and I
 stared forward towards
 her nightstand. On it was
 a picture of Mary and
-someone else.
+someone else. #b

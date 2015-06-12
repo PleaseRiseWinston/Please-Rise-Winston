@@ -7,4 +7,4 @@ someone from the city
 react if there were
 suddenly *21*21*{groups|gangs} of people
 from my town walking
-their streets? @P
+their streets? @P #d

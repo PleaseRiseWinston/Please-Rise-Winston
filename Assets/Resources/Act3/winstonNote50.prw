@@ -8,4 +8,4 @@ may realize the *47*41*{struggle|conflict}
 Joanna was going through.
 I feel that a great many
 people might do something
-similar. @P
+similar. @P #d

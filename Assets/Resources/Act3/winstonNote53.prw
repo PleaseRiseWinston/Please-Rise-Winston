@@ -5,6 +5,4 @@ believe there may be a
 reason for that. This
 would be a perfect time
 to bring in our next
-witness.
-
-@J #we#
+witness. @J #p #we

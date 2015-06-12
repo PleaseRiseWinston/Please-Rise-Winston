@@ -5,4 +5,4 @@ person not only not
 continue the small amount
 of work she has, but also
 to reject the comforts of
-home. @W
+home. @W #p

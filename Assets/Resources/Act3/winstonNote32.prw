@@ -8,4 +8,4 @@ about what had {made|urged} me
 to knock on her door.
 This situation wasn’t the
 same, but maybe it could
-go as well.
+go as well. #b

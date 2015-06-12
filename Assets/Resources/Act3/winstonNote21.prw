@@ -5,4 +5,4 @@ citizens are free to come
 and go as they {need|please}, so
 long as they are taking
 care of their day to day
-responsibilities. @W
+responsibilities. @W #p

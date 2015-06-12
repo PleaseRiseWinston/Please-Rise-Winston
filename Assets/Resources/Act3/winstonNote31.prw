@@ -7,4 +7,4 @@ be seen from the road and
 possibly noticed at
 all had it not been for
 the {scent|smoke} coming from
-its chimney.
+its chimney. #b

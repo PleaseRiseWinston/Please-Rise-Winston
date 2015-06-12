@@ -8,4 +8,4 @@ I sat up and held the
 frame in my hand. I
 pressed my finger on the
 edge of the frame where
-the plastic had worn.
+the plastic had worn. #b
