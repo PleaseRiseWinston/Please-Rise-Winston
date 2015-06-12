@@ -1,2 +1,2 @@
 I know very well where
-I stand. @P
+I stand. @P #d

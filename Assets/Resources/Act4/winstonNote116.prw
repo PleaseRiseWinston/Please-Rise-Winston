@@ -6,4 +6,4 @@ where they stand. Even if
 they did, I think they
 might be able to sleep at
 night knowing that they
-were honest that day.
+were honest that day. #d

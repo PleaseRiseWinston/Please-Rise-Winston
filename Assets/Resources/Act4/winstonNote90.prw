@@ -7,4 +7,4 @@ case came to a close
 somehow the evidence was
 sparse and I was
 {interpreted|portrayed} to not be as
-bad as others hoped. @P
+bad as others hoped. @P #d

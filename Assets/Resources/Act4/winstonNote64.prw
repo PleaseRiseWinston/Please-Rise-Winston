@@ -8,4 +8,4 @@ Suddenly, I saw our faces
 appear on all of the
 televisions in our room.
 Isa began speaking,
-“Hello {citizens|friends}.
+“Hello {citizens|friends}. #b

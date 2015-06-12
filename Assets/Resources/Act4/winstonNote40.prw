@@ -8,4 +8,4 @@ Mary; it just wouldn’t
 happen, Isa spoke again,
 “You clearly {could|would}
 have the lowers on your
-side, you know that.
+side, you know that. #b

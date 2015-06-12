@@ -8,4 +8,4 @@ luxury {reserved|stockpiled} for those
 in wealth or power. I
 don’t know who this 
 person is, but I intended
-to find out.
+to find out. #b

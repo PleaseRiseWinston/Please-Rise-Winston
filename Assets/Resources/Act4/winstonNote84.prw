@@ -7,4 +7,4 @@ of people taking a
 significant amount of
 paintings out of her
 home. Could you speak
-on this, Lois? @J
+on this, Lois? @J #d

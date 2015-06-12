@@ -8,4 +8,4 @@ crimes he is accused of.
 The ideas that are
 spreading because of his
 work are immoral and
-illegal.
+illegal. #p

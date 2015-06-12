@@ -1,8 +1,2 @@
-This is Lois. She’s
-a painter.
-
-
-
-
-
-@J
+This is Miss Lois. She’s
+a painter. #d @J

@@ -5,4 +5,4 @@ hesitate with any means
 of shutting us down. That
 will work to our favor,
 but I hope you know what
-I {ask|need} of you.”
+I {ask|need} of you.” #b

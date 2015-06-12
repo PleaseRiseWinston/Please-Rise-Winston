@@ -3,6 +3,4 @@ I want to say that I
 Winston. Maybe that’s
 not evidence or
 relevant but I think
-it’s important that…
-
-@W
+it’s important that… @W #d

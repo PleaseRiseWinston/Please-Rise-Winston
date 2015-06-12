@@ -5,4 +5,4 @@ is torn down, what do you
 think those standing on
 the rubble would think?
 Satisfaction? Hope?
-Stability?
+Stability? #p

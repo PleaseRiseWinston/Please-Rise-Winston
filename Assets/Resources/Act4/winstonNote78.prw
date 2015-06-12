@@ -1,8 +1,1 @@
-As good a time as any.
-
-
-
-
-
-
-@W
+As good a time as any. @W #p

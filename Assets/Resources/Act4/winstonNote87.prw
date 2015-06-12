@@ -5,6 +5,4 @@ court case not
 unlike this one. The
 differences were that I
 was on trial and the
-prosecutor wasn’t you.
-
-@P
+prosecutor wasn’t you. @P #d

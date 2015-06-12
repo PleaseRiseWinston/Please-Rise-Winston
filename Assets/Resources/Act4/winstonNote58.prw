@@ -6,4 +6,4 @@ Isa was in and *57*5*{hurried|strode}
 through the doorway. Isa
 closed the door behind
 me and began barricading
-the door.
+the door. #b

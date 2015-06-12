@@ -8,4 +8,4 @@ for? Perhaps I’m just a
 to believe I could speak
 to others. I heard the
 deadbolt shifting weight
-in the door in front of me.
+in the door in front of me. #b

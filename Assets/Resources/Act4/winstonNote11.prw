@@ -6,4 +6,4 @@ did. As I entered the
 doorway, I closed the
 door behind me, heavier
 than I thought it would
-be.
+be. #b

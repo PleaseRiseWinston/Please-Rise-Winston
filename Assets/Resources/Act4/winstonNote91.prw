@@ -1,8 +1,1 @@
-What did you paint Lois?
-
-
-
-
-
-
-@J
+What did you paint Lois? @P #d

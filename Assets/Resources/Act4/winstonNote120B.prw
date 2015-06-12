@@ -8,4 +8,4 @@ work for quarantine. We
 feel it is still
 dangerous enough for us
 to take action against
-those ideas.
+those ideas. #p

@@ -8,4 +8,4 @@ again wanting to flee
 this porch. As my weight
 was shifting around the
 door opened. I was
-greeted by an older woman.
+greeted by an older woman. #b

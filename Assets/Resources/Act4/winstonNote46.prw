@@ -6,4 +6,4 @@ then. I didn’t want my
 life to be defined by
 {running|cowering}. For once,
 I wanted to stand 
-for something. @J
+for something. @J #b

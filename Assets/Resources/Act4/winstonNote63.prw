@@ -7,4 +7,4 @@ light came on. Isa then
 walked over and sat in
 the chair beside me. She
 took hold of my hand and
-gripped it tight.
+gripped it tight. #b

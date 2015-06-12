@@ -6,4 +6,4 @@ a quiet exchange. There
 were two chairs situated
 in the middle of the room
 with a camera pointed
-at them.
+at them. #b

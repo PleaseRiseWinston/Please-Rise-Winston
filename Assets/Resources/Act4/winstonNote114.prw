@@ -8,4 +8,4 @@ happened to Joanna in the
 end. I decided to let her
 go because I thought
 giving up your life is
-quite the statement.
+quite the statement. #d

@@ -8,4 +8,4 @@ They took my painting
 materials as well. It
 was made pretty clear
 that I was supposed
-to stop. @W
+to stop. @W #d

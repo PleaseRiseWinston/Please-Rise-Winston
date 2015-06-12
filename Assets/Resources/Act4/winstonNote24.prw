@@ -7,4 +7,4 @@ how to respond.
 “Not long ago, this
 conversation you and
 I are having could have
-been very normal.
+been very normal. #b

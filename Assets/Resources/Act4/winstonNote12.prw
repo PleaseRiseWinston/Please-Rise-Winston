@@ -8,4 +8,4 @@ together, this official.
 I craned my head to see a
 painting of Isa on the
 wall. She was sitting in
-a chair looking {distinguished|intimidating}.
+a chair looking {distinguished|intimidating}. #b

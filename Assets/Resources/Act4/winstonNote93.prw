@@ -8,4 +8,4 @@ painting were too close,
 that it was {taboo|unthinkable}
 and should be kept
 out of the eyes
-of the innocent. @P
+of the innocent. @P #d

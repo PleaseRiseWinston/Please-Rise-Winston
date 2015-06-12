@@ -1,3 +1,3 @@
 Maybe you should 
 reconsider what makes a
-{good|truthful} man, Prosecutor. @P
+{good|truthful} man, Prosecutor. @P #d

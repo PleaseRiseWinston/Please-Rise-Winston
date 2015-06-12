@@ -6,4 +6,4 @@ of the sacrifice Isa was
 making. As she passed by
 my with equipment I
 could see her hands
-{trembling|clenched}.
+{trembling|clenched}. #b

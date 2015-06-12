@@ -8,4 +8,4 @@ speak, because of you.”
 I hadn’t realized Isa
 had been keeping such a
 close watch on me, but
-she was right.
+she was right. #b

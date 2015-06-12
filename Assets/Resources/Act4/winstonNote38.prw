@@ -6,4 +6,4 @@ teach others how to speak
 to one another, how to be
 close.” I did. “And if 
 our people did it before,
-we can do it again. 
+we can do it again. #b

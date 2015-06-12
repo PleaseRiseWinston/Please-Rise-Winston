@@ -8,4 +8,4 @@ felt. Sometimes it was
 just splatters, other
 times it was of people I
 {saw|passed} on the
-street.
+street. #d

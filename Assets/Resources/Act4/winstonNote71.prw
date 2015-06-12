@@ -7,4 +7,4 @@ others. I am.” Almost on
 cue, the door began
 breaking down. I chose to
 stare straight ahead as
-this happened.
+this happened. #b

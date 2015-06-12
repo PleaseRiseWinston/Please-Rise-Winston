@@ -7,4 +7,4 @@ taken aback. I wasn’t
 sure if she was going to
 house me or call the
 police to throw me back
-out into my home.
+out into my home. #b

@@ -6,4 +6,4 @@ don’t know what the outcome
 will be, nor do I know the 
 potential {punishments|retributions}. As 
 always, it seems we’re in
-the dark. @J
+the dark. @J #d

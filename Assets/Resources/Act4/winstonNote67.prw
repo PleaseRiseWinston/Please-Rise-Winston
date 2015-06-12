@@ -8,4 +8,4 @@ tell you this. Joanna,
 might you introduce
 yourself?” My heart was
 pounding with
-{certainty|fright}.
+{certainty|fright}. #b

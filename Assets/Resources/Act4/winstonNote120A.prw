@@ -8,4 +8,4 @@ curing his outlandish
 thoughts. We pray for a
 healthy shift in
 character. Court
-Adjourned. @J
+Adjourned. @J #p

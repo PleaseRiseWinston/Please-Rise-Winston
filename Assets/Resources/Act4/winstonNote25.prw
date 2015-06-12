@@ -7,4 +7,4 @@ do this much more
 couldn’t believe what I
 was hearing. “Our world
 was *24*16*{different|accepting} in ways
-you couldn’t imagine.
+you couldn’t imagine. #b

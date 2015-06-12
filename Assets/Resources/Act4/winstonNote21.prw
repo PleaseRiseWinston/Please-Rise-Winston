@@ -5,4 +5,4 @@ out that this happens
 though, {sir|Prosecutor}. There is
 not an easy way to know
 the dealings of
-every official. @P
+every official. @P #d

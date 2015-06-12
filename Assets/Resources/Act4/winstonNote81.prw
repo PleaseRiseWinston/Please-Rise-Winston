@@ -1,8 +1,1 @@
-Good afternoon Lois.
-
-
-
-
-
-
-@J 
+Good afternoon Lois. @J #p
