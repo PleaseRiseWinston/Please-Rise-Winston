@@ -132,9 +132,22 @@ public class GameController : MonoBehaviour
             curNote.GetComponent<PaperScript>().inTray = true;
             ToTray();
         }
-		if(Input.GetKeyDown(KeyCode.R)){
-			Application.LoadLevel("TextSwap");
-		}
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            curNoteID = 59;
+            curNote.GetComponent<PaperScript>().inTray = true;
+            ToTray();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            curNoteID = 116;
+            curNote.GetComponent<PaperScript>().inTray = true;
+            ToTray();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel("TextSwap");
+        }
     }
 
     public void ToggleAct(int curAct)
@@ -202,9 +215,21 @@ public class GameController : MonoBehaviour
             curNoteID = 1;
             curAct++;
             ToggleAct(curAct);
-            curNote = noteArray[curAct - 1][0];
-            GetNote(curNote.name);
-            GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct);
+            switch (curAct)
+            {
+                case 2:
+                    GameObject.Find("Cutscene1-4").GetComponent<SpriteRenderer>().color = Color.clear;
+                    break;
+                case 3:
+                    GameObject.Find("Cutscene2-3").GetComponent<SpriteRenderer>().color = Color.clear;
+                    break;
+                case 4:
+                    GameObject.Find("Cutscene3-2").GetComponent<SpriteRenderer>().color = Color.clear;
+                    break;
+            }
+            //curNote = noteArray[curAct - 1][0];
+            //GetNote(curNote.name);
+            StartCoroutine(GameObject.FindGameObjectWithTag("CameraController").GetComponent<PlayCutscene>().Play(curAct));
         }
     }
 

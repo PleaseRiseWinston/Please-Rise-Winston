@@ -65,6 +65,8 @@ public class PlayCutscene : MonoBehaviour {
 
         yield return new WaitForSeconds(2.5f);
         cutsceneAudio.Play();
+        cutsceneAudio.volume = 0;
+        StartCoroutine(HOTween.To(cutsceneAudio, 1.0f, "volume", 1.0f).WaitForCompletion());
         yield return new WaitForSeconds(2.5f);
         Transform camTransform = cutsceneCamera.transform;
 
@@ -84,6 +86,7 @@ public class PlayCutscene : MonoBehaviour {
                     yield return StartCoroutine(HOTween.To(camTransform, 17f, "position", new Vector3(60f, -180f, 0), true).WaitForCompletion());
                 }
 
+                StartCoroutine(HOTween.To(cutsceneAudio, 1.0f, "volume", 0.0f).WaitForCompletion());
                 cutsceneAudio.Stop();
                 playingCutscene = false;
                 SwitchToGame();
@@ -94,73 +97,76 @@ public class PlayCutscene : MonoBehaviour {
                 gameControllerScript.GetNote("1.1");
                 //gameControllerScript.GetNote("1." + GameObject.FindGameObjectWithTag("Notes").transform.GetChild(gameControllerScript.curAct - 1).childCount);
                 print("End Cutscene");
+
+                GameObject.Find("MenuPaper_Start").SetActive(false);
+                GameObject.Find("MenuPaper_Exit").SetActive(false);
                 break;
             case 2:
                 if (!skipCutscene)
                 {
                     cutsceneOverlay.RunOverlay(actNumber);
 
-                    yield return StartCoroutine(HOTween.To(camTransform, 15f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 15f, "position", new Vector3(110f, 130f, 0), true).WaitForCompletion());
                     HOTween.To(GameObject.Find("Cutscene2-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                    yield return StartCoroutine(HOTween.To(camTransform, 20f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 20f, "position", new Vector3(-100f, 60f, 0), true).WaitForCompletion());
                     HOTween.To(GameObject.Find("Cutscene2-2").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                    yield return StartCoroutine(HOTween.To(camTransform, 20f, "position", new Vector3(100f, 20f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 22f, "position", new Vector3(50f, -90f, 0), true).WaitForCompletion());
                 }
 
+                StartCoroutine(HOTween.To(cutsceneAudio, 1.0f, "volume", 0.0f).WaitForCompletion());
                 cutsceneAudio.Stop();
                 playingCutscene = false;
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);
 
-                gameControllerScript.UpdateCurNote(2, null);
                 Debug.Log("Starting Act 2");
-                gameControllerScript.GetNote("2.1");
+                gameControllerScript.curNote = gameControllerScript.noteArray[gameControllerScript.curAct - 1][0];
+                gameControllerScript.GetNote(gameControllerScript.curNote.name);
                 break;
             case 3:
                 if (!skipCutscene)
                 {
                     cutsceneOverlay.RunOverlay(actNumber);
 
-                    yield return StartCoroutine(HOTween.To(camTransform, 15f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 15f, "position", new Vector3(-150f, -50f, 0), true).WaitForCompletion());
                     HOTween.To(GameObject.Find("Cutscene3-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                    yield return StartCoroutine(HOTween.To(camTransform, 17f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 17f, "position", new Vector3(75f, 100f, 0), true).WaitForCompletion());
                 }
 
+                StartCoroutine(HOTween.To(cutsceneAudio, 1.0f, "volume", 0.0f).WaitForCompletion());
                 cutsceneAudio.Stop();
                 playingCutscene = false;
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);
 
-                gameControllerScript.UpdateCurNote(3, null);
                 Debug.Log("Starting Act 3");
-                gameControllerScript.GetNote("3.1");
+                gameControllerScript.curNote = gameControllerScript.noteArray[gameControllerScript.curAct - 1][0];
+                gameControllerScript.GetNote(gameControllerScript.curNote.name);
                 break;
             case 4:
                 if (!skipCutscene)
                 {
                     cutsceneOverlay.RunOverlay(actNumber);
 
-                    yield return StartCoroutine(HOTween.To(camTransform, 25f, "position", new Vector3(150f, 100f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 25f, "position", new Vector3(-110f, 35f, 0), true).WaitForCompletion());
                     HOTween.To(GameObject.Find("Cutscene4-1").GetComponent<SpriteRenderer>(), 3f, "color", Color.clear, false);
-                    yield return StartCoroutine(HOTween.To(camTransform, 25f, "position", new Vector3(-100f, 50f, 0), true).WaitForCompletion());
+                    yield return StartCoroutine(HOTween.To(camTransform, 27f, "position", new Vector3(65f, -40f, 0), true).WaitForCompletion());
                 }
 
+                StartCoroutine(HOTween.To(cutsceneAudio, 1.0f, "volume", 0.0f).WaitForCompletion());
                 cutsceneAudio.Stop();
                 playingCutscene = false;
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);
 
-                gameControllerScript.UpdateCurNote(4, null);
                 Debug.Log("Starting Act 4");
-                gameControllerScript.GetNote("4.1");
+                gameControllerScript.curNote = gameControllerScript.noteArray[gameControllerScript.curAct - 1][0];
+                gameControllerScript.GetNote(gameControllerScript.curNote.name);
                 break;
         }
-
-        GameObject.Find("MenuPaper_Start").SetActive(false);
-        GameObject.Find("MenuPaper_Exit").SetActive(false);
     }
 
     // TODO: Add fade sequences at beginning and ends of each of these.

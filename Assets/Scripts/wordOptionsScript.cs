@@ -13,6 +13,9 @@ public class wordOptionsScript : MonoBehaviour {
 	GameController gameControllerScript;
 
     public GameObject blackScreen;
+
+    //public GameObject glowSystem;
+    //public ParticleSystem glow
 	
 	void Start(){
 		textBox = GameObject.Find("TextBox");
@@ -20,12 +23,22 @@ public class wordOptionsScript : MonoBehaviour {
 		
 		gameController = GameObject.FindGameObjectWithTag("GameController");
 		gameControllerScript = gameController.GetComponent<GameController>();
+
+        //GameObject glower = Instantiate(glowSystem, transform.position, transform.rotation) as GameObject;
+        //glower.transform.SetParent(transform);
+        //glow = glower.GetComponent<ParticleSystem>();
+        //glow.playOnAwake = false;
 	}
 
-    //void OnMouseOver()
-    //{
-    //    this.GetComponent<ParticleSystem>().Emit(1);
-    //}
+    void OnMouseExit()
+    {
+        StartCoroutine(HOTween.To(transform, 1.0f, "position", transform.position - (transform.forward * -2), false).WaitForCompletion());
+    }
+
+    void OnMouseEnter()
+    {
+        StartCoroutine(HOTween.To(transform, 1.0f, "position", transform.position + (transform.forward * -2), false).WaitForCompletion());
+    }
 
 	void OnMouseDown(){
 		//Gets the the word in GameObject text box and sets it to a string
@@ -40,8 +53,8 @@ public class wordOptionsScript : MonoBehaviour {
 				
 				// GameObject.Find(noteName).transform.GetChild(0).GetComponent<CanvasScript>().Parser();
 			// }
-			
-		}
+
+        }
 	    StartCoroutine(FadeOut());
         StartCoroutine(FadeBlack());
 	}

@@ -176,7 +176,7 @@ public class LineScript : MonoBehaviour
 
     public IEnumerator translate()
     {
-        if (isVisible && paperScript.Focused)
+        if (isVisible && paperScript.Focused && !gameControllerScript.overlayActive)
         {
             isVisible = false;
             for (int i = 0; i < childCount; i++)
@@ -192,7 +192,7 @@ public class LineScript : MonoBehaviour
             }
         }
 
-        if (!isTranslated && paperScript.Focused)
+        if (!isTranslated && paperScript.Focused && !gameControllerScript.overlayActive)
         {
             for (int i = 0; i < childCount; i++)
             {
@@ -203,7 +203,7 @@ public class LineScript : MonoBehaviour
             isTranslated = true;
         }
 
-        if (!isVisible && paperScript.Focused)
+        if (!isVisible && paperScript.Focused && !gameControllerScript.overlayActive)
         {
             isVisible = true;
             if (translateable)
@@ -239,7 +239,7 @@ public class LineScript : MonoBehaviour
 
     public IEnumerator untranslate()
     {
-        if (isVisible && paperScript.Focused)
+        if (isVisible && paperScript.Focused && !gameControllerScript.overlayActive)
         {
             isVisible = false;
             for (int i = 0; i < childCount; i++)
@@ -255,7 +255,7 @@ public class LineScript : MonoBehaviour
             }
         }
 
-        if (isTranslated && paperScript.Focused)
+        if (isTranslated && paperScript.Focused && !gameControllerScript.overlayActive)
         {
             for (int i = 0; i < childCount; i++)
             {
@@ -266,7 +266,7 @@ public class LineScript : MonoBehaviour
             isTranslated = false;
         }
 
-        if (!isVisible)
+        if (!isVisible && !gameControllerScript.overlayActive)
         {
             isVisible = true;
             for (int i = 0; i < childCount; i++)
