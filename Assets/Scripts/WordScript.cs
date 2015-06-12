@@ -4,6 +4,7 @@ using Holoville.HOTween;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityStandardAssets.ImageEffects;
 
 /* 
  * This script is attached to each Word object.
@@ -50,6 +51,8 @@ public class WordScript : MonoBehaviour {
     public GameObject glowSystem;
 
     private Vector3 defaultPos;
+
+    public GameObject blackScreen;
 
     private Material fontMaterial;
     private float glowStrength;
@@ -211,6 +214,7 @@ public class WordScript : MonoBehaviour {
 						wordOptions[1] = wordStruct.alt;
 						gameControllerScript.overlayActive = true;
 						createText(noteParent);
+                        StartCoroutine(FadeBlack());
 					}
 				}
 			}
@@ -219,8 +223,15 @@ public class WordScript : MonoBehaviour {
             //StartCoroutine(overlay());
         }
     }
-	
-	void createText(string noteParent){		
+
+    IEnumerator FadeBlack()
+    {
+        blackScreen = GameObject.FindGameObjectWithTag("BlackGame");
+        HOTween.To(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<VignetteAndChromaticAberration>(), 0.5f, "blur", 0.25f);
+        yield return StartCoroutine(HOTween.To(blackScreen.GetComponent<SpriteRenderer>(), 0.5f, "color", new Color(1, 1, 1, 0.35f)).WaitForCompletion());
+    }
+
+	void createText(string noteParent){
 		int i = 1;
 		//wordOptionsUp = true;
 		//currX = -6;
@@ -239,7 +250,7 @@ public class WordScript : MonoBehaviour {
 			textInstance.transform.parent = GameObject.FindGameObjectWithTag("MainCamera").transform;
 			textInstance.GetComponent<TextMesh>().text = w;
 			textInstance.AddComponent<BoxCollider2D>();
-		    textInstance.GetComponent<TextMesh>().color = new Color(0, 0, 0, 0);
+		    textInstance.GetComponent<TextMesh>().color = new Color(255, 255, 255, 0);
 			//currX = textInstance.transform.position.x;
 			//currY = textInstance.transform.position.y;
 			//currZ = textInstance.transform.position.z;
@@ -248,7 +259,7 @@ public class WordScript : MonoBehaviour {
 				charCount++;
 			}
 			float textSize = textInstance.GetComponent<BoxCollider2D>().size.x;
-			float newPosX = currX - (textSize / 7);
+			float newPosX = currX - (textSize / 8);
 			textInstance.transform.localPosition = new Vector3(newPosX, currY, currZ);
 			
 			//currX = -3.14f;
@@ -259,7 +270,7 @@ public class WordScript : MonoBehaviour {
 			i++;
 			charCount = 1;
 
-            HOTween.To(textInstance.GetComponent<TextMesh>(), 1.0f, "color", new Color(0, 0, 0, 1), false);
+            HOTween.To(textInstance.GetComponent<TextMesh>(), 1.0f, "color", new Color(255, 255, 255, 1), false);
 		}
 	}
 }

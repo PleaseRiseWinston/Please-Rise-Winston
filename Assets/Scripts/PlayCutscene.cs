@@ -89,7 +89,7 @@ public class PlayCutscene : MonoBehaviour {
                 SwitchToGame();
 
                 yield return new WaitForSeconds(5);
-                GameObject.FindGameObjectWithTag("BlackGame").SetActive(false);
+                //GameObject.FindGameObjectWithTag("BlackGame").SetActive(false);
                 gameControllerScript.UpdateCurNote(1, null);
                 gameControllerScript.GetNote("1.1");
                 //gameControllerScript.GetNote("1." + GameObject.FindGameObjectWithTag("Notes").transform.GetChild(gameControllerScript.curAct - 1).childCount);
