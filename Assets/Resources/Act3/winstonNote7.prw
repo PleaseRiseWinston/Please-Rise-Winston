@@ -1,5 +1,5 @@
 I wondered what her
-{intentions|angle} could have
+{intentions^1|angle^-1} could have
 been. Feeling like I
 might never know the
 *7*4*{answer|truth} to this, I sat

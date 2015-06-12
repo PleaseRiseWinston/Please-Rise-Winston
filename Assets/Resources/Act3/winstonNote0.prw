@@ -2,7 +2,7 @@ Welcome back everyone.
 We’ve arrived at the next
 chapter of Winston’s
 book. In this section we
-{believe|assume} Winston is again
+{believe^3|assume^-1} Winston is again
 suggesting some criminal
 actions. Winston could
 you get us up to speed

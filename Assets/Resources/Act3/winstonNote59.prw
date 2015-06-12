@@ -7,4 +7,4 @@ something we take
 lightly, perhaps this
 could be another trial in
 itself. What do you have
-to say for your {actions|defense}? @W #p $BRANCH
+to say for your {actions^1|defense^-1}? @W #p $BRANCH

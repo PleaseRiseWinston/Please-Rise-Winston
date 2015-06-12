@@ -1,7 +1,7 @@
 You know as well as I do
 that this isn’t true.
 I’ve been harassed for
-{wandering|walking} around, even in
+{wandering^1|walking^-1} around, even in
 Westholt. How would
 someone from the city
 react if there were

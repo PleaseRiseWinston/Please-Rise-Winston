@@ -1,5 +1,5 @@
 The sun was overhead and
-my body was {drained|energized}.
+my body was {drained^1|energized^-1}.
 Walking this far had
 become incredibly
 *26*8*{exhausting|surprising}. I realized

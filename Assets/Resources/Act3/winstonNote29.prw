@@ -5,7 +5,7 @@ always emphasized in the
 ration packets we
 received that we needed
 to drink all the water
-{allocated|doled} to us everyday.
+{allocated^3|doled^-1} to us everyday.
 I never considered what
 would happen if I didn’t.
 This was a mistake. #b

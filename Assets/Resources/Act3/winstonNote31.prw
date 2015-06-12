@@ -6,5 +6,5 @@ that this place could not
 be seen from the road and
 possibly noticed at
 all had it not been for
-the {scent|smoke} coming from
+the {scent^3|smoke^-3} coming from
 its chimney. #b

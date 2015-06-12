@@ -2,4 +2,4 @@ We know because I wrote
 it! I know what the
 person inside the house
 was thinking because I
-{wrote|knew} this character. @P #d
+{wrote^3|knew^-3} this character. @P #d

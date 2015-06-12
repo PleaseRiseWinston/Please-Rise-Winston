@@ -1,4 +1,4 @@
-I {landed|stumbled} face down and I
+I {landed^1|stumbled^-1} face down and I
 reached down to grab it.
 I noticed some
 scribblings on the back.

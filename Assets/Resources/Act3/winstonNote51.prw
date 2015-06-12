@@ -5,4 +5,4 @@ All we see is Joanna
 taking goods that have no
 reason for being on this
 porch. All we have is
-{theft|extortion}. @W #p
+{theft^1|extortion^-1}. @W #p

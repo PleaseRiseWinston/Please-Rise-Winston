@@ -1,4 +1,4 @@
-I {timidly|brazenly} walked back
+I {timidly^1|brazenly^-1} walked back
 towards the front door.
 Where there was nothing
 before, there was now a

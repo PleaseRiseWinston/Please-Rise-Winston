@@ -1,6 +1,6 @@
 I must stop again here.
 If the evidence of Joanna
-being a {conversationalist|scandal}
+being a {conversationalist^3|scandal^-1}
 wasn't clear already this
 should solidify that. She
 is choosing here to go

@@ -1,5 +1,5 @@
 Well, it was about a
-{month|year} ago. It was
+{month^1|year^-3} ago. It was
 nighttime and I was
 *55*36*{sitting|sleeping} when
 I heard something

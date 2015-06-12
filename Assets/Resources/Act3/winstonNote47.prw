@@ -6,6 +6,6 @@ drank the water and took
 one piece of the bread. I
 hoped I wasn’t making
 someone starve, but I had
-{little|no} choice. After
+{little^1|no^-3} choice. After
 yelling ‘Thank you’, I
 left. #b

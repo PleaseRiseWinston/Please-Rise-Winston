@@ -3,7 +3,7 @@ She looked similar to
 Mary in some ways, but
 not in others. The edge
 of the picture frame
-looked {beaten|broken} on one side.
+looked {beaten^1|broken^-1} on one side.
 I sat up and held the
 frame in my hand. I
 pressed my finger on the
