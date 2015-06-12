@@ -1,6 +1,6 @@
 Well, those paintings
 were mine. They were
-{taken|stolen} after a
+{taken^1|stolen^-2} after a
 court case not
 unlike this one. The
 differences were that I

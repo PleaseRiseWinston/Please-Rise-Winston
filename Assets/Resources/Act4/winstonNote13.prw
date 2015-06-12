@@ -3,7 +3,7 @@ At the bottom it read,
 head darted off to a
 painting as Isa spoke,
 “I see Mary isn’t with
-you.” {Guilt|Regret} washed over
+you.” {Guilt^1|Regret^-1} washed over
 me all at once. She
 wouldn’t have known why
 I am here and Mary is

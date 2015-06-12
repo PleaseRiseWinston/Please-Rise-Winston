@@ -1,7 +1,7 @@
 We just need the vessel
 with which to do it. I
 have heard of your
-{exploits|feats} in your journey
+{exploits^-1|feats^1} in your journey
 to find me. I’ve heard
 of others beginning to
 speak, because of you.”

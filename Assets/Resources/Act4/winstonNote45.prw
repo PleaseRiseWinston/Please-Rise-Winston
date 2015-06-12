@@ -8,4 +8,4 @@ same. What I didn’t
 also end. I began to
 think about how many more
 hours in my life I had to
-live, how many {minutes|moments}. #b
+live, how many {minutes^-1|moments^1}. #b

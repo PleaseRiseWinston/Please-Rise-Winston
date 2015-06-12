@@ -6,6 +6,6 @@ by old age, or perhaps
 by the same means as
 Mary; it just wouldn’t
 happen, Isa spoke again,
-“You clearly {could|would}
+“You clearly {could^-1|would^1}
 have the lowers on your
 side, you know that. #b

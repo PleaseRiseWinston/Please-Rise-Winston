@@ -1,5 +1,5 @@
 Winston, I hope you 
-{realize|grasp} the line your
+{realize^1|grasp^-1} the line your
 character has crossed
 with what’s going on 
 here. Not only is 

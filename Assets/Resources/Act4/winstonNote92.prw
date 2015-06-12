@@ -7,5 +7,5 @@ tried to paint what I
 felt. Sometimes it was
 just splatters, other
 times it was of people I
-{saw|passed} on the
+{saw^-1|passed^1} on the
 street. #d

@@ -1,5 +1,5 @@
-Before my {poorly|lame} and
-{hastily|impulsively} constructed lie
+Before my {poorly^-1|lame^1} and
+{hastily^1|impulsively^-1} constructed lie
 could get any worse, she
 spoke again “Please come
 inside, miss.” I was

@@ -1,1 +1,1 @@
-...she’s *46*28*{daring|strong}. @P #d
+...she’s *46*28*{daring^1|strong^-1}. @P #d

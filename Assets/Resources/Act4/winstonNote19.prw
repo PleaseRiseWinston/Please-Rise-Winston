@@ -5,5 +5,5 @@ their mind with anything
 less than their language
 of holy jurisdiction.
 Not only is this 
-situation {taboo|frownable} but it
+situation {taboo^-1|frownable^1} but it
 is simply not possible. @W #p

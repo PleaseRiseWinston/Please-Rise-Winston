@@ -1,4 +1,4 @@
-My body {begged|urged} me,
+My body {begged^-1|urged^1} me,
 blood rushed through my
 veins as if waiting to
 run, preparing for the

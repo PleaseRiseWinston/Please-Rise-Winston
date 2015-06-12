@@ -1,4 +1,4 @@
-This is a {ridiculous|contemptible} 
+This is a {ridiculous^-1|contemptible^1} 
 line of questioning.
 I know about the past
 because of the work our

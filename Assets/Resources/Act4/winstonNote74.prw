@@ -1,4 +1,4 @@
-A {strange|provoking} note to end
+A {strange^1|provoking^-1} note to end
 the work on Winston. Are
 you suggesting that in
 the end, Joanna chose to

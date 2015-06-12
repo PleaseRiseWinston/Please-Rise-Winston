@@ -3,7 +3,7 @@ never seen one quite
 like yours. Not only
 that, it’s strictly
 against the rules to go
-{snooping|searching} through other
+{snooping^-1|searching^1} through other
 case files, it’s all
 confidential in
 protection of those

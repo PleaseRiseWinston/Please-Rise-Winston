@@ -4,6 +4,6 @@ to interpret and after
 that? I’m not sure. I 
 don’t know what the outcome
 will be, nor do I know the 
-potential {punishments|retributions}. As 
+potential {punishments^0|retributions^0}. As 
 always, it seems we’re in
 the dark. @J #d

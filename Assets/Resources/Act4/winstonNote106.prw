@@ -1,5 +1,5 @@
 I want to say that I
-*103*37*{do|don't} believe in you,
+{do^-3|don't^3} believe in you,
 Winston. Maybe that’s
 not evidence or
 relevant but I think

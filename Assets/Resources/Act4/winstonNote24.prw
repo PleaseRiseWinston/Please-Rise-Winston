@@ -1,7 +1,7 @@
 Would you believe me if
 I told you that not long
 ago this world was more
-{different|accepting}.” I didn’t know
+{different^1|accepting^-1}.” I didn’t know
 how to respond.
 “*24*16*{Different|Accepting} in what way?”
 “Not long ago, this
